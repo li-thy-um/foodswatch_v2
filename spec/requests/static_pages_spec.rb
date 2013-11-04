@@ -8,7 +8,7 @@ end
 
 describe "Static pages" do
   
-  pages = {"home" => page_info("Home page", "Home", "Sample App"), "help" => page_info("Help page", "Help", "Help"), "about" => page_info("About page", "About Us", "About Us")}
+  pages = {"home" => page_info("Home page", "Home", "Sample App"), "help" => page_info("Help page", "Help", "Help"), "about" => page_info("About page", "About Us", "About Us"), "contact" => page_info("Contact page", "Contact", "Contact")}
 
   pages.each do |addr, info|
    
