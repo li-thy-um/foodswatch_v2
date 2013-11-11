@@ -1,14 +1,14 @@
 require 'spec_helper'
  
 def page_info(name, title, content)
-  default_title = "Ruby on Rails Tutorial Sample App | "
+  default_title = "Ruby on Rails Tutorial Sample App"
   title = default_title + title
   return {"name" => name, "title" => title, "content" => content}
 end
 
 describe "Static pages" do
   
-  pages = {"home" => page_info("Home page", "Home", "Sample App"), "help" => page_info("Help page", "Help", "Help"), "about" => page_info("About page", "About Us", "About Us"), "contact" => page_info("Contact page", "Contact", "Contact")}
+  pages = {"home" => page_info("Home page", "", "Sample App"), "help" => page_info("Help page", " | Help", "Help"), "about" => page_info("About page", " | About Us", "About Us"), "contact" => page_info("Contact page", " | Contact", "Contact")}
 
   pages.each do |addr, info|
    
@@ -25,6 +25,9 @@ describe "Static pages" do
       it "should have the title #{title}" do
          visit "/static_pages/#{addr}"
          expect(page).to have_title(title)
+         if page_name == "Home page"
+           expect(page).not_to have_title('| Home') 
+         end
       end
     end
   end
