@@ -12,15 +12,6 @@ class PageInfo
   end
 end
 
-class UserPageInfo < PageInfo
-  attr_reader :user
-  def initialize(name, title, content, option = { full_title: true },
-                 user = nil)
-    super(name, title, content, option)
-    @user = user
-  end
-end
-
 def layout_links
   pages = static_pages.merge(user_pages)
   { "About"        => pages[:about_path],
@@ -38,17 +29,22 @@ def static_pages
     contact_path: PageInfo.new("Contact page", "Contact",  "Contact") }
 end
 
-USER = FactoryGirl.create(:user)
 def user_pages
-  { signup_path:         UserPageInfo.new("Sign up page", "Sign up", "Sign up"),
-    "user_path(user)" => UserPageInfo.new("Profile page", USER.name, USER.name,
-                                          { full_title: false }, USER) }
+  { signup_path: PageInfo.new("Sign up page", "Sign up", "Sign up") }
 end
 
-def valid_signin(user)
-  fill_in "Email",    with: user.email
-  fill_in "Password", with: user.password 
-  click_button "Sign in"
+def sign_in(user, options={})
+  if options[:no_capybara]
+    remember_token = User.new_remember_token
+    cookies[:remember_token] = remember_token
+    user.update_attribute(
+      :remember_token, User.encrypt(remember_token))
+  else
+    visit signin_path
+    fill_in "Email",    with: user.email
+    fill_in "Password", with: user.password 
+    click_button "Sign in"
+  end
 end
 
 RSpec::Matchers.define :have_error_message do |message|
