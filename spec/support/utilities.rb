@@ -33,18 +33,26 @@ def user_pages
   { signup_path: PageInfo.new("Sign up page", "Sign up", "Sign up") }
 end
 
-def sign_in(user, options={})
+def sign_in(user, options = {})
   if options[:no_capybara]
     remember_token = User.new_remember_token
     cookies[:remember_token] = remember_token
     user.update_attribute(
       :remember_token, User.encrypt(remember_token))
   else
-    visit signin_path
+    if block_given?
+      yield user
+    else
+      visit signin_path
+    end
     fill_in "Email",    with: user.email
     fill_in "Password", with: user.password 
     click_button "Sign in"
   end
+end
+
+def sign_out
+  delete signout_path
 end
 
 RSpec::Matchers.define :have_error_message do |message|

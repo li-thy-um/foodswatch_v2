@@ -28,15 +28,31 @@ describe "AuthenticationPages" do
     
     describe "with valid information" do
       let(:user) { FactoryGirl.create(:user) }
-      before { sign_in(user) } 
+      before { sign_in user } 
+      
+      describe "the page" do
+        it { should have_title(user.name) }
+        it { should have_link('Users',       href: users_path) }
+        it { should have_link('Profile',     href: user_path(user)) }
+        it { should have_link('Settings',   href: edit_user_path(user)) }
+        it { should have_link('Sign out',    href: signout_path) }
+        it { should_not have_link('Sign in', href: signin_path) }
+      end
 
-      it { should have_title(user.name) }
-      it { should have_link('Users',       href: users_path) }
-      it { should have_link('Profile',     href: user_path(user)) }
-      it { should have_link('Settings',   href: edit_user_path(user)) }
-      it { should have_link('Sign out',    href: signout_path) }
-      it { should_not have_link('Sign in', href: signin_path) }
-     
+      describe "followed by visit" do 
+        before { sign_in user, { no_capybara: true } }
+
+        describe "new action" do
+          before { get new_user_path }
+          specify { expect(response).to redirect_to(root_url) }
+        end
+
+        describe "create action" do
+          before { post users_path }
+          specify { expect(response).to redirect_to(root_url) }
+        end
+      end
+
       describe "followed by signout" do
         before { click_link "Sign out" }
         it { should have_link ('Sign in') }
@@ -48,19 +64,37 @@ describe "AuthenticationPages" do
     
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
+      
+      describe "the page" do
+        before { visit root_path } 
+        
+        it { should_not have_link('Users',    href: users_path) }
+        it { should_not have_link('Profile',  href: user_path(user)) }
+        it { should_not have_link('Settings', href: edit_user_path(user)) }
+        it { should_not have_link('Sign out', href: signout_path) }
+        it { should     have_link('Sign in',  href: signin_path) }
+      end
 
       describe "when attempting to visit a protected page" do 
-        before do 
-          visit edit_user_path(user)
-          fill_in "Email",    with: user.email
-          fill_in "Password", with: user.password
-          click_button "Sign in"
+        before do
+          sign_in(user) { |user| visit edit_user_path(user)  }
         end
 
         describe "after signing in" do 
         
           it "should render the desired protected page" do 
             expect(page).to have_title('Edit user')
+          end
+
+          describe "when sign in again" do
+            before do
+              sign_out
+              sign_in(user)
+            end
+
+            it "should render the default (profile) page" do
+              expect(page).to have_title(user.name)
+            end
           end
         end
       end
