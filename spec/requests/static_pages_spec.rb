@@ -39,6 +39,11 @@ describe "Static pages" do
             visit root_path
           end
 
+          it "should have the right microposts count on the side-bar" do 
+            count = user.microposts.count
+            expect(page).to have_selector("span", text: "#{count} microposts")
+          end
+
           it "should render the user's feed" do 
             user.feed.each do |item|
               expect(page).to have_selector("li##{item.id}", text: item.content)
