@@ -33,6 +33,18 @@ def user_pages
   { signup_path: PageInfo.new("Sign up page", "Sign up", "Sign up") }
 end
 
+def user_with_microposts
+  user = FactoryGirl.create(:user)
+  prepare_microposts_for(user)
+end
+
+def prepare_microposts_for(user)
+  50.times do
+    FactoryGirl.create(:micropost, user: user)
+  end
+  user
+end
+
 def sign_in(user, options = {})
   if options[:no_capybara]
     remember_token = User.new_remember_token

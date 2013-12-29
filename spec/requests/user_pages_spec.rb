@@ -69,19 +69,20 @@ describe "User pages" do
   end
 
   describe "Profile Page" do
-    let(:user) { FactoryGirl.create(:user) }
-    let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
-    let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
-
+    _user = user_with_microposts
+    let(:user) { _user }
     before { visit user_path(user) }
+    after(:all) { user.destroy } 
 
     it { should have_content(user.name) }
     it { should have_title(user.name) }
+    it { should have_content(user.microposts.count) } 
+    it { should have_selector("div.pagination") }
 
-    describe "microposts" do
-      it { should have_content(m1.content) }
-      it { should have_content(m2.content) }
-      it { should have_content(user.microposts.count) }
+    it "should list each micropost" do
+      user.microposts.paginate(page: 1).each do |micropost|
+        expect(page).to have_selector('li', text: micropost.content)
+      end
     end
   end
   

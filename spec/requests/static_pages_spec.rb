@@ -29,27 +29,23 @@ describe "Static pages" do
 
         # Home page test cases for signed-in users. BEGIN 
         describe "for signed-in users" do 
-          let(:user) { FactoryGirl.create(:user) }
+          _user = user_with_microposts
+          let(:user) { _user }
           before do 
-            FactoryGirl.
-              create(:micropost, user: user, content: "Kiss my A-S-S!")
-            FactoryGirl.
-              create(:micropost, user: user, content: "It's a nice day")
             sign_in user
             visit root_path
           end
+          after(:all) { user.destroy }
 
-          it "should have the right microposts count on the side-bar" do 
-            count = user.microposts.count
-            expect(page).to have_selector("span", text: "#{count} microposts")
-          end
+          it { should have_content(user.microposts.count) }
+          it { should have_selector("div.pagination") }
 
           it "should render the user's feed" do 
-            user.feed.each do |item|
+            user.feed.paginate(page: 1).each do |item|
               expect(page).to have_selector("li##{item.id}", text: item.content)
             end
           end
-        end 
+        end  
         # END
 
       when "Contact page"
