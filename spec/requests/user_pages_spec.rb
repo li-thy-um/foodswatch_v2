@@ -69,11 +69,10 @@ describe "User pages" do
   end
 
   describe "Profile Page" do
-    _user = user_with_microposts
-    let(:user) { _user }
+    let(:user) { user_with_microposts }
     before { visit user_path(user) }
-    after(:all) { user.destroy } 
-
+    after { user.destroy }    
+    
     it { should have_content(user.name) }
     it { should have_title(user.name) }
     it { should have_content(user.microposts.count) } 

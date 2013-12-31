@@ -8,13 +8,26 @@ describe "MicropostPages" do
   before { sign_in user }
 
   describe "micropost destruction" do
-    before { FactoryGirl.create(:micropost, user: user) }
-    
-    describe "as corrent user" do
+    let(:followed)      { FactoryGirl.create(:user) }
+    let!(:self_post)     { FactoryGirl.create(:micropost, user: user) }
+    let!(:followed_post) { FactoryGirl.create(:micropost, user: followed) }
+   
+    # TODO implement user.follow
+    # before { user.follow followed }
+
+    describe "as correct user" do
       before { visit root_path }
 
-      it "should delete a micropost" do 
-        expect { click_link "delete" }.to change(Micropost, :count).by(-1)
+      it "should not have a delete link attach to a followed micropost" do
+        # TODO Temp case before implement the 'follow' function.
+        if page.has_css?("##{followed_post.id}")
+          expect(find_by_id followed_post.id).not_to have_link('delete') 
+        end
+      end
+
+      it "should be able to delete a self-post micropost" do 
+        expect { (find_by_id self_post.id).click_link "delete" }.
+          to change(Micropost, :count).by(-1)
       end
     end
   end

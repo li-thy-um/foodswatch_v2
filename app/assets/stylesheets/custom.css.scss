@@ -57,6 +57,7 @@ h2 {
   color: $grayLight;
 }
 
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -211,6 +212,15 @@ input {
 .gravatar {
   float: left;
   margin-right: 10px; 
+}
+
+.surplus-negative{
+  color: $red;
+}
+
+#surplus_count{
+  float: right;
+  margin-top: 10px;
 }
 
 aside {

@@ -29,13 +29,12 @@ describe "Static pages" do
 
         # Home page test cases for signed-in users. BEGIN 
         describe "for signed-in users" do 
-          _user = user_with_microposts
-          let(:user) { _user }
+          let(:user) { user_with_microposts }
           before do 
             sign_in user
             visit root_path
           end
-          after(:all) { user.destroy }
+          after { user.destroy }
 
           it { should have_content(user.microposts.count) }
           it { should have_selector("div.pagination") }
