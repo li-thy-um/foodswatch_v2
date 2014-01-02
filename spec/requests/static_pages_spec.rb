@@ -26,7 +26,7 @@ describe "Static pages" do
       case page_info.name
       when "Home page"
         it { should_not have_title('| Home') }
-
+        
         # Home page test cases for signed-in users. BEGIN 
         describe "for signed-in users" do 
           let(:user) { user_with_microposts }
@@ -43,6 +43,20 @@ describe "Static pages" do
             user.feed.paginate(page: 1).each do |item|
               expect(page).to have_selector("li##{item.id}", text: item.content)
             end
+          end
+
+          describe "follower/following counts" do 
+            let(:other_user) { FactoryGirl.create(:user) }
+            before do 
+              other_user.follow!(user)
+              visit root_path
+            end
+
+            it { should have_link("0 following",
+                                   href: following_user_path(user)) }
+            it { should have_link("1 followers",
+                                  href: followers_user_path(user)) }
+            
           end
         end  
         # END
