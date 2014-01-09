@@ -8,8 +8,7 @@ namespace :db do
 
   task set_admin: :environment do 
     user = User.find_by_name("lithium4010")
-    user.admin = true
-    user.save
+    user.toggle!(:admin)
   end
 end
 
