@@ -1,6 +1,9 @@
 <li>
   <%= gravatar_for user, size:52 %>
   <%= link_to user.name, user %>
+  <% if user.admin? %>
+    <%= image_tag("admin.jpg", alt: "(A)", size: "12x12") %>
+  <% end %>
   <!-- 这里隐含管理员可以互相删除-->
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,
