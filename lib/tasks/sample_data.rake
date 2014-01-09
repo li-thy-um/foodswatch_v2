@@ -5,11 +5,6 @@ namespace :db do
     make_microposts
     make_relationships
   end
-
-  task set_admin: :environment do 
-    user = User.find_by_name("lithium4010")
-    user.toggle!(:admin)
-  end
 end
 
 def make_relationships
