@@ -1,0 +1,37 @@
+<div id="comment_collapse_<%= micropost.id %>"
+     class="collapse row-fluid"> 
+<br/>     
+  
+<%= form_for(current_user.microposts.build,
+             html: {id: "new_comment_#{micropost.id}"}) do |f| %>
+  
+  <div class="comment-area line-above">
+      <div class="field row-fluid" >
+        <div class="span11">
+        <input type="hidden" 
+               name="micropost[comment_id]"
+               value="<%= micropost.id %>">
+        <input type="hidden" value="_comment_<%= micropost.id %>">
+          <%= f.text_area :content, placeholder: "Add your comment...",
+                                    class:       "letter_count",
+                                    style:       "height: 46px;"
+          %>
+        </div>
+        <div class="span1">
+          <p class="surplus_count_comment" 
+             id="surplus_count_comment_<%= micropost.id %>"></p>
+        </div>
+      </div>
+  </div>
+
+  <% comments = micropost.comments %>
+  <% if comments.any? %>
+  <div class="list-area line-above" style="margin-buttom:0px;">
+    <div class="comment-list" style="margin-right:10px">
+      <%= render comments, page: "comment" %>
+    </div>
+  </div>
+  <% end %>
+
+<% end %>
+</div>

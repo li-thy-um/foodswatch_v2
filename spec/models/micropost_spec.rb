@@ -7,7 +7,9 @@ describe Micropost do
            user.microposts.build(content: "Go fuck yourself ^_^") }
 
   subject { @micropost }
-
+  
+  it { should respond_to(:original_id) }
+  it { should respond_to(:original_post) }
   it { should respond_to(:content) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }

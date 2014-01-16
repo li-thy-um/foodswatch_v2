@@ -1,0 +1,34 @@
+<div id="share_modal"
+  class="modal hide fade" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"
+      aria-hidden="true">×</button>
+      <h3 id="share-modal">Share</h3>
+    </div>
+    <div class="modal-body">
+      <div class="original-post">
+        <%= gravatar_for(micropost.user) %>
+        <span class="user">
+          <%= micropost.user.name %>
+        </span>
+        <%= render 'shared/micropost',
+          micropost: micropost, share: true %>
+      </div>
+      <div class="share-comment" style="margin-top:24px">
+        <%= form_for(current_user.microposts.build) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div class="field">
+            <%= f.text_field :content, placeholder: "Add your comment...",
+          class: "letter_count"%>
+          </div>
+          <div> 
+            <p id="surplus_count">140</p>
+          </div> 
+      </div>
+    </div>
+    <div class="modal-footer">
+       <%= f.submit "Post", class: "btn btn-primary post_btn" %>
+    <% end %>
+    </div>
+</div>

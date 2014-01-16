@@ -1,0 +1,21 @@
+<%
+  message = ""
+  type = ""
+  @flash.each do |key, value|
+    message = value
+    type = key
+  end
+
+%>
+
+if (<%= @success %>){
+}else{
+  $("#msg<%= @id %>").html(
+      '<%= escape_javascript(
+        
+        content_tag(:div, message, class: "alert alert-#{type}")
+      
+      ) %>');
+}
+
+

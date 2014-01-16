@@ -1,0 +1,45 @@
+<%= form_for(current_user.microposts.build,
+           html: {id: "new_share_#{micropost.id}"}) do |f| %>
+<div id="share_modal_<%= micropost.id %>"
+     class="modal hide fade"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="share" 
+     aria-hidden="true">
+  
+  <div class="modal-header">
+    <button type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-hidden="true">×</button>
+    <h3 id="modal">Share</h3>
+  </div>
+  
+  <div class="modal-body">
+    <div class="original-post row-fluid">
+      <div class="span2">
+        <%= gravatar_for(micropost.user, size:"100x100") %>
+      </div>
+      <div class="span10">
+        <%= link_to  "@" + micropost.user.name, micropost.user %>
+        <%= render 'shared/post_content', micropost: micropost, page: "share" %>
+      </div> 
+    </div>
+    </br>
+    <div class="comment-area">
+      <%= render 'shared/error_messages', object: f.object %>
+      <input type="hidden"
+             name="micropost[original_id]"
+             value="<%= original_id_of(micropost.id) %>">
+      <input type="hidden"
+             name="micropost[shared_id]"
+             value="<%= micropost.id %>">       
+      <input type="hidden" value="_share_<%= micropost.id %>">
+      <%= f.text_area :content, placeholder: "Add your comment...",
+        class: "letter_count" %>
+      <p class="surplus_count"
+         id="surplus_count_share_<%= micropost.id %>"></p>
+    </div>
+  </div>
+</div>
+<% end %>  

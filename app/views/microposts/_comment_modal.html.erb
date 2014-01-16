@@ -1,0 +1,47 @@
+<%= form_for(current_user.microposts.build) do |f| %>
+<div id="comment_modal_<%= micropost.id %>"
+     class="modal hide fade"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="comment"
+     aria-hidden="true">
+  
+  <div class="modal-header">
+    <button type="button"
+            class="close" 
+            data-dismiss="modal"
+            aria-hidden="true">×</button>
+    <h3 id="modal">Comment</h3>
+  </div>
+    
+  <div class="modal-body list-area">
+    <div class="comment-list" style="margin-right:10px">
+      <%= render micropost.comments, page: "comment" %>
+    </div>
+  </div>
+    
+  <div class="modal-body comment-area">
+    <div class="field">
+      <input type="hidden" 
+             name="micropost[comment_id]"
+             value="<%= micropost.id %>">
+      <input type="hidden" value="_comment_<%= micropost.id %>">
+      <%= f.text_area :content, placeholder: "Add your comment...",
+                                class:       "letter_count"%>
+    </div>
+  </div>
+    
+  <div class="modal-footer">
+    <div class="row-fluid">  
+      <div class="span9"></div>
+      <div class="span1">
+        <p id="surplus_count_comment_<%= micropost.id %>">140</p>
+      </div>
+      <div class="span2">  
+        <%= f.submit "Post", class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+
+</div>
+<% end %>

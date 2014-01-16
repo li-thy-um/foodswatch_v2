@@ -1,3 +1,43 @@
-<li>
-  <%= render 'shared/micropost', micropost: micropost %>
-</li>
+<!-- @NEED Micropost micropost, String page -->
+<% user = micropost.user %>
+<% 
+  if page == "feed"
+    head, body, tail = "span1", "span10", "span1"
+  end 
+
+  if page == "show"
+    head, body, tail = "", "span11", "span1"
+  end
+
+  if page == "comment"
+    head, body, tail = "span1", "span11", ""
+  end
+%>
+
+<div id="<%= micropost.id %>">
+  <div class="row-fluid img-polaroid img-rounded">
+    <% unless head.empty? %>
+    <div class="<%= head %>">
+      <%= gravatar_for(user, size: "120x120") %> 
+    </div>
+    <% end %>
+
+    <% unless body.empty? %>
+    <div class="<%= body %>">
+      <% unless head.empty? %>
+        <span class="user"><%= user_link(user) %></span>
+      <% end %>
+      <%= render 'shared/post_content', micropost: micropost, page: page %>
+    </div>
+    <% end %>
+
+    <% unless tail.empty? %>
+    <div class="<%= tail %>">
+      <%= render 'shared/post_action', micropost: micropost %>
+    </div> 
+    <% end %>
+    <%= render 'microposts/comment_collapse', micropost: micropost,
+                                              page: page unless tail.empty? %>
+  </div>
+  </div>
+<br/>

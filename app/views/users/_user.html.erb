@@ -4,8 +4,9 @@
   <% if user.admin? %>
     <%= image_tag("admin.jpg", alt: "(A)", size: "12x12") %>
   <% end %>
-  <!-- 这里隐含管理员可以互相删除-->
-  <% if current_user.admin? && !current_user?(user) %>
+  <!-- 这里隐含管理员可以互相删除 -->
+  <!-- && false 暂时关闭了这个删除的链接 -->
+  <% if current_user.admin? && !current_user?(user) && false %>
     | <%= link_to "delete", user, method: :delete,
                                  data: { confirm: "You sure?" } %> 
   <% end %>

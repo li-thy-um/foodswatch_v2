@@ -4,6 +4,14 @@ class Micropost < ActiveRecord::Base
   validates :content, presence: true, length: { maximum: 140 }
   validates :user_id, presence: true
 
+  def comments
+    Micropost.where("comment_id = #{self.id}")  
+  end
+
+  def original_post
+    Micropost.where("id = #{self.original_id}").first
+  end
+
   def self.from_users_followed_by(user)
     followed_user_ids = "SELECT followed_id FROM relationships
                          WHERE follower_id = :user_id"

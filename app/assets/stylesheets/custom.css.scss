@@ -57,6 +57,13 @@ h2 {
   color: $grayLight;
 }
 
+h3 {
+  font-size: 2em;
+  letter-spacing: -2px;
+  text-align: center;
+  font-weight: normal;
+  color: $gray;
+}
 
 p {
   font-size: 1.1em;
@@ -138,6 +145,7 @@ aside {
       letter-spacing: -1px;
       margin-bottom: 3px;
       margin-top: 0px;
+      margin-right: 3px;
     }
   }
 }
@@ -219,7 +227,6 @@ input {
 }
 
 /* microposts */
-
 .microposts {
   list-style: none;
   margin: 10px 0 0 0;
@@ -238,13 +245,23 @@ input {
   color: $grayLight;
 }
 
-.surplus-negative{
+.surplus-negative {
   color: $red;
 }
 
-#surplus_count{
+.surplus_count {
   float: right;
+  margin-top: 1px;
+}
+
+.surplus_count_comment {
+  float: left;
   margin-top: 10px;
+}
+
+.line-above {
+  padding: 10px 0;
+  border-top: 1px solid $grayLighter;
 }
 
 aside {
@@ -252,4 +269,8 @@ aside {
     height: 100px;
     margin-bottom: 5px;
   }
+}
+
+#modal {
+  text-transform: uppercase;
 }

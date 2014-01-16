@@ -1,0 +1,13 @@
+<!-- @NEED User user, String page -->
+<aside class="span4">
+  <section>
+    <%= render 'shared/user_info', user: user, complex: page == "home" %>
+  </section>
+  <section>
+    <%= render 'shared/stats' %>
+  </section>
+  <section>
+    <%= render 'shared/micropost_form' if page == "home" %>   
+    <%= render 'users/follow_form'     if page == "show" && signed_in? %>
+  </section>
+</aside>
