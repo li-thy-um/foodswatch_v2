@@ -1,0 +1,80 @@
+<div id="add_food_modal"
+  class="modal hide fade" tabindex="-1" role="dialog"
+  aria-labelledby="Add Food" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"
+      aria-hidden="true">×</button>
+    <h3 id="modal">add food</h3>
+  </div>
+  <div class="modal-body">
+
+    <div>search form</div>
+    <div>search_result of watch_list</div>
+  </div>
+  <div class="modal-footer">
+    <div hidden="true" id="label_sample">
+      <a class="label click_del" title="click to delete" style="float:left;"></a>
+    </div>
+    <div class="row-fluid">
+      <div class="span6" id="choosed">
+      </div> 
+      <div class="span6">
+        <a href="#new_food_modal"
+           data-toggle="modal"
+           title="Create New Food"
+           class="btn btn-success"
+           id="new_food_btn">NEW <i class="icon-glass icon-white"></i>
+        </a>
+      <a href="#add_food_modal"
+         data-toggle="modal"
+         class="btn btn-danger">CANCEL
+      </a>
+      <a href="#add_food_modal"
+         data-toggle="modal"
+         class="btn btn-primary"
+         id="add_food_btn">OK</a>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div id="new_food_modal"
+  class="modal hide fade" tabindex="-1" role="dialog"
+  aria-labelledby="New Food" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"
+      aria-hidden="true">×</button>
+      <h3 id="modal">new food</h3>
+    </div>
+    <div class="modal-body">
+      <div id="new_food_form">
+        Food name:     <input name="foods[][name]" type="text"
+                              placeholder="enter a food name..." 
+                              class="name" maxlength="15"
+                              title="15 letters at most"/>
+        Carb (g):      <input name="foods[][carb]" type="text" placeholder="0"
+                              class="nutri" maxlength="3"
+                              title="integer only"/>
+        Protein (g):   <input name="foods[][prot]" type="text" placeholder="0"
+                              class="nutri" maxlength="3"
+                              title="integer only"/>
+        Fat (g):       <input name="foods[][fat]"  type="text" placeholder="0"
+                              class="nutri" maxlength="3"
+                              title="integer only"/>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#new_food_modal"
+         data-toggle="modal"
+         class="btn btn-danger"
+         id="cancel_new_food_btn">CANCEL
+      </a>
+      <button data-target="#new_food_modal"
+         data-toggle="modal"
+         title="Create New Food"
+         class="btn btn-primary disabled"
+         disabled="disabled"
+         id="create_food_btn">OK
+      </button>
+    </div>
+</div>

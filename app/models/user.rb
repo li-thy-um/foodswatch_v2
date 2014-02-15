@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :watches, dependent: :destroy
+  has_many :watched_foods, through: :watches, source: :food
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_relationships, foreign_key: "followed_id",
@@ -15,6 +17,23 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum: 6 }
+
+  def watch!(food)
+    watches.create!(food_id: food.id) 
+  end
+
+  def unwatch!(food)
+    watches.find_by(food_id: food.id).destroy
+  end
+
+  def watch_list_string()
+    list = Array.new
+    watched_foods.each do |food|
+      list << [food.id, food.name].join("_")
+    end
+    list.join(",")
+    ##"1_辣椒炒肉,11_辣椒炒蛋,2_糖醋排骨,3_汤大份"
+  end
 
   def following?(other_user)
     relationships.find_by(followed_id: other_user.id)

@@ -1,7 +1,12 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "foodswatch", root_path, id: "logo" %>
+      <a href="<%= root_path %>" id="logo">
+        <%= image_tag "food_icon.png",
+            alt: "logo", size: "30x30", style: "margin-bottom:3px;" %>
+        foodsw<i class="icon icon-eye-open icon-white"
+                 style="margin-top:7px;margin-left:1px"></i>tch
+      </a>
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>

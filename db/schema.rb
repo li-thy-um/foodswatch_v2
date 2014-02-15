@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140116085939) do
+ActiveRecord::Schema.define(version: 20140214133546) do
+
+  create_table "foods", force: true do |t|
+    t.string   "name"
+    t.integer  "weight"
+    t.integer  "prot"
+    t.integer  "carb"
+    t.integer  "fat"
+    t.integer  "calorie"
+    t.string   "info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "microposts", force: true do |t|
     t.string   "content"
@@ -21,12 +33,24 @@ ActiveRecord::Schema.define(version: 20140116085939) do
     t.integer  "original_id"
     t.integer  "comment_id"
     t.integer  "shared_id"
-    t.integer  "share_count", default: 0
+    t.integer  "share_count",   default: 0
+    t.integer  "post_food_id"
+    t.integer  "comment_count", default: 0
   end
 
   add_index "microposts", ["comment_id"], name: "index_microposts_on_comment_id"
   add_index "microposts", ["original_id"], name: "index_microposts_on_original_id"
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+
+  create_table "post_food_relationships", force: true do |t|
+    t.integer  "post_id"
+    t.integer  "food_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_food_relationships", ["food_id"], name: "index_post_food_relationships_on_food_id"
+  add_index "post_food_relationships", ["post_id"], name: "index_post_food_relationships_on_post_id"
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
@@ -51,5 +75,15 @@ ActiveRecord::Schema.define(version: 20140116085939) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "watches", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "food_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "watches", ["food_id"], name: "index_watches_on_food_id"
+  add_index "watches", ["user_id"], name: "index_watches_on_user_id"
 
 end

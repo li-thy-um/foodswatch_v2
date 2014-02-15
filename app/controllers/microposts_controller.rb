@@ -1,8 +1,10 @@
 class MicropostsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user, only: :destroy
-  after_action  :add_share_count, only: :create
-  after_action  :minus_share_count, only: :destroy
+  before_action :prepare_foods, only: :create
+  before_action :set_content, only: :create
+  before_action :create_post_food, only: :create
+  after_action  :handle_foods, only: :create
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -21,27 +23,40 @@ class MicropostsController < ApplicationController
   end
 
   private
-    
-    def minus_share_count
-      change_share_count(:minus)
-    end
-    
-    def add_share_count
-      change_share_count(:add)
-    end
 
-    def change_share_count (type)
-      change_ids = Array.new
-      change_ids << @micropost.original_id 
-      change_ids << @micropost.shared_id
-      change_ids.compact!
-      return if change_ids.empty?
-      Micropost.find(change_ids).each do |micropost|
-        micropost.share_count = 0 if micropost.share_count == nil
-        micropost.share_count += 1 if type == :add
-        micropost.share_count -= 1 if type == :minus
-        micropost.save
-      end 
+    def prepare_foods
+      @foods = Array.new
+      params[:foods].each do |food_info|
+        @foods << Food.new(food_info)
+      end if params[:foods]
+      params[:food_ids].each do |food_id|
+        food = Food.find_by_id(food_id)
+        @foods << food if food
+      end if params[:food_ids]
+    end
+       
+    def set_content
+      return unless params[:micropost][:content] == ""
+      params[:micropost][:content] = "I've ate:" unless @foods.empty?
+    end
+ 
+    def create_post_food
+      return if @foods.empty?
+      info = {prot:0, carb:0, fat:0}
+      @foods.each do |food|
+        info[:prot] += food.prot
+        info[:carb] += food.carb
+        info[:fat] += food.fat
+      end
+      params[:micropost][:post_food_id] = Food.create(info).id
+    end
+    
+    def handle_foods
+      @foods.each do |food|
+        food.save if food.id == nil
+        PostFoodRelationship.
+          create(food_id: food.id, post_id: @micropost.id) if food.id
+      end
     end
 
     def correct_user
@@ -50,9 +65,8 @@ class MicropostsController < ApplicationController
     end
 
     def micropost_params
-      params.require(:micropost).permit(:content,
-                                        :comment_id,
-                                        :original_id,
-                                        :shared_id)
+      params.require(:micropost).
+             permit(:content,     :comment_id,  
+                    :original_id, :shared_id, :post_food_id)
     end
-end
+end 

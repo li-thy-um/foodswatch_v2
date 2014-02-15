@@ -1,0 +1,5 @@
+<a class="label label-inverse food-tag popovers"
+   data-content="<%= html_escape(render 'shared/food_detail', food: food) %>"
+   data-title="<%= html_escape("<strong>#{food.name}</strong>"+render('shared/post_action_btn', type: :watch_food, food:food))%>">
+  <i class="icon-glass icon-white"></i> <%= food.name%>
+</a>

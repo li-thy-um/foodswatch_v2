@@ -34,7 +34,7 @@ describe "MicropostPages" do
 
   describe "micropost creation" do 
     before { visit root_path }
-    
+
     describe "with invalid information" do 
       it "should not create a micropost" do
         expect { click_button "Post" }.not_to change(Micropost, :count)

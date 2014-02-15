@@ -4,16 +4,22 @@ $(function(){
   $input.keyup(change_surplus);
   $input.keydown(submit_form);
   $input.tooltip({
-    placement: "bottom",
-    title:     "[ctrl+enter] to post.",
-    trigger:   "focus"
+    placement: "top",
+    title:     "[Ctrl+Enter] To Post.",
+    trigger:   "click"
   });
+
+  // Share modal
+  $(".btn-submit").click(function(){
+    var form_id = $(this).attr("form-id");
+    $("#"+form_id).submit();
+  })
 });
 
-var submit_form= function(e) {
+var submit_form = function(e) {
   var $form = $("#new" + $(this).prev().val());
-  //When enter pressed, submit the form.
-  if(e.ctrlKey && e.which == "13"){
+  //When ctrl+enter pressed, submit the form.
+  if(e.ctrlKey && e.which == "13") {
     $form.submit();       
   }
 }
@@ -27,12 +33,15 @@ var change_surplus = function() {
   // change number text.
   $text.text(surplus);
   
-  // change the color. 
+  // change color and submit-btn.
   var red = $text.hasClass("surplus-negative");
+  $btn = $($input.attr("attached-btn"))
   if(red && surplus > 0){
-    $text.removeClass("surplus-negative");
+    $text.removeClass("surplus-negative"); 
+    enable($btn);
   }
   if(!red && surplus <= 0){ 
     $text.addClass("surplus-negative");
+    disable($btn);
   } 
 }

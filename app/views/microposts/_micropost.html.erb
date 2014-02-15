@@ -14,7 +14,7 @@
   end
 %>
 
-<div id="<%= micropost.id %>">
+<div id="<%= micropost.id %>" style="margin-top:10px;">
   <div class="row-fluid img-polaroid img-rounded">
     <% unless head.empty? %>
     <div class="<%= head %>">
@@ -36,8 +36,10 @@
       <%= render 'shared/post_action', micropost: micropost %>
     </div> 
     <% end %>
-    <%= render 'microposts/comment_collapse', micropost: micropost,
-                                              page: page unless tail.empty? %>
+    <% if !tail.empty? && signed_in? %> 
+     <%= render 'microposts/comment_collapse', micropost: micropost,
+                                               page: page %>
+    <% end %>
   </div>
-  </div>
-<br/>
+</div>
+

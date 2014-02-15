@@ -1,0 +1,129 @@
+$(function(){
+  $('.btn-watch-post').popover({
+    html: true,
+    container: "body",
+    placement: "left"
+  });
+
+  $('.btn-add-food').popover({
+    html: true,
+    container: "body",
+    placement: "bottom"
+  }).hover(function(){
+  
+  }).click(init_add_food_popover);
+});
+
+var init_add_food_popover = function(){
+  $(".watch-list-typeahead").typeahead({
+    source: function(query, process){
+      process(get_watch_list());
+    },
+   
+    highlighter: function(food_info){
+      return make_food(food_info).name;
+    },
+
+    updater: function(food_info) {
+      var food = make_food(food_info); //food_info is a string.
+      add_hidden_input_by(food.id); //do this before add_label.
+      add_label_by(food.name);
+    }
+  });
+  $("#create_food_btn").click(add_food);
+  $("#new_food_form").children(".nutri").numeralinput();
+  $name_input = $("#new_food_form").children(".name");
+  $name_input.keypress(toggle_create_food_btn).
+              keyup(toggle_create_food_btn).
+              keypress();
+}
+
+var init_add_food_collapse = function(){
+  init_add_food_popover();
+
+  $("#cancel_new_food_btn").click(function(){
+    clear($("#new_food_form"));
+  });
+
+  $("#new_food_modal").on('show', function(){
+    $("#add_food_modal").modal("hide");
+    disable($("#create_food_btn"));
+  }).on('hidden', function(){
+    $("#add_food_modal").modal("show");
+  });
+}
+
+function get_watch_list(){
+  return $("#watch_list").val().split(",");  
+}
+
+function make_food(food_info /* like "id_name" */){
+  var info_array = food_info.split("_");
+  return {
+    id: info_array[0],
+    name: info_array[1]
+  };
+}
+
+var toggle_create_food_btn = function(){
+  $btn = $("#create_food_btn");
+  if ($(this).val() == ""){
+    disable($btn);
+  }else{
+    enable($btn);
+  }
+}
+
+var add_food = function() {
+  add_hidden_input();
+  add_label();
+  clear($("#new_food_form"));
+}
+
+var delete_food = function() {
+  var $label = $(this);
+  var id = $label.attr("id");
+  $("#food_form").children(".group_" + id).each(function(i,e){
+    $(e).remove();
+  });
+  $label.remove();
+}
+
+function add_label_by(name){
+  var $label = $("#label_sample").children().first().clone().html(name);
+  $label.attr("id", count_food()).click(delete_food);
+  $("#choosed").append($label);
+}
+
+function add_label() {
+  var food_name = $("#new_food_form").children(".name").first().val();
+  add_label_by(food_name);   
+}
+
+function append_input($form, $input, value){
+  $input.attr("value", value);
+  $input.addClass("group_" + count_food());
+  $form.append($input); 
+}
+
+function add_hidden_input_by(id){  
+  $food_form = $("#food_form");
+  $input = $("#food_id_input_sample").children().first().clone();
+  append_input($food_form, $input, id);
+}
+
+function add_hidden_input() {
+ $food_sample = $("#new_food_form");
+ $food_form = $("#food_form");
+
+ $food_sample.children("input").each(function(i,e) {
+   $input = $(e).clone();
+   var value = $input.val();
+   if (value == "") value = 0; //default value for nutri 
+   append_input($food_form, $input, value);
+ });
+}
+
+function count_food() {
+  return $("#choosed").children(".label").length;
+}

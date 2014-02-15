@@ -1,0 +1,61 @@
+<!-- post action button-->
+<!-- need Micropost post or Food food-->
+
+<% style ||= "" %>
+<% btn_class = "btn btn-link " %> 
+<% icon_class = "" %> 
+<% badge_class = "badge " %>
+
+<% link, toggle, content, icon, count = ["#"] * 5 %>
+<% self_def = nil %>
+
+<% if type == :watch_post %>
+
+  <% content = render 'shared/watch_post_popover', post:post %>
+  <% count = post.watcher_count %>
+  <% icon = "icon-eye-open" %>
+  <% btn_class += "btn-watch-post popovers" %>
+
+<% elsif type == :add_food %>
+
+  <% self_def = image_tag "food_icon.png", alt: "add food", size: "30x30" %>
+  <% content = render 'shared/add_food_popover' %>
+  <% btn_class += "btn-add-food popovers" %>
+  <% count = nil %>
+
+<% elsif type == :watch_food %>
+  
+  <% btn_class += "btn-link" %>
+  <% icon = "icon-eye-open" %>
+  <% count = food.watcher_count %>
+
+<% elsif type == :share %>
+
+  <% link = "#share_modal_#{post.id}" %>
+  <% toggle = "modal" %>
+  <% icon = "icon-share" %>
+  <% count = post.share_count %>
+  
+<% elsif type == :comment %>
+
+  <% link = "#comment_collapse_#{post.id}" %>
+  <% toggle = "collapse" %>
+  <% icon = "icon-comment" %>
+  <% count = post.comments.count %>
+
+<% end%>
+
+<% if not signed_in? %>
+  <% link = "#sign_in_modal" %>
+  <% toggle = "modal" %>
+<% end %>
+
+<a style="<%= style %>"
+   class="<%= btn_class %>"
+   href="<%= link %>"
+   data-toggle="<%= toggle %>"
+   data-content="<%= html_escape(content) %>">
+  <i class="<%= icon %> <%= icon_class %>"></i>
+  <%= self_def if self_def %>
+  <span class="<%= badge_class %>"><%= count %></span>
+</a>

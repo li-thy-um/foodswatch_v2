@@ -1,6 +1,6 @@
 <% if @feed_items.any? %>
   <ol class="microposts accordion" id="accordion2">
-      <%= render @feed_items, page: "feed" %> 
+      <%= render non_comment(@feed_items), page: "feed" %> 
         <!-- @SEE 'microposts/micropost' -->
   </ol>
   <%= will_paginate @feed_items %>

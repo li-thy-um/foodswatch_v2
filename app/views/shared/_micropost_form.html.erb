@@ -1,12 +1,36 @@
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+  <div id='choosed'></div>
+  <br/>
   <div class="field">
     <input type="hidden" value="_micropost">
     <%= f.text_area :content, placeholder: "Compose new micropost...",
-      class: "letter_count" %>
+      class: "letter_count", "data-container" => "body",
+      "attached-btn" => "#post_btn"%>
   </div>
-  <div class="post">
-    <p class="surplus_count"
-        id="surplus_count_micropost"></p>
-  </div>   
+  <div class="post row-fluid">
+    <div class="span6">
+    <!--  
+    
+    <a href="#add_food_collapse" data-toggle="collapse" 
+      class="btn btn-success btn-link" style="margin-top:5px">
+      <%= image_tag "food_icon.png", alt: "add food", size: "30x30" %>
+    </a>
+    
+    -->
+    <%= render 'shared/post_action_btn', type: :add_food,
+      style: "margin-top:5px" %>
+    </div>
+
+    <div class="span6">
+      <%= f.submit "POST", class: "btn btn-primary btn-large",
+                           style: "float:right", id: "post_btn"%>
+      <p class="surplus_count" style="margin-right:10px;
+                                      margin-top:10px;"
+      id="surplus_count_micropost"></p>
+    </div> 
+  </div>
+  <div hidden="true" id="food_form"></div>
 <% end %>
+
+<!-- <%= render 'shared/add_food_collapse'%> -->

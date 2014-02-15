@@ -1,5 +1,9 @@
 module MicropostsHelper
-  
+ 
+  def non_comment(microposts)
+    microposts.keep_if { |post| post.comment_id == nil } 
+  end
+
   def wrap(content)
     sanitize(raw(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
   end

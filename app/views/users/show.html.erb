@@ -4,7 +4,7 @@
   <div class="span8">
     <% if @user.microposts.any? %>
       <ol class="microposts accordion" id="accordion2">
-        <%= render @microposts, page: "show" %>
+        <%= render non_comment(@microposts), page: "show" %>
       </ol>
       <%= will_paginate @microposts %>
     <% end %>

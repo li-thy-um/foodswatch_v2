@@ -1,5 +1,8 @@
 <span class="content">
   <%= wrap(micropost.content) %>
+  <% micropost.foods.each do |food| %>
+    <%= render 'shared/food_tag', food: food %>
+  <% end %>
   <br/>
   <% if micropost.original_id? %>
     <%= 
