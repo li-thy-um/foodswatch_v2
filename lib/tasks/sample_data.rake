@@ -5,6 +5,10 @@ namespace :db do
     make_microposts
     make_relationships
   end
+  task delete_fake: :environment do 
+    users = User.where("id < 101")
+    users.destroy
+  end
 end
 
 def make_relationships
