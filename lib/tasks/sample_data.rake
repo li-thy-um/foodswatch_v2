@@ -7,7 +7,9 @@ namespace :db do
   end
   task delete_fake: :environment do 
     users = User.where("id < 101")
-    users.destroy
+    users.each do |user|
+      user.destroy
+    end
   end
 end
 
