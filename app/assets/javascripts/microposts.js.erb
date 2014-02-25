@@ -1,0 +1,10 @@
+$(function(){
+  $(".div-hover").hover(function(){
+    $(this).toggleClass('mouse-hand');
+  });
+  $(".div-click").click(function(){
+    var $div = $(this);
+    $div.next().collapse('toggle'); 
+    $div.next().next().toggleClass('hidden')
+  });
+});

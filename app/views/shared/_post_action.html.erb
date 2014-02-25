@@ -1,14 +1,28 @@
+<%
+  if page == "feed" || page == "show"
+    watch, comment = [true, true]  
+    delete = current_user?(micropost.user)
+    share = !delete
+  end
+  
+  if page == "comment"
+    watch, share, comment = [false,false,false]
+  end
+%>
+
+
 <div class="post-action">
-  <div class="btn-group btn-group-vertical"
-       style="float:right; background:#DDD;"> 
-    <%= render 'shared/post_action_btn', type: :watch_post, post: micropost %>
-    <%= render 'shared/post_action_btn', type: :share, post: micropost %>
-    <%= render 'shared/post_action_btn', type: :comment, post: micropost %>
+  <div class="btn-group btn-group-vertical
+    post_action_panel_<%= micropost.id %>">
+    <%= render 'buttons/watch_post', post: micropost if watch %>
+    <%= render 'buttons/share', post: micropost if share %>
+    <%= render 'buttons/delete_post', object: micropost if delete %>
+    <%= render 'buttons/comment', post: micropost if comment %>
   </div>
 </div>
 
 <% if signed_in? %>
-  <%= render 'microposts/share_modal', micropost: micropost %>
+  <%= render 'microposts/share_modal', micropost: micropost, page: page %>
 <% else %>
   <%= render 'shared/sign_in_modal' %>
 <% end %>

@@ -1,0 +1,8 @@
+<% style ||= "" %>
+<%= link_to object,
+    method: :delete,
+    class: "btn btn-action btn-link",
+    style: style,
+    data: { confirm: "确定删除?" } do %>
+  <i class="icon-trash"></i>
+<% end %>

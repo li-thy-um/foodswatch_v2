@@ -1,0 +1,10 @@
+<% span = "span11" %>
+<% span = "span9" if page == "feed" or page == "show" %>
+
+<div class="<%= span %>">
+  <% if page == "feed" or page == "show" %>
+    <span class="user"><%= user_link(post.user) %></span>
+  <% end %>
+  <%= render 'shared/post_content', micropost: post, page: page %>
+</div>
+

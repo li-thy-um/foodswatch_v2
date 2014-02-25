@@ -1,18 +1,49 @@
 $(function(){
-  $('.btn-watch-post').popover({
-    html: true,
-    container: "body",
-    placement: "left"
+  init_watch_post();
+  
+  $('.btn-action').hover(function(){
+    $(this).children("i").toggleClass("icon-white");
+    $(this).children("span").toggleClass("badge-inverse");
   });
 
   $('.btn-add-food').popover({
     html: true,
     container: "body",
     placement: "bottom"
-  }).hover(function(){
-  
   }).click(init_add_food_popover);
 });
+
+function reset_watch_post($btn){
+  _set_watch_post($btn);
+}
+
+function init_watch_post(){
+  $('.btn-watch-post').each(function(i,e){
+    var $btn = $(e);
+    if (!$btn.hasClass('btn-submit')){
+      _set_watch_post($btn);
+    }
+  });
+}
+
+function _set_watch_post($btn){
+  $btn.popover({
+    html: true,
+    container: "body",
+    placement: "left",
+    content: function(){
+      return $btn.prev().html(); 
+    }
+  }).click(init_watch_post_popover);
+}
+
+var init_watch_post_popover = function(){
+  var $form = $(".popover").children(".popover-content").children("form");
+  $form.children(".input-prepend").children(".name").
+    keypress(toggle_watch_post_btn).
+    keyup(toggle_watch_post_btn).
+    keypress();
+}
 
 var init_add_food_popover = function(){
   $(".watch-list-typeahead").typeahead({
@@ -30,27 +61,15 @@ var init_add_food_popover = function(){
       add_label_by(food.name);
     }
   });
+
   $("#create_food_btn").click(add_food);
-  $("#new_food_form").children(".nutri").numeralinput();
-  $name_input = $("#new_food_form").children(".name");
-  $name_input.keypress(toggle_create_food_btn).
-              keyup(toggle_create_food_btn).
-              keypress();
-}
 
-var init_add_food_collapse = function(){
-  init_add_food_popover();
-
-  $("#cancel_new_food_btn").click(function(){
-    clear($("#new_food_form"));
-  });
-
-  $("#new_food_modal").on('show', function(){
-    $("#add_food_modal").modal("hide");
-    disable($("#create_food_btn"));
-  }).on('hidden', function(){
-    $("#add_food_modal").modal("show");
-  });
+  var $form = $("#new_food_form");
+  $form.children(".nutri").numeralinput();
+  $form.children(".name").
+    keypress(toggle_create_food_btn).
+    keyup(toggle_create_food_btn).
+    keypress();
 }
 
 function get_watch_list(){
@@ -65,9 +84,17 @@ function make_food(food_info /* like "id_name" */){
   };
 }
 
+var toggle_watch_post_btn = function(){
+  attach_toggle($(this).prev(), $(this));
+}
+
 var toggle_create_food_btn = function(){
-  $btn = $("#create_food_btn");
-  if ($(this).val() == ""){
+  attach_toggle($("#create_food_btn"), $(this));
+}
+
+function attach_toggle($btn, $input){
+  var str = $input.val() || "";
+  if ($.trim(str) == ""){
     disable($btn);
   }else{
     enable($btn);

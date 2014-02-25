@@ -1,5 +1,3 @@
-<%= form_for(current_user.microposts.build,
-           html: {id: "new_share_#{micropost.id}"}) do |f| %>
 <div id="share_modal_<%= micropost.id %>"
      class="modal hide fade"
      tabindex="-1"
@@ -12,11 +10,11 @@
             class="close"
             data-dismiss="modal"
             aria-hidden="true">×</button>
-    <h3 id="modal">Share</h3>
+    <h3 id="modal">分享</h3>
   </div>
   
   <div class="modal-body">
-    <div class="original-post row-fluid">
+    <div class="original-post row-fluid div-hover div-click">
       <div class="span2">
         <%= gravatar_for(micropost.user, size:"100x100") %>
       </div>
@@ -25,8 +23,12 @@
         <%= render 'shared/post_content', micropost: micropost, page: "share" %>
       </div> 
     </div>
-    </br>
-    <div class="comment-area">
+    <div class="comment-area collapse"
+      id="comment_area_<%=micropost.id%>"
+      style="margin-top:10px;">
+      <%= form_for(current_user.microposts.build, remote: true,
+           html: {id: "new_share_#{micropost.id}"}) do |f| %>
+
       <%= render 'shared/error_messages', object: f.object %>
       <input type="hidden"
              name="micropost[original_id]"
@@ -34,30 +36,30 @@
       <input type="hidden"
              name="micropost[shared_id]"
              value="<%= micropost.id %>">       
+      <input type="hidden" name="create_type" value="share">
       <input type="hidden" value="_share_<%= micropost.id %>">
       <%= f.text_area :content, placeholder: "Add your comment...",
-        class: "letter_count",
+        class: "letter_count", style: "margin-bottom:0px",
         "attached-btn" => "#share_btn_#{micropost.id}"%>
-     </div>
-  </div>
+      <% end %>  
+    </div>
+    
+    <p class="surplus_count hidden"
+      style="float:left;margin-left:10px;"
+      id="surplus_count_share_<%= micropost.id %>"></p>
 
-  <div class="modal-footer">
-    <p class="surplus_count" style="float:left;
-                                    margin-left:10px;
-                                    margin-top:10px;"
-         id="surplus_count_share_<%= micropost.id %>"></p>
-
-    <a href="#share_modal_<%= micropost.id %>" style="margin-top:8px;"
-       data-toggle="modal"
-       class="btn btn-danger">CANCEL
-    </a>
-    <button data-target="#share_modal_<%= micropost.id %>"
-       style="margin-top:8px;"
-       data-toggle="modal" form-id="new_share_<%= micropost.id %>" 
-       id="share_btn_<%= micropost.id %>"
-       class="btn btn-primary btn-submit">
-       <i class="icon icon-share icon-white"></i> SHARE
-    </button>
+    <div style="float:right;" class="btn-group">
+      <button data-target="#share_modal_<%= micropost.id %>"
+        data-toggle="modal"
+        class="btn">
+        <i class="icon icon-remove"></i> 取消
+      </button>
+      <button data-target="#share_modal_<%= micropost.id %>"
+        data-toggle="modal" form-id="new_share_<%= micropost.id %>" 
+        id="share_btn_<%= micropost.id %>"
+        class="btn btn-inverse btn-submit">
+        <i class="icon icon-share icon-white"></i> 分享
+      </button>
+    </div>
   </div>
 </div>
-<% end %>  

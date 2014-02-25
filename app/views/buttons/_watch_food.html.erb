@@ -1,0 +1,21 @@
+<!-- post action button-->
+<% style ||= "" %>
+<% form_id = "watch_food_form_#{container_id}" %>
+
+<% if current_user.watching?(food) %>
+  <% badge_class = "badge badge-inverse" %>
+<% else %>
+  <% badge_class = "badge" %>
+<% end %>
+  
+<%= render 'users/watch_form',
+  form_id: form_id,
+  container_id: container_id,
+  food: food %> 
+
+<button style="<%= style %>"
+  form-id="<%=form_id%>"
+  class="btn btn-action watch_food_submit_<%=container_id%> btn-link btn-submit">
+  <i class="icon-eye-open"></i>
+  <span class="<%= badge_class %>"><%= food.watcher_count %></span>
+</button>

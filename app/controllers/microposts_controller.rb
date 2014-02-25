@@ -8,9 +8,15 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
+    @post = Micropost.find_by_id(params[:parent_id])
     if @micropost.save
-      flash[:success] = "Micropost created!"
-      redirect_to root_url
+      respond_to do |format|
+        format.html do 
+          flash[:success] = "Micropost created!"
+          redirect_to root_url 
+        end
+        format.js { render action: params[:create_type] }
+      end
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
       render 'static_pages/home'
@@ -19,7 +25,11 @@ class MicropostsController < ApplicationController
 
   def destroy
     @micropost.destroy
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js { render action: :cancel_share }
+        #cancel share is only case up to now
+    end
   end
 
   private
@@ -37,7 +47,14 @@ class MicropostsController < ApplicationController
        
     def set_content
       return unless params[:micropost][:content] == ""
-      params[:micropost][:content] = "I've ate:" unless @foods.empty?
+      if params[:micropost][:original_id] != nil 
+        params[:micropost][:content] = "我很懒什么都没说。。。"
+        return 
+      end
+      if not @foods.empty? 
+        params[:micropost][:content] = "我吃了:"
+        return 
+      end
     end
  
     def create_post_food
@@ -54,8 +71,9 @@ class MicropostsController < ApplicationController
     def handle_foods
       @foods.each do |food|
         food.save if food.id == nil
-        PostFoodRelationship.
-          create(food_id: food.id, post_id: @micropost.id) if food.id
+        # new food should add into watch list
+        current_user.watch!(food) unless current_user.watching?(food)
+        @micropost.attach!(food)
       end
     end
 

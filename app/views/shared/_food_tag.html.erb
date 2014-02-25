@@ -1,5 +1,17 @@
-<a class="label label-inverse food-tag popovers"
-   data-content="<%= html_escape(render 'shared/food_detail', food: food) %>"
-   data-title="<%= html_escape("<strong>#{food.name}</strong>"+render('shared/post_action_btn', type: :watch_food, food:food))%>">
-  <i class="icon-glass icon-white"></i> <%= food.name%>
+<% tag_id = food.id %>
+<% tag_class = "label food-tag popovers"%>
+<% if current_user.watching?(food) %>
+  <%tag_class += " label-inverse " %>
+<%end%>
+<a tag-id="<%= tag_id %>"
+  class="<%= tag_class %> a_<%= tag_id %>">
+  <i class="icon-glass icon-white"></i> <%= food.name %>
 </a>
+
+<div id="popover_head_<%= tag_id %>" hidden='true'>
+  <%= render 'foods/popover_head', food: food, id: tag_id %>
+</div>
+
+<div id="popover_content_<%= tag_id %>" hidden='true'>
+  <%= render 'shared/food_detail', food: food %>
+</div>

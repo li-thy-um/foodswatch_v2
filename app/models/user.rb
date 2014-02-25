@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :watches, dependent: :destroy
   has_many :watched_foods, through: :watches, source: :food
-  has_many :microposts, dependent: :destroy
+  has_many :microposts, -> { where("comment_id is NULL") }, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_relationships, foreign_key: "followed_id",
                                    class_name: "Relationship",
@@ -18,24 +18,37 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
 
+  def commenting?(post)
+    post.comments.find_by_user_id(self.id)  
+  end
+
+  def sharing?(post)
+    post.shares.find_by_user_id(self.id) 
+  end
+
   def watch!(food)
-    watches.create!(food_id: food.id) 
+    watches.create!(food_id: food.id)
   end
 
   def unwatch!(food)
     watches.find_by(food_id: food.id).destroy
   end
 
+  def watching?(food)
+    watches.find_by(food_id: food.id) 
+  end
+  
   def watch_list_string()
     list = Array.new
     watched_foods.each do |food|
-      list << [food.id, food.name].join("_")
+      list << [food.id, food.name].join("_") if food.name && food.name != ""
     end
     list.join(",")
     ##"1_辣椒炒肉,11_辣椒炒蛋,2_糖醋排骨,3_汤大份"
   end
 
   def following?(other_user)
+    return false if other_user == nil
     relationships.find_by(followed_id: other_user.id)
   end
 
@@ -48,7 +61,11 @@ class User < ActiveRecord::Base
   end
   
   def feed
-    Micropost.from_users_followed_by(self)
+    followed_posts = Micropost.from_users_followed_by(self)
+    followed_posts.where("original_id is NULL
+      OR (original_id not IN (:followed_posts) AND user_id != :user_id)",
+      followed_posts: followed_posts, user_id: self).
+    where("comment_id is NULL")
   end
 
   def User.new_remember_token

@@ -1,5 +1,15 @@
-<!-- require Micropost post -->
-<div class='input-prepend'>
-  <button class='btn btn-primary' style='height:28px'>WATCH</button>
-  <input class='span2' type='text' placeholder='Add a name ...' />
-</div>
+<% food = post.post_food %>
+<% watch = current_user.watches.build(food_id: food.id) %>
+<% html = { method: :post, id: form_id , style: "margin-bottom:-8px;"} %>
+
+<%= form_for(watch, html: html, remote: true) do |f| %>
+  <%= f.hidden_field :food_id %>
+  <input type="hidden" name="container" value="<%= post.id %>"/>
+  <div class='input-prepend'>
+    <%= f.submit "WATCH", class: "btn btn-primary", style: "height:28px;" %>
+    <input class='span2 name'
+      name="name" type='text'
+      placeholder='Add a name ...'
+      autocomplete='off' />
+  </div>
+<% end %>
