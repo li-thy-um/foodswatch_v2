@@ -16,19 +16,19 @@
     <div class="collapse">
       <div class="line-above row-fluid">
       <%= render 'microposts/post_head', post: micropost, page: page if
-        page == "feed" or page == "comment" or page == "show" %>
+        page == "feed" or page == "comment" or page == "show" or page == "detail" %>
       <%= render 'microposts/post_body', post: micropost, page: page %>
     </div></div>
     <% end %>
   <% end %>
   <div class="row-fluid <%= line %>">
     <%= render 'microposts/post_head', post: head_post, page: page if
-      page == "feed" or page == "comment" or page == "show" %>
+      page == "feed" or page == "comment" or page == "show"  or page == "detail" %>
     <%= render 'microposts/post_body', post: body_post, page: page %>
     <%= render 'microposts/post_foot', post: foot_post, page: page if
-      page == "show" or page == "feed" %>
+      page == "show" or page == "feed" or page == "comment" or page == "detail"%>
   </div>
-<% option = ["feed", "show"] %>
+<% option = ["feed", "show", "detail"] %>
 <% if signed_in? && option.include?(page) %>
   <% micropost = micropost.original_post if micropost.original_id? %>
   <%= render 'microposts/comment_collapse',

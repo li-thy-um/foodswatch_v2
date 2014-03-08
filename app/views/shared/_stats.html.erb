@@ -12,5 +12,10 @@
     </strong>
     粉丝
   </a>
+  <a href="<%= calorie_user_path(@user) %>" title="查看我的统计">
+    今天吃了
+    <strong id="calorie" class="stat">
+      <%= @user.calorie_today %> kCal
+    </strong>
+  </a>
 </div>
-  

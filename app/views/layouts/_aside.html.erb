@@ -7,7 +7,9 @@
     <%= render 'shared/stats' %>
   </section>
   <section>
-    <%= render 'shared/micropost_form' if page == "home" %>   
+    <% if page == "home" %>
+      <div id="micropost_form"><%= render 'shared/micropost_form' %></div>
+    <% end %>
     <%= render 'users/follow_form'     if page == "show" && signed_in? %>
   </section>
 </aside>

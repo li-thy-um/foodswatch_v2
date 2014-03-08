@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :watches, dependent: :destroy
   has_many :watched_foods, through: :watches, source: :food
-  has_many :microposts, -> { where("comment_id is NULL") }, dependent: :destroy
+  has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_relationships, foreign_key: "followed_id",
                                    class_name: "Relationship",
@@ -18,6 +18,22 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
 
+  def chart_string_of_day(num)
+    start_day = Time.now.end_of_day.days_ago(num)
+    labels = (1..num).map { |i| label_of start_day.advance(days: i) }
+    data   = (1..num).map { |i| data_of  start_day.advance(days: i) }    
+   
+    data = (0...data_type.size).inject([]) do |l, k|
+      l << (0...num).inject([]) { |a, i| a << data[i][k] }.join(",")
+    end
+    [labels.join(","), data.join("@")].join("_")
+      #"1,2,3_1786,1589,1645@1500,1450,1505@705,468,809@507,609,604"
+  end
+
+  def calorie_today
+    microposts_today.inject(0) { |t, post| t + post.total_calorie }
+  end
+
   def commenting?(post)
     post.comments.find_by_user_id(self.id)  
   end
@@ -26,6 +42,10 @@ class User < ActiveRecord::Base
     post.shares.find_by_user_id(self.id) 
   end
 
+  def watching?(food)
+    watches.find_by(food_id: food.id) 
+  end
+  
   def watch!(food)
     watches.create!(food_id: food.id)
   end
@@ -34,17 +54,10 @@ class User < ActiveRecord::Base
     watches.find_by(food_id: food.id).destroy
   end
 
-  def watching?(food)
-    watches.find_by(food_id: food.id) 
-  end
-  
   def watch_list_string()
-    list = Array.new
-    watched_foods.each do |food|
+    watched_foods.inject([]) do |list, food|
       list << [food.id, food.name].join("_") if food.name && food.name != ""
-    end
-    list.join(",")
-    ##"1_辣椒炒肉,11_辣椒炒蛋,2_糖醋排骨,3_汤大份"
+    end.join(",")
   end
 
   def following?(other_user)
@@ -76,8 +89,36 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  private
-    
+  private  
+   
+    def data_type
+      [:calorie, :carb, :prot, :fat]
+    end
+
+    #[cal, c, p ,f]
+    #time is end of the day.
+    def data_of(day)
+      posts = microposts_between(day.beginning_of_day, day.end_of_day)
+      data_type.inject([]) do |d, t|
+        d << posts.inject(0) { |n, p| n + p.total_calorie_of(t) }
+      end
+    end
+
+    def label_of(day)
+      a = day.to_s.split(" ")[0].split("-") 
+      [a[1], a[2]].join("-")
+    end
+
+    def microposts_today
+      now = Time.now
+      microposts_between(now.beginning_of_day, now)
+    end
+
+    def microposts_between(b, e)
+      self.microposts.where(
+        ":begin < created_at and created_at < :end", begin: b, end: e)
+    end
+
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
     end

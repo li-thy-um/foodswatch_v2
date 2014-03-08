@@ -2,11 +2,12 @@ class WatchesController < ApplicationController
   before_action :signed_in_user
 
   def create
-    action = :toggle
     @container = params[:container]
     @food = Food.find(params[:watch][:food_id]) 
-    current_user.watch!(@food)
-    if params[:name] != nil
+    if params[:name] == nil 
+      action = :toggle
+      current_user.watch!(@food)
+    else 
       @food2 = Food.create({name: params[:name]}.merge(@food.nutri_info))
       current_user.watch!(@food2)
       action = :watch_post
@@ -21,7 +22,11 @@ class WatchesController < ApplicationController
     @food = Watch.find(params[:id]).food
     current_user.unwatch!(@food)
     respond_to do |format|
-      format.js { render action: :toggle }
+      format.js do 
+        if @container
+          render action: :toggle 
+        end
+      end
     end
   end
 end

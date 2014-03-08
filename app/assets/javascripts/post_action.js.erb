@@ -1,10 +1,5 @@
 $(function(){
   init_watch_post();
-  
-  $('.btn-action').hover(function(){
-    $(this).children("i").toggleClass("icon-white");
-    $(this).children("span").toggleClass("badge-inverse");
-  });
 
   $('.btn-add-food').popover({
     html: true,
@@ -18,15 +13,21 @@ function reset_watch_post($btn){
 }
 
 function init_watch_post(){
-  $('.btn-watch-post').each(function(i,e){
-    var $btn = $(e);
-    if (!$btn.hasClass('btn-submit')){
-      _set_watch_post($btn);
+  $("body").delegate('.btn-watch-post', 'click', function(){
+    var $btn = $(this);
+    var init = $btn.hasClass('initialed');
+    if (!init){
+      _init_watch_post($btn);
+    }
+    _init_watch_post_popover();
+    if(!init){
+      $btn.addClass('initialed');
+      $btn.click();
     }
   });
 }
 
-function _set_watch_post($btn){
+function _init_watch_post($btn){
   $btn.popover({
     html: true,
     container: "body",
@@ -34,12 +35,12 @@ function _set_watch_post($btn){
     content: function(){
       return $btn.prev().html(); 
     }
-  }).click(init_watch_post_popover);
+  });
 }
 
-var init_watch_post_popover = function(){
-  var $form = $(".popover").children(".popover-content").children("form");
-  $form.children(".input-prepend").children(".name").
+function _init_watch_post_popover(){
+  var $form = $(".popover").find("form");
+  $form.find(".name").
     keypress(toggle_watch_post_btn).
     keyup(toggle_watch_post_btn).
     keypress();
@@ -57,8 +58,7 @@ var init_add_food_popover = function(){
 
     updater: function(food_info) {
       var food = make_food(food_info); //food_info is a string.
-      add_hidden_input_by(food.id); //do this before add_label.
-      add_label_by(food.name);
+      add_food(food);
     }
   });
 
@@ -101,54 +101,59 @@ function attach_toggle($btn, $input){
   }
 }
 
-var add_food = function() {
-  add_hidden_input();
-  add_label();
-  clear($("#new_food_form"));
+var add_food = function(food){
+  if (count_food() > 9){
+    alert("哎呀你一次吃的太多啦 (>_<|||)");
+    return;
+  }
+  add_hidden_input(food); //do this before add_label.
+  add_label(food);
+  if (!food.id){
+    clear($("#new_food_form"));
+  }
 }
 
 var delete_food = function() {
   var $label = $(this);
-  var id = $label.attr("id");
+  var id = $label.attr("group-id");
   $("#food_form").children(".group_" + id).each(function(i,e){
     $(e).remove();
   });
   $label.remove();
 }
 
-function add_label_by(name){
+function add_label(food){
+  var name = "";
+  if (food && food.name){
+    name = food.name;
+  }else{
+    name = $("#new_food_form").find(".name").val();
+  }
   var $label = $("#label_sample").children().first().clone().html(name);
-  $label.attr("id", count_food()).click(delete_food);
+  $label.attr("group-id", count_food()).click(delete_food);
   $("#choosed").append($label);
 }
 
-function add_label() {
-  var food_name = $("#new_food_form").children(".name").first().val();
-  add_label_by(food_name);   
+function add_hidden_input(food){
+  var $food_form = $("#food_form");
+  if(food && food.id){
+    var $input = $("#food_id_input_sample").children().first().clone();
+    append_input($food_form, $input, food.id);
+  }else{
+    var $food_sample = $("#new_food_form");
+    $food_sample.children("input").each(function(i,e){
+      var $input = $(e).clone();
+      var value = $input.val();
+      if (value == "") value = 0; //default value for nutri 
+      append_input($food_form, $input, value);
+    });
+  }
 }
 
 function append_input($form, $input, value){
   $input.attr("value", value);
   $input.addClass("group_" + count_food());
   $form.append($input); 
-}
-
-function add_hidden_input_by(id){  
-  $food_form = $("#food_form");
-  $input = $("#food_id_input_sample").children().first().clone();
-  append_input($food_form, $input, id);
-}
-
-function add_hidden_input() {
- $food_sample = $("#new_food_form");
- $food_form = $("#food_form");
-
- $food_sample.children("input").each(function(i,e) {
-   $input = $(e).clone();
-   var value = $input.val();
-   if (value == "") value = 0; //default value for nutri 
-   append_input($food_form, $input, value);
- });
 }
 
 function count_food() {

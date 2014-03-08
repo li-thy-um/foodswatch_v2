@@ -1,25 +1,31 @@
-<%= form_for(@micropost) do |f| %>
+<%= form_for(@micropost, remote:true, html:{id: "new_post_form"}) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div id='choosed'></div>
   <br/>
   <div class="field">
     <input type="hidden" value="_micropost">
     <%= f.text_area :content, placeholder: "写写你今天吃了啥...",
+      id: "new_post_textarea",
       class: "letter_count", "data-container" => "body",
       "attached-btn" => "#post_btn"%>
   </div>
   <div class="post row-fluid">
     <div class="span6">
-      <%= render 'buttons/add_food', style: "margin-top:5px" %>
+      <%= render 'buttons/add_food', style: "padding:6px" %>
     </div>
 
     <div class="span6">
-      <%= f.submit "发布", class: "btn btn-inverse btn-large",
-                           style: "float:right", id: "post_btn"%>
-      <p class="surplus_count" style="margin-right:10px;
-                                      margin-top:10px;"
-      id="surplus_count_micropost"></p>
-    </div> 
+      <a form-id="new_post_form" 
+        textarea-id="new_post_textarea"
+        id="post_btn" class="btn btn-inverse btn-large btn-submit"
+        style="float:right"> 发布
+      </a>
+      <p class="surplus_count"
+         style="margin-right:10px;margin-top:8px;"
+         id="surplus_count_micropost">
+      </p>
+    </div>
   </div>
   <div hidden="true" id="food_form"></div>
+  <input type="hidden" name="create_type" value="create">
 <% end %>

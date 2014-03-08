@@ -1,39 +1,25 @@
 $(function(){
-  click_other_hide_popover();
+  only_one_popover();
   init_btn_submit();
 });
 
-function init_btn_submit(selector){
-  selector = selector || ".btn-submit";
-  $(selector).click(function(){
-    var form_id = $(this).attr("form-id");
-    $("#"+form_id).submit();
-  }) 
+function init_btn_submit(){
+  $("body").delegate('.btn-submit', 'click', function(){
+    var $form = $("#"+$(this).attr("form-id"));
+    var $textarea =$("#"+$(this).attr("textarea-id"));
+    $form.submit();
+    clear_form($textarea);
+  });
 }
 
-function click_other_hide_popover($btn){
-  $body = $("body :not(.popover)");
-    //TODO have some question here.
-  var flag = false;
-
-  if ($btn == undefined){
-    $btn = $body.find('.popovers');
-    var flag = true;
-  }
-  
-  $btn.each(function(){
-    $(this).click(function(e){
-      $('.popover').remove();
-      e.preventDefault();
-      return false;
-    });
+function only_one_popover(){
+  $('body').delegate(".popovers", "click", function(){
+    var count = $(".popover").size();
+    var $thiz = $(this);
+    if (count > 1){
+       $(".popover").first().remove();
+    }
   });
-
-  if (flag){
-    $body.click(function(){
-      $('.popover').remove();
-    });
-  }
 }
 
 function clear($form) {

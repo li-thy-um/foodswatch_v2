@@ -5,15 +5,27 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   before_action :signed_in_user_can_not_new_or_create, only: [:new, :create]
 
+  def calorie
+    @title = "统计信息"
+    @user = User.find(params[:id])
+  end
+
+  def watches
+    @title = "关注的食物"
+    @user = User.find(params[:id])
+    @foods = @user.watched_foods.paginate(page: params[:page])
+    render 'watch_list'
+  end
+
   def following
-    @title = "Following"
+    @title = "关注"
     @user = User.find(params[:id])
     @users = @user.followed_users.paginate(page: params[:page])
     render 'show_follow'
   end
 
   def followers
-    @title = "Followers"
+    @title = "粉丝"
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
@@ -25,7 +37,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @microposts = @user.microposts.where("comment_id is NULL").
+      paginate(page: params[:page])
   end
 
   def new

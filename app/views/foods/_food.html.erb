@@ -1,0 +1,19 @@
+<li class="span4" id="food_<%= food.id %>">
+  <div class="thumbnail">
+    <div class="modal-header">
+      <div class="<%= food.id %>">
+        <% if current_user?(@user) %>
+          <% watch = Watch.find_by(user_id: @user.id, food_id: food)%>
+          <%= render 'buttons/delete', object: watch, style: "float:right" %>
+        <% else %>
+          <%= render('buttons/watch_food', food: food,
+                     container_id: food.id, style: "float:right") %>
+        <% end %>
+      </div>
+      <h4><%= food.name %></h4>
+    </div>
+    <div class="modal-body">
+    <%= render 'foods/food_detail', food: food %>
+    </div>
+  </div>
+</li>

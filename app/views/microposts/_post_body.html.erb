@@ -1,5 +1,6 @@
 <% span = "span11" %>
-<% span = "span9" if page == "feed" or page == "show" %>
+<% span = "span10" if page == "comment" %>
+<% span = "span9" if page == "feed" or page == "show" or page == "detail" %>
 
 <div class="<%= span %>">
   <% if page == "feed" or page == "show" %>

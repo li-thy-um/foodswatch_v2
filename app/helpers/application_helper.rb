@@ -13,8 +13,8 @@ module ApplicationHelper
   def unique_id
     Time.now.to_f.to_s.split(".").join("") 
   end
-  
-  def flash_tag(flash)
-      
+ 
+  def trim(str)
+    str.rstrip.lstrip
   end
 end

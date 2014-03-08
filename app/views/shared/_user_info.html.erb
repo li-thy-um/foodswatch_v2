@@ -2,9 +2,8 @@
   <%= gravatar_for user %>
   <%= user.name %>
 </h1>
-<% if complex %>  
-  <span><%= link_to "查看我的主页", user %></span>    
-<% end %> 
+<span>
+  <% if complex %><%= link_to "我的主页", user %><% end %>
+  <%= link_to "我的食物", watches_user_path(user) %>
+</span>    
 <span><%= user.microposts.count.to_s + " 条微博" %></span>
-
-

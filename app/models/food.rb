@@ -5,6 +5,10 @@ class Food < ActiveRecord::Base
   has_many :watchers, through: :watches, source: :user
   before_save :set_calorie
 
+  def calorie_of(type)
+    self[type] ? self[type] * unit_calorie_of[type] : 0
+  end
+
   def watcher_count
     watchers.size 
   end
@@ -20,13 +24,11 @@ class Food < ActiveRecord::Base
 
   private
     
-    def set_calorie
-      self.calorie = compute_calorie(self.prot || 0,
-                                     self.carb || 0,
-                                     self.fat  || 0)
+    def unit_calorie_of
+      { calorie: 1, prot: 4, carb: 4, fat: 9 }
     end
 
-    def compute_calorie(prot, carb, fat)
-      prot * 4 + carb * 4 + fat * 9
+    def set_calorie
+      self.calorie = [:prot, :carb, :fat].inject(0) { |c, t| c + calorie_of(t) }
     end
 end

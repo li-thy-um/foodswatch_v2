@@ -4,57 +4,82 @@ class MicropostsController < ApplicationController
   before_action :prepare_foods, only: :create
   before_action :set_content, only: :create
   before_action :create_post_food, only: :create
-  after_action  :handle_foods, only: :create
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
     @post = Micropost.find_by_id(params[:parent_id])
     if @micropost.save
+      handle_foods
       respond_to do |format|
         format.html do 
-          flash[:success] = "Micropost created!"
-          redirect_to root_url 
+          if params[:create_type] == "comment"
+            flash[:success] = "评论成功！"
+            redirect_to comments_micropost_path(@post) 
+          else
+            flash[:success] = "Micropost created!"
+            redirect_to root_url 
+          end
         end
         format.js { render action: params[:create_type] }
       end
     else
-      @feed_items = current_user.feed.paginate(page: params[:page])
-      render 'static_pages/home'
+      respond_to do |format|
+        format.html do 
+          @feed_items = current_user.feed.paginate(page: params[:page])
+          render 'static_pages/home'
+        end
+        format.js { render action: :create_fail } 
+      end
     end
   end
 
   def destroy
+    if @micropost.original_id?
+      action_type = :cancel_share
+    else
+      action_type = :destroy
+    end
     @micropost.destroy
     respond_to do |format|
       format.html { redirect_to root_url }
-      format.js { render action: :cancel_share }
-        #cancel share is only case up to now
+      format.js { render action: action_type }
     end
+  end
+
+  def comments
+    @micropost = Micropost.find_by_id(params[:id])
+    @comments = @micropost.comments.paginate(page: params[:page])
   end
 
   private
 
     def prepare_foods
-      @foods = Array.new
-      params[:foods].each do |food_info|
-        @foods << Food.new(food_info)
-      end if params[:foods]
-      params[:food_ids].each do |food_id|
-        food = Food.find_by_id(food_id)
-        @foods << food if food
-      end if params[:food_ids]
+      @foods = raw_list.inject([]) { |foods, raw| foods << cook(raw) }.compact
+    end
+
+    def cook(raw)
+      raw.is_a?(String) ? Food.find_by_id(raw) : Food.new(raw)
+    end
+
+    def raw_list
+      [params[:foods], params[:food_ids]].flatten.compact
     end
        
     def set_content
+      trim_content
       return unless params[:micropost][:content] == ""
       if params[:micropost][:original_id] != nil 
         params[:micropost][:content] = "我很懒什么都没说。。。"
         return 
       end
-      if not @foods.empty? 
+      if @foods.any? 
         params[:micropost][:content] = "我吃了:"
         return 
       end
+    end
+
+    def trim_content
+      params[:micropost][:content] = params[:micropost][:content].rstrip.lstrip
     end
  
     def create_post_food

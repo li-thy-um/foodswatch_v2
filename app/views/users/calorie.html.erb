@@ -1,0 +1,15 @@
+<h3><%= link_to "@#{@user.name}", @user %> 的统计</h3>
+<div class="row">
+  <div class ="span10">
+    <canvas id="chart_large" height="400" width="750"></canvas>
+  </div>
+  <div class="span2">
+    <ul class="unstyled">
+    <li><span class="label label-important">&nbsp;&nbsp;</span> 总热量</li>
+    <li><span class="label label-info">&nbsp;&nbsp;</span> 蛋白质热量</li>
+    <li><span class="label label-success">&nbsp;&nbsp;</span> 碳水热量</li>
+    <li><span class="label label-warning">&nbsp;&nbsp;</span> 脂肪热量</li>
+    </ul>  
+  </div>
+</div>
+<input type="hidden" id="chart_data" value="<%= @user.chart_string_of_day(7) %>"/>

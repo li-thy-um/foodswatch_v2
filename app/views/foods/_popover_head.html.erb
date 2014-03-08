@@ -1,6 +1,4 @@
-<strong><%= food.name %></strong>
-<div class="<%= id %>">
-  <%= render('buttons/watch_food',
-             food: food,
-             container_id: id) %>
+<div class="<%= id %>" style="margin-top:4px">
+  <%= render('buttons/watch_food', food: food) %>
 </div>
+<h4><%= food.name %></h4>

@@ -2,22 +2,13 @@
 var post_id = "<%= @container %>";
 
 // remove popover
-var $btn = $(".watch_post_btn_"+post_id);
-$btn.popover('destroy');
-$btn.remove();
-var $content_div = $(".watch_post_popover_content_"+post_id);
-$content_div.remove();
+$(".watch_post_btn_"+post_id).popover('destroy').remove();
+$("#watch_post_popover_content_"+post_id).remove();
 
 // render button
-var $post_action_panel = $(".post_action_panel_"+post_id);
-$post_action_panel.prepend("<%= escape_javascript(
-  render 'buttons/watch_post', post: micropost
-)%>");
-
-//init popover
-var $btn = $(".watch_post_btn_"+post_id);
-click_other_hide_popover($btn);
-reset_watch_post($btn);
+$(".post_action_panel_"+post_id).prepend(
+  "<%= escape_javascript(render 'buttons/watch_post', post: micropost) %>"
+);
 
 //refresh watch_list
 $("#watch_list").val("<%= current_user.watch_list_string %>");

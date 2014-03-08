@@ -1,24 +1,24 @@
-$(function(){
-  init_food_tag();
-});
+$(init_food_tag);
 
 function init_food_tag(){
-  $(".food-tag").each(function(i,e){
-    var $tag = $(e);
+  $("body").delegate('.food-tag', 'click', function(){
+    var $tag = $(this);
     var tag_id = $tag.attr('tag-id');
-    set_food_tag({
-      title: function(){
-        return $("#popover_head_"+tag_id).html();
-      },
-      content: function(){
-        return $("#popover_content_"+tag_id).html();
-      },
-      $target: $tag,
-      click: function(){
-        init_btn_submit(".watch_food_submit_"+tag_id);
-      }
-    });   
-  })
+    var init = $tag.hasClass('initialed');
+    if (!init){
+      set_food_tag({
+        title: function(){
+          return $("#popover_head_"+tag_id).html();
+        },
+        content: function(){
+          return $("#popover_content_"+tag_id).html();
+        },
+        $target: $tag
+      });
+      $tag.addClass('initialed');
+      $tag.click();
+    }
+  });
 }
 
 function set_food_tag(option){
@@ -27,5 +27,5 @@ function set_food_tag(option){
     html: true,
     title: option.title,
     content: option.content
-  }).click(option.click);
+  });
 }

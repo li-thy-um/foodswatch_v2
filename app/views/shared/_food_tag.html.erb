@@ -1,11 +1,11 @@
 <% tag_id = food.id %>
 <% tag_class = "label food-tag popovers"%>
 <% if current_user.watching?(food) %>
-  <%tag_class += " label-inverse " %>
+  <% tag_class += " label-important " %>
 <%end%>
 <a tag-id="<%= tag_id %>"
   class="<%= tag_class %> a_<%= tag_id %>">
-  <i class="icon-glass icon-white"></i> <%= food.name %>
+  <%= food.name %>
 </a>
 
 <div id="popover_head_<%= tag_id %>" hidden='true'>
@@ -13,5 +13,5 @@
 </div>
 
 <div id="popover_content_<%= tag_id %>" hidden='true'>
-  <%= render 'shared/food_detail', food: food %>
+  <%= render 'foods/food_detail', food: food %>
 </div>

@@ -1,6 +1,5 @@
 <% post = @micropost.original_post %>
-$("#share_action_btn_<%=post.id%>").remove()
-$(".post_action_panel_<%=post.id%> > a").
-  first().after("<%= escape_javascript(render(
-  'buttons/share', post: post 
-))%>")
+$("#share_action_btn_<%=post.id%>").remove();
+$(".post_action_panel_<%=post.id%> > a").first().after(
+  "<%= escape_javascript(render('buttons/share', post: post ))%>"
+);

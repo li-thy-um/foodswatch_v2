@@ -39,27 +39,29 @@
       <input type="hidden" name="create_type" value="share">
       <input type="hidden" value="_share_<%= micropost.id %>">
       <%= f.text_area :content, placeholder: "Add your comment...",
+        id: "share_textarea_#{micropost.id}",
         class: "letter_count", style: "margin-bottom:0px",
         "attached-btn" => "#share_btn_#{micropost.id}"%>
       <% end %>  
     </div>
     
     <p class="surplus_count hidden"
-      style="float:left;margin-left:10px;"
+      style="float:left;margin-left:10px;margin-top:-6px;"
       id="surplus_count_share_<%= micropost.id %>"></p>
 
     <div style="float:right;" class="btn-group">
-      <button data-target="#share_modal_<%= micropost.id %>"
+      <a data-target="#share_modal_<%= micropost.id %>"
         data-toggle="modal"
         class="btn">
         <i class="icon icon-remove"></i> 取消
-      </button>
-      <button data-target="#share_modal_<%= micropost.id %>"
+      </a>
+      <a data-target="#share_modal_<%= micropost.id %>"
         data-toggle="modal" form-id="new_share_<%= micropost.id %>" 
+        textarea-id="share_textarea_<%=micropost.id%>"
         id="share_btn_<%= micropost.id %>"
         class="btn btn-inverse btn-submit">
         <i class="icon icon-share icon-white"></i> 分享
-      </button>
+      </a>
     </div>
   </div>
 </div>

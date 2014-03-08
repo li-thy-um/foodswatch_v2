@@ -1,7 +1,8 @@
 <%
-  if page == "feed" || page == "show"
+  delete = current_user?(micropost.user)
+
+  if page == "feed" || page == "show" || page == "detail"
     watch, comment = [true, true]  
-    delete = current_user?(micropost.user)
     share = !delete
   end
   
@@ -16,7 +17,7 @@
     post_action_panel_<%= micropost.id %>">
     <%= render 'buttons/watch_post', post: micropost if watch %>
     <%= render 'buttons/share', post: micropost if share %>
-    <%= render 'buttons/delete_post', object: micropost if delete %>
+    <%= render 'buttons/delete', object: micropost if delete %>
     <%= render 'buttons/comment', post: micropost if comment %>
   </div>
 </div>

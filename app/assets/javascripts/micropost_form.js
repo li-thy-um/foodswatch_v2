@@ -1,22 +1,44 @@
-$(function(){
-  var $input = $(".letter_count");
-  $input.keypress(change_surplus).keypress();
-  $input.keyup(change_surplus);
-  $input.keydown(submit_form);
-});
+$(init_post_form);
+
+function init_post_form(){
+  $("body").delegate('.letter_count', 'keypress', change_surplus);
+  $("body").delegate('.letter_count', 'keyup',    change_surplus);
+  $("body").delegate('.letter_count', 'keydown',  submit_form);
+}
 
 function _surplus($input){
   //surplus = max_length - content_length
   var text = $.trim($input.val());
-  return 140 - text.length;
+  if (text.length == 0){
+    return "";
+  }else{
+    return 140 - text.length;
+  }
+}
+
+function clear_form($textarea){
+  $textarea.val("");
+  $textarea.keypress();
+  if ($textarea.attr("id") == "new_post_textarea"){
+      $("#food_form").html("");
+      $("#choosed").html("");
+  }
+  var $collapse = $textarea.parent().parent();
+  var $surplus =  $collapse.next();
+  if (!$surplus.hasClass("hidden")
+      && $textarea.attr("id").split("_")[0] == "share")
+  {
+    $collapse.collapse('hide');
+    $surplus.addClass('hidden');
+  }
 }
 
 var submit_form = function(e) {
-  var $form = $("#new" + $(this).prev().val());
-  
+  var $attached_btn = $($(this).attr("attached-btn"));
+
   //When ctrl+enter pressed, submit the form.
   if(e.ctrlKey && e.which == "13" && _surplus($(this)) >= 0) {
-    $form.submit();       
+    $attached_btn.click(); 
   }
 }
 

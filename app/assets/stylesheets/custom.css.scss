@@ -271,8 +271,10 @@ aside {
   }
 }
 
-.mouse-hand{
-  cursor: pointer;
+.div-hover{
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .hidden{

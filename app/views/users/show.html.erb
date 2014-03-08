@@ -4,7 +4,7 @@
     <%= render 'layouts/aside', user: @user, page: "show" %>
   </div>
   <div class="span8">
-    <% if @user.microposts.any? %>
+    <% if @microposts.any? %>
       <ol class="microposts">
         <%= render @microposts, page: "show" %>
       </ol>

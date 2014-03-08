@@ -1,11 +1,9 @@
 var id  = "<%= @container %>"
 
-$("."+id ).html("<%= escape_javascript(render(
-  'buttons/watch_food', food: @food, container_id: @container
-))%>");
+$("."+id ).html(
+  "<%= escape_javascript(render('buttons/watch_food', food: @food)) %>"
+);
 
-$(".a_"+id).toggleClass("label-inverse");
-
-init_btn_submit(".watch_food_submit_"+id );
+$(".a_"+id).toggleClass("label-important");
 
 $("#watch_list").val("<%= current_user.watch_list_string %>");

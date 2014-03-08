@@ -1,5 +1,5 @@
 <% span = "span1" %>
-<% span = "span2" if page == "feed" or page == "show" %>
+<% span = "span2" if page == "feed" or page == "show" or page=="detail" %>
 
 <div class="<%= span %>">
   <%= gravatar_for(post.user, size: "120x120") %> 
