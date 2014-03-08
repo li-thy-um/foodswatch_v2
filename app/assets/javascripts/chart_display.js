@@ -1,39 +1,48 @@
-$(display_chart);
+$(init_chart);
 
-function display_chart(){
-  if ($("#chart_large").html() == undefined) { return }
-  var ctx = $("#chart_large").get(0).getContext("2d");
-  var data = {
-    labels : labels(),
-    datasets : datasets() 
+function init_chart(){
+  if($("#chart_test").val() == undefined){ return; }
+  
+  var option = {
+    axisY : { title: "热量 (KCal)" },
+    data : all_data(),
+    toolTip: { content: function(e){
+     return e.entries[0].dataSeries.name + " <strong>"+e.entries[0].dataPoint.y + "KCal"  ;
+      }
+    }
   }
-  var chart_large = new Chart(ctx).Bar(data, {scaleLabel: "<%=value%> kCal"});
+  new CanvasJS.Chart("chart_test", option).render();
 }
 
-function labels(){
-  return $('#chart_data').val().split("_")[0].split(",");
+function all_data(){
+  var types = [
+    {name: "碳水热量", value: 1, color: "#46a546"},
+    {name: "蛋白质热量", value: 2, color: "#9d261d"},
+    {name: "脂肪热量", value: 3, color: "#ffc40d"}
+  ];
+
+  return types.map(function(t){
+    return {
+      type: "stackedColumn",
+      showInLegend: "true",
+      legendText: t.name,
+      name: t.name,
+      color: t.color,
+      dataPoints: data_points(t.value)
+    };
+  }); 
 }
 
-function datasets(){
-  return ["calorie", "carb", "prot", "fat"].
-    map(function(x){ return generate(x) });
-}
-
-function generate(type){
-  var opt = {
-    "calorie": { color: "255,64,64",   data: get_data(0) },
-    "carb":    { color: "0,255,127",   data: get_data(1) },
-    "prot":    { color: "152,245,255", data: get_data(2) },
-    "fat":     { color: "255,236,139", data: get_data(3) }
-  }
-  return {
-    title : "title",
-    fillColor :   color_str(opt[type].color, "1"),
-    strokeColor : color_str(opt[type].color, "1"),
-    pointColor :  color_str(opt[type].color, "1"),
-    pointStrokeColor : "#000",
-    data : opt[type].data
-  };
+function data_points(index){
+  var data = get_data(index);
+  var labs = labels();
+  var points = labs.map(function(lab){
+    return { y: "", label: lab } 
+  });
+  points.forEach(function(p, i){
+    p.y = data[i];
+  });
+  return points;
 }
 
 function get_data(i){
@@ -41,6 +50,6 @@ function get_data(i){
       function(x){ return parseInt(x) });
 }
 
-function color_str(color, aero){
-  return "rgba(" + color + "," + aero +")";
+function labels(){
+  return $('#chart_data').val().split("_")[0].split(",");
 }
