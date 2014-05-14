@@ -4,14 +4,13 @@
 <link rel="shortcut icon" href="/assets/food_icon.png" type="image/x-icon"/>
   <title><%= full_title(yield(:title))%></title>
   <%= stylesheet_link_tag "application", media: "all",
-                                           "data-turbolinks-track" => false %>
+                                             "data-turbolinks-track" => false %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
 </head>
 <body>
 <%= render 'layouts/header' %>
-<p>这是测试heroku推送分支成功</p>
   <div class="container">  
     <div id="flash_area">
     <% flash.each do |key, value| %>
