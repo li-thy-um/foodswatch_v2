@@ -2,7 +2,8 @@
 <% style ||= "float:right" %>
 <% form_id = "watch_food_form_#{food.id}" %>
 
-<% if current_user.watching?(food) %>
+<% user = current_user || User.new %>
+<% if user.watching?(food) %>
   <% badge_class = "badge badge-important" %>
 <% else %>
   <% badge_class = "badge" %>

@@ -12,6 +12,7 @@
     </strong>
     粉丝
   </a>
+  <% page ||= "" %>
   <% link = calorie_user_path(@user) if page != "calorie" %>
   <a href="<%= link || "#" %>" title="查看我的统计">
     今天吃了

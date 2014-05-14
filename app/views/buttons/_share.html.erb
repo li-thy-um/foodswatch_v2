@@ -1,7 +1,7 @@
 <% style ||= "" %>
-
-<% if current_user.sharing?(post) %>
-  <%= link_to post.shared_by(current_user),
+<% user = current_user || User.new %>
+<% if user.sharing?(post) %>
+  <%= link_to post.shared_by(user),
     remote: :true,
     method: :delete,
     id: "share_action_btn_#{post.id}",

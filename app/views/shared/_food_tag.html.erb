@@ -1,6 +1,7 @@
 <% tag_id = food.id %>
 <% tag_class = "label food-tag popovers"%>
-<% if current_user.watching?(food) %>
+<% user = current_user || User.new %>
+<% if user.watching?(food) %>
   <% tag_class += " label-important " %>
 <%end%>
 <a tag-id="<%= tag_id %>"

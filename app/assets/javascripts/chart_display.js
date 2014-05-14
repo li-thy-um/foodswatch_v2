@@ -2,7 +2,7 @@ $(init_chart);
 
 function init_chart(){
   if($("#chart_test").val() == undefined){ return; }
-  
+
   var option = {
     axisY : { title: "热量 (KCal)" },
     data : all_data(),

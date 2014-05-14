@@ -1,5 +1,6 @@
 <% food = post.post_food %>
-<% watch = current_user.watches.build(food_id: food.id) %>
+<% user = current_user || User.new %>
+<% watch = user.watches.build(food_id: food.id) %>
 <% html = { method: :post, id: form_id , style: "margin-bottom:-8px;"} %>
 
 <%= form_for(watch, html: html, remote: true) do |f| %>
