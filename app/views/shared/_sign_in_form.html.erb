@@ -1,15 +1,23 @@
 <div class="span6 offset3">
   <%= form_for(:session, url: sessions_path) do |f| %>
 
-    <%= f.label :email %>
+    <%= f.label :email, "E-mail：" %>
     <%= f.text_field :email %>
 
-    <%= f.label :password %>
+    <%= f.label :password, "密码："%>
     <%= f.password_field :password %>
 
-    <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+    <div class="text-center row-fluid">
+      <div class="span3"></div>
+      <div class="span2">
+      <%= f.submit "登录", class: "btn btn-large btn-danger" %>
+      </div>
+      <div class="span5" style="margin-top:10px">
+      <p>新用户？ <%= link_to "现在注册吧！", signup_path %></p>
+      </div>
+      <div class="span2"></div>
+    </div>
   <% end %>
 
-  <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-</div>
+  </div>
 
