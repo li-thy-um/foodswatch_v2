@@ -87,7 +87,7 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
-  
+
 /* header */
 
 #logo {
@@ -100,7 +100,7 @@ p {
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
-  &:hover {  
+  &:hover {
     color: white;
     text-decoration: none;
   }
@@ -125,7 +125,7 @@ footer {
   ul {
     float: right;
     list-style: none;
-    li {  
+    li {
       float: left;
       margin-left: 10px;
     }
@@ -268,7 +268,7 @@ input {
 }
 
 .surplus_count {
-  float: right;
+  float: center;
   margin-top: 1px;
 }
 

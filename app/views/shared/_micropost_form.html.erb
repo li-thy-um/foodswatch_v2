@@ -10,21 +10,28 @@
       "attached-btn" => "#post_btn"%>
   </div>
   <div class="post row-fluid">
-    <div class="span6">
-      <%= render 'buttons/add_food', style: "padding:6px" %>
+
+    <div class="span4">
+      <h6 class="surplus_count"
+        style="margin-top:8px;float:left"
+        id="surplus_count_micropost">
+      </h6>
     </div>
 
-    <div class="span6">
-      <a form-id="new_post_form" 
-        textarea-id="new_post_textarea"
-        id="post_btn" class="btn btn-inverse btn-large btn-submit"
-        style="float:right"> 发布
-      </a>
-      <p class="surplus_count"
-         style="margin-right:10px;margin-top:8px;"
-         id="surplus_count_micropost">
-      </p>
+    <div class="span8 btn-group">
+      <div class='btn-group' style='float:right'>
+        <a class="btn btn-warning btn-large btn-add-food popovers"
+          data-content="<%= render 'shared/add_food_popover' %>">
+          食物
+        </a>
+        <a form-id="new_post_form"
+          textarea-id="new_post_textarea"
+          id="post_btn" class="btn btn-inverse btn-large btn-submit">
+          发布
+        </a>
+      </div>
     </div>
+
   </div>
   <div hidden="true" id="food_form"></div>
   <input type="hidden" name="create_type" value="create">
