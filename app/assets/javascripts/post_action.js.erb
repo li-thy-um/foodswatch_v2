@@ -1,11 +1,14 @@
 $(function(){
   init_watch_post();
 
-  $('.btn-add-food').popover({
-    html: true,
-    container: "body",
-    placement: "bottom"
-  }).click(init_add_food_popover);
+  $('body').on('click', '.btn-foods', function(){
+    $('.foods-panel').fadeToggle();
+  });
+
+  $('body').on('click', '.btn-add-food', function(){
+    $('.add-food-modal').modal('show');
+    init_add_food_popover();
+  });
 });
 
 function reset_watch_post($btn){
@@ -33,7 +36,7 @@ function _init_watch_post($btn){
     container: "body",
     placement: "left",
     content: function(){
-      return $btn.prev().html(); 
+      return $btn.prev().html();
     }
   });
 }
@@ -51,7 +54,7 @@ var init_add_food_popover = function(){
     source: function(query, process){
       process(get_watch_list());
     },
-   
+
     highlighter: function(food_info){
       return make_food(food_info).name;
     },
@@ -73,7 +76,7 @@ var init_add_food_popover = function(){
 }
 
 function get_watch_list(){
-  return $("#watch_list").val().split(",");  
+  return $("#watch_list").val().split(",");
 }
 
 function make_food(food_info /* like "id_name" */){
@@ -144,7 +147,7 @@ function add_hidden_input(food){
     $food_sample.children("input").each(function(i,e){
       var $input = $(e).clone();
       var value = $input.val();
-      if (value == "") value = 0; //default value for nutri 
+      if (value == "") value = 0; //default value for nutri
       append_input($food_form, $input, value);
     });
   }
@@ -153,7 +156,7 @@ function add_hidden_input(food){
 function append_input($form, $input, value){
   $input.attr("value", value);
   $input.addClass("group_" + count_food());
-  $form.append($input); 
+  $form.append($input);
 }
 
 function count_food() {

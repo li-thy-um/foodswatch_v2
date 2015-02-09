@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
   validates :name, presence: true, length: { maximum: 50 }
   VLID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, presence: true, 
-                    format: { with: VLID_EMAIL_REGEX }, 
+  validates :email, presence: true,
+                    format: { with: VLID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum: 6 }
@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
   def chart_string_of_day(num)
     start_day = Time.now.end_of_day.days_ago(num)
     labels = (1..num).map { |i| label_of start_day.advance(days: i) }
-    data   = (1..num).map { |i| data_of  start_day.advance(days: i) }    
-   
+    data   = (1..num).map { |i| data_of  start_day.advance(days: i) }
+
     data = (0...data_type.size).inject([]) do |l, k|
       l << (0...num).inject([]) { |a, i| a << data[i][k] }.join(",")
     end
@@ -35,17 +35,17 @@ class User < ActiveRecord::Base
   end
 
   def commenting?(post)
-    post.comments.find_by_user_id(self.id)  
+    post.comments.find_by_user_id(self.id)
   end
 
   def sharing?(post)
-    post.shares.find_by_user_id(self.id) 
+    post.shares.find_by_user_id(self.id)
   end
 
   def watching?(food)
-    watches.find_by(food_id: food.id) 
+    watches.find_by(food_id: food.id)
   end
-  
+
   def watch!(food)
     watches.create!(food_id: food.id)
   end
@@ -55,9 +55,13 @@ class User < ActiveRecord::Base
   end
 
   def watch_list_string()
-    watched_foods.inject([]) do |list, food|
-      list << [food.id, food.name].join("_") if food.name && food.name != ""
-    end.join(",")
+    watched_foods.map do |food|
+      if food.name && food.name != ""
+        [food.id, food.name].join("_")
+      else
+        nil
+      end
+    end.compact.join(",")
   end
 
   def following?(other_user)
@@ -72,7 +76,7 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
   end
-  
+
   def feed
     followed_posts = Micropost.from_users_followed_by(self)
     followed_posts.where("original_id is NULL
@@ -89,8 +93,8 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  private  
-   
+  private
+
     def data_type
       [:calorie, :carb, :prot, :fat]
     end
@@ -105,7 +109,7 @@ class User < ActiveRecord::Base
     end
 
     def label_of(day)
-      a = day.to_s.split(" ")[0].split("-") 
+      a = day.to_s.split(" ")[0].split("-")
       [a[1], a[2]].join("-")
     end
 

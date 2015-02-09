@@ -11,24 +11,24 @@ class MicropostsController < ApplicationController
     if @micropost.save
       handle_foods
       respond_to do |format|
-        format.html do 
+        format.html do
           if params[:create_type] == "comment"
             flash[:success] = "评论成功！"
-            redirect_to comments_micropost_path(@post) 
+            redirect_to comments_micropost_path(@post)
           else
             flash[:success] = "Micropost created!"
-            redirect_to root_url 
+            redirect_to root_url
           end
         end
         format.js { render action: params[:create_type] }
       end
     else
       respond_to do |format|
-        format.html do 
+        format.html do
           @feed_items = current_user.feed.paginate(page: params[:page])
           render 'static_pages/home'
         end
-        format.js { render action: :create_fail } 
+        format.js { render action: :create_fail }
       end
     end
   end
@@ -54,7 +54,9 @@ class MicropostsController < ApplicationController
   private
 
     def prepare_foods
-      @foods = raw_list.inject([]) { |foods, raw| foods << cook(raw) }.compact
+      puts raw_list.inspect
+      sleep 10
+      @foods = raw_list.map { |raw| cook(raw) }.compact
     end
 
     def cook(raw)
@@ -64,35 +66,36 @@ class MicropostsController < ApplicationController
     def raw_list
       [params[:foods], params[:food_ids]].flatten.compact
     end
-       
+
     def set_content
       trim_content
       return unless params[:micropost][:content] == ""
-      if params[:micropost][:original_id] != nil 
+      if params[:micropost][:original_id] != nil
         params[:micropost][:content] = "我很懒什么都没说。。。"
-        return 
+        return
       end
-      if @foods.any? 
+      if @foods.any?
         params[:micropost][:content] = "我吃了:"
-        return 
+        return
       end
     end
 
     def trim_content
       params[:micropost][:content] = params[:micropost][:content].rstrip.lstrip
     end
- 
+
     def create_post_food
       return if @foods.empty?
       info = {prot:0, carb:0, fat:0}
       @foods.each do |food|
+        next if food.prot.nil? || food.carb.nil? || food.fat.nil?
         info[:prot] += food.prot
         info[:carb] += food.carb
         info[:fat] += food.fat
       end
       params[:micropost][:post_food_id] = Food.create(info).id
     end
-    
+
     def handle_foods
       @foods.each do |food|
         food.save if food.id == nil
@@ -109,7 +112,7 @@ class MicropostsController < ApplicationController
 
     def micropost_params
       params.require(:micropost).
-             permit(:content,     :comment_id,  
+             permit(:content,     :comment_id,
                     :original_id, :shared_id, :post_food_id)
     end
-end 
+end

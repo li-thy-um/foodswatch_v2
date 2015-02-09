@@ -24,7 +24,7 @@ function clear_form($textarea){
       $("#choosed").html("");
   }
   var $collapse = $textarea.parent().parent();
-  var $surplus =  $collapse.next();
+  var $surplus = $collapse.next();
   if (!$surplus.hasClass("hidden")
       && $textarea.attr("id").split("_")[0] == "share")
   {
@@ -38,7 +38,7 @@ var submit_form = function(e) {
 
   //When ctrl+enter pressed, submit the form.
   if(e.ctrlKey && e.which == "13" && _surplus($(this)) >= 0) {
-    $attached_btn.click(); 
+    $attached_btn.click();
   }
 }
 
@@ -49,16 +49,16 @@ var change_surplus = function() {
 
   // change number text.
   $text.text(surplus);
-  
+
   // change color and submit-btn.
   var red = $text.hasClass("surplus-negative");
   $btn = $($input.attr("attached-btn"))
   if(red && surplus >= 0){
-    $text.removeClass("surplus-negative"); 
+    $text.removeClass("surplus-negative");
     enable($btn);
   }
-  if(!red && surplus < 0){ 
+  if(!red && surplus < 0){
     $text.addClass("surplus-negative");
     disable($btn);
-  } 
+  }
 }

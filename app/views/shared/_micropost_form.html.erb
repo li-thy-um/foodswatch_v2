@@ -20,8 +20,7 @@
 
     <div class="span8 btn-group">
       <div class='btn-group' style='float:right'>
-        <a class="btn btn-warning btn-large btn-add-food popovers"
-          data-content="<%= render 'shared/add_food_popover' %>">
+        <a class="btn btn-warning btn-large btn-foods">
           食物
         </a>
         <a form-id="new_post_form"
@@ -33,6 +32,10 @@
     </div>
 
   </div>
+
   <div hidden="true" id="food_form"></div>
   <input type="hidden" name="create_type" value="create">
+  <div>
+    <%= render 'shared/foods_panel' %>
+  <div>
 <% end %>
