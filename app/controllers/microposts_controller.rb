@@ -54,8 +54,6 @@ class MicropostsController < ApplicationController
   private
 
     def prepare_foods
-      puts raw_list.inspect
-      sleep 10
       @foods = raw_list.map { |raw| cook(raw) }.compact
     end
 
@@ -88,7 +86,6 @@ class MicropostsController < ApplicationController
       return if @foods.empty?
       info = {prot:0, carb:0, fat:0}
       @foods.each do |food|
-        next if food.prot.nil? || food.carb.nil? || food.fat.nil?
         info[:prot] += food.prot
         info[:carb] += food.carb
         info[:fat] += food.fat

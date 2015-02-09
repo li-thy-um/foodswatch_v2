@@ -5,7 +5,7 @@ namespace :db do
     make_microposts
     make_relationships
   end
-  task delete_fake: :environment do 
+  task delete_fake: :environment do
     users = User.where("id < 101")
     users.each do |user|
       user.destroy
@@ -24,17 +24,17 @@ end
 
 def make_microposts
   users = User.all(limit: 6) # For the fisrt 6 users only.
-  50.times do 
+  50.times do
     content = Faker::Lorem.sentence(5)
     users.each { |user| user.microposts.create!(content: content) }
   end
 end
 
 def make_users
-  admin = User.create!(name: "Example User",
-                       email: "example@railstutorial.org",
-                       password: "foobar",
-                       password_confirmation: "foobar",
+  admin = User.create!(name: "Lithium",
+                       email: "lithium4010@163.com",
+                       password: "qpzmfj",
+                       password_confirmation: "qpzmfj",
                        admin: true)
   99.times do |n|
     name = Faker::Name.name
