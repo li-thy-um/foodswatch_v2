@@ -6,7 +6,7 @@
   <% if micropost.original_id? %>
     || 转自：
     <% o_user = micropost.original_post.user %>
-    <%= link_to "@" + o_user.name %>   
+    <%= link_to "@" + o_user.name %>
   <% end %>
     <br/>
     <br/>
@@ -17,6 +17,6 @@
 <% option = ["feed", "show", "share", "comment"]%>
 <% if option.include?(page) %>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+    <%= micropost.created_at %>
   </span>
 <% end %>
