@@ -1,0 +1,85 @@
+<div style='margin-top:10px' class='hide foods-panel'>
+  <% 3.times do %>
+  <div class="row-fluid" style='margin-top:5px'>
+
+    <% 3.times do %>
+    <div class="span4 img-rounded img-polaroid div-hover"
+      style='background-color:#dddfff; height:50px;'>
+      <a class="btn btn-link btn-block btn-add-food center"
+        style="margin-top:5px">
+        <i class='icon-plus icon-white'></i>
+      </a>
+    </div>
+    <% end %>
+
+  </div>
+  <% end %>
+</div>
+
+<div class="modal hide fade add-food-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="share"
+  aria-hidden="true">
+
+  <div class="modal-header">
+    <button type="button"
+    class="close"
+    data-dismiss="modal"
+    aria-hidden="true">×</button>
+    <h3 id="modal">添加食物</h3>
+  </div>
+
+  <div class="modal-body">
+    <div id='add_food_popover'>
+      <div id='form'>
+        <div id='food_id_input_sample' hidden='true'>
+          <input type='hidden' name='food_ids[]' type='text'/>
+        </div>
+        <input class='watch-list-typeahead' autocomplete='off'
+        placeholder='从食物列表中搜索...' type='text'/>
+        <a href='#new_food_collapse'
+        data-toggle='collapse'
+        title='Create New Food'
+        class='btn btn-success'
+        id='new_food_btn'
+        style='float:right;margin-bottom:5px'>新建</a>
+        <div hidden='true' id='label_sample'>
+          <a class='label click_del' title='click to delete' style='float:left;'></a>
+        </div>
+      </div>
+    </div>
+
+    <div id='new_food_collapse' class='collapse' style='margin-top:38px'>
+      <div id='new_food_form'>
+        食物名:     <input name='foods[][name]' type='text'
+        placeholder='请输入食物名...'
+        autocomplete='off'
+        class='name' maxlength='15'
+        title='最多15字'/>
+        碳水 (g):      <input name='foods[][carb]' type='text' placeholder='0'
+        autocomplete='off'
+        class='nutri' maxlength='3'
+        title='integer only'/>
+        蛋白质 (g):   <input name='foods[][prot]' type='text' placeholder='0'
+        autocomplete='off'
+        class='nutri' maxlength='3'
+        title='integer only'/>
+        脂肪 (g):       <input name='foods[][fat]'  type='text' placeholder='0'
+        autocomplete='off'
+        class='nutri' maxlength='3'
+        title='integer only'/>
+      </div>
+
+      <button data-target='#new_food_collapse'
+        data-toggle='collapse'
+        title='Create New Food'
+        class='btn btn-primary disabled'
+        disabled='disabled'
+        style='float:right'
+        id='create_food_btn'>确定
+      </button>
+    </div>
+
+  </div>
+</div>
