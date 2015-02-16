@@ -36,14 +36,15 @@
         <div id='food_id_input_sample' hidden='true'>
           <input type='hidden' name='food_ids[]' type='text'/>
         </div>
-        <input class='watch-list-typeahead' autocomplete='off'
-        placeholder='从食物列表中搜索...' type='text'/>
-        <a href='#new_food_collapse'
-        data-toggle='collapse'
-        title='Create New Food'
-        class='btn btn-success'
-        id='new_food_btn'
-        style='float:right;margin-bottom:5px'>新建</a>
+        <div class="input-append" style="width:90%">
+          <input class='watch-list-typeahead' autocomplete='off'
+            placeholder='从食物列表中搜索...' type='text'/>
+          <a href='#new_food_collapse'
+            data-toggle='collapse'
+            title='Create New Food'
+            class='btn btn-success'
+            id='new_food_btn'>新建</a>
+        </div>
         <div hidden='true' id='label_sample'>
           <a class='label click_del' title='click to delete' style='float:left;'></a>
         </div>
