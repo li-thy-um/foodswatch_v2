@@ -14738,7 +14738,7 @@ $(function(){
     html: true,
     container: "body",
     placement: "bottom"
-  }).click(init_add_food_popover);
+  }).click(init_add_food_modal);
 });
 
 function reset_watch_post($btn){
@@ -14779,7 +14779,7 @@ function _init_watch_post_popover(){
     keypress();
 }
 
-var init_add_food_popover = function(){
+var init_add_food_modal = function(){
   $(".watch-list-typeahead").typeahead({
     source: function(query, process){
       process(get_watch_list());

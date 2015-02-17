@@ -12855,10 +12855,10 @@ $(function(){
     placement: "bottom"
   }).hover(function(){
   
-  }).click(init_add_food_popover);
+  }).click(init_add_food_modal);
 });
 
-var init_add_food_popover = function(){
+var init_add_food_modal = function(){
   $(".watch-list-typeahead").typeahead({
     source: function(query, process){
       process(get_watch_list());
@@ -12883,7 +12883,7 @@ var init_add_food_popover = function(){
 }
 
 var init_add_food_collapse = function(){
-  init_add_food_popover();
+  init_add_food_modal();
 
   $("#cancel_new_food_btn").click(function(){
     clear($("#new_food_form"));

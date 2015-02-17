@@ -2,13 +2,10 @@ $(function(){
   init_watch_post();
 
   $('body').on('click', '.btn-foods', function(){
-    $('.foods-panel').fadeToggle();
+    $('.add-food-modal').modal('show');
+    init_add_food_modal();
   });
 
-  $('body').on('click', '.btn-add-food', function(){
-    $('.add-food-modal').modal('show');
-    init_add_food_popover();
-  });
 });
 
 function reset_watch_post($btn){
@@ -49,7 +46,7 @@ function _init_watch_post_popover(){
     keypress();
 }
 
-var init_add_food_popover = function(){
+var init_add_food_modal = function(){
   $(".watch-list-typeahead").typeahead({
     source: function(query, process){
       process(get_watch_list());
@@ -134,6 +131,7 @@ function add_label(food){
   }
   var $label = $("#label_sample").children().first().clone().html(name);
   $label.attr("group-id", count_food()).click(delete_food);
+  $label.attr("style", "margin-right:2px")
   $("#choosed").append($label);
 }
 

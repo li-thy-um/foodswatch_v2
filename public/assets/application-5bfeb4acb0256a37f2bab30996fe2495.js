@@ -14338,7 +14338,7 @@ $(function(){
 
   $('body').on('click', '.btn-add-food', function(){
     $('.add-food-modal').modal('show');
-    init_add_food_popover();
+    init_add_food_modal();
   });
 });
 
@@ -14380,7 +14380,7 @@ function _init_watch_post_popover(){
     keypress();
 }
 
-var init_add_food_popover = function(){
+var init_add_food_modal = function(){
   $(".watch-list-typeahead").typeahead({
     source: function(query, process){
       process(get_watch_list());
