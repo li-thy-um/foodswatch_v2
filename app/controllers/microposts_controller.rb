@@ -10,26 +10,11 @@ class MicropostsController < ApplicationController
     @post = Micropost.find_by_id(params[:parent_id])
     if @micropost.save
       handle_foods
-      respond_to do |format|
-        format.html do
-          if params[:create_type] == "comment"
-            flash[:success] = "评论成功！"
-            redirect_to comments_micropost_path(@post)
-          else
-            flash[:success] = "Micropost created!"
-            redirect_to root_url
-          end
-        end
-        format.js { render action: params[:create_type] }
-      end
+      handle_message
+      flash[:success] = "发布成功！"
+      render action: params[:create_type]
     else
-      respond_to do |format|
-        format.html do
-          @feed_items = current_user.feed.paginate(page: params[:page])
-          render 'static_pages/home'
-        end
-        format.js { render action: :create_fail }
-      end
+      render action: :create_fail
     end
   end
 
@@ -40,10 +25,7 @@ class MicropostsController < ApplicationController
       action_type = :destroy
     end
     @micropost.destroy
-    respond_to do |format|
-      format.html { redirect_to root_url }
-      format.js { render action: action_type }
-    end
+    render action: action_type
   end
 
   def comments
@@ -52,6 +34,15 @@ class MicropostsController < ApplicationController
   end
 
   private
+
+    def handle_message
+      case params[:create_type]
+      when :comment
+        # TODO
+      when :share
+
+      end
+    end
 
     def prepare_foods
       @foods = raw_list.map { |raw| cook(raw) }.compact
