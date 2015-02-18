@@ -1,3 +1,3 @@
-$("#comment_list_<%=@post.id%>").html("<%= escape_javascript(
-  render @post.comments.first(10), page: "comment"
+$("#comment_list_<%=@micropost.id%>").html("<%= escape_javascript(
+  render @micropost.comments.first(10), page: "comment"
 )%>")
