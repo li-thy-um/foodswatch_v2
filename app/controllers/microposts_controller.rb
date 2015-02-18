@@ -9,10 +9,12 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     @post = Micropost.find_by_id(params[:parent_id])
     if @micropost.save
-      handle_foods
-      handle_message
+      type = params[:create_type]
+      puts type
+      handle_foods if type == :create
+      # handle_message
       flash[:success] = "发布成功！"
-      render action: params[:create_type]
+      render action: type
     else
       render action: :create_fail
     end
@@ -35,14 +37,14 @@ class MicropostsController < ApplicationController
 
   private
 
-    def handle_message
-      case params[:create_type]
-      when :comment
-        # TODO
-      when :share
-
-      end
-    end
+    # def handle_message
+    #   case params[:create_type]
+    #   when :comment
+    #     # TODO
+    #   when :share
+    #
+    #   end
+    # end
 
     def prepare_foods
       @foods = raw_list.map { |raw| cook(raw) }.compact
@@ -99,8 +101,12 @@ class MicropostsController < ApplicationController
     end
 
     def micropost_params
-      params.require(:micropost).
-             permit(:content,     :comment_id,
-                    :original_id, :shared_id, :post_food_id)
+      params.require(:micropost).permit(
+        :content,
+        :comment_id,
+        :original_id,
+        :shared_id,
+        :post_food_id
+      )
     end
 end
