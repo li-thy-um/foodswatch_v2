@@ -9,14 +9,27 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     @post = Micropost.find_by_id(params[:parent_id])
     if @micropost.save
-      type = params[:create_type]
-      puts type
-      handle_foods if type == :create
-      # handle_message
-      flash[:success] = "发布成功！"
-      render action: type
+      handle_foods
+      respond_to do |format|
+        format.html do
+          if params[:create_type] == "comment"
+            flash[:success] = "评论成功！"
+            redirect_to comments_micropost_path(@post)
+          else
+            flash[:success] = "Micropost created!"
+            redirect_to root_url
+          end
+        end
+        format.js { render action: params[:create_type] }
+      end
     else
-      render action: :create_fail
+      respond_to do |format|
+        format.html do
+          @feed_items = current_user.feed.paginate(page: params[:page])
+          render 'static_pages/home'
+        end
+        format.js { render action: :create_fail }
+      end
     end
   end
 
@@ -27,7 +40,10 @@ class MicropostsController < ApplicationController
       action_type = :destroy
     end
     @micropost.destroy
-    render action: action_type
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js { render action: action_type }
+    end
   end
 
   def comments
@@ -37,76 +53,63 @@ class MicropostsController < ApplicationController
 
   private
 
-    # def handle_message
-    #   case params[:create_type]
-    #   when :comment
-    #     # TODO
-    #   when :share
-    #
-    #   end
-    # end
+  def prepare_foods
+    @foods = raw_list.map { |raw| cook(raw) }.compact
+  end
 
-    def prepare_foods
-      @foods = raw_list.map { |raw| cook(raw) }.compact
-    end
+  def cook(raw)
+    raw.is_a?(String) ? Food.find_by_id(raw) : Food.new(raw)
+  end
 
-    def cook(raw)
-      raw.is_a?(String) ? Food.find_by_id(raw) : Food.new(raw)
-    end
+  def raw_list
+    [params[:foods], params[:food_ids]].flatten.compact
+  end
 
-    def raw_list
-      [params[:foods], params[:food_ids]].flatten.compact
+  def set_content
+    trim_content
+    return unless params[:micropost][:content] == ""
+    if params[:micropost][:original_id] != nil
+      params[:micropost][:content] = "我很懒什么都没说。。。"
+      return
     end
+    if @foods.any?
+      params[:micropost][:content] = "我吃了:"
+      return
+    end
+  end
 
-    def set_content
-      trim_content
-      return unless params[:micropost][:content] == ""
-      if params[:micropost][:original_id] != nil
-        params[:micropost][:content] = "我很懒什么都没说。。。"
-        return
-      end
-      if @foods.any?
-        params[:micropost][:content] = "我吃了:"
-        return
-      end
-    end
+  def trim_content
+    params[:micropost][:content] = params[:micropost][:content].rstrip.lstrip
+  end
 
-    def trim_content
-      params[:micropost][:content] = params[:micropost][:content].rstrip.lstrip
+  def create_post_food
+    return if @foods.empty?
+    info = {prot:0, carb:0, fat:0}
+    @foods.each do |food|
+      info[:prot] += food.prot
+      info[:carb] += food.carb
+      info[:fat] += food.fat
     end
+    params[:micropost][:post_food_id] = Food.create(info).id
+  end
 
-    def create_post_food
-      return if @foods.empty?
-      info = {prot:0, carb:0, fat:0}
-      @foods.each do |food|
-        info[:prot] += food.prot
-        info[:carb] += food.carb
-        info[:fat] += food.fat
-      end
-      params[:micropost][:post_food_id] = Food.create(info).id
+  def handle_foods
+    @foods.each do |food|
+      food.save if food.id == nil
+      # new food should add into watch list
+      current_user.watch!(food) unless current_user.watching?(food)
+      @micropost.attach!(food)
     end
+  end
 
-    def handle_foods
-      @foods.each do |food|
-        food.save if food.id == nil
-        # new food should add into watch list
-        current_user.watch!(food) unless current_user.watching?(food)
-        @micropost.attach!(food)
-      end
-    end
+  def correct_user
+    @micropost = current_user.microposts.find_by(id: params[:id])
+    redirect_to root_url if @micropost.nil?
+  end
 
-    def correct_user
-      @micropost = current_user.microposts.find_by(id: params[:id])
-      redirect_to root_url if @micropost.nil?
-    end
-
-    def micropost_params
-      params.require(:micropost).permit(
-        :content,
-        :comment_id,
-        :original_id,
-        :shared_id,
-        :post_food_id
-      )
-    end
+  def micropost_params
+    params.require(:micropost).
+    permit(:content,     :comment_id,
+    :original_id, :shared_id, :post_food_id)
+  end
 end
