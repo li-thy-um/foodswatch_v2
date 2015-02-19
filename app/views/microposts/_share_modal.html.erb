@@ -2,9 +2,9 @@
      class="modal hide fade"
      tabindex="-1"
      role="dialog"
-     aria-labelledby="share" 
+     aria-labelledby="share"
      aria-hidden="true">
-  
+
   <div class="modal-header">
     <button type="button"
             class="close"
@@ -12,7 +12,7 @@
             aria-hidden="true">×</button>
     <h3 id="modal">分享</h3>
   </div>
-  
+
   <div class="modal-body">
     <div class="original-post row-fluid div-hover div-click">
       <div class="span2">
@@ -21,7 +21,7 @@
       <div class="span10">
         <%= link_to  "@" + micropost.user.name, micropost.user %>
         <%= render 'shared/post_content', micropost: micropost, page: "share" %>
-      </div> 
+      </div>
     </div>
     <div class="comment-area collapse"
       id="comment_area_<%=micropost.id%>"
@@ -35,16 +35,16 @@
              value="<%= original_id_of(micropost.id) %>">
       <input type="hidden"
              name="micropost[shared_id]"
-             value="<%= micropost.id %>">       
+             value="<%= micropost.id %>">
       <input type="hidden" name="create_type" value="share">
       <input type="hidden" value="_share_<%= micropost.id %>">
-      <%= f.text_area :content, placeholder: "Add your comment...",
+      <%= f.text_area :content, placeholder: "我要吐槽...",
         id: "share_textarea_#{micropost.id}",
         class: "letter_count", style: "margin-bottom:0px",
         "attached-btn" => "#share_btn_#{micropost.id}"%>
-      <% end %>  
+      <% end %>
     </div>
-    
+
     <p class="surplus_count hidden"
       style="float:left;margin-left:10px;margin-top:-6px;"
       id="surplus_count_share_<%= micropost.id %>"></p>
@@ -56,7 +56,7 @@
         <i class="icon icon-remove"></i> 取消
       </a>
       <a data-target="#share_modal_<%= micropost.id %>"
-        data-toggle="modal" form-id="new_share_<%= micropost.id %>" 
+        data-toggle="modal" form-id="new_share_<%= micropost.id %>"
         textarea-id="share_textarea_<%=micropost.id%>"
         id="share_btn_<%= micropost.id %>"
         class="btn btn-inverse btn-submit">
