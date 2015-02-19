@@ -58,7 +58,11 @@ class MicropostsController < ApplicationController
   end
 
   def cook(raw)
-    raw.is_a?(String) ? Food.find_by_id(raw) : Food.new(raw)
+    if raw.is_a? String
+      Food.find_by_id raw
+    else
+      Food.new raw unless raw["name"].nil?
+    end
   end
 
   def raw_list
@@ -86,9 +90,9 @@ class MicropostsController < ApplicationController
     return if @foods.empty?
     info = {prot:0, carb:0, fat:0}
     @foods.each do |food|
-      info[:prot] += food.prot
-      info[:carb] += food.carb
-      info[:fat] += food.fat
+      info[:prot] += food.prot || 0
+      info[:carb] += food.carb || 0
+      info[:fat] += food.fat || 0
     end
     params[:micropost][:post_food_id] = Food.create(info).id
   end
