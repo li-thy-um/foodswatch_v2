@@ -1,48 +1,46 @@
 <div id="comment_collapse_<%= micropost.id %>"
-     class="collapse comment-collapse">  
+     class="collapse comment-collapse">
 
   <% remote = true %>
   <% if page == "detail" %>
     <% remote = false %>
-  <% end %> 
-  
+  <% end %>
+
   <div class="row-fluid">
     <div class="comment-area" style="margin-top:5px;">
       <%= form_for(current_user.microposts.build, remote: remote,
              html: {id: "new_comment_#{micropost.id}"}) do |f| %>
-      <input type="hidden"  
+      <input type="hidden"
              name="micropost[comment_id]"
              value="<%= micropost.id %>">
       <input type="hidden" name="create_type" value="comment">
       <input type="hidden" name="parent_id" value="<%= micropost.id %>">
       <input type="hidden" value="_comment_<%= micropost.id %>">
-      <%= f.text_area :content,
-                      placeholder: "Add your comment...",
-                      id:          "comment_textarea_#{micropost.id}",
-                      class:       "letter_count",
-                      style:       "margin-bottom:0px",
-                      "data-container" => "body",
-                      "attached-btn" => "#comment_btn_#{micropost.id}"%>
-      <a form-id="new_comment_<%= micropost.id %>" 
-        textarea-id="comment_textarea_<%=micropost.id%>"
-        id="comment_btn_<%= micropost.id %>"
-        class="btn btn-inverse btn-submit"
-        style="margin-right:15px;margin-top:10px; float:right">
-        <i class="icon icon-comment icon-white"></i>
-        评论
-      </a>
-      <p class="surplus_count_comment" style="margin-left:20px;" 
-         id="surplus_count_comment_<%= micropost.id %>"></p>
-      <% end %>
+      <div class="input-append"
+        style="margin-top:10px; float:left; width:93.5%">
+        <%= f.text_field :content,
+                        placeholder: "我要吐槽...",
+                        id:          "comment_textarea_#{micropost.id}",
+                        class:       "letter_count",
+                        "data-container" => "body",
+                        "attached-btn" => "#comment_btn_#{micropost.id}"%>
+        <a form-id="new_comment_<%= micropost.id %>"
+          textarea-id="comment_textarea_<%=micropost.id%>"
+          id="comment_btn_<%= micropost.id %>"
+          class="btn btn-inverse btn-submit">
+          <i class="icon icon-share-alt icon-white"></i>
+        </a>
+      </div>
+    <% end %>
     </div>
-    
+
     <% if page != "detail" %>
-    <% comments = micropost.comments.first(7) %>
-    <div id="comment_list_<%= micropost.id %>" style="margin-top:50px;">
+    <% comments = micropost.comments.first(9) %>
+    <div id="comment_list_<%= micropost.id %>" style="margin-top:12%;">
     <% if comments.any? %>
       <%= render comments, page: "comment" %>
     <% end %>
-    <% if micropost.comments.count > 7 %>
+    <% if micropost.comments.count > 9 %>
       <div class="line-above" style="float:right;margin-right:10px">
         <%= link_to "查看全部评论", comments_micropost_path(micropost) %>
       </div>

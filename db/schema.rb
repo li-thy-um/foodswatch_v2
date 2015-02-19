@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(version: 20150217223024) do
 
   create_table "foods", force: true do |t|
-    t.string   "name"
+    t.string   "name",       limit: nil
     t.integer  "weight"
     t.integer  "prot"
     t.integer  "carb"
     t.integer  "fat"
     t.integer  "calorie"
-    t.string   "info"
+    t.string   "info",       limit: nil
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -28,22 +28,22 @@ ActiveRecord::Schema.define(version: 20150217223024) do
   create_table "messages", force: true do |t|
     t.integer  "user_id"
     t.integer  "post_id"
-    t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "status",     limit: nil
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "microposts", force: true do |t|
-    t.string   "content"
+    t.string   "content",       limit: nil
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "original_id"
     t.integer  "comment_id"
     t.integer  "shared_id"
-    t.integer  "share_count",   default: 0
+    t.integer  "share_count",               default: 0
     t.integer  "post_food_id"
-    t.integer  "comment_count", default: 0
+    t.integer  "comment_count",             default: 0
   end
 
   add_index "microposts", ["comment_id"], name: "index_microposts_on_comment_id"
@@ -72,13 +72,13 @@ ActiveRecord::Schema.define(version: 20150217223024) do
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
+    t.string   "name",            limit: nil
+    t.string   "email",           limit: nil
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
-    t.string   "remember_token"
-    t.boolean  "admin",           default: false
+    t.string   "password_digest", limit: nil
+    t.string   "remember_token",  limit: nil
+    t.boolean  "admin",                       default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
