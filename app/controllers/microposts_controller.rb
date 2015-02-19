@@ -9,19 +9,13 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     @post = Micropost.find_by_id(params[:parent_id])
     if @micropost.save
-      handle_foods
-      respond_to do |format|
-        format.html do
-          if params[:create_type] == "comment"
-            flash[:success] = "评论成功！"
-            redirect_to comments_micropost_path(@post)
-          else
-            flash[:success] = "Micropost created!"
-            redirect_to root_url
-          end
-        end
-        format.js { render action: params[:create_type] }
+      handle_foods  
+      if params[:create_type] == "comment"
+        flash[:success] = "楼主被你吐死了！"
+      else
+        flash[:success] = "啊，吃的好爽！"
       end
+      render action: params[:create_type]
     else
       respond_to do |format|
         format.html do
