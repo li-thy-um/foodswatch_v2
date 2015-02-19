@@ -14,7 +14,7 @@
   </div>
 
   <div class="modal-body">
-    <div class="original-post row-fluid div-hover div-click">
+    <div class="original-post row-fluid">
       <div class="span2">
         <%= gravatar_for(micropost.user, size:"100x100") %>
       </div>
@@ -23,7 +23,7 @@
         <%= render 'shared/post_content', micropost: micropost, page: "share" %>
       </div>
     </div>
-    <div class="comment-area collapse"
+    <div class="comment-area"
       id="comment_area_<%=micropost.id%>"
       style="margin-top:10px;">
       <%= form_for(current_user.microposts.build, remote: true,
@@ -38,30 +38,21 @@
              value="<%= micropost.id %>">
       <input type="hidden" name="create_type" value="share">
       <input type="hidden" value="_share_<%= micropost.id %>">
-      <%= f.text_area :content, placeholder: "我要吐槽...",
-        id: "share_textarea_#{micropost.id}",
-        class: "letter_count", style: "margin-bottom:0px",
-        "attached-btn" => "#share_btn_#{micropost.id}"%>
-      <% end %>
-    </div>
-
-    <p class="surplus_count hidden"
-      style="float:left;margin-left:10px;margin-top:-6px;"
-      id="surplus_count_share_<%= micropost.id %>"></p>
-
-    <div style="float:right;" class="btn-group">
-      <a data-target="#share_modal_<%= micropost.id %>"
-        data-toggle="modal"
-        class="btn">
-        <i class="icon icon-remove"></i> 取消
-      </a>
-      <a data-target="#share_modal_<%= micropost.id %>"
-        data-toggle="modal" form-id="new_share_<%= micropost.id %>"
-        textarea-id="share_textarea_<%=micropost.id%>"
-        id="share_btn_<%= micropost.id %>"
-        class="btn btn-inverse btn-submit">
-        <i class="icon icon-share icon-white"></i> 分享
-      </a>
+      <div class="input-append"
+        style="margin-top:10px; float:left; width:93.5%">
+        <%= f.text_field :content, placeholder: "我要吐槽...",
+          id: "share_textarea_#{micropost.id}",
+          class: "letter_count", style: "margin-bottom:0px",
+          "attached-btn" => "#share_btn_#{micropost.id}"%>
+        <% end %>
+        <a data-target="#share_modal_<%= micropost.id %>"
+          data-toggle="modal" form-id="new_share_<%= micropost.id %>"
+          textarea-id="share_textarea_<%=micropost.id%>"
+          id="share_btn_<%= micropost.id %>"
+          class="btn btn-inverse btn-submit">
+          <i class="icon icon-share-alt icon-white"></i>
+        </a>
+      </div>
     </div>
   </div>
 </div>

@@ -1,8 +1,15 @@
 <% head_post = micropost %>
 <% body_post = micropost %>
 <% foot_post = micropost %>
+<%
+  roundor = if page == "comment"
+    "line-above"
+  else
+    "img-polaroid img-rounded"
+  end
+%>
 <div id="<%= micropost.id %>" style="margin-top:10px;"
-  class="img-polaroid img-rounded">
+  class="<%= roundor %>">
   <% if micropost.original_id? %>
     <% head_post = micropost.original_post %>
     <% body_post = micropost.original_post %>

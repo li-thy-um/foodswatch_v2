@@ -17,7 +17,7 @@
       <input type="hidden" name="parent_id" value="<%= micropost.id %>">
       <input type="hidden" value="_comment_<%= micropost.id %>">
       <div class="input-append"
-        style="margin-top:10px; float:left; width:93.5%">
+        style="margin-top:10px; float:left; border-right:3px; width:93.5%">
         <%= f.text_field :content,
                         placeholder: "我要吐槽...",
                         id:          "comment_textarea_#{micropost.id}",
@@ -41,8 +41,8 @@
       <%= render comments, page: "comment" %>
     <% end %>
     <% if micropost.comments.count > 9 %>
-      <div class="line-above" style="float:right;margin-right:10px">
-        <%= link_to "查看全部评论", comments_micropost_path(micropost) %>
+      <div class="line-above center" style="width:100%;">
+        <%= link_to "全部评论...", comments_micropost_path(micropost) %>
       </div>
     <% end %>
     </div>
