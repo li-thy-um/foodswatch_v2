@@ -1,11 +1,11 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
       <a href="<%= root_path %>" id="logo">
         <%= image_tag "food_icon.png",
             alt: "logo", size: "30x30", style: "margin-bottom:3px;" %>
-        foodsw<i class="icon icon-eye-open icon-white"
-                 style="margin-top:7px;margin-left:1px"></i>tch
+        foodsw<i class="icon icon-eye-open"
+                 style="margin-top:7px;margin-left:1px"></i>tch 新春快乐
       </a>
       <nav>
         <ul class="nav pull-right">
@@ -14,7 +14,7 @@
             <li><%= link_to "所有用户", users_path %></li>
             <li id="fat-menu" class="dropdown">
             <a href="#"
-               class="dropdown-toggle" 
+               class="dropdown-toggle"
                data-toggle="dropdown">
                @<%= current_user.name %><b class="caret"></b>
               </a>
@@ -34,7 +34,7 @@
             </li>
           <% else %>
             <li><%= link_to "登陆", signin_path %></li>
-          <% end %>  
+          <% end %>
         </ul>
       </nav>
     </div>
