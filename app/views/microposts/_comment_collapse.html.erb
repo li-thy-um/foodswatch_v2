@@ -7,7 +7,7 @@
   <% end %>
 
   <div class="row-fluid">
-    <div class="comment-area" style="margin-top:5px;">
+    <div class="comment-area line-above" style="margin-top:10px;">
       <%= form_for(current_user.microposts.build, remote: remote,
              html: {id: "new_comment_#{micropost.id}"}) do |f| %>
       <input type="hidden"
@@ -17,7 +17,7 @@
       <input type="hidden" name="parent_id" value="<%= micropost.id %>">
       <input type="hidden" value="_comment_<%= micropost.id %>">
       <div class="input-append"
-        style="margin-top:10px; float:left; border-right:3px; width:93.5%">
+        style="float:left; width:93.5%">
         <%= f.text_field :content,
                         placeholder: "我要吐槽...",
                         id:          "comment_textarea_#{micropost.id}",
@@ -36,16 +36,18 @@
 
     <% if page != "detail" %>
     <% comments = micropost.comments.first(9) %>
-    <div id="comment_list_<%= micropost.id %>" style="margin-top:12%;">
     <% if comments.any? %>
+    <div id="comment_list_<%= micropost.id %>" style="margin-top:5px;">
+
       <%= render comments, page: "comment" %>
-    <% end %>
-    <% if micropost.comments.count > 9 %>
-      <div class="line-above center" style="width:100%;">
-        <%= link_to "全部评论...", comments_micropost_path(micropost) %>
-      </div>
-    <% end %>
+
+      <% if micropost.comments.count > 9 %>
+        <div class="line-above center" style="width:100%;">
+          <%= link_to "全部评论...", comments_micropost_path(micropost) %>
+        </div>
+      <% end %>
     </div>
+    <% end %>
     <% end %>
   </div>
 </div>
