@@ -2,6 +2,10 @@ $(".microposts").prepend("<%= escape_javascript(
   render @micropost, page: "feed"
 ) %>");
 
+<% flash.each do |k, v| %>
+  $("#flash_area").prepend("<%= escape_javascript flash_messages(k, v) %>")
+<% end %>
+
 <% if @micropost.foods.any? %>
   $("#calorie").html("<%= current_user.calorie_today %> " + "kCal")
 <% end %>

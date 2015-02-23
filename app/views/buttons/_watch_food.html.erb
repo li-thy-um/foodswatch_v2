@@ -8,15 +8,15 @@
 <% else %>
   <% badge_class = "badge" %>
 <% end %>
-  
+
 <%= render 'users/watch_form',
   form_id: form_id,
   container_id: food.id,
-  food: food %> 
+  food: food %>
 
 <a style="<%= style %>"
   form-id="<%=form_id%>"
   class="btn btn-action watch_food_submit_<%=food.id%> btn-link btn-submit">
-  <i class="icon-eye-open"></i>
+  <i class="icon-eye-open icon-white"></i>
   <span class="<%= badge_class %>"><%= food.watcher_count %></span>
 </a>

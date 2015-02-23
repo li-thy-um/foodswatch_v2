@@ -1,3 +1,7 @@
+<% flash.each do |k, v| %>
+  $("#flash_area").prepend("<%= escape_javascript flash_messages(k, v) %>")
+<% end %>
+
 $("#comment_list_<%=@post.id%>").html("<%= escape_javascript(
   render @post.comments.first(10), page: "comment"
 )%>")

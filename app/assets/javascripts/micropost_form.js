@@ -12,7 +12,7 @@ function _surplus($input){
   if (text.length == 0){
     return "";
   }else{
-    return 140 - text.length;
+    return 100 - text.length;
   }
 }
 

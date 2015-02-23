@@ -9,21 +9,16 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     @post = Micropost.find_by_id(params[:parent_id])
     if @micropost.save
-      handle_foods  
+      handle_foods
       if params[:create_type] == "comment"
         flash[:success] = "楼主被你吐死了！"
+        render action: :comment
       else
         flash[:success] = "啊，吃的好爽！"
+        render action: :create
       end
-      render action: params[:create_type]
     else
-      respond_to do |format|
-        format.html do
-          @feed_items = current_user.feed.paginate(page: params[:page])
-          render 'static_pages/home'
-        end
-        format.js { render action: :create_fail }
-      end
+      render action: :create_fail
     end
   end
 

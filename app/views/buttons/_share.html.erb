@@ -9,7 +9,7 @@
     title: "已分享",
     style: style,
     data: { confirm: "取消分享？" } do %>
-    <i class="icon-check"></i>
+    <i class="icon-check icon-white"></i>
   <% end %>
 <% else %>
   <a id="share_action_btn_<%=post.id%>"
@@ -17,6 +17,6 @@
     class="btn btn-action btn-link"
     data-target="#share_modal_<%=post.id%>"
     data-toggle="modal">
-    <i class="icon-share"></i>
+    <i class="icon-share icon-white"></i>
   </a>
 <% end %>

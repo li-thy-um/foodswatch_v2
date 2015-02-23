@@ -10,12 +10,9 @@
   <% end %>
     <br/>
     <br/>
-  <% if page == "show" %> <br/> <% end %>
 </span>
 
-
-<% option = ["feed", "show", "share", "comment"]%>
-<% if option.include?(page) %>
+<% if ["feed", "show", "share", "comment"].include?(page) %>
   <span class="timestamp">
     <%= micropost.created_at %>
   </span>

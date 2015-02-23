@@ -33,27 +33,27 @@
 
     <div id='new_food_collapse' class='collapse' style='margin-top:38px'>
       <div class="row-fluid">
-      <div class="span6">
-        <div class="img-rounded img-polaroid div-hover center" style='height:225px;'>
-          <%= image_tag("admin.jpg", alt: "(A)", size: "225x225") %>
+      <div class="span4">
+        <div class="img-rounded img-polaroid div-hover center" style='height:140px;'>
+          <%= image_tag("bbqTime.png", alt: "(A)", size: "140x140") %>
         </div>
       </div>
-      <div class="span6">
+      <div class="span8">
         <div id='new_food_form'>
-          食物名:     <input name='foods[][name]' type='text'
-          placeholder='请输入食物名...'
+          <input name='foods[][name]' type='text'
+          placeholder='食物名 ...'
           autocomplete='off'
           class='name' maxlength='15'
           title='最多15字'/>
-          碳水 (g):      <input name='foods[][carb]' type='text' placeholder='0'
+          <input name='foods[][carb]' type='text' placeholder='碳水(g) ...'
           autocomplete='off'
           class='nutri' maxlength='3'
           title='integer only'/>
-          蛋白质 (g):   <input name='foods[][prot]' type='text' placeholder='0'
+          <input name='foods[][prot]' type='text' placeholder='蛋白质(g) ...'
           autocomplete='off'
           class='nutri' maxlength='3'
           title='integer only'/>
-          脂肪 (g):       <input name='foods[][fat]'  type='text' placeholder='0'
+          <input name='foods[][fat]'  type='text' placeholder='脂肪(g) ...'
           autocomplete='off'
           class='nutri' maxlength='3'
           title='integer only'/>

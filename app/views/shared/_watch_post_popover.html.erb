@@ -6,11 +6,11 @@
 <%= form_for(watch, html: html, remote: true) do |f| %>
   <%= f.hidden_field :food_id %>
   <input type="hidden" name="container" value="<%= post.id %>"/>
-  <div class='input-prepend'>
-    <%= f.submit "WATCH", class: "btn btn-inverse", style: "height:28px;" %>
+  <div class='input-append'>
     <input class='span2 name'
       name="name" type='text'
       placeholder='取个名字吧...'
       autocomplete='off' />
+    <%= f.submit "合并", class: "btn btn-danger", style: "height:28px;" %>
   </div>
 <% end %>

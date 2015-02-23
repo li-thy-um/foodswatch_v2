@@ -44,15 +44,15 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
- 
+
   def destroy
     user = User.find(params[:id])
     if user.admin && current_user?(user)
-      flash[:error] = "Admin can't delete itself!"
+      flash[:error] = "管理员不能删除自己啦！"
       redirect_back_or(user)
     else
       user.destroy
-      flash[:success] = "User destroyed"
+      flash[:success] = "此人已死，有事烧纸！"
       redirect_to users_url
     end
   end
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "你已经光荣宣誓成为 FOODSWATCH 的一员啦！"
       redirect_to @user
     else
       render 'new'
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "身份信息已更新！"
       redirect_to @user
     else
       render 'edit'
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
     end
 
     # Before filters
-  
+
     def signed_in_user_can_not_new_or_create
       redirect_to(root_path) if signed_in?
     end

@@ -1,7 +1,7 @@
 class Micropost < ActiveRecord::Base
   belongs_to :user
   default_scope -> { order('created_at DESC') }
-  validates :content, presence: true, length: { maximum: 140 }
+  validates :content, presence: true, length: { maximum: 100 }
   validates :user_id, presence: true
   has_many :post_food_relationships, foreign_key: :post_id, dependent: :destroy
   has_many :foods, through: :post_food_relationships
@@ -16,7 +16,7 @@ class Micropost < ActiveRecord::Base
   end
 
   def total_calorie_of(type)
-    self.foods.inject(0) { |c, f| c + f.calorie_of(type) } 
+    self.foods.inject(0) { |c, f| c + f.calorie_of(type) }
   end
 
   def shared_by(user)
@@ -41,7 +41,7 @@ class Micropost < ActiveRecord::Base
   end
 
   def attach!(food)
-    post_food_relationships.create!(food_id: food.id) 
+    post_food_relationships.create!(food_id: food.id)
   end
 
   def self.from_users_followed_by(user)
@@ -53,7 +53,7 @@ class Micropost < ActiveRecord::Base
   end
 
   private
-    
+
     def minus_share_count
       change_share_count(:minus)
     end
@@ -64,7 +64,7 @@ class Micropost < ActiveRecord::Base
 
     def change_share_count (type)
       change_ids = Array.new
-      change_ids << self.original_id 
+      change_ids << self.original_id
       change_ids << self.shared_id
       change_ids.compact!
       return if change_ids.empty?
@@ -73,6 +73,6 @@ class Micropost < ActiveRecord::Base
         micropost.share_count += 1 if type == :add
         micropost.share_count -= 1 if type == :minus
         micropost.save
-      end 
+      end
     end
 end
