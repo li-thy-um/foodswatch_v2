@@ -28,6 +28,10 @@ textarea {
   resize: vertical
 }
 
+span {
+  color: $gray;
+}
+
 .center {
   text-align: center;
   h1 {
@@ -46,6 +50,7 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+  color: $white;
 }
 
 h2 {
@@ -54,7 +59,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $grayLight;
+  color: $white;
 }
 
 h3 {
@@ -62,7 +67,7 @@ h3 {
   letter-spacing: -2px;
   text-align: center;
   font-weight: normal;
-  color: $gray;
+  color: $white;
 }
 
 h4 {
@@ -71,7 +76,7 @@ h4 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $grayDarker;
+  color: $white;
 }
 
 h5  {
@@ -80,12 +85,13 @@ h5  {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $grayLight;
+  color: $white;
 }
 
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+  color: $white;
 }
 
 /* header */
@@ -146,7 +152,7 @@ footer {
 aside {
   section {
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid #111111;
     &:first-child {
       border: 0;
       padding-top: 0;
@@ -155,6 +161,7 @@ aside {
       display: block;
       margin-bottom: 3px;
       line-height: 1;
+      color: #111111;
     }
     h1{
       font-size: 1.4em;
@@ -172,8 +179,8 @@ aside {
   a {
     float: left;
     padding: 0 10px;
-    border-left: 1px solid $grayLighter;
-    color: grey;
+    border-left: 1px solid #111111;
+    color: #111111;
     &:first-child {
       padding-left: 0;
       border: 0;
@@ -263,10 +270,11 @@ input {
 }
 
 .surplus-negative {
-  color: $red;
+  color: $red!important;
 }
 
 .surplus_count {
+  color: white;
   float: center;
   margin-top: 1px;
 }
