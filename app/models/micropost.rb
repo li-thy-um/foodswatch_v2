@@ -29,15 +29,15 @@ class Micropost < ActiveRecord::Base
   end
 
   def post_food
-    @post_food = Food.find_by_id(self.post_food_id)
+    @post_food = Food.find_by_id(post_food_id)
   end
 
   def shares
-    Micropost.where("shared_id = #{self.id}")
+    Micropost.where(shared_id: id)
   end
 
   def original_post
-    Micropost.where("id = #{self.original_id}").first
+    Micropost.where(id: original_id).first
   end
 
   def attach!(food)
@@ -45,34 +45,27 @@ class Micropost < ActiveRecord::Base
   end
 
   def self.from_users_followed_by(user)
-    followed_user_ids = "SELECT followed_id FROM relationships
-                         WHERE follower_id = :user_id"
-    where("user_id IN (#{followed_user_ids})
-      OR user_id = :user_id",
-      user_id: user)
+    arr_users = Relationship.where("follower_id = ?", user) + [user]
+    rel_users = User.where(id: arr_users.map(&:id))
+    where(id: rel_users.map(&:microposts).flatten.map(&:id))
   end
 
   private
 
     def minus_share_count
-      change_share_count(:minus)
+      change_share_count(:-)
     end
 
     def add_share_count
-      change_share_count(:add)
+      change_share_count(:+)
     end
 
-    def change_share_count (type)
-      change_ids = Array.new
-      change_ids << self.original_id
-      change_ids << self.shared_id
-      change_ids.compact!
-      return if change_ids.empty?
-      Micropost.find(change_ids).each do |micropost|
-        micropost.share_count = 0 if micropost.share_count == nil
-        micropost.share_count += 1 if type == :add
-        micropost.share_count -= 1 if type == :minus
-        micropost.save
+    def change_share_count (opr)
+      change_ids = [self.original_id, self.shared_id].compact
+      Micropost.where(id: change_ids).each do |po|
+        po.share_count = 0 if po.share_count.nil?
+        eval("po.share_count #{opr}= 1")
+        po.save
       end
     end
 end

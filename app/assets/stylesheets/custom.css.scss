@@ -29,7 +29,6 @@ textarea {
 }
 
 span {
-  color: $gray;
 }
 
 .center {
@@ -50,7 +49,6 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
-  color: $white;
 }
 
 h2 {
@@ -59,7 +57,6 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $white;
 }
 
 h3 {
@@ -67,7 +64,6 @@ h3 {
   letter-spacing: -2px;
   text-align: center;
   font-weight: normal;
-  color: $grayDarker;
 }
 
 h4 {
@@ -76,7 +72,6 @@ h4 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $grayDarker;
 }
 
 h5  {
@@ -85,13 +80,11 @@ h5  {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $white;
 }
 
 p {
   font-size: 1.1em;
   line-height: 1.7em;
-  color: $white;
 }
 
 /* header */
@@ -116,12 +109,10 @@ p {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid $grayMediumLight;
-  color: $grayLight;
+  border-top: 1px solid ;
   a {
     color: #555;
     &:hover {
-      color: $grayDarker;
     }
   }
   small {
@@ -187,7 +178,6 @@ aside {
     }
     &:hover {
       text-decoration: none;
-      color: $blue;
     }
   }
   strong {
@@ -230,11 +220,6 @@ input {
   }
 }
 
-.field_with_errors{
-  @extend .control-group;
-  @extend .error;
-}
-
 /* Users index */
 
 .users {
@@ -243,9 +228,9 @@ input {
   li {
     overflow: auto;
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid;
     &:last-child{
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 1px solid;
     }
   }
 }
@@ -266,11 +251,9 @@ input {
 }
 
 .timestamp {
-  color: $grayLight;
 }
 
 .surplus-negative {
-  color: $red!important;
 }
 
 .surplus_count {
@@ -286,7 +269,7 @@ input {
 
 .line-above {
   padding: 10px 0;
-  border-top: 1px solid $grayLighter;
+  border-top: 1px solid;
 }
 
 aside {

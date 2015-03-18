@@ -2,9 +2,13 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     make_users
-    make_microposts
     make_relationships
   end
+
+  task make_posts: :environment do
+    make_microposts
+  end
+
   task delete_fake: :environment do
     users = User.where("id < 101")
     users.each do |user|
@@ -23,7 +27,7 @@ def make_relationships
 end
 
 def make_microposts
-  users = User.all(limit: 6) # For the fisrt 6 users only.
+  users = User.all.limit(6) # For the fisrt 6 users only.
   50.times do
     content = Faker::Lorem.sentence(5)
     users.each { |user| user.microposts.create!(content: content) }

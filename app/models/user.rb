@@ -79,10 +79,14 @@ class User < ActiveRecord::Base
 
   def feed
     followed_posts = Micropost.from_users_followed_by(self)
-    followed_posts.where("original_id is NULL
-      OR (original_id not IN (:followed_posts) AND user_id != :user_id)",
-      followed_posts: followed_posts, user_id: self).
-    where("comment_id is NULL")
+    arr_post_id = followed_posts.map(&:id)
+    arr_filtered_id = followed_posts.select do |po|
+      po.original_id.nil? ||
+      ( po.user_id != self.id && !arr_post_id.include?(po.original_id) )
+    end.select do |po|
+      po.comment_id.nil?
+    end.map(&:id)
+    Micropost.where(id: arr_filtered_id)
   end
 
   def User.new_remember_token
