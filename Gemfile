@@ -6,7 +6,7 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'bcrypt-ruby', '3.1.2' # Use ActiveModel has_secure_password
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.6'
-gem 'bootstrap-will_paginate', '0.0.9'
+gem 'bootstrap-will_paginate'
 gem 'sass-rails', '~>5.0.0' # Use SCSS for stylesheets
 gem 'uglifier', '2.1.1' # Use Uglifier as compressor for JavaScript assets
 
