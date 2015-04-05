@@ -10,29 +10,27 @@
           <span class="icon-bar"></span>
         </button>
         <a href="<%= root_path %>" id="logo">
-          foodsw<%= image_tag "logo.png", alt: "logo", size: "28x21", style: "margin-bottom:3px;" %>tch
+          <%= image_tag "logo.png", alt: "logo", size: "40x30" %>
         </a>
       </div>
 
-      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <div class="collapse navbar-collapse" id="navbar-collapse-1" >
+
+        <% if signed_in? %>
+          <form class="navbar-form navbar-left" role="search" style="margin-left:25%;">
+            <div class="form-group">
+              <input type="text" class="form-control" style="width:210%; margin-bottom:-2px;"/>
+            </div>
+          </form>
+        <% end %>
+
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "首页", root_path %></li>
+          <!-- <li><%= link_to "首页", root_path %></li> -->
           <% if signed_in? %>
-            <li><%= link_to "所有用户", users_path %></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                @<%= current_user.name %><b class="caret"></b>
-              <ul class="dropdown-menu" role="menu">
-                <li><%= link_to "我的主页", current_user %></li>
-                <li><%= link_to "我的食物", watches_user_path(current_user) %></li>
-                <li><%= link_to "我的统计", calorie_user_path(current_user) %></li>
-                <li><%= link_to "设置",edit_user_path(current_user) %></li>
-                <li class="divider"></li>
-                <li><%= link_to "退出登陆", signout_path, method: "delete" %></li>
-              </ul>
-            </li>
+          <!-- <li><%= link_to "所有用户", users_path %></li> -->
+          <li class="dropdown"><%= render 'shared/user_drop_down'%></li>
           <% else %>
-            <li><%= link_to "登陆", signin_path %></li>
+            <!-- <li> 独眼罩图片 </li> -->
           <% end %>
         </ul>
       </div><!-- /.navbar-collapse -->

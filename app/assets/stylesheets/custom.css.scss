@@ -17,7 +17,22 @@ html {
 }
 
 body {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+
   padding-top: 60px;
+}
+
+
+body[class="basic-bg"] {
+  background-color: $grayMediumLight;
+}
+
+body[class="root-bg"] {
+  // background-image: url("homepagebg.jpg");
 }
 
 section {
@@ -29,6 +44,10 @@ textarea {
 }
 
 span {
+}
+
+.container {
+  width: 80%;
 }
 
 .center {
@@ -60,10 +79,12 @@ h2 {
 }
 
 h3 {
-  font-size: 2em;
+  font-size: 1.7em;
   letter-spacing: -2px;
   text-align: center;
   font-weight: normal;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 h4 {
@@ -90,14 +111,17 @@ p {
 /* header */
 
 header {
-  .container-fluid {
-    margin-right: 30px;
-    margin-left: 30px;
-    padding: 0px;
-  }
-
   .navbar {
     margin-bottom: 0px;
+    max-height: 50px;
+  }
+
+  .navbar-default {
+    background-color: #FFFFFF;
+  }
+
+  .gravatar {
+    margin-top: -10px;
   }
 
   #logo {
@@ -105,7 +129,7 @@ header {
     font-size: 1.7em;
     color: black;
     text-transform: uppercase;
-    padding: 12px;
+    padding: 10px 0px;
     font-weight: bold;
     line-height: 1;
     &:hover {

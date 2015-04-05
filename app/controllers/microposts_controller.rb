@@ -72,7 +72,7 @@ class MicropostsController < ApplicationController
   end
 
   def trim_content
-    params[:micropost][:content] = params[:micropost][:content].rstrip.lstrip
+    params[:micropost][:content] = params[:micropost][:content].strip
   end
 
   def create_post_food

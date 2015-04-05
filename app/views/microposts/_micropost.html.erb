@@ -5,10 +5,10 @@
   roundor = if page == "comment"
     "line-above"
   else
-    "img-polaroid img-rounded"
+    "img-rounded"
   end
 %>
-<div id="<%= micropost.id %>" style="margin-top:10px;"
+<div id="<%= micropost.id %>" style="margin-top:10px;background-color:#fff"
   class="<%= roundor %>">
 
   <!-- 转发 -->

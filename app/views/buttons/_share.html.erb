@@ -5,7 +5,7 @@
     remote: :true,
     method: :delete,
     id: "share_action_btn_#{post.id}",
-    class: "btn btn-action btn-primary",
+    class: "btn btn-action btn-success",
     title: "已分享",
     style: style,
     data: { confirm: "取消分享？" } do %>
@@ -14,7 +14,7 @@
 <% else %>
   <a id="share_action_btn_<%=post.id%>"
     style="<%=style%>"
-    class="btn btn-action btn-primary"
+    class="btn btn-action btn-success"
     data-target="#share_modal_<%=post.id%>"
     data-toggle="modal">
     <span>分享</span>
