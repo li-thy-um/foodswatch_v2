@@ -1,0 +1,18 @@
+header
+  nav class="navbar navbar-default navbar-fixed-top"
+    div class="container-fluid"
+
+      a href=root_path id="logo"
+        = image_tag "logo.png", alt: "logo", size: "40x30"
+
+      ul class="nav navbar-nav navbar-right"
+
+        - if signed_in?
+
+          li class="dropdown"
+            = render 'shared/user_drop_down'
+
+        - else
+
+          li
+            = link_to "登陆", signin_path

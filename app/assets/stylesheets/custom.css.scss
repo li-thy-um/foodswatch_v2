@@ -26,7 +26,9 @@ body[class="basic-bg"] {
 }
 
 body[class="root-bg"] {
+  background-color: $grayMediumLight;
   // background-image: url("homepagebg.jpg");
+  background-size: 100%;
 }
 
 section {
@@ -136,23 +138,12 @@ header {
 /* footer */
 
 footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid ;
-  a {
-    color: #555;
-    &:hover {
-    }
-  }
-  small {
-    float: left;
-  }
+
   ul {
-    float: right;
+    float: center;
     list-style: none;
     li {
-      float: left;
-      margin-left: 10px;
+      float: center;
     }
   }
 }
@@ -212,6 +203,10 @@ aside {
   strong {
     display: block;
   }
+}
+
+.vertical-center {
+  margin-top: 30%;
 }
 
 .user_avatars {
@@ -279,12 +274,6 @@ input {
   display: block;
 }
 
-.timestamp {
-}
-
-.surplus-negative {
-}
-
 .surplus_count {
   float: center;
   margin-top: 1px;
@@ -311,10 +300,6 @@ aside {
   &:hover {
     cursor: pointer;
   }
-}
-
-.hidden{
-  display: none;
 }
 
 a {

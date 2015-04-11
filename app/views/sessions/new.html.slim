@@ -1,0 +1,20 @@
+- provide :title, "登录"
+
+div class="row"
+
+  div class="col-xs-6 col-xs-offset-3 center"
+
+    div class="container img-thumbnail vertical-center"
+
+      h2 欢迎来到 FOODSWATCH
+
+      = form_for(:session, url: sessions_path) do |f|
+
+        = f.text_field :email, class: "form-control", placeholder: "电子邮箱/用户名"
+        = f.password_field :password, class: "form-control", placeholder: "密码"
+
+        div class="row-fluid"
+
+            div class="col-xs-6 col-xs-offset-3"
+
+              = f.submit "登录", class: "btn btn-primary"
