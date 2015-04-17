@@ -6,26 +6,26 @@ class UsersController < ApplicationController
   before_action :signed_in_user_can_not_new_or_create, only: [:new, :create]
 
   def calorie
-    @title = "统计信息"
+    @title = '统计信息'
     @user = User.find(params[:id])
   end
 
   def watches
-    @title = "关注的食物"
+    @title = '关注的食物'
     @user = User.find(params[:id])
     @foods = @user.watched_foods.paginate(page: params[:page])
     render 'watch_list'
   end
 
   def following
-    @title = "关注"
+    @title = '关注'
     @user = User.find(params[:id])
     @users = @user.followed_users.paginate(page: params[:page])
     render 'show_follow'
   end
 
   def followers
-    @title = "粉丝"
+    @title = '粉丝'
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.where("comment_id is NULL").
+    @microposts = @user.microposts.where('comment_id is NULL').
       paginate(page: params[:page])
   end
 
@@ -48,11 +48,11 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     if user.admin && current_user?(user)
-      flash[:error] = "管理员不能删除自己啦！"
+      flash[:error] = '管理员不能删除自己啦！'
       redirect_back_or(user)
     else
       user.destroy
-      flash[:success] = "此人已死，有事烧纸！"
+      flash[:success] = '此人已死，有事烧纸！'
       redirect_to users_url
     end
   end
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "你已经光荣宣誓成为 FOODSWATCH 的一员啦！"
+      flash[:success] = '你已经光荣宣誓成为 FOODSWATCH 的一员啦！'
       redirect_to @user
     else
       render 'new'
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      flash[:success] = "身份信息已更新！"
+      flash[:success] = '身份信息已更新！'
       redirect_to @user
     else
       render 'edit'

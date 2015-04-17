@@ -5,9 +5,9 @@ $(function(){
 
 function init_btn_submit(){
   $("body").delegate('.btn-submit', 'click', function(){
-    var $form = $("#"+$(this).attr("form-id"));
+    // var $form = $("#"+$(this).attr("form-id"));
     var $textarea =$("#"+$(this).attr("textarea-id"));
-    $form.submit();
+    // $form.submit();
     clear_form($textarea);
   });
 }
