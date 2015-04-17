@@ -1,25 +1,25 @@
 <!-- 
-<div class="row">
-  <div class ="span10">
-    <canvas id="chart_large" height="400" width="750"></canvas>
+<div class='row'>
+  <div class ='span10'>
+    <canvas id='chart_large' height='400' width='750'></canvas>
   </div>
-  <div class="span2">
-    <ul class="unstyled">
-    <li><span class="label label-important">&nbsp;&nbsp;</span> 总热量</li>
-    <li><span class="label label-info">&nbsp;&nbsp;</span> 蛋白质热量</li>
-    <li><span class="label label-success">&nbsp;&nbsp;</span> 碳水热量</li>
-    <li><span class="label label-warning">&nbsp;&nbsp;</span> 脂肪热量</li>
+  <div class='span2'>
+    <ul class='unstyled'>
+    <li><span class='label label-important'>&nbsp;&nbsp;</span> 总热量</li>
+    <li><span class='label label-info'>&nbsp;&nbsp;</span> 蛋白质热量</li>
+    <li><span class='label label-success'>&nbsp;&nbsp;</span> 碳水热量</li>
+    <li><span class='label label-warning'>&nbsp;&nbsp;</span> 脂肪热量</li>
     </ul>  
   </div>
 </div>
 -->
-<div class="row-fluid">
-  <div class="span4">
-    <%= render 'layouts/aside', user: @user, page: "calorie" %>
+<div class='row-fluid'>
+  <div class='span4'>
+    <%= render 'layouts/aside', user: @user, page: 'calorie' %>
   </div>
-  <div class="span8">
+  <div class='span8'>
     <h3>热量统计</h3>
-    <div id="chart_test" style="height:400px"></div>
+    <div id='chart_test' style='height:400px'></div>
   </div>
 </div>
-<input type="hidden" id="chart_data" value="<%= @user.chart_string_of_day(7) %>"/>
+<input type='hidden' id='chart_data' value='<%= @user.chart_string_of_day(7) %>'/>

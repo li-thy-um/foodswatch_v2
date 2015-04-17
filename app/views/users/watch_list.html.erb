@@ -1,7 +1,7 @@
-<h3><%= link_to "@#{@user.name}", @user %> 的食物</h3>
-<div class="line-above">
+<h3><%= link_to '@#{@user.name}', @user %> 的食物</h3>
+<div class='line-above'>
 <% if @foods.any? %>
-<ul class="thumbnails">
+<ul class='thumbnails'>
   <%= render @foods %>
 </ul>
 <%= will_paginate @foods %>

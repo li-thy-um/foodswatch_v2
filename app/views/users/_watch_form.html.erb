@@ -11,5 +11,5 @@
 
 <%= form_for(watch, html: { method: method, id: form_id, hidden: true }, remote: true) do |f| %>
   <%= f.hidden_field :food_id %>
-  <input type="hidden" name="container" value="<%= container_id %>"/>
+  <input type='hidden' name='container' value='<%= container_id %>'/>
 <% end %>
