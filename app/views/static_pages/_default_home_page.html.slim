@@ -1,16 +1,19 @@
-div class="row"
+- provide :background, 'root-bg'
 
-  div class="col-xs-6 col-xs-offset-3 center"
+div class='row'
 
-    div class="container img-thumbnail vertical-center"
-      h2 欢迎来到 FOODSWATCH
+  div class='col-xs-6 col-xs-offset-3 center'
+
+    div class='container-fluid img-rounded vertical-center opacity75' style='padding:15px;'
+
+      h2 class='font-white' 欢迎来到 FOODSWATCH
 
       = form_for(User.new) do |f|
 
         = render 'users/fields', f: f
 
-        div class="row-fluid"
+        div class='row-fluid'
 
-          div class="col-xs-6 col-xs-offset-3"
+          div class='col-xs-6 col-xs-offset-3'
 
-              = f.submit "加入", class: "btn btn-danger"
+              = f.submit '加入', class: 'btn btn-danger'
