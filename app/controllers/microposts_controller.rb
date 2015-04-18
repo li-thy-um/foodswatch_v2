@@ -50,11 +50,14 @@ class MicropostsController < ApplicationController
     if raw.is_a? String
       Food.find_by_id raw
     else
-      Food.new raw unless raw['name'].nil?
+      if !raw[:name].nil?
+        Food.new food_params(raw)
+      end
     end
   end
 
   def raw_list
+    puts params.inspect
     [params[:foods], params[:food_ids]].flatten.compact
   end
 
@@ -98,6 +101,10 @@ class MicropostsController < ApplicationController
   def correct_user
     @micropost = current_user.microposts.find_by(id: params[:id])
     redirect_to root_url if @micropost.nil?
+  end
+
+  def food_params(raw)
+    raw.permit(:name, :carb, :prot, :fat)
   end
 
   def micropost_params
