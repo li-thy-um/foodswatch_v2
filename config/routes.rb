@@ -1,12 +1,13 @@
 SampleApp::Application.routes.draw do
-  resources :users do 
-    member do 
+  get '/foods/query', to: 'foods#query'
+  resources :users do
+    member do
       get :following, :followers, :watches, :calorie
     end
   end
   resources :sessions,      only: [:new, :create, :destroy]
   resources :microposts,    only: [:create, :destroy] do
-    member do 
+    member do
       get :comments
     end
   end
@@ -59,7 +60,7 @@ SampleApp::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
