@@ -2,8 +2,7 @@ $(function(){
   init_watch_post();
 
   $('body').on('click', '.btn-foods', function(){
-    $('.add-food-modal').modal('show');
-    init_add_food_modal();
+    $('.add-food-panel').slideToggle(init_add_food_modal);
   });
 
 });
@@ -49,7 +48,7 @@ function _init_watch_post_popover(){
 var init_add_food_modal = function(){
   $(".watch-list-typeahead").typeahead({
     source: function(query, process){
-      process(get_watch_list());
+      get_watch_list(query, process);
     },
 
     highlighter: function(food_info){
@@ -72,9 +71,12 @@ var init_add_food_modal = function(){
     keypress();
 }
 
-function get_watch_list(){
-  return $("#watch_list").val().split(",");
-}
+var get_watch_list = function(query, process){
+  $.get( '/foods/query', { current_user: true, query: query },
+    function(data){
+      process(data.split(","));
+    });
+};
 
 function make_food(food_info /* like "id_name" */){
   var info_array = food_info.split("_");

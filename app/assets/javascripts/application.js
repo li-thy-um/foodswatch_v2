@@ -13,4 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require Chart
+//= require input_validation
+//= require canvasjs.min
+//= require bootstrap3-typeahead.min
 //= require_tree .
