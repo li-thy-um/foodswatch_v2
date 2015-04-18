@@ -1,0 +1,17 @@
+
+
+span class="content"
+  = wrap(micropost.content)
+  - micropost.foods.each do |food|
+    = render 'shared/food_tag', food: food
+
+    - if micropost.original_id?
+      | 转自：
+      = link_to "@" + micropost.original_post.user.name
+
+br
+br
+
+  - if ["feed", "show", "share", "comment"].include?(page)
+  span class="timestamp"
+    = micropost.created_at

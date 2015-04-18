@@ -1,0 +1,7 @@
+h1
+  = gravatar_for_nav user
+  = user.name
+span
+   - if complex
+     = link_to '我的主页', user
+   = link_to '我的食物', watches_user_path(user)

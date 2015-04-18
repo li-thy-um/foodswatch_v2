@@ -1,0 +1,29 @@
+aside class='panel panel-default add-food-panel' style='display:none; margin-top:10px;'
+
+  section class='panel-body'
+
+    div class='hide' id='label_sample'
+      a class="label label-danger click_del" title="点击移除"
+
+    div style='margin-top:20px'
+      div id='food_id_input_sample' hidden='true'
+        input type='hidden' name='food_ids[]'
+
+      div class='input-append'
+          input class='watch-list-typeahead form-control' autocomplete='off' placeholder='从我的食物中搜索...' type='text'
+          a href='#new_food_collapse' data-toggle='collapse' class='btn btn-success' id='new_food_btn'
+            | 新建
+
+      div hidden='true' id='label_sample'
+        a class='label label-important click-del' title='click to delete' style='float:left;'
+
+    div id='new_food_collapse' class='collapse modal-body'
+
+      div id='new_food_form'
+        input name='foods[][name]' type='text' placeholder='食物名 ...' autocomplete='off' class='name form-control' maxlength='15'
+        input name='foods[][carb]' type='number' placeholder='碳水(g) ...' autocomplete='off' class='nutri form-control'
+        input name='foods[][prot]' type='number' placeholder='蛋白质(g) ...' autocomplete='off' class='nutri form-control'
+        input name='foods[][fat]'  type='number' placeholder='脂肪(g) ...' autocomplete='off' class='nutri form-control'
+
+        button data-target='#new_food_collapse' data-toggle='collapse' class='btn btn-primary disabled' disabled='disabled' style='float:right' id='create_food_btn'
+          | 确定
