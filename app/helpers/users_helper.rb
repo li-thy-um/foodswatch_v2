@@ -6,6 +6,14 @@ module UsersHelper
     size = options[:size]
     gravatar_url =
       "https://secure.gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
+    image_tag(gravatar_url, alt: user.name, class: "gravatar", style: "height:#{size};width:#{size}")
+  end
+
+  def gravatar_for_nav(user, options = { size: 60 })
+    gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
+    size = options[:size]
+    gravatar_url =
+      "https://secure.gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
     image_tag(gravatar_url, alt: user.name, class: "gravatar img-thumbnail", style: "height:#{size};width:#{size}")
   end
 

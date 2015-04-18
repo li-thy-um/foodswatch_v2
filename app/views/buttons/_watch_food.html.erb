@@ -4,9 +4,9 @@
 
 <% user = current_user || User.new %>
 <% if user.watching?(food) %>
-  <% badge_class = "badge badge-important" %>
+  <% badge_class = "label label-warning" %>
 <% else %>
-  <% badge_class = "badge" %>
+  <% badge_class = "label" %>
 <% end %>
 
 <%= render 'users/watch_form',

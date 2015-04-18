@@ -12,6 +12,28 @@ $grayMediumLight: #eaeaea;
 
 /* universal */
 
+.panel {
+  margin-bottom: 10px;
+}
+
+.microposts {
+  padding: 0px;
+}
+
+.micropost {
+  .col-md-1, .col-md-11 {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+}
+
+.post-action {
+  text-align: right;
+  .btn {
+    margin-left: 10px;
+  }
+}
+
 .opacity75 {
   background-color:rgba(0,0,0,0.25);
 }

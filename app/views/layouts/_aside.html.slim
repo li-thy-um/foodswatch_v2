@@ -1,0 +1,21 @@
+<!-- @NEED User user, String page -->
+aside class='panel panel-default' style='display:block; margin-top:10px;'
+
+  section class='panel-body'
+    = render 'shared/user_info', user: user, complex: page == 'home'
+
+  section class='panel-body'
+    = render 'shared/stats', page: page
+
+  - if  page == 'show' && signed_in?
+    section class='panel-body'
+      = render 'users/follow_form'
+
+  - if page == 'home'
+
+    section class='panel-body'
+      div id='micropost_form'
+        = render 'shared/micropost_form'
+
+- if page == 'home'
+  = render 'shared/foods_panel'
