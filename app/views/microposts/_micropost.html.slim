@@ -1,9 +1,7 @@
-div class='panel panel-default micropost'
+div class='panel panel-default micropost' id="#{micropost.id}"
 
   div class='panel-body'
-
     div class="row-fluid"
-
       div class="col-md-1"
 
         = gravatar_for(micropost.user, size: 50)
@@ -11,11 +9,9 @@ div class='panel panel-default micropost'
       div class="col-md-11"
 
         div
-
           span class='user' = user_link(micropost.user)
 
         div class="panel-body"
-
           span class="content" = wrap(micropost.content)
 
         - if micropost.foods.any?
@@ -25,13 +21,16 @@ div class='panel panel-default micropost'
 
         - if micropost.original_id?
           div class="panel-body"
-          | 转自：
-          = link_to "@" + micropost.original_post.user.name
+            = render micropost.original_post, page: 'share'
 
         - if ["feed", "show", "share", "comment"].include?(page)
           div
             span class="timestamp" = micropost.created_at
 
-  div class='panel-footer'
+  - if page != 'share'
 
-    = render 'shared/post_action', micropost: micropost, page: page
+    div class='panel-footer'
+      = render 'shared/post_action', micropost: micropost, page: page
+      = render 'microposts/comment_collapse', micropost: micropost, page: page
+
+    = render 'microposts/share_modal', micropost: micropost

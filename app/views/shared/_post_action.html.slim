@@ -1,16 +1,18 @@
 - delete = current_user?(micropost.user)
 
 -  if page == 'feed' || page == 'show' || page == 'detail'
-  - watch, comment = [true, true]
-  - share = !delete
+  - watch, comment, share = [true, true, true]
 
 - if page == 'comment'
   - watch, share, comment = [false,false,false]
 
-div class='post-action'
-  div class='post_action_panel_= micropost.id '
-      - { watch_post: watch, share: share, delete: delete, comment: comment}.each_pair do |k, v|
-          = render "buttons/#{k}", post: micropost if v
+- if micropost.post_food.nil?
+  - watch = false
 
+div class='post-action'
+  div class='post_action_panel_#{micropost.id}'
+    - { watch_post: watch, delete: delete, share: share, comment: comment}.each_pair do |k, v|
+        - if v
+            = render "buttons/#{k}", post: micropost
 - if signed_in?
   = render 'microposts/share_modal', micropost: micropost, page: page

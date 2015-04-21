@@ -11,3 +11,7 @@ div class='stats'
   a href='#{followers_user_path(current_user)}'
     span 粉丝
     span id='followers' class='stat' = current_user.followers.count
+
+  a href='#{watches_user_path(current_user)}'
+    span 食物
+    span id='followers' class='stat' = current_user.watched_foods.count

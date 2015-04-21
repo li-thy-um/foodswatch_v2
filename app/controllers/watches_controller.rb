@@ -3,17 +3,16 @@ class WatchesController < ApplicationController
 
   def create
     @container = params[:container]
-    @food = Food.find(params[:watch][:food_id]) 
-    if params[:name] == nil 
-      action = :toggle
+    @food = Food.find(params[:watch][:food_id])
+    render action: if params[:name] == nil
       current_user.watch!(@food)
-    else 
+      :toggle
+    elsif params[:name] == ''
+      :watch_post_fail
+    else
       @food2 = Food.create({name: params[:name]}.merge(@food.nutri_info))
       current_user.watch!(@food2)
-      action = :watch_post
-    end
-    respond_to do |format|
-      format.js { render action: action } 
+      :watch_post
     end
   end
 
@@ -21,12 +20,6 @@ class WatchesController < ApplicationController
     @container = params[:container]
     @food = Watch.find(params[:id]).food
     current_user.unwatch!(@food)
-    respond_to do |format|
-      format.js do 
-        if @container
-          render action: :toggle 
-        end
-      end
-    end
+    render action: :toggle if @container
   end
 end

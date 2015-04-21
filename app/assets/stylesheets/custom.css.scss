@@ -12,12 +12,12 @@ $grayMediumLight: #eaeaea;
 
 /* universal */
 
-.panel {
-  margin-bottom: 10px;
+.comment-form {
+  margin-bottom: 15px;
 }
 
-.microposts {
-  padding: 0px;
+.panel {
+  margin-bottom: 10px;
 }
 
 .micropost {
@@ -29,6 +29,7 @@ $grayMediumLight: #eaeaea;
 
 .post-action {
   text-align: right;
+
   .btn {
     margin-left: 10px;
   }
@@ -44,7 +45,7 @@ html {
 
 body {
   padding-top: 60px;
-  background-color: $grayMediumLight;
+  background-color: #C5DB8D
 }
 
 body[class='root-bg'] {
@@ -66,7 +67,6 @@ textarea {
 .block {
   display: block;
 }
-
 
 .center {
   text-align: center;
@@ -169,6 +169,13 @@ header {
 footer {
   .navbar {
     min-height: 0px;
+    margin-bottom: 0px;
+  }
+
+  h4 {
+    margin-bottom:10px;
+    margin-right: 50px;
+    text-align: right;
   }
 
   ul {
@@ -214,14 +221,18 @@ aside {
   }
 }
 
+#micropost_form {
+  padding-top: 0px;
+}
+
 .stats {
   overflow: auto;
   a {
     float: left;
-    margin: 0 5px;
-    padding: 0 20px;
     color: #111111;
+    padding: 10px 10px;
     &:first-child {
+      width: default;
       padding-left: 0;
       border: 0;
     }
@@ -291,6 +302,7 @@ input {
 
 /* microposts */
 .microposts {
+  padding: 0px;
   list-style: none;
   margin: 10px 0 0 0;
 

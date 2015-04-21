@@ -16,8 +16,6 @@ html
 
     div class='container'
       div id='flash_area'
-        - flash.each do |key, value|
-          = content_tag :div, value, class: 'alert alert-#{key}'
       = yield
 
     = render 'layouts/footer'

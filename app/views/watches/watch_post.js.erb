@@ -1,3 +1,5 @@
+alert('成功添加合体后的 <%= @food2.name %>'); 
+
 <% micropost = Micropost.find_by_id(@container) %>
 var post_id = "<%= @container %>";
 
@@ -9,6 +11,3 @@ $("#watch_post_popover_content_"+post_id).remove();
 $(".post_action_panel_"+post_id).prepend(
   "<%= escape_javascript(render 'buttons/watch_post', post: micropost) %>"
 );
-
-//refresh watch_list
-$("#watch_list").val("<%= current_user.watch_list_string %>");

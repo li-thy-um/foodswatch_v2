@@ -1,0 +1,5 @@
+|
+  $('.microposts').prepend("#{js_render @micropost, page: 'feed'}").children().first().hide().slideDown();
+  $('#choosed').fadeOut({complete: function(){this.empty();}});
+  $('#new_post_textarea').val('');
+  $('#food_form').empty();

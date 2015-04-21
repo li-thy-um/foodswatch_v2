@@ -17,4 +17,9 @@ module ApplicationHelper
   def trim(str)
     str.strip
   end
+
+  def js_render(view, locals)
+    escape_javascript( render view, locals )
+  end
+  
 end

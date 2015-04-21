@@ -4,7 +4,6 @@ $(function(){
   $('body').on('click', '.btn-foods', function(){
     $('.add-food-panel').slideToggle(init_add_food_modal);
   });
-
 });
 
 function reset_watch_post($btn){
@@ -133,8 +132,8 @@ function add_label(food){
   }
   var $label = $("#label_sample").children().first().clone().html(name);
   $label.attr("group-id", count_food()).click(delete_food);
-  $label.attr("style", "margin-right:2px")
-  $("#choosed").append($label);
+  $label.attr("style", "margin-right:2px;")
+  $("#choosed").fadeIn().append($label.hide().fadeIn());
 }
 
 function add_hidden_input(food){

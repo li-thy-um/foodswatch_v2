@@ -1,5 +1,4 @@
-- if !@feed_items.empty?
-
   div class='container-fluid microposts'
+    - if !@feed_items.empty?
       = render @feed_items, page: 'feed'
       = will_paginate @feed_items

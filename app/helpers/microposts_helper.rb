@@ -4,11 +4,6 @@ module MicropostsHelper
     sanitize(raw(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
   end
 
-  def original_id_of(id)
-    post = Micropost.find_by(id: id)
-    post.original_id || post.id if post
-  end
-
   private
 
     def wrap_long_string(text, max_width = 30)
