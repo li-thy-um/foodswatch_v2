@@ -1,14 +1,3 @@
-- tag_id = food.id
-- tag_class = "food-tag popovers"
-- user = current_user || User.new
-
-a tag-id="#{tag_id}" class="#{tag_class} a_#{tag_id}" style='cursor: pointer;'
-  |#
-  = food.name
-  | # &nbsp;
-
-div id="popover_head_#{tag_id}" hidden='true'
-  = render 'foods/popover_head', food: food, id: tag_id
-
-div id="popover_content_#{tag_id}" hidden='true'
-  = render 'foods/food_detail', food: food
+a class="food-tag" data-id="#{food.id}"
+  i class='fa fa-paw'
+  = "#{food.name} "

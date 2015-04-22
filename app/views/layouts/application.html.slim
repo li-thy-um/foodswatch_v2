@@ -2,25 +2,20 @@ doctype html
 html lang="zh"
   head
     link rel='shortcut icon' href='/assets/logo.png' type='image/x-icon'
-    title
-      = full_title(yield(:title))
+    title = full_title(yield(:title))
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false
     = csrf_meta_tags
     = render 'layouts/shim'
 
-  - body_class = yield(:background) || ''
-
-  body class=body_class
+  body class='#{yield(:background) || ''}'
 
     = render 'layouts/header'
 
     div class='container'
       div id='flash_area'
       = yield
-
     = render 'layouts/footer'
-    = yield :add_food_modal if content_for? :add_food_modal
 
-  //  = debug(params) if Rails.env.development?
+    = debug(params) if Rails.env.development?
 
   = javascript_include_tag 'application', 'data-turbolinks-track' => false

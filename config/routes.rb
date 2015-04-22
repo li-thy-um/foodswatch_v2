@@ -1,5 +1,6 @@
 SampleApp::Application.routes.draw do
   get '/foods/query', to: 'foods#query'
+  get '/foods/:id', to: 'foods#show'
   resources :users do
     member do
       get :following, :followers, :watches, :calorie

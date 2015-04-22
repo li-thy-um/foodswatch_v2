@@ -1,0 +1,16 @@
+div class="modal fade" id="food_modal"
+  div class="modal-dialog"
+    div class="modal-content"
+      div class="modal-header"
+        button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          span aria-hidden="true"&times;
+        h4 class="modal-title" =@food.name
+
+      div class="modal-body"
+        span = "热量: #{@food.calorie}  (kCal)"
+        span = "碳水: #{@food.carb} (g)"
+        span ="蛋白质: #{@food.prot} (g)"
+        span = "脂肪: #{@food.fat} (g)"
+
+      div class="modal-footer"
+        = render 'buttons/watch_food', food: @food

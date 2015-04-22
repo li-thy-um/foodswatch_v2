@@ -120,7 +120,9 @@ var delete_food = function() {
   $("#food_form").children(".group_" + id).each(function(i,e){
     $(e).remove();
   });
-  $label.remove();
+  $label.fadeOut({complete: function(){
+      this.remove();
+  }});
 }
 
 function add_label(food){
@@ -130,7 +132,7 @@ function add_label(food){
   }else{
     name = $("#new_food_form").find(".name").val();
   }
-  var $label = $("#label_sample").children().first().clone().html(name);
+  var $label = $("#label_sample").children().first().clone().append(name+" ");
   $label.attr("group-id", count_food()).click(delete_food);
   $label.attr("style", "margin-right:2px;")
   $("#choosed").fadeIn().append($label.hide().fadeIn());
@@ -159,5 +161,5 @@ function append_input($form, $input, value){
 }
 
 function count_food() {
-  return $("#choosed").children(".label").length;
+  return $("#choosed").find(".click-del").length;
 }
