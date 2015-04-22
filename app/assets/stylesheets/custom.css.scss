@@ -11,6 +11,13 @@ $grayMediumLight: #eaeaea;
 }
 
 /* universal */
+.canvasjs-chart-credit {
+  display: none;
+}
+
+.canvasjs-chart-canvas {
+  padding-top: 10px;
+}
 
 .comment-form {
   margin-bottom: 15px;
@@ -25,6 +32,10 @@ $grayMediumLight: #eaeaea;
     padding-right: 0px;
     padding-left: 0px;
   }
+}
+
+.modal-dialog {
+  margin-top: 200px;
 }
 
 .post-action {
