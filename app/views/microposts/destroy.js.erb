@@ -1,7 +1,0 @@
-$("#<%=@micropost.id%>").slideUp({
-    complete: function(){
-        this.remove();
-    }
-});
-$("#calorie").html("<%= "#{current_user.calorie_today} #{calorie_unit}" %>");
-$(".popover").remove();

@@ -6,10 +6,5 @@ class FoodsController < ApplicationController
     text = foods.map { |f| "#{f.id}_#{f.name}" }.join(",")
     render :text => text
   end
-
-  def show
-    @food = Food.find_by_id(params[:id])
-    render partial: 'shared/modals/food'
-  end
-
+  
 end

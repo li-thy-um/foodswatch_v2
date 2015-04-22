@@ -23,14 +23,9 @@ div class='panel panel-default micropost' id="#{micropost.id}"
           div class="panel-body"
             = render micropost.original_post, page: 'share'
 
-        - if ["feed", "show", "share", "comment"].include?(page)
-          div
-            span class="timestamp" = micropost.created_at
+        div class='timestamp'
+          span = micropost.created_at
 
   - if page != 'share'
 
-    div class='panel-footer'
       = render 'shared/post_action', micropost: micropost, page: page
-      = render 'microposts/comment_collapse', micropost: micropost, page: page
-
-    = render 'microposts/share_modal', micropost: micropost

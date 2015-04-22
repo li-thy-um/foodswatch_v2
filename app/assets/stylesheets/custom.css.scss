@@ -41,6 +41,24 @@ $grayMediumLight: #eaeaea;
     padding-right: 0px;
     padding-left: 0px;
   }
+
+  .timestamp {
+    padding: 15px 0px;
+  }
+
+  .panel-body {
+    padding-bottom: 0px;
+  }
+
+  .collapse {
+    .micropost {
+      margin-bottom: 10px;
+    }
+  }
+
+  .micropost {
+    margin-bottom: 0px;
+  }
 }
 
 .modal-dialog {
@@ -194,8 +212,9 @@ footer {
 
   h4 {
     margin-bottom:10px;
-    margin-right: 50px;
-    text-align: right;
+    margin-left: 20px;
+    text-transform: uppercase;
+    text-align: left;
   }
 
   ul {
@@ -323,13 +342,7 @@ input {
 /* microposts */
 .microposts {
   padding: 0px;
-  list-style: none;
   margin: 10px 0 0 0;
-
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-  }
 }
 
 .content {

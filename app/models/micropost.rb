@@ -49,8 +49,8 @@ class Micropost < ActiveRecord::Base
   end
 
   def self.from_users_followed_by(user)
-    arr_users = Relationship.where("follower_id = ?", user) + [user]
-    rel_users = User.where(id: arr_users.map(&:id))
+    arr_users = Relationship.where("follower_id = ?", user).map(&:followed_id) + [user.id]
+    rel_users = User.where(id: arr_users)
     where(id: rel_users.map(&:microposts).flatten.map(&:id))
   end
 

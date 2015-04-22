@@ -1,14 +1,14 @@
 <% provide(:title, @user.name) %>
 <div class='row'>
-  <div class='col-xs-8'>
+  <div class='col-md-4'>
+    <%= render 'layouts/aside', user: @user, page: 'show' %>
+  </div>
+  <div class='col-md-8'>
     <% if @microposts.any? %>
     <ol class='microposts'>
       <%= render @microposts, page: 'show' %>
     </ol>
     <%= will_paginate @microposts %>
     <% end %>
-  </div>
-  <div class='col-xs-4'>
-    <%= render 'layouts/aside', user: @user, page: 'show' %>
   </div>
 </div>

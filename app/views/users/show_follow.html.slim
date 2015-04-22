@@ -1,0 +1,17 @@
+- provide(:title, @title)
+div class='row'
+
+  div class='col-md-4'
+
+    = render 'layouts/aside', user:current_user, page: 'show_follow'
+
+    - if @users.any?
+      div class='user_avatars'
+        - @users.each do |user|
+          = link_to gravatar_for(user, size: 30), user
+
+  div class='col-md-8'
+    h3 = @title
+    - if @users.any?
+      ul class='users'
+        = render @users

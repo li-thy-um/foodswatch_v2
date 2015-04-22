@@ -1,11 +1,9 @@
 div id='comment_collapse_#{micropost.id}' class='collapse comment-collapse' style="margin-top:15px;"
 
-  - remote = page != 'detail'
-
   div class='row-fluid'
     div class='comment-area'
 
-      = form_for(current_user.microposts.build, remote: remote, html: {id: "new_comment_#{micropost.id}", class: "comment-form"}) do |f|
+      = form_for(current_user.microposts.build, remote: true, html: {id: "new_comment_#{micropost.id}", class: "comment-form"}) do |f|
 
         input type='hidden' name='micropost[comment_id]' value='#{micropost.id}'
         input type='hidden' name='create_type' value='comment'
@@ -15,8 +13,7 @@ div id='comment_collapse_#{micropost.id}' class='collapse comment-collapse' styl
         = f.text_field :content, placeholder: '说点啥吧...', id: "comment_textarea_#{micropost.id}", class: 'letter_count form-control'
         = f.submit '评论', class: "btn btn-primary btn-submit"
 
-    - if page != 'detail'
-      - comments = micropost.comments.first(9)
+    - comments = micropost.comments.first(9)
 
     div id='comment_list_#{micropost.id}'
       - if comments.any?

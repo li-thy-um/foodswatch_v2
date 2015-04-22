@@ -1,9 +1,0 @@
-h1
-  = gravatar_for user
-  = user.name
-
-span
-  = link_to "我的主页", user
-  = link_to "我的食物", watches_user_path(user)
-
-span = user.microposts.count.to_s + " 条微博"

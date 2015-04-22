@@ -1,17 +1,17 @@
 div class='stats'
 
-  a href='#{user_path(current_user)}'
+  a href='#{user_path(user)}'
     span 微博
-    span id='post_count' = current_user.microposts.count.to_s
+    span id='post_count' = user.microposts.count.to_s
 
-  a href='#{following_user_path(current_user)}'
+  a href='#{following_user_path(user)}'
     span 关注
-    span id='following' class='stat' = current_user.followed_users.count
+    span id='following' class='stat' = user.followed_users.count
 
-  a href='#{followers_user_path(current_user)}'
+  a href='#{followers_user_path(user)}'
     span 粉丝
-    span id='followers' class='stat' = current_user.followers.count
+    span id='followers' class='stat' = user.followers.count
 
-  a href='#{watches_user_path(current_user)}'
+  a href='#{watches_user_path(user)}'
     span 食物
-    span id='followers' class='stat' = current_user.watched_foods.count
+    span id='followers' class='stat' = user.watched_foods.count
