@@ -1,7 +1,9 @@
 - if current_user.liking? post
 
-  = link_to "取消赞 #{post.likes.count}", post.like_of(current_user), remote: true, method: :delete, class: "btn btn-like btn-default"
+  = link_to post.like_of(current_user), remote: true, method: :delete, class: "btn btn-like btn-liked btn-default" do
+    i.fa.fa-thumbs-o-up = " #{post.likes.count}"
 
 - else
 
-  = link_to "赞 #{post.likes.count}", likes_path('like[micropost_id]' => post.id), remote: true, method: :post, class: "btn btn-like btn-default"
+  = link_to likes_path('like[micropost_id]' => post.id), remote: true, method: :post, class: "btn btn-like btn-default" do
+    i.fa.fa-thumbs-o-up = " #{post.likes.count}"
