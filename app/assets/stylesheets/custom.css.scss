@@ -62,7 +62,7 @@ $grayMediumLight: #eaeaea;
 }
 
 .modal-dialog {
-  margin-top: 200px;
+  margin-top: 10%;
 }
 
 .post-action {
@@ -73,8 +73,12 @@ $grayMediumLight: #eaeaea;
   }
 }
 
+.users {
+  padding-left: 0px;
+}
+
 .opacity75 {
-  background-color:rgba(0,0,0,0.25);
+  background-color:rgba(0,0,0,0.4);
 }
 
 html {
@@ -83,7 +87,8 @@ html {
 
 body {
   padding-top: 60px;
-  background-color: #C5DB8D
+  background-color: #161616
+  // background-color: #C5DB8D
 }
 
 body[class='root-bg'] {
@@ -286,7 +291,7 @@ aside {
 }
 
 .vertical-center {
-  margin-top: 20%;
+  margin-top: 30%;
 }
 
 .user_avatars {

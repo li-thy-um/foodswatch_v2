@@ -1,25 +1,23 @@
-div class='row'
-  div class='col-md-4'
+- content_for :aside
     = render 'layouts/aside', user:@micropost.user, page: 'detail'
 
-  div class='col-md-8'
-    div class='container-fluid microposts'
-      = render @micropost, page: "detail"
+div class='container-fluid microposts'
+  = render @micropost, page: "detail"
 
-      div class='panel panel-default'
-        div class='panel-body'
-          div class='comment-area'
+  div class='panel panel-default'
+    div class='panel-body'
+      div class='comment-area'
 
-            = form_for(current_user.microposts.build, remote: true, html: {id: "new_comment_#{@micropost.id}", class: "comment-form"}) do |f|
+        = form_for(current_user.microposts.build, remote: true, html: {id: "new_comment_#{@micropost.id}", class: "comment-form"}) do |f|
 
-              input type='hidden' name='micropost[comment_id]' value='#{@micropost.id}'
-              input type='hidden' name='create_type' value='comment'
-              input type='hidden' name='parent_id' value='#{@micropost.id}'
-              input type='hidden' value='_comment_#{@micropost.id} '
+          input type='hidden' name='micropost[comment_id]' value='#{@micropost.id}'
+          input type='hidden' name='create_type' value='comment'
+          input type='hidden' name='parent_id' value='#{@micropost.id}'
+          input type='hidden' value='_comment_#{@micropost.id} '
 
-              = f.text_field :content, placeholder: '说点啥吧...', id: "comment_textarea_#{@micropost.id}", class: 'letter_count form-control'
-              = f.submit '评论', class: "btn btn-primary btn-submit"
+          = f.text_field :content, placeholder: '说点啥吧...', id: "comment_textarea_#{@micropost.id}", class: 'letter_count form-control'
+          = f.submit '评论', class: "btn btn-primary btn-submit"
 
-      div id='comment_list_#{@micropost.id}'
-        = render @comments, page: "comment"
-        = will_paginate @comments
+  div id='comment_list_#{@micropost.id}'
+    = render @comments, page: "comment"
+    = will_paginate @comments

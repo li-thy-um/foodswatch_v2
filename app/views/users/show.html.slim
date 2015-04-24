@@ -1,0 +1,9 @@
+- provide(:title, @user.name)
+
+- content_for :aside
+  = render 'layouts/aside', user: @user, page: 'show'
+
+- if @microposts.any?
+  ol class='microposts'
+    = render @microposts, page: 'show'
+  = will_paginate @microposts

@@ -6,5 +6,5 @@ class FoodsController < ApplicationController
     text = foods.map { |f| "#{f.id}_#{f.name}" }.join(",")
     render :text => text
   end
-  
+
 end

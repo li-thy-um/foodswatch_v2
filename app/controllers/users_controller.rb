@@ -6,13 +6,13 @@ class UsersController < ApplicationController
   before_action :signed_in_user_can_not_new_or_create, only: [:new, :create]
 
   def calorie
-    @title = '统计信息'
     @user = User.find(params[:id])
+    @title = "#{@user.name}的统计信息"
   end
 
   def watches
-    @title = '关注的食物'
     @user = User.find(params[:id])
+    @title = "#{@user.name}的食物"
     @foods = @user.watched_foods.paginate(page: params[:page])
     render 'watch_list'
   end

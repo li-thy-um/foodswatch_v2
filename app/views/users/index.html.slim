@@ -1,0 +1,15 @@
+- provide(:title, '用户们')
+
+- content_for :aside
+  = render 'layouts/aside', user:current_user, page: 'users'
+
+div
+  div.panel.panel-default
+    div.panel-body
+      h1
+        |  用户们
+
+      ul.users
+        = render @users
+
+      = will_paginate

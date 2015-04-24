@@ -6,7 +6,7 @@ aside class='panel panel-default' style='display:block; margin-top:10px;'
       = user_link user
       = render 'shared/stats', user: user
 
-  - if  page == 'show' && signed_in?
+  - if  page == 'show' && signed_in? && !current_user?(user)
     div class='panel-body'
       = render 'users/follow_form'
 

@@ -1,7 +1,4 @@
-div class='row'
+- content_for :aside
+  = render 'layouts/aside', user:current_user, page: 'home'
 
-  div class='col-md-4'
-    = render 'layouts/aside', user:current_user, page: 'home'
-
-  div class='col-md-8'
-    = render 'shared/feed'
+= render 'shared/feed'
