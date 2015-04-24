@@ -19,9 +19,12 @@ div class='panel panel-default micropost' id="#{micropost.id}"
             - micropost.foods.each do |food|
               = render 'shared/food_tag', food: food
 
-        - if micropost.original_post
+        - if micropost.original_id?
           div class="panel-body"
-            = render micropost.original_post, page: 'share'
+            - if micropost.original_post
+              = render micropost.original_post, page: 'share'
+            -else
+              = render 'microposts/original_deleted'
 
         div class='timestamp'
           span = micropost.created_at
