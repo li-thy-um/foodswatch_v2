@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.order(created_at: :desc).paginate(page: params[:page])
   end
 
   def show
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
       flash[:success] = '你已经光荣宣誓成为 FOODSWATCH 的一员啦！'
       redirect_to @user
     else
-      render 'new'
+      redirect_to root_path
     end
   end
 
@@ -83,8 +83,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+      params.require(:user).permit(:name, :email, :password)
     end
 
     # Before filters

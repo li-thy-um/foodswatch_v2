@@ -10,13 +10,15 @@
   - share, comment = true, false
   - delete = false
 
+- like = true
+
 - if share || comment || delete
 
   div class='panel-footer'
 
     div class='post-action'
       div class='post_action_panel_#{micropost.id}'
-        - { delete: delete, share: share, comment: comment}.each_pair do |k, v|
+        - { delete: delete, share: share, comment: comment, like: like}.each_pair do |k, v|
             - if v
                 = render "buttons/#{k}", post: micropost
 

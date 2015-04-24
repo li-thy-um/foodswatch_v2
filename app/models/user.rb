@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :likes
   has_many :watches, dependent: :destroy
   has_many :watched_foods, through: :watches, source: :food
   has_many :microposts, dependent: :destroy
@@ -17,6 +18,14 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum: 6 }
+
+  def liking?(micropost)
+    likes.find_by(micropost_id: micropost.id)
+  end
+
+  def like!(micropost)
+    likes.create!(micropost_id: micropost.id)
+  end
 
   def chart_string_of_day(num)
     start_day = Time.now.end_of_day.days_ago(num)

@@ -1,1 +1,6 @@
-alert("请输入内容或添加食物 (> _ <)")
+var error_message = ""
+<%@micropost.errors.full_messages.each do |msg| %>
+    error_message += "<%= msg%>\n"
+<% end %>
+
+alert(error_message)

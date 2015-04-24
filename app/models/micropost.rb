@@ -1,8 +1,9 @@
 class Micropost < ActiveRecord::Base
   belongs_to :user
   default_scope -> { order('created_at DESC') }
-  validates :content, presence: true, length: { maximum: 100 }
+  validates :content, presence: true, length: { maximum: 140 }
   validates :user_id, presence: true
+  has_many :likes, dependent: :destroy
   has_many :post_food_relationships, foreign_key: :post_id, dependent: :destroy
   has_many :foods, through: :post_food_relationships
   has_many :comments, foreign_key: "comment_id",
@@ -11,8 +12,12 @@ class Micropost < ActiveRecord::Base
   after_create :add_share_count
   after_destroy :minus_share_count
 
+  def like_of(user)
+    likes.find_by_user_id(user.id)
+  end
+
   def created_at
-    super.strftime('%-m月%-d日 %R')
+    super.localtime.strftime('%-m月%-d日 %R')
   end
 
   def total_calorie
