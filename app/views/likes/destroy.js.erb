@@ -1,0 +1,1 @@
+$(".post_action_panel_"+<%= @like.micropost.id%>).find(".btn-like").replaceWith("<%= js_render 'buttons/like', post: @like.micropost%>");
