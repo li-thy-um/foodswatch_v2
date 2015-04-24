@@ -81,9 +81,6 @@ class User < ActiveRecord::Base
     followed_posts = Micropost.from_users_followed_by(self)
     arr_post_id = followed_posts.map(&:id)
     arr_filtered_id = followed_posts.select do |po|
-      po.original_id.nil? ||
-      ( po.user_id != self.id && !arr_post_id.include?(po.original_id) )
-    end.select do |po|
       po.comment_id.nil?
     end.map(&:id)
     Micropost.where(id: arr_filtered_id)

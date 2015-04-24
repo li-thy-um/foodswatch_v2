@@ -1,0 +1,17 @@
+div class='stats'
+
+  a href='#{user_path(user)}'
+    span 微博
+    span id='post_count' = user.microposts.count.to_s
+
+  a href='#{following_user_path(user)}'
+    span 关注
+    span id='following' class='stat' = user.followed_users.count
+
+  a href='#{followers_user_path(user)}'
+    span 粉丝
+    span id='followers' class='stat' = user.followers.count
+
+  a href='#{watches_user_path(user)}'
+    span 食物
+    span id='followers' class='stat' = user.watched_foods.count

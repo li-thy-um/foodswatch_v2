@@ -1,10 +1,10 @@
 <% provide(:title, '注册')%>
 <h1>注册</h1>
-<div class="row">
-  <div class="span6 offset3">
+<div class='row'>
+  <div class='span6 offset3'>
     <%= form_for(@user) do |f| %>
       <%= render 'fields', f: f %> 
-      <div class="text-center"><%= f.submit "创建我的账户", class: "btn btn-large btn-danger"%></div>
+      <div class='text-center'><%= f.submit '创建我的账户', class: 'btn btn-large btn-danger'%></div>
     <% end %>
   </div>
 </div>

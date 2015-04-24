@@ -1,0 +1,17 @@
+- provide :background, 'root-bg'
+
+- content_for :aside
+
+  div class='container-fluid img-rounded vertical-center opacity75' style='padding:15px;'
+
+    h2 class='font-white' 欢迎来到 FOODSWATCH
+
+    = form_for(User.new) do |f|
+
+      = render 'users/fields', f: f
+
+      div class='row-fluid'
+
+        div class='col-xs-6 col-xs-offset-3'
+
+            = f.submit '加入', class: 'btn btn-danger'

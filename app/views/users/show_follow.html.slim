@@ -1,0 +1,18 @@
+- provide(:title, @title)
+
+- content_for :aside
+  = render 'layouts/aside', user:current_user, page: 'show_follow'
+
+  - if @users.any?
+    div class='user_avatars panel panel-default'
+      div.panel-body
+        - @users.each do |user|
+          = link_to gravatar_for(user, size: 30), user
+
+div class='user_avatars panel panel-default'
+  div.panel-body
+    h1 = @title
+    - if @users.any?
+      ul class='users'
+        = render @users
+      = will_paginate @users

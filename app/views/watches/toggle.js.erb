@@ -1,9 +1,0 @@
-var id  = "<%= @container %>"
-
-$("."+id ).html(
-  "<%= escape_javascript(render('buttons/watch_food', food: @food)) %>"
-);
-
-$(".a_"+id).toggleClass("label-important");
-
-$("#watch_list").val("<%= current_user.watch_list_string %>");

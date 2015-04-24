@@ -1,0 +1,12 @@
+ol.col-md-6 id="food_#{food.id}"
+  .panel.panel-defalut
+    .panel-heading
+      - if current_user?(@user)
+        - watch = Watch.find_by(user_id: @user.id, food_id: food)
+        = render 'buttons/delete', post: watch, style: "float:right"
+      - else
+        = render('buttons/watch_food', food: food, container_id: food.id, style: "float:right")
+      h4
+        = food.name
+    .panel-body
+      = render 'foods/food_detail', food: food

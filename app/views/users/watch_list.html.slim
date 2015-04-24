@@ -1,0 +1,10 @@
+- provide(:title, @title)
+
+- content_for :aside
+  = render 'layouts/aside', user: @user, page: 'watchs'
+
+div
+  - if @foods.any?
+    ul
+      = render @foods
+    = will_paginate @foods

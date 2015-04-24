@@ -1,0 +1,14 @@
+= form_for(@micropost, remote:true, html:{id: 'new_post_form'}) do |f|
+  div
+      = f.text_area :content, placeholder: '今天吃了啥？', id: 'new_post_textarea', class: 'letter_count form-control', 'data-container' => 'body', 'attached-btn' => '#post_btn'
+
+  div class='row'
+    div class='col-xs-6'
+      a class='btn btn-warning btn-block btn-foods'
+        | 食物
+
+    div class='col-xs-6'
+      = f.submit  '发布', class: 'btn btn-primary btn-block btn-submit', 'form-id' => 'new_post_form', id: 'post_btn'
+
+  div hidden='true' id='food_form'
+  input type='hidden' name='create_type' value='create'

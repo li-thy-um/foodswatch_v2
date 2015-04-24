@@ -1,5 +1,5 @@
 module ApplicationHelper
-  
+
   # Returns the full title on a per-page basis.
   def full_title(page_title)
     base_title = "Foods Watch"
@@ -11,10 +11,15 @@ module ApplicationHelper
   end
 
   def unique_id
-    Time.now.to_f.to_s.split(".").join("") 
+    Time.now.to_f.to_s.split(".").join("")
   end
- 
+
   def trim(str)
-    str.rstrip.lstrip
+    str.strip
   end
+
+  def js_render(view, locals)
+    escape_javascript( render view, locals )
+  end
+  
 end

@@ -1,0 +1,23 @@
+div class="modal fade" id="share_modal"
+  div class='modal-dialog'
+    div class='modal-content'
+
+      div class="modal-header"
+        button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          span aria-hidden="true" &times;
+        h4 class="modal-title" 分享
+
+      div class="modal-body"
+        div class="original-post"
+          = render @micropost.original_post || @micropost, page: 'share'
+
+        div class="comment-area"
+          = form_for(current_user.microposts.build, remote: true) do |f|
+
+            input type="hidden" name="micropost[original_id]" value="#{@micropost.original_id || @micropost.id} "
+            input type="hidden" name="micropost[shared_id]" value="#{@micropost.id}"
+            input type="hidden" name="create_type" value="share"
+            input type="hidden" value="_share_#{@micropost.id}"
+
+            = f.text_field :content, placeholder: "说点啥吧...", class: "form-control"
+            = f.submit '分享', class: "btn btn-success btn-submit"

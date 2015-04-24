@@ -1,0 +1,23 @@
+- delete = current_user?(micropost.user)
+
+-  if page == 'feed' || page == 'show'
+  - comment, share = true, true
+
+- if page == 'comment'
+  - share, comment = false, false
+
+- if page == 'detail'
+  - share, comment = true, false
+  - delete = false
+
+- if share || comment || delete
+
+  div class='panel-footer'
+
+    div class='post-action'
+      div class='post_action_panel_#{micropost.id}'
+        - { delete: delete, share: share, comment: comment}.each_pair do |k, v|
+            - if v
+                = render "buttons/#{k}", post: micropost
+
+    = render 'microposts/comment_collapse', micropost: micropost, page: page if comment

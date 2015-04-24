@@ -1,0 +1,10 @@
+- if current_user.watching? food
+
+  = form_for food.watch_of(current_user), html: { method: :delete }, remote: true do |f|
+    = f.submit '取消收藏', class: 'btn btn-block btn-danger form-control'
+
+- else
+
+  = form_for Watch.new({food_id: food.id}), html: { method: :post }, remote: true do |f|
+    = f.hidden_field :food_id
+    = f.submit '收藏', class: 'btn btn-block btn-warning form-control'

@@ -1,16 +1,21 @@
 $(function(){
   only_one_popover();
-  init_btn_submit();
 });
 
-function init_btn_submit(){
-  $("body").delegate('.btn-submit', 'click', function(){
-    var $form = $("#"+$(this).attr("form-id"));
-    var $textarea =$("#"+$(this).attr("textarea-id"));
-    $form.submit();
-    clear_form($textarea);
-  });
-}
+var $flash_message = function( type, msg ){
+    $("#flash_area").append(
+        '<div class="hide alert alert-'+type+'">'
+        +'<strong>'+msg+'<strong></div>');
+    var $flash = $("#flash_area").find("div:last");
+    $flash.slideDown();
+    setTimeout(function() {
+        $flash.slideUp({
+            complete: function(){
+                $flash.remove();
+            }
+        });
+    },5000);
+};
 
 function only_one_popover(){
   $('body').delegate(".popovers", "click", function(){

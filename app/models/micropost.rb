@@ -11,6 +11,10 @@ class Micropost < ActiveRecord::Base
   after_create :add_share_count
   after_destroy :minus_share_count
 
+  def created_at
+    super.strftime('%-m月%-d日 %R')
+  end
+
   def total_calorie
     total_calorie_of :calorie
   end
@@ -45,8 +49,8 @@ class Micropost < ActiveRecord::Base
   end
 
   def self.from_users_followed_by(user)
-    arr_users = Relationship.where("follower_id = ?", user) + [user]
-    rel_users = User.where(id: arr_users.map(&:id))
+    arr_users = Relationship.where("follower_id = ?", user).map(&:followed_id) + [user.id]
+    rel_users = User.where(id: arr_users)
     where(id: rel_users.map(&:microposts).flatten.map(&:id))
   end
 

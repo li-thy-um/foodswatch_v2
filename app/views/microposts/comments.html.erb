@@ -1,8 +1,0 @@
-<div>
-  <%= render @micropost, page: "detail" %>
-</div>
-
-<div id="comment_list_<%= @micropost.id %>">
-  <%= render @comments, page: "comment" %>
-  <%= will_paginate @comments %>
-</div>
