@@ -1,21 +1,25 @@
 <!-- @NEED User user, String page -->
-aside class='panel panel-default' style='display:block; margin-top:10px;'
+aside.panel.panel-default style='display:block; margin-top:10px;'
+  div.panel-body.search
+      = render 'shared/search'
 
-  div class='panel-body'
-      = link_to gravatar_for_nav(user), user
-      = user_link user
-      = render 'shared/stats', user: user
+aside.panel.panel-default style='display:block; margin-top:10px;'
+
+  div.panel-body
+    = link_to gravatar_for_nav(user), user
+    = user_link user
+    = render 'shared/stats', user: user
 
   - if  page == 'show' && signed_in? && !current_user?(user)
-    div class='panel-body'
+    div.panel-body
       = render 'users/follow_form'
 
   - if page == 'home'
 
-    div class='panel-body' id='micropost_form'
+    div.panel-body id='micropost_form'
         = render 'shared/micropost_form'
 
-    div class='panel-body' id='choosed' hidden='true'
+    div.panel-body id='choosed' hidden='true'
 
 - if page == 'home'
   = render 'shared/foods_panel'

@@ -1,0 +1,19 @@
+= form_for :search, url: '/search/micropost', method: :get do |f|
+  .input-group
+    = f.text_field :query, class: 'form-control'
+
+    span.input-group-btn
+      button.btn.btn-default.btn-search type='button'
+        i.fa.fa-search
+      button.btn.btn-default.dropdown-toggle data-toggle='dropdown' aria-expand='false' type='button'
+        span 微博
+        | &nbsp;
+        span.caret
+
+      ul class="dropdown-menu dropdown-menu-right" role="menu"
+        li
+          a href="#" data-type='user' 用户
+        li
+          a href="#" data-type='food' 食物
+        li
+          a href="#" data-type='micropost' 微博

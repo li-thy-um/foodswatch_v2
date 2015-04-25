@@ -17,7 +17,7 @@ class Micropost < ActiveRecord::Base
   end
 
   def created_at
-    super.localtime.strftime('%-m月%-d日 %R')
+    super.localtime("+08:00").strftime('%-m月%-d日 %R')
   end
 
   def total_calorie

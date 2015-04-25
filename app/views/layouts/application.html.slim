@@ -14,7 +14,10 @@ html lang="zh"
     div.container
       .row
         .col-md-4.col-md-push-8
-          = yield :aside
+          - if content_for? :aside
+            = yield :aside
+          - else
+            = render 'layouts/aside', user: current_user, page: :default
 
         .col-md-8.col-md-pull-4
           = yield

@@ -1,0 +1,5 @@
+div
+  - if @foods.any?
+    ul
+      = render @foods
+    = will_paginate @foods

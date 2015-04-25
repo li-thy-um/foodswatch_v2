@@ -2,6 +2,11 @@ SampleApp::Application.routes.draw do
   get '/foods/query', to: 'foods#query'
   get '/modals/food/:id', to: 'modals#food'
   get '/modals/share/:id', to: 'modals#share'
+
+  [:micropost, :food, :user].each do |action|
+    get "/search/#{action}", to: "search##{action}"
+  end
+
   resources :likes, only: [:create, :destroy]
   resources :users do
     member do
