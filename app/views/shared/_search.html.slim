@@ -1,4 +1,4 @@
-= form_for :search, url: '/search/micropost', method: :get do |f|
+= form_for :search, url: "/search/#{@search_type || :micropost}", method: :get do |f|
   .input-group
     = f.text_field :query, class: 'form-control'
 
@@ -6,7 +6,7 @@
       button.btn.btn-default.btn-search type='button'
         i.fa.fa-search
       button.btn.btn-default.dropdown-toggle data-toggle='dropdown' aria-expand='false' type='button'
-        span 微博
+        span = search_label(@search_type || :micropost)
         | &nbsp;
         span.caret
 

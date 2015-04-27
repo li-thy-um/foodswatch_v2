@@ -1,33 +1,31 @@
-div class='panel panel-default micropost' id="#{micropost.id}"
+div class='panel panel-default micropost' id="#{post_div_id(micropost.id, page)}"
 
   div class='panel-body'
     div class="row-fluid"
-      div class="col-md-1"
 
-        = gravatar_for(micropost.user, size: 50)
-
-      div class="col-md-11"
-
-        div
-          span class='user' = user_link(micropost.user)
-
-        div class="panel-body"
+      div.media
+        div.media-left
+          = gravatar_for(micropost.user, size: 50)
+        div.media-body
+          span.media-heading.media-body
+            = user_link(micropost.user)
+          br
           span class="content" = wrap(micropost.content)
 
-        - if micropost.foods.any?
-          div class="panel-body"
-            - micropost.foods.each do |food|
-              = render 'shared/food_tag', food: food
+          - if micropost.foods.any?
+            div class="panel-body"
+              - micropost.foods.each do |food|
+                = render 'shared/food_tag', food: food
 
-        - if micropost.original_id?
-          div class="panel-body"
-            - if micropost.original_post
-              = render micropost.original_post, page: 'share'
-            -else
-              = render 'microposts/original_deleted'
+          - if micropost.original_id?
+            div class="panel-body"
+              - if micropost.original_post
+                = render micropost.original_post, page: 'share'
+              -else
+                = render 'microposts/original_deleted'
 
-        div class='timestamp'
-          span = micropost.created_at
+          div class='timestamp'
+            span = micropost.created_at
 
   - if page != 'share'
 

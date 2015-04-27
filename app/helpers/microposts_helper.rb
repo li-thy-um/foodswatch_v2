@@ -4,6 +4,14 @@ module MicropostsHelper
     sanitize(raw(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
   end
 
+  def post_div_id(id, page)
+    if page == 'share'
+      "share_#{id}"
+    else
+      id
+    end
+  end
+
   private
 
     def wrap_long_string(text, max_width = 30)

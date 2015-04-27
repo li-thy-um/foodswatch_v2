@@ -1,3 +1,4 @@
 |
-  alert("成功添加到我的食物");
+  alert("成功加入我的食物");
   $("#food_modal").modal('hide');
+  $("#watch_food_#{@food.id}").html("#{js_render 'buttons/watch_food', food: @food}");
