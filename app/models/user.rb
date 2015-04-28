@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
 
+  def update_email_confirmation_token
+    update_attribute :email_confirmation_token, User.encrypt(User.new_remember_token)
+  end
+
   def liking?(micropost)
     likes.find_by(micropost_id: micropost.id)
   end
@@ -86,6 +90,15 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy
   end
 
+  def confirm_email(token)
+    if token == email_confirmation_token
+      update_attribute :email_confirmation_token, ''
+      update_attribute :email_confirmed, true
+    else
+      raise "WrongEmailConfirmationToken"
+    end
+  end
+
   def feed
     followed_posts = Micropost.from_users_followed_by(self)
     arr_post_id = followed_posts.map(&:id)
@@ -102,6 +115,7 @@ class User < ActiveRecord::Base
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
+
 
   private
 
