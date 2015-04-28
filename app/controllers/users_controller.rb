@@ -5,6 +5,12 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   before_action :signed_in_user_can_not_new_or_create, only: [:new, :create]
 
+  def test_mail
+    @user = User.find_by(name: 'Lithium')
+    UserMailer.welcome_email(@user).deliver_later
+    redirect_to edit_user_path(@user)
+  end
+
   def calorie
     @user = User.find(params[:id])
     @title = "#{@user.name}的统计信息"

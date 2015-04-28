@@ -3,6 +3,8 @@ SampleApp::Application.routes.draw do
   get '/modals/food/:id', to: 'modals#food'
   get '/modals/share/:id', to: 'modals#share'
 
+  get '/test_mail', to: 'users#test_mail'
+
   [:micropost, :food, :user].each do |action|
     get "/search/#{action}", to: "search##{action}"
   end
