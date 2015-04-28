@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships
   before_save { self.email.downcase! }
   before_create :create_remember_token
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: true }
   VLID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true,
                     format: { with: VLID_EMAIL_REGEX },
