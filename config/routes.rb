@@ -1,14 +1,16 @@
 SampleApp::Application.routes.draw do
-  get '/foods/query', to: 'foods#query'
-  get '/modals/food/:id', to: 'modals#food'
-  get '/modals/share/:id', to: 'modals#share'
-  get '/email_confirmation', to: 'users#confirm_email'
+  get '/foods/query', to: 'foods#query', as: :query_food
+  get '/email_confirmation', to: 'users#confirm_email', as: :email_confirmation
+  get '/send_confirm_email', to: 'users#send_confirm_email', as: :send_confirm_email
 
-  [:micropost, :food, :user].each do |action|
-    get "/search/#{action}", to: "search##{action}"
+  [:food, :share].each do |modal_type|
+    get "/modals/#{modal_type}/:id", to: "modals##{modal_type}", as: "#{modal_type}_modal"
   end
 
-  resources :likes, only: [:create, :destroy]
+  [:micropost, :food, :user].each do |action|
+    get "/search/#{action}", to: "search##{action}", as: "search_#{action}"
+  end
+
   resources :users do
     member do
       get :following, :followers, :watches, :calorie
@@ -20,15 +22,14 @@ SampleApp::Application.routes.draw do
       get :comments
     end
   end
+  resources :likes, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :watches,       only: [:create, :destroy]
+
   root to: 'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
-  match '/help',    to: 'static_pages#help',    via: 'get'
-  match '/about',   to: 'static_pages#about',   via: 'get'
-  match '/contact', to: 'static_pages#contact', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

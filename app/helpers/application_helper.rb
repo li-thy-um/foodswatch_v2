@@ -6,20 +6,21 @@ module ApplicationHelper
     if page_title.empty?
       base_title
     else
-      "#{base_title} | #{page_title}"
+      "#{base_title} - #{page_title}"
     end
-  end
-
-  def unique_id
-    Time.now.to_f.to_s.split(".").join("")
-  end
-
-  def trim(str)
-    str.strip
   end
 
   def js_render(view, locals)
     escape_javascript( render view, locals )
   end
-  
+
+  # Return the first error message of the model. If no error, return ''.
+  def error_message_for(model)
+    msg = model.errors.messages
+    if msg.empty?
+      ''
+    else
+      msg.values.flatten.first
+    end
+  end
 end

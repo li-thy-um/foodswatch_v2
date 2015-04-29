@@ -1,16 +1,16 @@
 class Micropost < ActiveRecord::Base
   belongs_to :user
   default_scope -> { order('created_at DESC') }
-  validates :content, presence: true, length: { maximum: 140 }
-  validates :user_id, presence: true
   has_many :likes, dependent: :destroy
   has_many :post_food_relationships, foreign_key: :post_id, dependent: :destroy
   has_many :foods, through: :post_food_relationships
-  has_many :comments, foreign_key: "comment_id",
-    class_name: "Micropost",
-    dependent: :destroy
+  has_many :comments, foreign_key: :comment_id, class_name: :Micropost, dependent: :destroy
+
   after_create :add_share_count
   after_destroy :minus_share_count
+
+  validates_presence_of :content, message: "微博内容不能为空。"
+  validates_length_of :content, maximum: 140, message: "微博长度不能超过140字符。"
 
   def like_of(user)
     likes.find_by_user_id(user.id)

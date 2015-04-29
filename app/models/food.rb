@@ -3,6 +3,7 @@ class Food < ActiveRecord::Base
   has_many :microposts, through: :post_food_relationships, source: :post
   has_many :watches, dependent: :destroy
   has_many :watchers, through: :watches, source: :user
+
   before_save :set_calorie
 
   def watch_of(user)

@@ -9,15 +9,20 @@ class User < ActiveRecord::Base
                                    dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :followers, through: :reverse_relationships
+
   before_save { self.email.downcase! }
   before_create :create_remember_token
-  validates :name, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: true }
+
   VLID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, presence: true,
-                    format: { with: VLID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
+  validates_presence_of :name, message: "用户名不能为空。"
+  validates_length_of :name, maximum: 20, message: "用户名长度不能超过20字符。"
+  validates_uniqueness_of :name, case_sensitive: true, message: "用户名已经被注册了。"
+  validates_presence_of :email, message: "电子邮件不能为空。"
+  validates_format_of :email, with: VLID_EMAIL_REGEX, message: "电子邮件地址格式不正确。"
+  validates_uniqueness_of :email, case_sensitive: false, message: "电子邮件地址已经被注册了。"
+  validates_length_of :password, minimum: 6, message: "密码长度不能少于6字符。"
+
   has_secure_password
-  validates :password, length: { minimum: 6 }
 
   def update_email_confirmation_token
     update_attribute :email_confirmation_token, User.encrypt(User.new_remember_token)
