@@ -1,6 +1,1 @@
-var error_message = ""
-<%@micropost.errors.full_messages.each do |msg| %>
-    error_message += "<%= msg%>\n"
-<% end %>
-
-alert(error_message)
+$('#message-area').html( " <%= js_render 'shared/message', flash: flash %>" )

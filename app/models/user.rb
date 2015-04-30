@@ -4,9 +4,7 @@ class User < ActiveRecord::Base
   has_many :watched_foods, through: :watches, source: :food
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
-  has_many :reverse_relationships, foreign_key: "followed_id",
-                                   class_name: "Relationship",
-                                   dependent: :destroy
+  has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :followers, through: :reverse_relationships
 
@@ -24,8 +22,35 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  class << self
+
+    def encrypt(token)
+      Digest::SHA1.hexdigest(token.to_s)
+    end
+
+    def random_token
+      SecureRandom.urlsafe_base64
+    end
+
+    def encrypted_random_token
+      encrypt(random_token)
+    end
+
+    alias :new_remember_token :random_token
+  end
+
+  def clear_change_password_token
+    update_attribute :change_password_token, nil
+    update_attribute :change_password_at, nil
+  end
+
+  def update_change_password_token
+    update_attribute :change_password_token, User.encrypted_random_token
+    update_attribute :change_password_at, Time.zone.now
+  end
+
   def update_email_confirmation_token
-    update_attribute :email_confirmation_token, User.encrypt(User.new_remember_token)
+    update_attribute :email_confirmation_token, User.encrypted_random_token
   end
 
   def liking?(micropost)
@@ -112,15 +137,6 @@ class User < ActiveRecord::Base
     end.map(&:id)
     Micropost.where(id: arr_filtered_id)
   end
-
-  def User.new_remember_token
-    SecureRandom.urlsafe_base64
-  end
-
-  def User.encrypt(token)
-    Digest::SHA1.hexdigest(token.to_s)
-  end
-
 
   private
 

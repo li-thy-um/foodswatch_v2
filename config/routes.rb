@@ -16,12 +16,14 @@ SampleApp::Application.routes.draw do
       get :following, :followers, :watches, :calorie
     end
   end
-  resources :sessions,      only: [:new, :create, :destroy]
-  resources :microposts,    only: [:create, :destroy] do
+  resources :microposts, only: [:create, :destroy] do
     member do
       get :comments
     end
   end
+
+  resources :passwords, only: [:create, :show]
+  resources :sessions,      only: [:new, :create, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :watches,       only: [:create, :destroy]

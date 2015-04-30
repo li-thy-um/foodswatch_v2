@@ -58,6 +58,7 @@ class UsersController < ApplicationController
   end
 
   def send_confirm_email
+    current_user.update_email_confirmation_token
     UserMailer.welcome_email(current_user).deliver_later
     flash[:success] = "确认邮件已发送，请及时确认注册邮箱。没有收到确认邮件？"
     flash[:link] = { content: "重新发送确认邮件", href: send_confirm_email_path }
@@ -87,8 +88,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
+      @user.update_email_confirmation_token
       UserMailer.welcome_email(@user).deliver_later
-      flash[:success] = "注册成功，请及时确认注册邮箱。没有受到确认邮件？"
+      flash[:success] = "注册成功，请及时确认注册邮箱。没有收到确认邮件？"
       flash[:link] = { content: "重新发送确认邮件", href: send_confirm_email_path }
       redirect_to @user
     else

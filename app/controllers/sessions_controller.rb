@@ -7,7 +7,6 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: user_email) || User.find_by(name: user_name)
     if user && user.authenticate(params[:session][:password])
-      flash.clear
       sign_in user
       unless user.email_confirmed?
         flash[:warning] = "用户邮箱还没有确认，请及时确认注册邮箱。没有受到确认邮件？"

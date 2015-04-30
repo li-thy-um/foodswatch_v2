@@ -12,6 +12,7 @@ class MicropostsController < ApplicationController
       handle_foods
       render action: params[:create_type]
     else
+      flash[:danger] = "发布失败，请重试。#{error_message_for @micropost}"
       render action: :create_fail
     end
   end
@@ -49,11 +50,11 @@ class MicropostsController < ApplicationController
     def set_content
       trim_content
       params[:micropost][:content] ||= case params[:create_type]
-                                                                when 'create'
-                                                                  @foods.any? ? '我吃了:' : ''
-                                                                when 'share'
-                                                                  '分享'
-                                                                end
+                                       when 'create'
+                                         @foods.any? ? '我吃了:' : ''
+                                       when 'share'
+                                         '分享'
+                                       end
     end
 
     def trim_content

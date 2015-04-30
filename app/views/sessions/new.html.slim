@@ -7,13 +7,14 @@
 
     h2 class='font-white' 欢迎来到 FOODSWATCH
 
-    = form_for(:session, url: sessions_path) do |f|
+    = form_for(:session, url: sessions_path, html: {id: "sign_in_form"}) do |f|
 
       = f.text_field :email, class: 'form-control', placeholder: '电子邮箱/用户名'
       = f.password_field :password, class: 'form-control', placeholder: '密码'
 
       div class='row-fluid'
+        .col-xs-6
+          = link_to "忘了密码？", "#", class: "btn btn-warning btn-block", id: "forget_password"
 
-          div class='col-xs-6 col-xs-offset-3'
-
-            = f.submit '登录', class: 'btn btn-primary'
+        .col-xs-6
+          = f.submit '登录', class: 'btn btn-primary'

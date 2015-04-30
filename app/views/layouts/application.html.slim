@@ -11,14 +11,15 @@ html lang="zh"
 
     = render 'layouts/header'
 
-    div.container
-      = render 'shared/message', flash: flash
-            
+    .container
+      #message-area
+        = render 'shared/message', flash: flash
+
       .row
         .col-md-4.col-md-push-8
           - if content_for? :aside
             = yield :aside
-          - else
+          - elsif signed_in?
             = render 'layouts/aside', user: current_user, page: :default
 
         .col-md-8.col-md-pull-4
