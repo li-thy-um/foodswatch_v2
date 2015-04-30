@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :not_signed_in_user, only: [:new, :create]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
+  before_action :email_not_confirmed, only: :send_confirm_email
 
   def calorie
     @user = User.find(params[:id])
@@ -116,6 +117,10 @@ class UsersController < ApplicationController
     end
 
     # Before filters
+
+    def email_not_confirmed
+      redirect_to(root_path) if current_user.email_confirmed?
+    end
 
     def correct_user
       @user = User.find(params[:id])
