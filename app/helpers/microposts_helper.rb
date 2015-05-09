@@ -12,6 +12,10 @@ module MicropostsHelper
     end
   end
 
+  def timestamp_for(micropost)
+    micropost.created_at.localtime("+08:00").strftime('%-m月%-d日 %R')
+  end
+
   private
 
     def wrap_long_string(text, max_width = 30)

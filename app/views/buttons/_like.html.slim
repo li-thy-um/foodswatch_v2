@@ -1,6 +1,6 @@
 - if current_user.liking? post
 
-  = link_to post.like_of(current_user), remote: true, method: :delete, class: "btn btn-like btn-liked btn-default" do
+  = link_to post.likes.find_by_user_id(current_user.id), remote: true, method: :delete, class: "btn btn-like btn-liked btn-default" do
     i.fa.fa-thumbs-o-up = " #{post.likes.count}"
 
 - else

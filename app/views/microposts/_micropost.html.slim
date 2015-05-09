@@ -25,7 +25,7 @@ div class='panel panel-default micropost' id="#{post_div_id(micropost.id, page)}
                 = render 'microposts/original_deleted'
 
           div class='timestamp'
-            span = micropost.created_at
+            span = timestamp_for(micropost)
 
   - if page != 'share'
 

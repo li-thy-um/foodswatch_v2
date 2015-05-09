@@ -7,10 +7,9 @@ div id='comment_collapse_#{micropost.id}' class='collapse comment-collapse' styl
 
         input type='hidden' name='micropost[comment_id]' value='#{micropost.id}'
         input type='hidden' name='create_type' value='comment'
-        input type='hidden' name='parent_id' value='#{micropost.id}'
         input type='hidden' value='_comment_#{micropost.id} '
 
-        = f.text_field :content, placeholder: '说点啥吧...', id: "comment_textarea_#{micropost.id}", class: 'letter_count form-control'
+        = f.text_field :content, placeholder: '说点啥吧...', id: "comment_textarea_#{micropost.id}", class: 'form-control'
         = f.submit '评论', class: "btn btn-primary btn-submit"
 
     - comments = micropost.comments.first(9)
@@ -18,6 +17,6 @@ div id='comment_collapse_#{micropost.id}' class='collapse comment-collapse' styl
     div id='comment_list_#{micropost.id}'
       - if comments.any?
         = render comments, page: 'comment'
-        - if micropost.comments.count  9
+        - if micropost.comments.count > 9
           div class='center'
             = link_to '全部评论...', comments_micropost_path(micropost)

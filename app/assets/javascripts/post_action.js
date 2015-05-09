@@ -1,48 +1,8 @@
 $(function(){
-  init_watch_post();
-
   $('body').on('click', '.btn-foods', function(){
     $('.add-food-panel').slideToggle(init_add_food_modal);
   });
 });
-
-function reset_watch_post($btn){
-  _set_watch_post($btn);
-}
-
-function init_watch_post(){
-  $("body").delegate('.btn-watch-post', 'click', function(){
-    var $btn = $(this);
-    var init = $btn.hasClass('initialed');
-    if (!init){
-      _init_watch_post($btn);
-    }
-    _init_watch_post_popover();
-    if(!init){
-      $btn.addClass('initialed');
-      $btn.click();
-    }
-  });
-}
-
-function _init_watch_post($btn){
-  $btn.popover({
-    html: true,
-    container: "body",
-    placement: "left",
-    content: function(){
-      return $btn.prev().html();
-    }
-  });
-}
-
-function _init_watch_post_popover(){
-  var $form = $(".popover").find("form");
-  $form.find(".name").
-    keypress(toggle_watch_post_btn).
-    keyup(toggle_watch_post_btn).
-    keypress();
-}
 
 var init_add_food_modal = function(){
   $(".watch-list-typeahead").typeahead({
@@ -63,7 +23,6 @@ var init_add_food_modal = function(){
   $("#create_food_btn").click(add_food);
 
   var $form = $("#new_food_form");
-  $form.children(".nutri").numeralinput();
   $form.children(".name").
     keypress(toggle_create_food_btn).
     keyup(toggle_create_food_btn).
@@ -77,7 +36,7 @@ var get_watch_list = function(query, process){
     });
 };
 
-function make_food(food_info /* like "id_name" */){
+var make_food = function(food_info /* like "id_name" */){
   var info_array = food_info.split("_");
   return {
     id: info_array[0],
@@ -85,15 +44,11 @@ function make_food(food_info /* like "id_name" */){
   };
 }
 
-var toggle_watch_post_btn = function(){
-  attach_toggle($(this).prev(), $(this));
-}
-
 var toggle_create_food_btn = function(){
   attach_toggle($("#create_food_btn"), $(this));
 }
 
-function attach_toggle($btn, $input){
+var attach_toggle = function($btn, $input){
   var str = $input.val() || "";
   if ($.trim(str) == ""){
     disable($btn);
@@ -121,11 +76,11 @@ var delete_food = function() {
     $(e).remove();
   });
   $label.fadeOut({complete: function(){
-      this.remove();
+    this.remove();
   }});
 }
 
-function add_label(food){
+var add_label = function(food){
   var name = "";
   if (food && food.name){
     name = food.name;
@@ -138,7 +93,7 @@ function add_label(food){
   $("#choosed").fadeIn().append($label.hide().fadeIn());
 }
 
-function add_hidden_input(food){
+var add_hidden_input = function(food){
   var $food_form = $("#food_form");
   if(food && food.id){
     var $input = $("#food_id_input_sample").children().first().clone();
@@ -154,12 +109,12 @@ function add_hidden_input(food){
   }
 }
 
-function append_input($form, $input, value){
+var append_input = function($form, $input, value){
   $input.attr("value", value);
   $input.addClass("group_" + count_food());
   $form.append($input);
 }
 
-function count_food() {
+var count_food = function(){
   return $("#choosed").find(".click-del").length;
 }

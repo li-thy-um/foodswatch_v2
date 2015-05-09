@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :relationships, source: :followed
   has_many :followers, through: :reverse_relationships
 
+  before_validation { name.strip! }
+  before_validation { email.strip! }
+  before_validation { password.strip! }
   before_save { self.email.downcase! }
   before_create :create_remember_token
 
@@ -39,6 +42,10 @@ class User < ActiveRecord::Base
     alias :new_remember_token :random_token
   end
 
+  def auth_token
+    remember_token
+  end
+
   def clear_change_password_token
     update_attribute :change_password_token, nil
     update_attribute :change_password_at, nil
@@ -66,7 +73,7 @@ class User < ActiveRecord::Base
     labels = (1..num).map { |i| label_of start_day.advance(days: i) }
     data   = (1..num).map { |i| data_of  start_day.advance(days: i) }
 
-    data = (0...data_type.size).inject([]) do |l, k|
+    data = (0...DATA_TYPE.size).inject([]) do |l, k|
       l << (0...num).inject([]) { |a, i| a << data[i][k] }.join(",")
     end
     [labels.join(","), data.join("@")].join("_")
@@ -90,11 +97,11 @@ class User < ActiveRecord::Base
   end
 
   def watch!(food)
-    watches.create!(food_id: food.id)
+    watches.create!(food_id: food.id) unless watching? food
   end
 
   def unwatch!(food)
-    watches.find_by(food_id: food.id).destroy
+    watches.find_by(food_id: food.id).destroy if watching? food
   end
 
   def watch_list_string()
@@ -140,15 +147,14 @@ class User < ActiveRecord::Base
 
   private
 
-    def data_type
-      [:calorie, :carb, :prot, :fat]
-    end
+    DATA_TYPE = [:calorie, :carb, :prot, :fat]
 
     #[cal, c, p ,f]
     #time is end of the day.
     def data_of(day)
+      #[cal, c, p ,f]
       posts = microposts_between(day.beginning_of_day, day.end_of_day)
-      data_type.inject([]) do |d, t|
+      DATA_TYPE.inject([]) do |d, t|
         d << posts.inject(0) { |n, p| n + p.total_calorie_of(t) }
       end
     end

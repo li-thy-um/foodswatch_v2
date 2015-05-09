@@ -1,4 +1,10 @@
 SampleApp::Application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :microposts, only: [:create, :destroy]
+    end
+  end
+
   get '/foods/query', to: 'foods#query', as: :query_food
   get '/email_confirmation', to: 'users#confirm_email', as: :email_confirmation
   get '/send_confirm_email', to: 'users#send_confirm_email', as: :send_confirm_email
