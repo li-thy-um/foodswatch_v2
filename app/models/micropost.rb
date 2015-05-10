@@ -8,6 +8,7 @@ class Micropost < ActiveRecord::Base
 
   before_validation { content.strip! }
 
+  validates_presence_of :user_id, message: "用户不能为空。"
   validates_presence_of :content, message: "微博内容不能为空。"
   validates_length_of :content, maximum: 140, message: "微博长度不能超过140字符。"
 
