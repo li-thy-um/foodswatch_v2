@@ -28,7 +28,7 @@ SampleApp::Application.routes.draw do
   end
   resources :microposts, only: [:create, :destroy] do
     member do
-      get :comments
+      get :comments, :shares
     end
   end
 

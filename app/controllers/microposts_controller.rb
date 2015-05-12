@@ -30,6 +30,11 @@ class MicropostsController < ApplicationController
     @comments = @micropost.comments.paginate(page: params[:page])
   end
 
+  def shares
+    @micropost = Micropost.find_by_id(params[:id])
+    @shares = @micropost.shares.paginate(page: params[:page])
+  end
+
   private
 
     def foods_params

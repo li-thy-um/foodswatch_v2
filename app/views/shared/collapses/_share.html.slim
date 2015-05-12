@@ -18,4 +18,4 @@ div id='share_collapse_#{micropost.id}' class='share-collapse' style="margin-top
       = render shares, page: 'comment'
       - if micropost.shares.count > 9
         div class='center'
-          = link_to '全部评论...', shares_micropost_path(micropost)
+          = link_to '全部分享...', shares_micropost_path(micropost)

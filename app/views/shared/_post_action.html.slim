@@ -6,8 +6,8 @@
 - if page == 'comment'
   - share, comment = false, false
 
-- if page == 'detail'
-  - share, comment = true, false
+- if page == 'detail' || page == 'share_detail'
+  - share, comment = false, false
   - delete = false
 
 - like = true
@@ -19,5 +19,5 @@
     div class='post-action'
       div class='post_action_panel_#{micropost.id}'
         - { delete: delete, share: share, comment: comment, like: like}.each_pair do |k, v|
-            - if v
-                = render "buttons/#{k}", post: micropost
+          - if v
+            = render "buttons/#{k}", post: micropost
