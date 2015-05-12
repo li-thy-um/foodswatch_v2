@@ -1,8 +1,10 @@
+- provide(:title, "#{@user.name}的统计信息")
+
 - content_for :aside
   = render 'layouts/aside', user: @user, page: 'calorie'
 
 .panel.panel-default
   .panel-body
     h3 热量统计
-    #chart_test[style="height:400px"]
-input#chart_data[type="hidden" value="#{@user.chart_string_of_day(10)}"]
+    br
+    #chart_test[style="height:500px"]

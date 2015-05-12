@@ -1,7 +1,4 @@
-module MicropostCreator
-  extend Decorator
-
-  in_transaction :save_with_foods
+module Micropost::Creator
 
   def save_with_foods(foods_params)
     setup_content foods_params.any?

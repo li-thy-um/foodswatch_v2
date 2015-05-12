@@ -1,6 +1,6 @@
 $(function(){
   init_modal('.food-tag', 'food');
-  init_modal('.btn-share', 'share');
+  // init_modal('.btn-share', 'share');
 });
 
 init_modal = function(trigger, name){

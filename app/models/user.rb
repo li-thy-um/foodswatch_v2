@@ -23,24 +23,10 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, case_sensitive: false, message: "电子邮件地址已经被注册了。"
   validates_length_of :password, minimum: 6, message: "密码长度不能少于6字符。"
 
+  include User::Calorie
+  extend User::Token
+
   has_secure_password
-
-  class << self
-
-    def encrypt(token)
-      Digest::SHA1.hexdigest(token.to_s)
-    end
-
-    def random_token
-      SecureRandom.urlsafe_base64
-    end
-
-    def encrypted_random_token
-      encrypt(random_token)
-    end
-
-    alias :new_remember_token :random_token
-  end
 
   def auth_token
     remember_token
@@ -66,22 +52,6 @@ class User < ActiveRecord::Base
 
   def like!(micropost)
     likes.create!(micropost_id: micropost.id)
-  end
-
-  def chart_string_of_day(num)
-    start_day = Time.now.end_of_day.days_ago(num)
-    labels = (1..num).map { |i| label_of start_day.advance(days: i) }
-    data   = (1..num).map { |i| data_of  start_day.advance(days: i) }
-
-    data = (0...DATA_TYPE.size).inject([]) do |l, k|
-      l << (0...num).inject([]) { |a, i| a << data[i][k] }.join(",")
-    end
-    [labels.join(","), data.join("@")].join("_")
-      #"1,2,3_1786,1589,1645@1500,1450,1505@705,468,809@507,609,604"
-  end
-
-  def calorie_today
-    microposts_today.inject(0) { |t, post| t + post.total_calorie }
   end
 
   def commenting?(post)
@@ -127,13 +97,9 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy
   end
 
-  def confirm_email(token)
-    if token == email_confirmation_token
-      update_attribute :email_confirmation_token, ''
-      update_attribute :email_confirmed, true
-    else
-      raise "WrongEmailConfirmationToken"
-    end
+  def confirm_email
+    update_attribute :email_confirmation_token, ''
+    update_attribute :email_confirmed, true
   end
 
   def feed
@@ -145,36 +111,16 @@ class User < ActiveRecord::Base
     Micropost.where(id: arr_filtered_id)
   end
 
-  private
+  def microposts_today
+    now = Time.now
+    microposts_between(now.beginning_of_day, now)
+  end
 
-    DATA_TYPE = [:calorie, :carb, :prot, :fat]
+  def microposts_between(b, e)
+    self.microposts.where(":begin < created_at and created_at < :end", begin: b, end: e)
+  end
 
-    #[cal, c, p ,f]
-    #time is end of the day.
-    def data_of(day)
-      #[cal, c, p ,f]
-      posts = microposts_between(day.beginning_of_day, day.end_of_day)
-      DATA_TYPE.inject([]) do |d, t|
-        d << posts.inject(0) { |n, p| n + p.total_calorie_of(t) }
-      end
-    end
-
-    def label_of(day)
-      a = day.to_s.split(" ")[0].split("-")
-      [a[1], a[2]].join("-")
-    end
-
-    def microposts_today
-      now = Time.now
-      microposts_between(now.beginning_of_day, now)
-    end
-
-    def microposts_between(b, e)
-      self.microposts.where(
-        ":begin < created_at and created_at < :end", begin: b, end: e)
-    end
-
-    def create_remember_token
-      self.remember_token = User.encrypt(User.new_remember_token)
-    end
+  def create_remember_token
+    self.remember_token = User.encrypt(User.new_remember_token)
+  end
 end

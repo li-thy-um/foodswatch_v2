@@ -7,7 +7,10 @@ SampleApp::Application.routes.draw do
 
   get '/foods/query', to: 'foods#query', as: :query_food
   get '/email_confirmation', to: 'users#confirm_email', as: :email_confirmation
-  get '/send_confirm_email', to: 'users#send_confirm_email', as: :send_confirm_email
+
+  [:comment, :share].each do |collapse_type|
+    get "/collapses/#{collapse_type}/:id", to: "collapses##{collapse_type}", as: "#{collapse_type}_collapse"
+  end
 
   [:food, :share].each do |modal_type|
     get "/modals/#{modal_type}/:id", to: "modals##{modal_type}", as: "#{modal_type}_modal"
@@ -19,7 +22,8 @@ SampleApp::Application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers, :watches, :calorie
+      get :following, :followers, :foods, :calorie
+      get :send_confirm_email
     end
   end
   resources :microposts, only: [:create, :destroy] do

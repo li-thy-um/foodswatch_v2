@@ -1,3 +1,3 @@
 |
-  $("#comment_list_#{@post.id}").prepend("#{js_render @post.comments.first, page: "comment"}").children().first().hide().slideDown();
+  $("#comment_list_#{@post.id}").prepend("#{js_render @micropost, page: "comment"}").children().first().hide().slideDown();
   $('#comment_textarea_#{@post.id}').val('');

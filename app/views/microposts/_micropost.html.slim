@@ -17,7 +17,7 @@ div class='panel panel-default micropost' id="#{post_div_id(micropost.id, page)}
               - micropost.foods.each do |food|
                 = render 'shared/food_tag', food: food
 
-          - if micropost.original_id?
+          - if micropost.original_id? && page != 'comment'
             div class="panel-body"
               - if micropost.original_post
                 = render micropost.original_post, page: 'share'

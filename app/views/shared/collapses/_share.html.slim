@@ -1,0 +1,21 @@
+div id='share_collapse_#{micropost.id}' class='share-collapse' style="margin-top:15px;"
+
+  div class='share-area'
+
+    = form_for(current_user.microposts.build, remote: true, html: {id: "new_share_#{micropost.id}", class: "share-form"}) do |f|
+
+      input type="hidden" name="micropost[original_id]" value="#{micropost.original_id || micropost.id}"
+      input type='hidden' name='micropost[shared_id]' value='#{micropost.id}'
+      input type='hidden' name='create_type' value='share'
+
+      = f.text_area :content, placeholder: '说点啥吧...', id: "share_textarea_#{micropost.id}", class: 'form-control'
+      = f.submit '分享', class: "btn btn-success btn-submit"
+
+  - shares = micropost.shares.first(9)
+
+  div.share-list id='share_list_#{micropost.id}'
+    - if shares.any?
+      = render shares, page: 'comment'
+      - if micropost.shares.count > 9
+        div class='center'
+          = link_to '全部评论...', shares_micropost_path(micropost)

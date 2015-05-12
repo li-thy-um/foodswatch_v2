@@ -1,4 +1,4 @@
-- provide(:title, @title)
+- provide(:title, "#{@user.name}的食物")
 
 - content_for :aside
   = render 'layouts/aside', user: @user, page: 'watchs'

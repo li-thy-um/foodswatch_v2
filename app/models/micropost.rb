@@ -1,4 +1,7 @@
 class Micropost < ActiveRecord::Base
+  include Micropost::Creator
+  extend Decorator
+
   belongs_to :user
   default_scope -> { order('created_at DESC') }
   has_many :likes, dependent: :destroy
@@ -12,7 +15,11 @@ class Micropost < ActiveRecord::Base
   validates_presence_of :content, message: "微博内容不能为空。"
   validates_length_of :content, maximum: 140, message: "微博长度不能超过140字符。"
 
-  include MicropostCreator
+  in_transaction :save_with_foods
+
+  def shares
+    where('shared_id = :id OR original_id = :id', id: id)
+  end
 
   def total_calorie
     total_calorie_of :calorie

@@ -32,10 +32,6 @@ $grayMediumLight: #eaeaea;
   padding-top: 10px;
 }
 
-.comment-form {
-  margin-bottom: 15px;
-}
-
 .panel {
   margin-bottom: 10px;
 }
@@ -54,9 +50,13 @@ $grayMediumLight: #eaeaea;
     padding-bottom: 0px;
   }
 
-  .collapse {
+  .comment-form, .share-form {
+    margin-bottom: 15px;
+  }
+
+  .comment-list, .share-list {
     .micropost {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
   }
 

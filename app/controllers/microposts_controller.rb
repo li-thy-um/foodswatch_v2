@@ -5,7 +5,7 @@ class MicropostsController < ApplicationController
   def create
     @micropost = current_user.microposts.build(micropost_params)
     @micropost.save_with_foods foods_params
-    if parent_id = params[:micropost][:comment_id]
+    if parent_id = params[:micropost][:comment_id] || params[:micropost][:shared_id]
       @post = Micropost.find_by_id(parent_id)
     end
     render action: params[:create_type]

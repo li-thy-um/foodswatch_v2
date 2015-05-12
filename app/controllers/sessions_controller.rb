@@ -5,12 +5,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: user_email) || User.find_by(name: user_name)
-    if user && user.authenticate(params[:session][:password])
-      sign_in user
-      unless user.email_confirmed?
+    @user = User.find_by(email: user_email) || User.find_by(name: user_name)
+    if @user && @user.authenticate(params[:session][:password])
+      sign_in @user
+      unless @user.email_confirmed?
         flash[:warning] = "用户邮箱还没有确认，请及时确认注册邮箱。没有受到确认邮件？"
-        flash[:link] = { content: "重新发送确认邮件", href: send_confirm_email_path }
+        flash[:link] = { content: "重新发送确认邮件", href: send_confirm_email_user_path(@user) }
       end
       redirect_back_or root_path
     else
