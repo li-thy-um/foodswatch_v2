@@ -12,9 +12,10 @@ module Micropost::Creator
   private
 
     def setup_content(has_foods)
-      self.content.strip!
-      if self.content == ''
-        self.content = if !original_id.nil?
+      content = '' if content.nil?
+      content.strip!
+      if content == ''
+        content = if !original_id.nil?
           '分享'
         elsif !comment_id.nil?
           nil

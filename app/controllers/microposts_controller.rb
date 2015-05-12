@@ -9,9 +9,9 @@ class MicropostsController < ApplicationController
       @post = Micropost.find_by_id(parent_id)
     end
     render action: params[:create_type]
-  # rescue
-  #   flash[:danger] = "发布失败，请重试。#{error_message_for @micropost}"
-  #   render action: :create_fail
+  rescue
+    flash[:danger] = "发布失败，请重试。#{error_message_for @micropost}"
+    render action: :create_fail
   end
 
   def destroy
