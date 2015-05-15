@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :relationships, source: :followed
   has_many :followers, through: :reverse_relationships
 
-  before_validation { name.strip! }
-  before_validation { email.strip! }
-  before_validation { password.strip! }
+  before_validation { name and name.strip! }
+  before_validation { email and email.strip! }
+  before_validation { password and password.strip! }
   before_save { self.email.downcase! }
   before_create :create_remember_token
 
@@ -23,10 +23,16 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, case_sensitive: false, message: "电子邮件地址已经被注册了。"
   validates_length_of :password, minimum: 6, message: "密码长度不能少于6字符。"
 
+  include User::Avatar
   include User::Calorie
   extend User::Token
 
   has_secure_password
+
+  def destroy
+    remove_avatar_file
+    super
+  end
 
   def auth_token
     remember_token

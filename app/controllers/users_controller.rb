@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
-  before_action :signed_in_user, only: [:index, :show, :edit, :update, :destroy, :following, :followers, :send_confirm_email]
+  before_action :signed_in_user, only: [:remove_avatar, :avatar, :index, :show, :edit, :update, :destroy, :following, :followers, :send_confirm_email]
   before_action :not_signed_in_user, only: [:new, :create]
-  before_action :prepare_user, only:[:send_confirm_email, :confirm_email, :edit, :update, :destroy, :show, :calorie, :foods, :following, :followers]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :prepare_user, only:[:remove_avatar, :avatar, :send_confirm_email, :confirm_email, :edit, :update, :destroy, :show, :calorie, :foods, :following, :followers]
+  before_action :correct_user, only: [:remove_avatar, :avatar, :edit, :update]
   before_action :admin_user, only: :destroy
   before_action :email_not_confirmed, only: [:send_confirm_email, :confirm_email]
   before_action :verify_confirm_token, only: :confirm_email
@@ -88,17 +88,33 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
+  def edit; ;end
+
+  def remove_avatar
+    @user.remove_avatar!
+    flash[:success] = "已改为Gravatar头像。"
+    redirect_to edit_user_path(@user)
+  end
+
+  def avatar
+    @user.upload_avatar params[:user][:avatar]
+    flash[:success] = "头像已修改。"
+    redirect_to edit_user_path(@user)
+  rescue => e
+    logger.debug e.inspect
+    flash[:danger] = "上传失败。"
+    redirect_to edit_user_path(@user)
   end
 
   def update
-    if @user.update_attributes(user_params)
-      flash[:success] = '用户信息已更新！'
-      redirect_to @user
-    else
-      flash[:danger] = "用户信息修改失败。#{error_message_for @user}"
-      render 'edit'
-    end
+    @user.update!(user_params)
+    @user.update_avatar!
+    flash[:success] = '用户信息已更新！'
+    redirect_to edit_user_path(@user)
+  rescue => e
+    logger.debug e.inspect
+    flash[:danger] = "用户信息修改失败。#{error_message_for @user}"
+    redirect_to edit_user_path(@user)
   end
 
   private

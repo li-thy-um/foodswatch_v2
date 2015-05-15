@@ -24,6 +24,8 @@ SampleApp::Application.routes.draw do
     member do
       get :following, :followers, :foods, :calorie
       get :send_confirm_email
+      delete :avatar, to: "users#remove_avatar"
+      patch :avatar
     end
   end
   resources :microposts, only: [:create, :destroy] do

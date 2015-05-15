@@ -1,6 +1,5 @@
 class MicropostsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
-  before_action :correct_user, only: :destroy
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -15,7 +14,8 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
-    current_user.microposts.find(id: params[:id]).destroy!
+    @micropost = current_user.microposts.find(params[:id])
+    @micropost.destroy!
     render action: :destroy
   rescue ActiveRecord::RecordNotFound
     flash[:danger] = '用户无权删除该微博'

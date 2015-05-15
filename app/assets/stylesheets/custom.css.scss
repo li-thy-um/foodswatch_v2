@@ -12,6 +12,15 @@ $grayMediumLight: #eaeaea;
 
 /* universal */
 
+.edit-avatar {
+  text-align: center;
+
+  .gravatar {
+    float: none;
+    margin-right: 0px;
+  }
+}
+
 .btn-liked {
   color: #C9302C;
 }

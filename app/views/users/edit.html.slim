@@ -1,0 +1,33 @@
+- provide(:title, '设置')
+
+- content_for :aside do
+
+  .panel.panel-default
+    .panel-body.edit-avatar
+      = gravatar_for @user, size: 150
+
+    .panel-body.center
+      a#upload_avatar[href='#']
+        | [上传头像]
+
+    .panel-body.center
+      | 如果你没有上传自己的头像，这里默认使用你的 &nbsp;
+      - if @user.avatar
+        = link_to avatar_user_path(@user), method: :delete, data: { confirm: "删除当前头像并使用Gravatar头像吗？" } do
+          | Gravatar
+      - else
+        a href="http://gravatar.com/emails" target="_blank" Gravatar
+      | &nbsp;头像。
+
+    .hide
+      = form_for @user, url: avatar_user_path(@user), html: { id: 'user_avatar_form', enctype: "multipart/form-data" } do |f|
+        = file_field :user, :avatar
+
+.panel.panel-default
+  .panel-body
+    h1
+      | 修改个人资料
+    = form_for(@user) do |f|
+      = render 'fields', f: f
+      .text-center
+        = f.submit '保存修改', class: 'btn btn-large btn-primary'
