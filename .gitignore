@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Igonre avatars
-/public/avatars
+/public/avatars/
 
 # Ignore bundler config.
 /.bundle

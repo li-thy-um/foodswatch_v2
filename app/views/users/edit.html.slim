@@ -17,6 +17,7 @@
           | Gravatar
       - else
         a href="http://gravatar.com/emails" target="_blank" Gravatar
+
       | &nbsp;头像。
 
     .hide
@@ -28,6 +29,6 @@
     h1
       | 修改个人资料
     = form_for(@user) do |f|
-      = render 'fields', f: f
+      = render 'edit_fields', f: f
       .text-center
         = f.submit '保存修改', class: 'btn btn-large btn-primary'

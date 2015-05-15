@@ -107,8 +107,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update!(user_params)
-    @user.update_avatar!
+    @user.update!(update_params)
     flash[:success] = '用户信息已更新！'
     redirect_to edit_user_path(@user)
   rescue => e
@@ -118,6 +117,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def update_params
+      params.require(:user).permit(:name, :password)
+    end
 
     def user_params
       params.require(:user).permit(:name, :email, :password)

@@ -22,6 +22,10 @@ gem 'font-awesome-sass', '~> 4.3.0'
 
 gem 'slim'
 
+gem 'qiniu'
+
+gem 'rest-client'
+
 group :development do
   gem 'rspec-rails', '2.13.1'
 end
