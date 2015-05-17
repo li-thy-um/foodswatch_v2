@@ -94,6 +94,10 @@ class UsersController < ApplicationController
     @user.remove_avatar!
     flash[:success] = "已改为Gravatar头像。"
     redirect_to edit_user_path(@user)
+  rescue => e
+    logger.debug e.inspect
+    flash[:danger] = "操作失败。"
+    redirect_to edit_user_path(@user)
   end
 
   def avatar
@@ -102,7 +106,7 @@ class UsersController < ApplicationController
     redirect_to edit_user_path(@user)
   rescue => e
     logger.debug e.inspect
-    flash[:danger] = "上传失败。"
+    flash[:danger] = "上传失败，很有可能是因为文件过大。"
     redirect_to edit_user_path(@user)
   end
 

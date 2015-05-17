@@ -11,7 +11,7 @@
         | [上传头像]
 
     .panel-body.center
-      | 如果你没有上传自己的头像，这里默认使用你的 &nbsp;
+      | 可以上传不大于 <strong>2Ｍ</strong> 的图片文件，上传非图片文件不能显示。如果你没有上传自己的头像，这里默认使用你的 &nbsp;
       - if @user.avatar
         = link_to avatar_user_path(@user), method: :delete, data: { confirm: "删除当前头像并使用Gravatar头像吗？" } do
           | Gravatar
