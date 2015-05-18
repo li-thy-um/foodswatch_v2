@@ -12317,1472 +12317,17 @@ if (typeof jQuery === 'undefined') {
 /*!
  * Chart.js
  * http://chartjs.org/
+ * Version: 1.0.2
  *
- * Copyright 2013 Nick Downie
+ * Copyright 2015 Nick Downie
  * Released under the MIT license
  * https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
  */
 
-//Define the global Chart Variable as a class.
-window.Chart = function(context){
-
-	var chart = this;
-	
-	
-	//Easing functions adapted from Robert Penner's easing equations
-	//http://www.robertpenner.com/easing/
-	
-	var animationOptions = {
-		linear : function (t){
-			return t;
-		},
-		easeInQuad: function (t) {
-			return t*t;
-		},
-		easeOutQuad: function (t) {
-			return -1 *t*(t-2);
-		},
-		easeInOutQuad: function (t) {
-			if ((t/=1/2) < 1) return 1/2*t*t;
-			return -1/2 * ((--t)*(t-2) - 1);
-		},
-		easeInCubic: function (t) {
-			return t*t*t;
-		},
-		easeOutCubic: function (t) {
-			return 1*((t=t/1-1)*t*t + 1);
-		},
-		easeInOutCubic: function (t) {
-			if ((t/=1/2) < 1) return 1/2*t*t*t;
-			return 1/2*((t-=2)*t*t + 2);
-		},
-		easeInQuart: function (t) {
-			return t*t*t*t;
-		},
-		easeOutQuart: function (t) {
-			return -1 * ((t=t/1-1)*t*t*t - 1);
-		},
-		easeInOutQuart: function (t) {
-			if ((t/=1/2) < 1) return 1/2*t*t*t*t;
-			return -1/2 * ((t-=2)*t*t*t - 2);
-		},
-		easeInQuint: function (t) {
-			return 1*(t/=1)*t*t*t*t;
-		},
-		easeOutQuint: function (t) {
-			return 1*((t=t/1-1)*t*t*t*t + 1);
-		},
-		easeInOutQuint: function (t) {
-			if ((t/=1/2) < 1) return 1/2*t*t*t*t*t;
-			return 1/2*((t-=2)*t*t*t*t + 2);
-		},
-		easeInSine: function (t) {
-			return -1 * Math.cos(t/1 * (Math.PI/2)) + 1;
-		},
-		easeOutSine: function (t) {
-			return 1 * Math.sin(t/1 * (Math.PI/2));
-		},
-		easeInOutSine: function (t) {
-			return -1/2 * (Math.cos(Math.PI*t/1) - 1);
-		},
-		easeInExpo: function (t) {
-			return (t==0) ? 1 : 1 * Math.pow(2, 10 * (t/1 - 1));
-		},
-		easeOutExpo: function (t) {
-			return (t==1) ? 1 : 1 * (-Math.pow(2, -10 * t/1) + 1);
-		},
-		easeInOutExpo: function (t) {
-			if (t==0) return 0;
-			if (t==1) return 1;
-			if ((t/=1/2) < 1) return 1/2 * Math.pow(2, 10 * (t - 1));
-			return 1/2 * (-Math.pow(2, -10 * --t) + 2);
-			},
-		easeInCirc: function (t) {
-			if (t>=1) return t;
-			return -1 * (Math.sqrt(1 - (t/=1)*t) - 1);
-		},
-		easeOutCirc: function (t) {
-			return 1 * Math.sqrt(1 - (t=t/1-1)*t);
-		},
-		easeInOutCirc: function (t) {
-			if ((t/=1/2) < 1) return -1/2 * (Math.sqrt(1 - t*t) - 1);
-			return 1/2 * (Math.sqrt(1 - (t-=2)*t) + 1);
-		},
-		easeInElastic: function (t) {
-			var s=1.70158;var p=0;var a=1;
-			if (t==0) return 0;  if ((t/=1)==1) return 1;  if (!p) p=1*.3;
-			if (a < Math.abs(1)) { a=1; var s=p/4; }
-			else var s = p/(2*Math.PI) * Math.asin (1/a);
-			return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*1-s)*(2*Math.PI)/p ));
-		},
-		easeOutElastic: function (t) {
-			var s=1.70158;var p=0;var a=1;
-			if (t==0) return 0;  if ((t/=1)==1) return 1;  if (!p) p=1*.3;
-			if (a < Math.abs(1)) { a=1; var s=p/4; }
-			else var s = p/(2*Math.PI) * Math.asin (1/a);
-			return a*Math.pow(2,-10*t) * Math.sin( (t*1-s)*(2*Math.PI)/p ) + 1;
-		},
-		easeInOutElastic: function (t) {
-			var s=1.70158;var p=0;var a=1;
-			if (t==0) return 0;  if ((t/=1/2)==2) return 1;  if (!p) p=1*(.3*1.5);
-			if (a < Math.abs(1)) { a=1; var s=p/4; }
-			else var s = p/(2*Math.PI) * Math.asin (1/a);
-			if (t < 1) return -.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*1-s)*(2*Math.PI)/p ));
-			return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*1-s)*(2*Math.PI)/p )*.5 + 1;
-		},
-		easeInBack: function (t) {
-			var s = 1.70158;
-			return 1*(t/=1)*t*((s+1)*t - s);
-		},
-		easeOutBack: function (t) {
-			var s = 1.70158;
-			return 1*((t=t/1-1)*t*((s+1)*t + s) + 1);
-		},
-		easeInOutBack: function (t) {
-			var s = 1.70158; 
-			if ((t/=1/2) < 1) return 1/2*(t*t*(((s*=(1.525))+1)*t - s));
-			return 1/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2);
-		},
-		easeInBounce: function (t) {
-			return 1 - animationOptions.easeOutBounce (1-t);
-		},
-		easeOutBounce: function (t) {
-			if ((t/=1) < (1/2.75)) {
-				return 1*(7.5625*t*t);
-			} else if (t < (2/2.75)) {
-				return 1*(7.5625*(t-=(1.5/2.75))*t + .75);
-			} else if (t < (2.5/2.75)) {
-				return 1*(7.5625*(t-=(2.25/2.75))*t + .9375);
-			} else {
-				return 1*(7.5625*(t-=(2.625/2.75))*t + .984375);
-			}
-		},
-		easeInOutBounce: function (t) {
-			if (t < 1/2) return animationOptions.easeInBounce (t*2) * .5;
-			return animationOptions.easeOutBounce (t*2-1) * .5 + 1*.5;
-		}
-	};
-
-	//Variables global to the chart
-	var width = context.canvas.width;
-	var height = context.canvas.height;
-
-
-	//High pixel density displays - multiply the size of the canvas height/width by the device pixel ratio, then scale.
-	if (window.devicePixelRatio) {
-		context.canvas.style.width = width + "px";
-		context.canvas.style.height = height + "px";
-		context.canvas.height = height * window.devicePixelRatio;
-		context.canvas.width = width * window.devicePixelRatio;
-		context.scale(window.devicePixelRatio, window.devicePixelRatio);
-	}
-
-	this.PolarArea = function(data,options){
-	
-		chart.PolarArea.defaults = {
-			scaleOverlay : true,
-			scaleOverride : false,
-			scaleSteps : null,
-			scaleStepWidth : null,
-			scaleStartValue : null,
-			scaleShowLine : true,
-			scaleLineColor : "rgba(0,0,0,.1)",
-			scaleLineWidth : 1,
-			scaleShowLabels : true,
-			scaleLabel : "<%=value%>",
-			scaleFontFamily : "'Arial'",
-			scaleFontSize : 12,
-			scaleFontStyle : "normal",
-			scaleFontColor : "#666",
-			scaleShowLabelBackdrop : true,
-			scaleBackdropColor : "rgba(255,255,255,0.75)",
-			scaleBackdropPaddingY : 2,
-			scaleBackdropPaddingX : 2,
-			segmentShowStroke : true,
-			segmentStrokeColor : "#fff",
-			segmentStrokeWidth : 2,
-			animation : true,
-			animationSteps : 100,
-			animationEasing : "easeOutBounce",
-			animateRotate : true,
-			animateScale : false,
-			onAnimationComplete : null
-		};
-		
-		var config = (options)? mergeChartConfig(chart.PolarArea.defaults,options) : chart.PolarArea.defaults;
-		
-		return new PolarArea(data,config,context);
-	};
-
-	this.Radar = function(data,options){
-	
-		chart.Radar.defaults = {
-			scaleOverlay : false,
-			scaleOverride : false,
-			scaleSteps : null,
-			scaleStepWidth : null,
-			scaleStartValue : null,
-			scaleShowLine : true,
-			scaleLineColor : "rgba(0,0,0,.1)",
-			scaleLineWidth : 1,
-			scaleShowLabels : false,
-			scaleLabel : "<%=value%>",
-			scaleFontFamily : "'Arial'",
-			scaleFontSize : 12,
-			scaleFontStyle : "normal",
-			scaleFontColor : "#666",
-			scaleShowLabelBackdrop : true,
-			scaleBackdropColor : "rgba(255,255,255,0.75)",
-			scaleBackdropPaddingY : 2,
-			scaleBackdropPaddingX : 2,
-			angleShowLineOut : true,
-			angleLineColor : "rgba(0,0,0,.1)",
-			angleLineWidth : 1,			
-			pointLabelFontFamily : "'Arial'",
-			pointLabelFontStyle : "normal",
-			pointLabelFontSize : 12,
-			pointLabelFontColor : "#666",
-			pointDot : true,
-			pointDotRadius : 3,
-			pointDotStrokeWidth : 1,
-			datasetStroke : true,
-			datasetStrokeWidth : 2,
-			datasetFill : true,
-			animation : true,
-			animationSteps : 60,
-			animationEasing : "easeOutQuart",
-			onAnimationComplete : null
-		};
-		
-		var config = (options)? mergeChartConfig(chart.Radar.defaults,options) : chart.Radar.defaults;
-
-		return new Radar(data,config,context);
-	};
-	
-	this.Pie = function(data,options){
-		chart.Pie.defaults = {
-			segmentShowStroke : true,
-			segmentStrokeColor : "#fff",
-			segmentStrokeWidth : 2,
-			animation : true,
-			animationSteps : 100,
-			animationEasing : "easeOutBounce",
-			animateRotate : true,
-			animateScale : false,
-			onAnimationComplete : null
-		};		
-
-		var config = (options)? mergeChartConfig(chart.Pie.defaults,options) : chart.Pie.defaults;
-		
-		return new Pie(data,config,context);				
-	};
-	
-	this.Doughnut = function(data,options){
-	
-		chart.Doughnut.defaults = {
-			segmentShowStroke : true,
-			segmentStrokeColor : "#fff",
-			segmentStrokeWidth : 2,
-			percentageInnerCutout : 50,
-			animation : true,
-			animationSteps : 100,
-			animationEasing : "easeOutBounce",
-			animateRotate : true,
-			animateScale : false,
-			onAnimationComplete : null
-		};		
-
-		var config = (options)? mergeChartConfig(chart.Doughnut.defaults,options) : chart.Doughnut.defaults;
-		
-		return new Doughnut(data,config,context);			
-		
-	};
-
-	this.Line = function(data,options){
-	
-		chart.Line.defaults = {
-			scaleOverlay : false,
-			scaleOverride : false,
-			scaleSteps : null,
-			scaleStepWidth : null,
-			scaleStartValue : null,
-			scaleLineColor : "rgba(0,0,0,.1)",
-			scaleLineWidth : 1,
-			scaleShowLabels : true,
-			scaleLabel : "<%=value%>",
-			scaleFontFamily : "'Arial'",
-			scaleFontSize : 12,
-			scaleFontStyle : "normal",
-			scaleFontColor : "#666",
-			scaleShowGridLines : true,
-			scaleGridLineColor : "rgba(0,0,0,.05)",
-			scaleGridLineWidth : 1,
-			bezierCurve : true,
-			pointDot : true,
-			pointDotRadius : 4,
-			pointDotStrokeWidth : 2,
-			datasetStroke : true,
-			datasetStrokeWidth : 2,
-			datasetFill : true,
-			animation : true,
-			animationSteps : 60,
-			animationEasing : "easeOutQuart",
-			onAnimationComplete : null
-		};		
-		var config = (options) ? mergeChartConfig(chart.Line.defaults,options) : chart.Line.defaults;
-		
-		return new Line(data,config,context);
-	}
-	
-	this.Bar = function(data,options){
-		chart.Bar.defaults = {
-			scaleOverlay : false,
-			scaleOverride : false,
-			scaleSteps : null,
-			scaleStepWidth : null,
-			scaleStartValue : null,
-			scaleLineColor : "rgba(0,0,0,.1)",
-			scaleLineWidth : 1,
-			scaleShowLabels : true,
-			scaleLabel : "<%=value%>",
-			scaleFontFamily : "'Arial'",
-			scaleFontSize : 12,
-			scaleFontStyle : "normal",
-			scaleFontColor : "#666",
-			scaleShowGridLines : true,
-			scaleGridLineColor : "rgba(0,0,0,.05)",
-			scaleGridLineWidth : 1,
-			barShowStroke : true,
-			barStrokeWidth : 2,
-			barValueSpacing : 5,
-			barDatasetSpacing : 1,
-			animation : true,
-			animationSteps : 60,
-			animationEasing : "easeOutQuart",
-			onAnimationComplete : null
-		};		
-		var config = (options) ? mergeChartConfig(chart.Bar.defaults,options) : chart.Bar.defaults;
-		
-		return new Bar(data,config,context);		
-	}
-	
-	var clear = function(c){
-		c.clearRect(0, 0, width, height);
-	};
-
-	var PolarArea = function(data,config,ctx){
-		var maxSize, scaleHop, calculatedScale, labelHeight, scaleHeight, valueBounds, labelTemplateString;		
-		
-		
-		calculateDrawingSizes();
-		
-		valueBounds = getValueBounds();
-
-		labelTemplateString = (config.scaleShowLabels)? config.scaleLabel : null;
-
-		//Check and set the scale
-		if (!config.scaleOverride){
-			
-			calculatedScale = calculateScale(scaleHeight,valueBounds.maxSteps,valueBounds.minSteps,valueBounds.maxValue,valueBounds.minValue,labelTemplateString);
-		}
-		else {
-			calculatedScale = {
-				steps : config.scaleSteps,
-				stepValue : config.scaleStepWidth,
-				graphMin : config.scaleStartValue,
-				labels : []
-			}
-			populateLabels(labelTemplateString, calculatedScale.labels,calculatedScale.steps,config.scaleStartValue,config.scaleStepWidth);
-		}
-		
-		scaleHop = maxSize/(calculatedScale.steps);
-
-		//Wrap in an animation loop wrapper
-		animationLoop(config,drawScale,drawAllSegments,ctx);
-
-		function calculateDrawingSizes(){
-			maxSize = (Min([width,height])/2);
-			//Remove whatever is larger - the font size or line width.
-			
-			maxSize -= Max([config.scaleFontSize*0.5,config.scaleLineWidth*0.5]);
-			
-			labelHeight = config.scaleFontSize*2;
-			//If we're drawing the backdrop - add the Y padding to the label height and remove from drawing region.
-			if (config.scaleShowLabelBackdrop){
-				labelHeight += (2 * config.scaleBackdropPaddingY);
-				maxSize -= config.scaleBackdropPaddingY*1.5;
-			}
-			
-			scaleHeight = maxSize;
-			//If the label height is less than 5, set it to 5 so we don't have lines on top of each other.
-			labelHeight = Default(labelHeight,5);
-		}
-		function drawScale(){
-			for (var i=0; i<calculatedScale.steps; i++){
-				//If the line object is there
-				if (config.scaleShowLine){
-					ctx.beginPath();
-					ctx.arc(width/2, height/2, scaleHop * (i + 1), 0, (Math.PI * 2), true);
-					ctx.strokeStyle = config.scaleLineColor;
-					ctx.lineWidth = config.scaleLineWidth;
-					ctx.stroke();
-				}
-
-				if (config.scaleShowLabels){
-					ctx.textAlign = "center";
-					ctx.font = config.scaleFontStyle + " " + config.scaleFontSize + "px " + config.scaleFontFamily;
- 					var label =  calculatedScale.labels[i];
-					//If the backdrop object is within the font object
-					if (config.scaleShowLabelBackdrop){
-						var textWidth = ctx.measureText(label).width;
-						ctx.fillStyle = config.scaleBackdropColor;
-						ctx.beginPath();
-						ctx.rect(
-							Math.round(width/2 - textWidth/2 - config.scaleBackdropPaddingX),     //X
-							Math.round(height/2 - (scaleHop * (i + 1)) - config.scaleFontSize*0.5 - config.scaleBackdropPaddingY),//Y
-							Math.round(textWidth + (config.scaleBackdropPaddingX*2)), //Width
-							Math.round(config.scaleFontSize + (config.scaleBackdropPaddingY*2)) //Height
-						);
-						ctx.fill();
-					}
-					ctx.textBaseline = "middle";
-					ctx.fillStyle = config.scaleFontColor;
-					ctx.fillText(label,width/2,height/2 - (scaleHop * (i + 1)));
-				}
-			}
-		}
-		function drawAllSegments(animationDecimal){
-			var startAngle = -Math.PI/2,
-			angleStep = (Math.PI*2)/data.length,
-			scaleAnimation = 1,
-			rotateAnimation = 1;
-			if (config.animation) {
-				if (config.animateScale) {
-					scaleAnimation = animationDecimal;
-				}
-				if (config.animateRotate){
-					rotateAnimation = animationDecimal;
-				}
-			}
-
-			for (var i=0; i<data.length; i++){
-
-				ctx.beginPath();
-				ctx.arc(width/2,height/2,scaleAnimation * calculateOffset(data[i].value,calculatedScale,scaleHop),startAngle, startAngle + rotateAnimation*angleStep, false);
-				ctx.lineTo(width/2,height/2);
-				ctx.closePath();
-				ctx.fillStyle = data[i].color;
-				ctx.fill();
-
-				if(config.segmentShowStroke){
-					ctx.strokeStyle = config.segmentStrokeColor;
-					ctx.lineWidth = config.segmentStrokeWidth;
-					ctx.stroke();
-				}
-				startAngle += rotateAnimation*angleStep;
-			}
-		}
-		function getValueBounds() {
-			var upperValue = Number.MIN_VALUE;
-			var lowerValue = Number.MAX_VALUE;
-			for (var i=0; i<data.length; i++){
-				if (data[i].value > upperValue) {upperValue = data[i].value;}
-				if (data[i].value < lowerValue) {lowerValue = data[i].value;}
-			};
-
-			var maxSteps = Math.floor((scaleHeight / (labelHeight*0.66)));
-			var minSteps = Math.floor((scaleHeight / labelHeight*0.5));
-			
-			return {
-				maxValue : upperValue,
-				minValue : lowerValue,
-				maxSteps : maxSteps,
-				minSteps : minSteps
-			};
-			
-
-		}
-	}
-
-	var Radar = function (data,config,ctx) {
-		var maxSize, scaleHop, calculatedScale, labelHeight, scaleHeight, valueBounds, labelTemplateString;	
-			
-		//If no labels are defined set to an empty array, so referencing length for looping doesn't blow up.
-		if (!data.labels) data.labels = [];
-		
-		calculateDrawingSizes();
-
-		var valueBounds = getValueBounds();
-
-		labelTemplateString = (config.scaleShowLabels)? config.scaleLabel : null;
-
-		//Check and set the scale
-		if (!config.scaleOverride){
-			
-			calculatedScale = calculateScale(scaleHeight,valueBounds.maxSteps,valueBounds.minSteps,valueBounds.maxValue,valueBounds.minValue,labelTemplateString);
-		}
-		else {
-			calculatedScale = {
-				steps : config.scaleSteps,
-				stepValue : config.scaleStepWidth,
-				graphMin : config.scaleStartValue,
-				labels : []
-			}
-			populateLabels(labelTemplateString, calculatedScale.labels,calculatedScale.steps,config.scaleStartValue,config.scaleStepWidth);
-		}
-		
-		scaleHop = maxSize/(calculatedScale.steps);
-		
-		animationLoop(config,drawScale,drawAllDataPoints,ctx);
-		
-		//Radar specific functions.
-		function drawAllDataPoints(animationDecimal){
-			var rotationDegree = (2*Math.PI)/data.datasets[0].data.length;
-
-			ctx.save();
-			//translate to the centre of the canvas.
-			ctx.translate(width/2,height/2);
-			
-			//We accept multiple data sets for radar charts, so show loop through each set
-			for (var i=0; i<data.datasets.length; i++){
-				ctx.beginPath();
-
-				ctx.moveTo(0,animationDecimal*(-1*calculateOffset(data.datasets[i].data[0],calculatedScale,scaleHop)));
-				for (var j=1; j<data.datasets[i].data.length; j++){
-					ctx.rotate(rotationDegree);	
-					ctx.lineTo(0,animationDecimal*(-1*calculateOffset(data.datasets[i].data[j],calculatedScale,scaleHop)));
-			
-				}
-				ctx.closePath();
-				
-				
-				ctx.fillStyle = data.datasets[i].fillColor;
-				ctx.strokeStyle = data.datasets[i].strokeColor;
-				ctx.lineWidth = config.datasetStrokeWidth;
-				ctx.fill();
-				ctx.stroke();
-				
-								
-				if (config.pointDot){
-					ctx.fillStyle = data.datasets[i].pointColor;
-					ctx.strokeStyle = data.datasets[i].pointStrokeColor;
-					ctx.lineWidth = config.pointDotStrokeWidth;
-					for (var k=0; k<data.datasets[i].data.length; k++){
-						ctx.rotate(rotationDegree);
-						ctx.beginPath();
-						ctx.arc(0,animationDecimal*(-1*calculateOffset(data.datasets[i].data[k],calculatedScale,scaleHop)),config.pointDotRadius,2*Math.PI,false);
-						ctx.fill();
-						ctx.stroke();
-					}					
-					
-				}
-				ctx.rotate(rotationDegree);
-				
-			}
-			ctx.restore();
-			
-			
-		}
-		function drawScale(){
-			var rotationDegree = (2*Math.PI)/data.datasets[0].data.length;
-			ctx.save();
-		    ctx.translate(width / 2, height / 2);	
-			
-			if (config.angleShowLineOut){
-				ctx.strokeStyle = config.angleLineColor;		    	    
-				ctx.lineWidth = config.angleLineWidth;
-				for (var h=0; h<data.datasets[0].data.length; h++){
-					
-				    ctx.rotate(rotationDegree);
-					ctx.beginPath();
-					ctx.moveTo(0,0);
-					ctx.lineTo(0,-maxSize);
-					ctx.stroke();
-				}
-			}
-
-			for (var i=0; i<calculatedScale.steps; i++){
-				ctx.beginPath();
-				
-				if(config.scaleShowLine){
-					ctx.strokeStyle = config.scaleLineColor;
-					ctx.lineWidth = config.scaleLineWidth;
-					ctx.moveTo(0,-scaleHop * (i+1));					
-					for (var j=0; j<data.datasets[0].data.length; j++){
-					    ctx.rotate(rotationDegree);
-						ctx.lineTo(0,-scaleHop * (i+1));
-					}
-					ctx.closePath();
-					ctx.stroke();			
-							
-				}
-				
-				if (config.scaleShowLabels){				
-					ctx.textAlign = 'center';
-					ctx.font = config.scaleFontStyle + " " + config.scaleFontSize+"px " + config.scaleFontFamily; 
-					ctx.textBaseline = "middle";
-					
-					if (config.scaleShowLabelBackdrop){
-						var textWidth = ctx.measureText(calculatedScale.labels[i]).width;
-						ctx.fillStyle = config.scaleBackdropColor;
-						ctx.beginPath();
-						ctx.rect(
-							Math.round(- textWidth/2 - config.scaleBackdropPaddingX),     //X
-							Math.round((-scaleHop * (i + 1)) - config.scaleFontSize*0.5 - config.scaleBackdropPaddingY),//Y
-							Math.round(textWidth + (config.scaleBackdropPaddingX*2)), //Width
-							Math.round(config.scaleFontSize + (config.scaleBackdropPaddingY*2)) //Height
-						);
-						ctx.fill();
-					}						
-					ctx.fillStyle = config.scaleFontColor;
-					ctx.fillText(calculatedScale.labels[i],0,-scaleHop*(i+1));
-				}
-
-			}
-			for (var k=0; k<data.labels.length; k++){				
-			ctx.font = config.pointLabelFontStyle + " " + config.pointLabelFontSize+"px " + config.pointLabelFontFamily;
-			ctx.fillStyle = config.pointLabelFontColor;
-				var opposite = Math.sin(rotationDegree*k) * (maxSize + config.pointLabelFontSize);
-				var adjacent = Math.cos(rotationDegree*k) * (maxSize + config.pointLabelFontSize);
-				
-				if(rotationDegree*k == Math.PI || rotationDegree*k == 0){
-					ctx.textAlign = "center";
-				}
-				else if(rotationDegree*k > Math.PI){
-					ctx.textAlign = "right";
-				}
-				else{
-					ctx.textAlign = "left";
-				}
-				
-				ctx.textBaseline = "middle";
-				
-				ctx.fillText(data.labels[k],opposite,-adjacent);
-				
-			}
-			ctx.restore();
-		};
-		function calculateDrawingSizes(){
-			maxSize = (Min([width,height])/2);
-
-			labelHeight = config.scaleFontSize*2;
-			
-			var labelLength = 0;
-			for (var i=0; i<data.labels.length; i++){
-				ctx.font = config.pointLabelFontStyle + " " + config.pointLabelFontSize+"px " + config.pointLabelFontFamily;
-				var textMeasurement = ctx.measureText(data.labels[i]).width;
-				if(textMeasurement>labelLength) labelLength = textMeasurement;
-			}
-			
-			//Figure out whats the largest - the height of the text or the width of what's there, and minus it from the maximum usable size.
-			maxSize -= Max([labelLength,((config.pointLabelFontSize/2)*1.5)]);				
-			
-			maxSize -= config.pointLabelFontSize;
-			maxSize = CapValue(maxSize, null, 0);
-			scaleHeight = maxSize;
-			//If the label height is less than 5, set it to 5 so we don't have lines on top of each other.
-			labelHeight = Default(labelHeight,5);
-		};
-		function getValueBounds() {
-			var upperValue = Number.MIN_VALUE;
-			var lowerValue = Number.MAX_VALUE;
-			
-			for (var i=0; i<data.datasets.length; i++){
-				for (var j=0; j<data.datasets[i].data.length; j++){
-					if (data.datasets[i].data[j] > upperValue){upperValue = data.datasets[i].data[j]}
-					if (data.datasets[i].data[j] < lowerValue){lowerValue = data.datasets[i].data[j]}
-				}
-			}
-
-			var maxSteps = Math.floor((scaleHeight / (labelHeight*0.66)));
-			var minSteps = Math.floor((scaleHeight / labelHeight*0.5));
-			
-			return {
-				maxValue : upperValue,
-				minValue : lowerValue,
-				maxSteps : maxSteps,
-				minSteps : minSteps
-			};
-			
-
-		}
-	}
-
-	var Pie = function(data,config,ctx){
-		var segmentTotal = 0;
-		
-		//In case we have a canvas that is not a square. Minus 5 pixels as padding round the edge.
-		var pieRadius = Min([height/2,width/2]) - 5;
-		
-		for (var i=0; i<data.length; i++){
-			segmentTotal += data[i].value;
-		}
-		
-		
-		animationLoop(config,null,drawPieSegments,ctx);
-				
-		function drawPieSegments (animationDecimal){
-			var cumulativeAngle = -Math.PI/2,
-			scaleAnimation = 1,
-			rotateAnimation = 1;
-			if (config.animation) {
-				if (config.animateScale) {
-					scaleAnimation = animationDecimal;
-				}
-				if (config.animateRotate){
-					rotateAnimation = animationDecimal;
-				}
-			}
-			for (var i=0; i<data.length; i++){
-				var segmentAngle = rotateAnimation * ((data[i].value/segmentTotal) * (Math.PI*2));
-				ctx.beginPath();
-				ctx.arc(width/2,height/2,scaleAnimation * pieRadius,cumulativeAngle,cumulativeAngle + segmentAngle);
-				ctx.lineTo(width/2,height/2);
-				ctx.closePath();
-				ctx.fillStyle = data[i].color;
-				ctx.fill();
-				
-				if(config.segmentShowStroke){
-					ctx.lineWidth = config.segmentStrokeWidth;
-					ctx.strokeStyle = config.segmentStrokeColor;
-					ctx.stroke();
-				}
-				cumulativeAngle += segmentAngle;
-			}			
-		}		
-	}
-
-	var Doughnut = function(data,config,ctx){
-		var segmentTotal = 0;
-		
-		//In case we have a canvas that is not a square. Minus 5 pixels as padding round the edge.
-		var doughnutRadius = Min([height/2,width/2]) - 5;
-		
-		var cutoutRadius = doughnutRadius * (config.percentageInnerCutout/100);
-		
-		for (var i=0; i<data.length; i++){
-			segmentTotal += data[i].value;
-		}
-		
-		
-		animationLoop(config,null,drawPieSegments,ctx);
-		
-		
-		function drawPieSegments (animationDecimal){
-			var cumulativeAngle = -Math.PI/2,
-			scaleAnimation = 1,
-			rotateAnimation = 1;
-			if (config.animation) {
-				if (config.animateScale) {
-					scaleAnimation = animationDecimal;
-				}
-				if (config.animateRotate){
-					rotateAnimation = animationDecimal;
-				}
-			}
-			for (var i=0; i<data.length; i++){
-				var segmentAngle = rotateAnimation * ((data[i].value/segmentTotal) * (Math.PI*2));
-				ctx.beginPath();
-				ctx.arc(width/2,height/2,scaleAnimation * doughnutRadius,cumulativeAngle,cumulativeAngle + segmentAngle,false);
-				ctx.arc(width/2,height/2,scaleAnimation * cutoutRadius,cumulativeAngle + segmentAngle,cumulativeAngle,true);
-				ctx.closePath();
-				ctx.fillStyle = data[i].color;
-				ctx.fill();
-				
-				if(config.segmentShowStroke){
-					ctx.lineWidth = config.segmentStrokeWidth;
-					ctx.strokeStyle = config.segmentStrokeColor;
-					ctx.stroke();
-				}
-				cumulativeAngle += segmentAngle;
-			}			
-		}			
-		
-		
-		
-	}
-
-	var Line = function(data,config,ctx){
-		var maxSize, scaleHop, calculatedScale, labelHeight, scaleHeight, valueBounds, labelTemplateString, valueHop,widestXLabel, xAxisLength,yAxisPosX,xAxisPosY, rotateLabels = 0;
-			
-		calculateDrawingSizes();
-		
-		valueBounds = getValueBounds();
-		//Check and set the scale
-		labelTemplateString = (config.scaleShowLabels)? config.scaleLabel : "";
-		if (!config.scaleOverride){
-			
-			calculatedScale = calculateScale(scaleHeight,valueBounds.maxSteps,valueBounds.minSteps,valueBounds.maxValue,valueBounds.minValue,labelTemplateString);
-		}
-		else {
-			calculatedScale = {
-				steps : config.scaleSteps,
-				stepValue : config.scaleStepWidth,
-				graphMin : config.scaleStartValue,
-				labels : []
-			}
-			populateLabels(labelTemplateString, calculatedScale.labels,calculatedScale.steps,config.scaleStartValue,config.scaleStepWidth);
-		}
-		
-		scaleHop = Math.floor(scaleHeight/calculatedScale.steps);
-		calculateXAxisSize();
-		animationLoop(config,drawScale,drawLines,ctx);		
-		
-		function drawLines(animPc){
-			for (var i=0; i<data.datasets.length; i++){
-				ctx.strokeStyle = data.datasets[i].strokeColor;
-				ctx.lineWidth = config.datasetStrokeWidth;
-				ctx.beginPath();
-				ctx.moveTo(yAxisPosX, xAxisPosY - animPc*(calculateOffset(data.datasets[i].data[0],calculatedScale,scaleHop)))
-
-				for (var j=1; j<data.datasets[i].data.length; j++){
-					if (config.bezierCurve){
-						ctx.bezierCurveTo(xPos(j-0.5),yPos(i,j-1),xPos(j-0.5),yPos(i,j),xPos(j),yPos(i,j));
-					}
-					else{
-						ctx.lineTo(xPos(j),yPos(i,j));
-					}
-				}
-				ctx.stroke();
-				if (config.datasetFill){
-					ctx.lineTo(yAxisPosX + (valueHop*(data.datasets[i].data.length-1)),xAxisPosY);
-					ctx.lineTo(yAxisPosX,xAxisPosY);
-					ctx.closePath();
-					ctx.fillStyle = data.datasets[i].fillColor;
-					ctx.fill();
-				}
-				else{
-					ctx.closePath();
-				}
-				if(config.pointDot){
-					ctx.fillStyle = data.datasets[i].pointColor;
-					ctx.strokeStyle = data.datasets[i].pointStrokeColor;
-					ctx.lineWidth = config.pointDotStrokeWidth;
-					for (var k=0; k<data.datasets[i].data.length; k++){
-						ctx.beginPath();
-						ctx.arc(yAxisPosX + (valueHop *k),xAxisPosY - animPc*(calculateOffset(data.datasets[i].data[k],calculatedScale,scaleHop)),config.pointDotRadius,0,Math.PI*2,true);
-						ctx.fill();
-						ctx.stroke();
-					}
-				}
-			}
-			
-			function yPos(dataSet,iteration){
-				return xAxisPosY - animPc*(calculateOffset(data.datasets[dataSet].data[iteration],calculatedScale,scaleHop));			
-			}
-			function xPos(iteration){
-				return yAxisPosX + (valueHop * iteration);
-			}
-		}
-		function drawScale(){
-			//X axis line
-			ctx.lineWidth = config.scaleLineWidth;
-			ctx.strokeStyle = config.scaleLineColor;
-			ctx.beginPath();
-			ctx.moveTo(width-widestXLabel/2+5,xAxisPosY);
-			ctx.lineTo(width-(widestXLabel/2)-xAxisLength-5,xAxisPosY);
-			ctx.stroke();
-			
-			
-			if (rotateLabels > 0){
-				ctx.save();
-				ctx.textAlign = "right";
-			}
-			else{
-				ctx.textAlign = "center";
-			}
-			ctx.fillStyle = config.scaleFontColor;
-			for (var i=0; i<data.labels.length; i++){
-				ctx.save();
-				if (rotateLabels > 0){
-					ctx.translate(yAxisPosX + i*valueHop,xAxisPosY + config.scaleFontSize);
-					ctx.rotate(-(rotateLabels * (Math.PI/180)));
-					ctx.fillText(data.labels[i], 0,0);
-					ctx.restore();
-				}
-				
-				else{
-					ctx.fillText(data.labels[i], yAxisPosX + i*valueHop,xAxisPosY + config.scaleFontSize+3);					
-				}
-
-				ctx.beginPath();
-				ctx.moveTo(yAxisPosX + i * valueHop, xAxisPosY+3);
-				
-				//Check i isnt 0, so we dont go over the Y axis twice.
-				if(config.scaleShowGridLines && i>0){
-					ctx.lineWidth = config.scaleGridLineWidth;
-					ctx.strokeStyle = config.scaleGridLineColor;					
-					ctx.lineTo(yAxisPosX + i * valueHop, 5);
-				}
-				else{
-					ctx.lineTo(yAxisPosX + i * valueHop, xAxisPosY+3);				
-				}
-				ctx.stroke();
-			}
-			
-			//Y axis
-			ctx.lineWidth = config.scaleLineWidth;
-			ctx.strokeStyle = config.scaleLineColor;
-			ctx.beginPath();
-			ctx.moveTo(yAxisPosX,xAxisPosY+5);
-			ctx.lineTo(yAxisPosX,5);
-			ctx.stroke();
-			
-			ctx.textAlign = "right";
-			ctx.textBaseline = "middle";
-			for (var j=0; j<calculatedScale.steps; j++){
-				ctx.beginPath();
-				ctx.moveTo(yAxisPosX-3,xAxisPosY - ((j+1) * scaleHop));
-				if (config.scaleShowGridLines){
-					ctx.lineWidth = config.scaleGridLineWidth;
-					ctx.strokeStyle = config.scaleGridLineColor;
-					ctx.lineTo(yAxisPosX + xAxisLength + 5,xAxisPosY - ((j+1) * scaleHop));					
-				}
-				else{
-					ctx.lineTo(yAxisPosX-0.5,xAxisPosY - ((j+1) * scaleHop));
-				}
-				
-				ctx.stroke();
-				
-				if (config.scaleShowLabels){
-					ctx.fillText(calculatedScale.labels[j],yAxisPosX-8,xAxisPosY - ((j+1) * scaleHop));
-				}
-			}
-			
-			
-		}
-		function calculateXAxisSize(){
-			var longestText = 1;
-			//if we are showing the labels
-			if (config.scaleShowLabels){
-				ctx.font = config.scaleFontStyle + " " + config.scaleFontSize+"px " + config.scaleFontFamily;
-				for (var i=0; i<calculatedScale.labels.length; i++){
-					var measuredText = ctx.measureText(calculatedScale.labels[i]).width;
-					longestText = (measuredText > longestText)? measuredText : longestText;
-				}
-				//Add a little extra padding from the y axis
-				longestText +=10;
-			}
-			xAxisLength = width - longestText - widestXLabel;
-			valueHop = Math.floor(xAxisLength/(data.labels.length-1));	
-				
-			yAxisPosX = width-widestXLabel/2-xAxisLength;
-			xAxisPosY = scaleHeight + config.scaleFontSize/2;				
-		}		
-		function calculateDrawingSizes(){
-			maxSize = height;
-
-			//Need to check the X axis first - measure the length of each text metric, and figure out if we need to rotate by 45 degrees.
-			ctx.font = config.scaleFontStyle + " " + config.scaleFontSize+"px " + config.scaleFontFamily;
-			widestXLabel = 1;
-			for (var i=0; i<data.labels.length; i++){
-				var textLength = ctx.measureText(data.labels[i]).width;
-				//If the text length is longer - make that equal to longest text!
-				widestXLabel = (textLength > widestXLabel)? textLength : widestXLabel;
-			}
-			if (width/data.labels.length < widestXLabel){
-				rotateLabels = 45;
-				if (width/data.labels.length < Math.cos(rotateLabels) * widestXLabel){
-					rotateLabels = 90;
-					maxSize -= widestXLabel; 
-				}
-				else{
-					maxSize -= Math.sin(rotateLabels) * widestXLabel;
-				}
-			}
-			else{
-				maxSize -= config.scaleFontSize;
-			}
-			
-			//Add a little padding between the x line and the text
-			maxSize -= 5;
-			
-			
-			labelHeight = config.scaleFontSize;
-			
-			maxSize -= labelHeight;
-			//Set 5 pixels greater than the font size to allow for a little padding from the X axis.
-			
-			scaleHeight = maxSize;
-			
-			//Then get the area above we can safely draw on.
-			
-		}		
-		function getValueBounds() {
-			var upperValue = Number.MIN_VALUE;
-			var lowerValue = Number.MAX_VALUE;
-			for (var i=0; i<data.datasets.length; i++){
-				for (var j=0; j<data.datasets[i].data.length; j++){
-					if ( data.datasets[i].data[j] > upperValue) { upperValue = data.datasets[i].data[j] };
-					if ( data.datasets[i].data[j] < lowerValue) { lowerValue = data.datasets[i].data[j] };
-				}
-			};
-	
-			var maxSteps = Math.floor((scaleHeight / (labelHeight*0.66)));
-			var minSteps = Math.floor((scaleHeight / labelHeight*0.5));
-			
-			return {
-				maxValue : upperValue,
-				minValue : lowerValue,
-				maxSteps : maxSteps,
-				minSteps : minSteps
-			};
-			
-	
-		}
-
-		
-	}
-	
-	var Bar = function(data,config,ctx){
-		var maxSize, scaleHop, calculatedScale, labelHeight, scaleHeight, valueBounds, labelTemplateString, valueHop,widestXLabel, xAxisLength,yAxisPosX,xAxisPosY,barWidth, rotateLabels = 0;
-			
-		calculateDrawingSizes();
-		
-		valueBounds = getValueBounds();
-		//Check and set the scale
-		labelTemplateString = (config.scaleShowLabels)? config.scaleLabel : "";
-		if (!config.scaleOverride){
-			
-			calculatedScale = calculateScale(scaleHeight,valueBounds.maxSteps,valueBounds.minSteps,valueBounds.maxValue,valueBounds.minValue,labelTemplateString);
-		}
-		else {
-			calculatedScale = {
-				steps : config.scaleSteps,
-				stepValue : config.scaleStepWidth,
-				graphMin : config.scaleStartValue,
-				labels : []
-			}
-			populateLabels(labelTemplateString, calculatedScale.labels,calculatedScale.steps,config.scaleStartValue,config.scaleStepWidth);
-		}
-		
-		scaleHop = Math.floor(scaleHeight/calculatedScale.steps);
-		calculateXAxisSize();
-		animationLoop(config,drawScale,drawBars,ctx);		
-		
-		function drawBars(animPc){
-			ctx.lineWidth = config.barStrokeWidth;
-			for (var i=0; i<data.datasets.length; i++){
-					ctx.fillStyle = data.datasets[i].fillColor;
-					ctx.strokeStyle = data.datasets[i].strokeColor;
-				for (var j=0; j<data.datasets[i].data.length; j++){
-					var barOffset = yAxisPosX + config.barValueSpacing + valueHop*j + barWidth*i + config.barDatasetSpacing*i + config.barStrokeWidth*i;
-					
-					ctx.beginPath();
-					ctx.moveTo(barOffset, xAxisPosY);
-					ctx.lineTo(barOffset, xAxisPosY - animPc*calculateOffset(data.datasets[i].data[j],calculatedScale,scaleHop)+(config.barStrokeWidth/2));
-					ctx.lineTo(barOffset + barWidth, xAxisPosY - animPc*calculateOffset(data.datasets[i].data[j],calculatedScale,scaleHop)+(config.barStrokeWidth/2));
-					ctx.lineTo(barOffset + barWidth, xAxisPosY);
-					if(config.barShowStroke){
-						ctx.stroke();
-					}
-					ctx.closePath();
-					ctx.fill();
-				}
-			}
-			
-		}
-		function drawScale(){
-			//X axis line
-			ctx.lineWidth = config.scaleLineWidth;
-			ctx.strokeStyle = config.scaleLineColor;
-			ctx.beginPath();
-			ctx.moveTo(width-widestXLabel/2+5,xAxisPosY);
-			ctx.lineTo(width-(widestXLabel/2)-xAxisLength-5,xAxisPosY);
-			ctx.stroke();
-			
-			
-			if (rotateLabels > 0){
-				ctx.save();
-				ctx.textAlign = "right";
-			}
-			else{
-				ctx.textAlign = "center";
-			}
-			ctx.fillStyle = config.scaleFontColor;
-			for (var i=0; i<data.labels.length; i++){
-				ctx.save();
-				if (rotateLabels > 0){
-					ctx.translate(yAxisPosX + i*valueHop,xAxisPosY + config.scaleFontSize);
-					ctx.rotate(-(rotateLabels * (Math.PI/180)));
-					ctx.fillText(data.labels[i], 0,0);
-					ctx.restore();
-				}
-				
-				else{
-					ctx.fillText(data.labels[i], yAxisPosX + i*valueHop + valueHop/2,xAxisPosY + config.scaleFontSize+3);					
-				}
-
-				ctx.beginPath();
-				ctx.moveTo(yAxisPosX + (i+1) * valueHop, xAxisPosY+3);
-				
-				//Check i isnt 0, so we dont go over the Y axis twice.
-					ctx.lineWidth = config.scaleGridLineWidth;
-					ctx.strokeStyle = config.scaleGridLineColor;					
-					ctx.lineTo(yAxisPosX + (i+1) * valueHop, 5);
-				ctx.stroke();
-			}
-			
-			//Y axis
-			ctx.lineWidth = config.scaleLineWidth;
-			ctx.strokeStyle = config.scaleLineColor;
-			ctx.beginPath();
-			ctx.moveTo(yAxisPosX,xAxisPosY+5);
-			ctx.lineTo(yAxisPosX,5);
-			ctx.stroke();
-			
-			ctx.textAlign = "right";
-			ctx.textBaseline = "middle";
-			for (var j=0; j<calculatedScale.steps; j++){
-				ctx.beginPath();
-				ctx.moveTo(yAxisPosX-3,xAxisPosY - ((j+1) * scaleHop));
-				if (config.scaleShowGridLines){
-					ctx.lineWidth = config.scaleGridLineWidth;
-					ctx.strokeStyle = config.scaleGridLineColor;
-					ctx.lineTo(yAxisPosX + xAxisLength + 5,xAxisPosY - ((j+1) * scaleHop));					
-				}
-				else{
-					ctx.lineTo(yAxisPosX-0.5,xAxisPosY - ((j+1) * scaleHop));
-				}
-				
-				ctx.stroke();
-				if (config.scaleShowLabels){
-					ctx.fillText(calculatedScale.labels[j],yAxisPosX-8,xAxisPosY - ((j+1) * scaleHop));
-				}
-			}
-			
-			
-		}
-		function calculateXAxisSize(){
-			var longestText = 1;
-			//if we are showing the labels
-			if (config.scaleShowLabels){
-				ctx.font = config.scaleFontStyle + " " + config.scaleFontSize+"px " + config.scaleFontFamily;
-				for (var i=0; i<calculatedScale.labels.length; i++){
-					var measuredText = ctx.measureText(calculatedScale.labels[i]).width;
-					longestText = (measuredText > longestText)? measuredText : longestText;
-				}
-				//Add a little extra padding from the y axis
-				longestText +=10;
-			}
-			xAxisLength = width - longestText - widestXLabel;
-			valueHop = Math.floor(xAxisLength/(data.labels.length));	
-			
-			barWidth = (valueHop - config.scaleGridLineWidth*2 - (config.barValueSpacing*2) - (config.barDatasetSpacing*data.datasets.length-1) - ((config.barStrokeWidth/2)*data.datasets.length-1))/data.datasets.length;
-			
-			yAxisPosX = width-widestXLabel/2-xAxisLength;
-			xAxisPosY = scaleHeight + config.scaleFontSize/2;				
-		}		
-		function calculateDrawingSizes(){
-			maxSize = height;
-
-			//Need to check the X axis first - measure the length of each text metric, and figure out if we need to rotate by 45 degrees.
-			ctx.font = config.scaleFontStyle + " " + config.scaleFontSize+"px " + config.scaleFontFamily;
-			widestXLabel = 1;
-			for (var i=0; i<data.labels.length; i++){
-				var textLength = ctx.measureText(data.labels[i]).width;
-				//If the text length is longer - make that equal to longest text!
-				widestXLabel = (textLength > widestXLabel)? textLength : widestXLabel;
-			}
-			if (width/data.labels.length < widestXLabel){
-				rotateLabels = 45;
-				if (width/data.labels.length < Math.cos(rotateLabels) * widestXLabel){
-					rotateLabels = 90;
-					maxSize -= widestXLabel; 
-				}
-				else{
-					maxSize -= Math.sin(rotateLabels) * widestXLabel;
-				}
-			}
-			else{
-				maxSize -= config.scaleFontSize;
-			}
-			
-			//Add a little padding between the x line and the text
-			maxSize -= 5;
-			
-			
-			labelHeight = config.scaleFontSize;
-			
-			maxSize -= labelHeight;
-			//Set 5 pixels greater than the font size to allow for a little padding from the X axis.
-			
-			scaleHeight = maxSize;
-			
-			//Then get the area above we can safely draw on.
-			
-		}		
-		function getValueBounds() {
-			var upperValue = Number.MIN_VALUE;
-			var lowerValue = Number.MAX_VALUE;
-			for (var i=0; i<data.datasets.length; i++){
-				for (var j=0; j<data.datasets[i].data.length; j++){
-					if ( data.datasets[i].data[j] > upperValue) { upperValue = data.datasets[i].data[j] };
-					if ( data.datasets[i].data[j] < lowerValue) { lowerValue = data.datasets[i].data[j] };
-				}
-			};
-	
-			var maxSteps = Math.floor((scaleHeight / (labelHeight*0.66)));
-			var minSteps = Math.floor((scaleHeight / labelHeight*0.5));
-			
-			return {
-				maxValue : upperValue,
-				minValue : lowerValue,
-				maxSteps : maxSteps,
-				minSteps : minSteps
-			};
-			
-	
-		}
-	}
-	
-	function calculateOffset(val,calculatedScale,scaleHop){
-		var outerValue = calculatedScale.steps * calculatedScale.stepValue;
-		var adjustedValue = val - calculatedScale.graphMin;
-		var scalingFactor = CapValue(adjustedValue/outerValue,1,0);
-		return (scaleHop*calculatedScale.steps) * scalingFactor;
-	}
-	
-	function animationLoop(config,drawScale,drawData,ctx){
-		var animFrameAmount = (config.animation)? 1/CapValue(config.animationSteps,Number.MAX_VALUE,1) : 1,
-			easingFunction = animationOptions[config.animationEasing],
-			percentAnimComplete =(config.animation)? 0 : 1;
-		
-	
-		
-		if (typeof drawScale !== "function") drawScale = function(){};
-		
-		requestAnimFrame(animLoop);
-		
-		function animateFrame(){
-			var easeAdjustedAnimationPercent =(config.animation)? CapValue(easingFunction(percentAnimComplete),null,0) : 1;
-			clear(ctx);
-			if(config.scaleOverlay){
-				drawData(easeAdjustedAnimationPercent);
-				drawScale();
-			} else {
-				drawScale();
-				drawData(easeAdjustedAnimationPercent);
-			}				
-		}
-		function animLoop(){
-			//We need to check if the animation is incomplete (less than 1), or complete (1).
-				percentAnimComplete += animFrameAmount;
-				animateFrame();	
-				//Stop the loop continuing forever
-				if (percentAnimComplete <= 1){
-					requestAnimFrame(animLoop);
-				}
-				else{
-					if (typeof config.onAnimationComplete == "function") config.onAnimationComplete();
-				}
-			
-		}		
-		
-	}
-
-	//Declare global functions to be called within this namespace here.
-	
-	
-	// shim layer with setTimeout fallback
-	var requestAnimFrame = (function(){
-		return window.requestAnimationFrame ||
-			window.webkitRequestAnimationFrame ||
-			window.mozRequestAnimationFrame ||
-			window.oRequestAnimationFrame ||
-			window.msRequestAnimationFrame ||
-			function(callback) {
-				window.setTimeout(callback, 1000 / 60);
-			};
-	})();
-
-	function calculateScale(drawingHeight,maxSteps,minSteps,maxValue,minValue,labelTemplateString){
-			var graphMin,graphMax,graphRange,stepValue,numberOfSteps,valueRange,rangeOrderOfMagnitude,decimalNum;
-			
-			valueRange = maxValue - minValue;
-			
-			rangeOrderOfMagnitude = calculateOrderOfMagnitude(valueRange);
-
-        	graphMin = Math.floor(minValue / (1 * Math.pow(10, rangeOrderOfMagnitude))) * Math.pow(10, rangeOrderOfMagnitude);
-            
-            graphMax = Math.ceil(maxValue / (1 * Math.pow(10, rangeOrderOfMagnitude))) * Math.pow(10, rangeOrderOfMagnitude);
-            
-            graphRange = graphMax - graphMin;
-            
-            stepValue = Math.pow(10, rangeOrderOfMagnitude);
-            
-	        numberOfSteps = Math.round(graphRange / stepValue);
-	        
-	        //Compare number of steps to the max and min for that size graph, and add in half steps if need be.	        
-	        while(numberOfSteps < minSteps || numberOfSteps > maxSteps) {
-	        	if (numberOfSteps < minSteps){
-			        stepValue /= 2;
-			        numberOfSteps = Math.round(graphRange/stepValue);
-		        }
-		        else{
-			        stepValue *=2;
-			        numberOfSteps = Math.round(graphRange/stepValue);
-		        }
-	        };
-
-	        var labels = [];
-	        populateLabels(labelTemplateString, labels, numberOfSteps, graphMin, stepValue);
-		
-	        return {
-		        steps : numberOfSteps,
-				stepValue : stepValue,
-				graphMin : graphMin,
-				labels : labels		        
-		        
-	        }
-		
-			function calculateOrderOfMagnitude(val){
-			  return Math.floor(Math.log(val) / Math.LN10);
-			}		
-
-
-	}
-
-    //Populate an array of all the labels by interpolating the string.
-    function populateLabels(labelTemplateString, labels, numberOfSteps, graphMin, stepValue) {
-        if (labelTemplateString) {
-            //Fix floating point errors by setting to fixed the on the same decimal as the stepValue.
-            for (var i = 1; i < numberOfSteps + 1; i++) {
-                labels.push(tmpl(labelTemplateString, {value: (graphMin + (stepValue * i)).toFixed(getDecimalPlaces(stepValue))}));
-            }
-        }
-    }
-	
-	//Max value from array
-	function Max( array ){
-		return Math.max.apply( Math, array );
-	};
-	//Min value from array
-	function Min( array ){
-		return Math.min.apply( Math, array );
-	};
-	//Default if undefined
-	function Default(userDeclared,valueIfFalse){
-		if(!userDeclared){
-			return valueIfFalse;
-		} else {
-			return userDeclared;
-		}
-	};
-	//Is a number function
-	function isNumber(n) {
-		return !isNaN(parseFloat(n)) && isFinite(n);
-	}
-	//Apply cap a value at a high or low number
-	function CapValue(valueToCap, maxValue, minValue){
-		if(isNumber(maxValue)) {
-			if( valueToCap > maxValue ) {
-				return maxValue;
-			}
-		}
-		if(isNumber(minValue)){
-			if ( valueToCap < minValue ){
-				return minValue;
-			}
-		}
-		return valueToCap;
-	}
-	function getDecimalPlaces (num){
-		var numberOfDecimalPlaces;
-		if (num%1!=0){
-			return num.toString().split(".")[1].length
-		}
-		else{
-			return 0;
-		}
-		
-	} 
-	
-	function mergeChartConfig(defaults,userDefined){
-		var returnObj = {};
-	    for (var attrname in defaults) { returnObj[attrname] = defaults[attrname]; }
-	    for (var attrname in userDefined) { returnObj[attrname] = userDefined[attrname]; }
-	    return returnObj;
-	}
-	
-	//Javascript micro templating by John Resig - source at http://ejohn.org/blog/javascript-micro-templating/
-	  var cache = {};
-	 
-	  function tmpl(str, data){
-	    // Figure out if we're getting a template, or if we need to
-	    // load the template - and be sure to cache the result.
-	    var fn = !/\W/.test(str) ?
-	      cache[str] = cache[str] ||
-	        tmpl(document.getElementById(str).innerHTML) :
-	     
-	      // Generate a reusable function that will serve as a template
-	      // generator (and which will be cached).
-	      new Function("obj",
-	        "var p=[],print=function(){p.push.apply(p,arguments);};" +
-	       
-	        // Introduce the data as local variables using with(){}
-	        "with(obj){p.push('" +
-	       
-	        // Convert the template into pure JavaScript
-	        str
-	          .replace(/[\r\t\n]/g, " ")
-	          .split("<%").join("\t")
-	          .replace(/((^|%>)[^\t]*)'/g, "$1\r")
-	          .replace(/\t=(.*?)%>/g, "',$1,'")
-	          .split("\t").join("');")
-	          .split("%>").join("p.push('")
-	          .split("\r").join("\\'")
-	      + "');}return p.join('');");
-	   
-	    // Provide some basic currying to the user
-	    return data ? fn( data ) : fn;
-	  };
-}
-
-
-
-;
-$.fn.numeralinput = function() {
-  $(this).css("ime-mode", "disabled");
-  this.bind("keypress", function(e) {
-    if (e.charCode === 0) return true;  //非字符键 for firefox
-    var code = (e.keyCode ? e.keyCode : e.which);  //兼容火狐 IE    
-    return code >= 48 && code <= 57;
-  });
-  this.bind("blur", function() {
-    if (!/\d+/.test(this.value)) {
-      this.value = "";
-    }
-  });
-  this.bind("paste", function() {
-    if (window.clipboardData) {
-      var s = clipboardData.getData('text');
-      if (!/\D/.test(s)) {
-        value = parseInt(s, 10);
-        return true;
-      }
-    }
-    return false;
-  });
-  this.bind("dragenter", function() {
-    return false;
-  });
-  this.bind("keyup", function() {
-    if (this.value !== '0' && /(^0+)/.test(this.value)) {
-      this.value = parseInt(this.value, 10);
-    }
-  });
-  this.bind("propertychange", function(e) {
-    if (isNaN(this.value))
-    this.value = this.value.replace(/\D/g, "");
-  });
-  this.bind("input", function(e) {
-    if (isNaN(this.value))
-    this.value = this.value.replace(/\D/g, "");
-  });
-};
+(function(){"use strict";var t=this,i=t.Chart,e=function(t){this.canvas=t.canvas,this.ctx=t;var i=function(t,i){return t["offset"+i]?t["offset"+i]:document.defaultView.getComputedStyle(t).getPropertyValue(i)},e=this.width=i(t.canvas,"Width"),n=this.height=i(t.canvas,"Height");t.canvas.width=e,t.canvas.height=n;var e=this.width=t.canvas.width,n=this.height=t.canvas.height;return this.aspectRatio=this.width/this.height,s.retinaScale(this),this};e.defaults={global:{animation:!0,animationSteps:60,animationEasing:"easeOutQuart",showScale:!0,scaleOverride:!1,scaleSteps:null,scaleStepWidth:null,scaleStartValue:null,scaleLineColor:"rgba(0,0,0,.1)",scaleLineWidth:1,scaleShowLabels:!0,scaleLabel:"<%=value%>",scaleIntegersOnly:!0,scaleBeginAtZero:!1,scaleFontFamily:"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",scaleFontSize:12,scaleFontStyle:"normal",scaleFontColor:"#666",responsive:!1,maintainAspectRatio:!0,showTooltips:!0,customTooltips:!1,tooltipEvents:["mousemove","touchstart","touchmove","mouseout"],tooltipFillColor:"rgba(0,0,0,0.8)",tooltipFontFamily:"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",tooltipFontSize:14,tooltipFontStyle:"normal",tooltipFontColor:"#fff",tooltipTitleFontFamily:"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",tooltipTitleFontSize:14,tooltipTitleFontStyle:"bold",tooltipTitleFontColor:"#fff",tooltipYPadding:6,tooltipXPadding:6,tooltipCaretSize:8,tooltipCornerRadius:6,tooltipXOffset:10,tooltipTemplate:"<%if (label){%><%=label%>: <%}%><%= value %>",multiTooltipTemplate:"<%= value %>",multiTooltipKeyBackground:"#fff",onAnimationProgress:function(){},onAnimationComplete:function(){}}},e.types={};var s=e.helpers={},n=s.each=function(t,i,e){var s=Array.prototype.slice.call(arguments,3);if(t)if(t.length===+t.length){var n;for(n=0;n<t.length;n++)i.apply(e,[t[n],n].concat(s))}else for(var o in t)i.apply(e,[t[o],o].concat(s))},o=s.clone=function(t){var i={};return n(t,function(e,s){t.hasOwnProperty(s)&&(i[s]=e)}),i},a=s.extend=function(t){return n(Array.prototype.slice.call(arguments,1),function(i){n(i,function(e,s){i.hasOwnProperty(s)&&(t[s]=e)})}),t},h=s.merge=function(){var t=Array.prototype.slice.call(arguments,0);return t.unshift({}),a.apply(null,t)},l=s.indexOf=function(t,i){if(Array.prototype.indexOf)return t.indexOf(i);for(var e=0;e<t.length;e++)if(t[e]===i)return e;return-1},r=(s.where=function(t,i){var e=[];return s.each(t,function(t){i(t)&&e.push(t)}),e},s.findNextWhere=function(t,i,e){e||(e=-1);for(var s=e+1;s<t.length;s++){var n=t[s];if(i(n))return n}},s.findPreviousWhere=function(t,i,e){e||(e=t.length);for(var s=e-1;s>=0;s--){var n=t[s];if(i(n))return n}},s.inherits=function(t){var i=this,e=t&&t.hasOwnProperty("constructor")?t.constructor:function(){return i.apply(this,arguments)},s=function(){this.constructor=e};return s.prototype=i.prototype,e.prototype=new s,e.extend=r,t&&a(e.prototype,t),e.__super__=i.prototype,e}),c=s.noop=function(){},u=s.uid=function(){var t=0;return function(){return"chart-"+t++}}(),d=s.warn=function(t){window.console&&"function"==typeof window.console.warn&&console.warn(t)},p=s.amd="function"==typeof define&&define.amd,f=s.isNumber=function(t){return!isNaN(parseFloat(t))&&isFinite(t)},g=s.max=function(t){return Math.max.apply(Math,t)},m=s.min=function(t){return Math.min.apply(Math,t)},v=(s.cap=function(t,i,e){if(f(i)){if(t>i)return i}else if(f(e)&&e>t)return e;return t},s.getDecimalPlaces=function(t){return t%1!==0&&f(t)?t.toString().split(".")[1].length:0}),S=s.radians=function(t){return t*(Math.PI/180)},x=(s.getAngleFromPoint=function(t,i){var e=i.x-t.x,s=i.y-t.y,n=Math.sqrt(e*e+s*s),o=2*Math.PI+Math.atan2(s,e);return 0>e&&0>s&&(o+=2*Math.PI),{angle:o,distance:n}},s.aliasPixel=function(t){return t%2===0?0:.5}),y=(s.splineCurve=function(t,i,e,s){var n=Math.sqrt(Math.pow(i.x-t.x,2)+Math.pow(i.y-t.y,2)),o=Math.sqrt(Math.pow(e.x-i.x,2)+Math.pow(e.y-i.y,2)),a=s*n/(n+o),h=s*o/(n+o);return{inner:{x:i.x-a*(e.x-t.x),y:i.y-a*(e.y-t.y)},outer:{x:i.x+h*(e.x-t.x),y:i.y+h*(e.y-t.y)}}},s.calculateOrderOfMagnitude=function(t){return Math.floor(Math.log(t)/Math.LN10)}),C=(s.calculateScaleRange=function(t,i,e,s,n){var o=2,a=Math.floor(i/(1.5*e)),h=o>=a,l=g(t),r=m(t);l===r&&(l+=.5,r>=.5&&!s?r-=.5:l+=.5);for(var c=Math.abs(l-r),u=y(c),d=Math.ceil(l/(1*Math.pow(10,u)))*Math.pow(10,u),p=s?0:Math.floor(r/(1*Math.pow(10,u)))*Math.pow(10,u),f=d-p,v=Math.pow(10,u),S=Math.round(f/v);(S>a||a>2*S)&&!h;)if(S>a)v*=2,S=Math.round(f/v),S%1!==0&&(h=!0);else if(n&&u>=0){if(v/2%1!==0)break;v/=2,S=Math.round(f/v)}else v/=2,S=Math.round(f/v);return h&&(S=o,v=f/S),{steps:S,stepValue:v,min:p,max:p+S*v}},s.template=function(t,i){function e(t,i){var e=/\W/.test(t)?new Function("obj","var p=[],print=function(){p.push.apply(p,arguments);};with(obj){p.push('"+t.replace(/[\r\t\n]/g," ").split("<%").join("	").replace(/((^|%>)[^\t]*)'/g,"$1\r").replace(/\t=(.*?)%>/g,"',$1,'").split("	").join("');").split("%>").join("p.push('").split("\r").join("\\'")+"');}return p.join('');"):s[t]=s[t];return i?e(i):e}if(t instanceof Function)return t(i);var s={};return e(t,i)}),w=(s.generateLabels=function(t,i,e,s){var o=new Array(i);return labelTemplateString&&n(o,function(i,n){o[n]=C(t,{value:e+s*(n+1)})}),o},s.easingEffects={linear:function(t){return t},easeInQuad:function(t){return t*t},easeOutQuad:function(t){return-1*t*(t-2)},easeInOutQuad:function(t){return(t/=.5)<1?.5*t*t:-0.5*(--t*(t-2)-1)},easeInCubic:function(t){return t*t*t},easeOutCubic:function(t){return 1*((t=t/1-1)*t*t+1)},easeInOutCubic:function(t){return(t/=.5)<1?.5*t*t*t:.5*((t-=2)*t*t+2)},easeInQuart:function(t){return t*t*t*t},easeOutQuart:function(t){return-1*((t=t/1-1)*t*t*t-1)},easeInOutQuart:function(t){return(t/=.5)<1?.5*t*t*t*t:-0.5*((t-=2)*t*t*t-2)},easeInQuint:function(t){return 1*(t/=1)*t*t*t*t},easeOutQuint:function(t){return 1*((t=t/1-1)*t*t*t*t+1)},easeInOutQuint:function(t){return(t/=.5)<1?.5*t*t*t*t*t:.5*((t-=2)*t*t*t*t+2)},easeInSine:function(t){return-1*Math.cos(t/1*(Math.PI/2))+1},easeOutSine:function(t){return 1*Math.sin(t/1*(Math.PI/2))},easeInOutSine:function(t){return-0.5*(Math.cos(Math.PI*t/1)-1)},easeInExpo:function(t){return 0===t?1:1*Math.pow(2,10*(t/1-1))},easeOutExpo:function(t){return 1===t?1:1*(-Math.pow(2,-10*t/1)+1)},easeInOutExpo:function(t){return 0===t?0:1===t?1:(t/=.5)<1?.5*Math.pow(2,10*(t-1)):.5*(-Math.pow(2,-10*--t)+2)},easeInCirc:function(t){return t>=1?t:-1*(Math.sqrt(1-(t/=1)*t)-1)},easeOutCirc:function(t){return 1*Math.sqrt(1-(t=t/1-1)*t)},easeInOutCirc:function(t){return(t/=.5)<1?-0.5*(Math.sqrt(1-t*t)-1):.5*(Math.sqrt(1-(t-=2)*t)+1)},easeInElastic:function(t){var i=1.70158,e=0,s=1;return 0===t?0:1==(t/=1)?1:(e||(e=.3),s<Math.abs(1)?(s=1,i=e/4):i=e/(2*Math.PI)*Math.asin(1/s),-(s*Math.pow(2,10*(t-=1))*Math.sin(2*(1*t-i)*Math.PI/e)))},easeOutElastic:function(t){var i=1.70158,e=0,s=1;return 0===t?0:1==(t/=1)?1:(e||(e=.3),s<Math.abs(1)?(s=1,i=e/4):i=e/(2*Math.PI)*Math.asin(1/s),s*Math.pow(2,-10*t)*Math.sin(2*(1*t-i)*Math.PI/e)+1)},easeInOutElastic:function(t){var i=1.70158,e=0,s=1;return 0===t?0:2==(t/=.5)?1:(e||(e=.3*1.5),s<Math.abs(1)?(s=1,i=e/4):i=e/(2*Math.PI)*Math.asin(1/s),1>t?-.5*s*Math.pow(2,10*(t-=1))*Math.sin(2*(1*t-i)*Math.PI/e):s*Math.pow(2,-10*(t-=1))*Math.sin(2*(1*t-i)*Math.PI/e)*.5+1)},easeInBack:function(t){var i=1.70158;return 1*(t/=1)*t*((i+1)*t-i)},easeOutBack:function(t){var i=1.70158;return 1*((t=t/1-1)*t*((i+1)*t+i)+1)},easeInOutBack:function(t){var i=1.70158;return(t/=.5)<1?.5*t*t*(((i*=1.525)+1)*t-i):.5*((t-=2)*t*(((i*=1.525)+1)*t+i)+2)},easeInBounce:function(t){return 1-w.easeOutBounce(1-t)},easeOutBounce:function(t){return(t/=1)<1/2.75?7.5625*t*t:2/2.75>t?1*(7.5625*(t-=1.5/2.75)*t+.75):2.5/2.75>t?1*(7.5625*(t-=2.25/2.75)*t+.9375):1*(7.5625*(t-=2.625/2.75)*t+.984375)},easeInOutBounce:function(t){return.5>t?.5*w.easeInBounce(2*t):.5*w.easeOutBounce(2*t-1)+.5}}),b=s.requestAnimFrame=function(){return window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(t){return window.setTimeout(t,1e3/60)}}(),P=s.cancelAnimFrame=function(){return window.cancelAnimationFrame||window.webkitCancelAnimationFrame||window.mozCancelAnimationFrame||window.oCancelAnimationFrame||window.msCancelAnimationFrame||function(t){return window.clearTimeout(t,1e3/60)}}(),L=(s.animationLoop=function(t,i,e,s,n,o){var a=0,h=w[e]||w.linear,l=function(){a++;var e=a/i,r=h(e);t.call(o,r,e,a),s.call(o,r,e),i>a?o.animationFrame=b(l):n.apply(o)};b(l)},s.getRelativePosition=function(t){var i,e,s=t.originalEvent||t,n=t.currentTarget||t.srcElement,o=n.getBoundingClientRect();return s.touches?(i=s.touches[0].clientX-o.left,e=s.touches[0].clientY-o.top):(i=s.clientX-o.left,e=s.clientY-o.top),{x:i,y:e}},s.addEvent=function(t,i,e){t.addEventListener?t.addEventListener(i,e):t.attachEvent?t.attachEvent("on"+i,e):t["on"+i]=e}),k=s.removeEvent=function(t,i,e){t.removeEventListener?t.removeEventListener(i,e,!1):t.detachEvent?t.detachEvent("on"+i,e):t["on"+i]=c},F=(s.bindEvents=function(t,i,e){t.events||(t.events={}),n(i,function(i){t.events[i]=function(){e.apply(t,arguments)},L(t.chart.canvas,i,t.events[i])})},s.unbindEvents=function(t,i){n(i,function(i,e){k(t.chart.canvas,e,i)})}),R=s.getMaximumWidth=function(t){var i=t.parentNode;return i.clientWidth},T=s.getMaximumHeight=function(t){var i=t.parentNode;return i.clientHeight},A=(s.getMaximumSize=s.getMaximumWidth,s.retinaScale=function(t){var i=t.ctx,e=t.canvas.width,s=t.canvas.height;window.devicePixelRatio&&(i.canvas.style.width=e+"px",i.canvas.style.height=s+"px",i.canvas.height=s*window.devicePixelRatio,i.canvas.width=e*window.devicePixelRatio,i.scale(window.devicePixelRatio,window.devicePixelRatio))}),M=s.clear=function(t){t.ctx.clearRect(0,0,t.width,t.height)},W=s.fontString=function(t,i,e){return i+" "+t+"px "+e},z=s.longestText=function(t,i,e){t.font=i;var s=0;return n(e,function(i){var e=t.measureText(i).width;s=e>s?e:s}),s},B=s.drawRoundedRectangle=function(t,i,e,s,n,o){t.beginPath(),t.moveTo(i+o,e),t.lineTo(i+s-o,e),t.quadraticCurveTo(i+s,e,i+s,e+o),t.lineTo(i+s,e+n-o),t.quadraticCurveTo(i+s,e+n,i+s-o,e+n),t.lineTo(i+o,e+n),t.quadraticCurveTo(i,e+n,i,e+n-o),t.lineTo(i,e+o),t.quadraticCurveTo(i,e,i+o,e),t.closePath()};e.instances={},e.Type=function(t,i,s){this.options=i,this.chart=s,this.id=u(),e.instances[this.id]=this,i.responsive&&this.resize(),this.initialize.call(this,t)},a(e.Type.prototype,{initialize:function(){return this},clear:function(){return M(this.chart),this},stop:function(){return P(this.animationFrame),this},resize:function(t){this.stop();var i=this.chart.canvas,e=R(this.chart.canvas),s=this.options.maintainAspectRatio?e/this.chart.aspectRatio:T(this.chart.canvas);return i.width=this.chart.width=e,i.height=this.chart.height=s,A(this.chart),"function"==typeof t&&t.apply(this,Array.prototype.slice.call(arguments,1)),this},reflow:c,render:function(t){return t&&this.reflow(),this.options.animation&&!t?s.animationLoop(this.draw,this.options.animationSteps,this.options.animationEasing,this.options.onAnimationProgress,this.options.onAnimationComplete,this):(this.draw(),this.options.onAnimationComplete.call(this)),this},generateLegend:function(){return C(this.options.legendTemplate,this)},destroy:function(){this.clear(),F(this,this.events);var t=this.chart.canvas;t.width=this.chart.width,t.height=this.chart.height,t.style.removeProperty?(t.style.removeProperty("width"),t.style.removeProperty("height")):(t.style.removeAttribute("width"),t.style.removeAttribute("height")),delete e.instances[this.id]},showTooltip:function(t,i){"undefined"==typeof this.activeElements&&(this.activeElements=[]);var o=function(t){var i=!1;return t.length!==this.activeElements.length?i=!0:(n(t,function(t,e){t!==this.activeElements[e]&&(i=!0)},this),i)}.call(this,t);if(o||i){if(this.activeElements=t,this.draw(),this.options.customTooltips&&this.options.customTooltips(!1),t.length>0)if(this.datasets&&this.datasets.length>1){for(var a,h,r=this.datasets.length-1;r>=0&&(a=this.datasets[r].points||this.datasets[r].bars||this.datasets[r].segments,h=l(a,t[0]),-1===h);r--);var c=[],u=[],d=function(){var t,i,e,n,o,a=[],l=[],r=[];return s.each(this.datasets,function(i){t=i.points||i.bars||i.segments,t[h]&&t[h].hasValue()&&a.push(t[h])}),s.each(a,function(t){l.push(t.x),r.push(t.y),c.push(s.template(this.options.multiTooltipTemplate,t)),u.push({fill:t._saved.fillColor||t.fillColor,stroke:t._saved.strokeColor||t.strokeColor})},this),o=m(r),e=g(r),n=m(l),i=g(l),{x:n>this.chart.width/2?n:i,y:(o+e)/2}}.call(this,h);new e.MultiTooltip({x:d.x,y:d.y,xPadding:this.options.tooltipXPadding,yPadding:this.options.tooltipYPadding,xOffset:this.options.tooltipXOffset,fillColor:this.options.tooltipFillColor,textColor:this.options.tooltipFontColor,fontFamily:this.options.tooltipFontFamily,fontStyle:this.options.tooltipFontStyle,fontSize:this.options.tooltipFontSize,titleTextColor:this.options.tooltipTitleFontColor,titleFontFamily:this.options.tooltipTitleFontFamily,titleFontStyle:this.options.tooltipTitleFontStyle,titleFontSize:this.options.tooltipTitleFontSize,cornerRadius:this.options.tooltipCornerRadius,labels:c,legendColors:u,legendColorBackground:this.options.multiTooltipKeyBackground,title:t[0].label,chart:this.chart,ctx:this.chart.ctx,custom:this.options.customTooltips}).draw()}else n(t,function(t){var i=t.tooltipPosition();new e.Tooltip({x:Math.round(i.x),y:Math.round(i.y),xPadding:this.options.tooltipXPadding,yPadding:this.options.tooltipYPadding,fillColor:this.options.tooltipFillColor,textColor:this.options.tooltipFontColor,fontFamily:this.options.tooltipFontFamily,fontStyle:this.options.tooltipFontStyle,fontSize:this.options.tooltipFontSize,caretHeight:this.options.tooltipCaretSize,cornerRadius:this.options.tooltipCornerRadius,text:C(this.options.tooltipTemplate,t),chart:this.chart,custom:this.options.customTooltips}).draw()},this);return this}},toBase64Image:function(){return this.chart.canvas.toDataURL.apply(this.chart.canvas,arguments)}}),e.Type.extend=function(t){var i=this,s=function(){return i.apply(this,arguments)};if(s.prototype=o(i.prototype),a(s.prototype,t),s.extend=e.Type.extend,t.name||i.prototype.name){var n=t.name||i.prototype.name,l=e.defaults[i.prototype.name]?o(e.defaults[i.prototype.name]):{};e.defaults[n]=a(l,t.defaults),e.types[n]=s,e.prototype[n]=function(t,i){var o=h(e.defaults.global,e.defaults[n],i||{});return new s(t,o,this)}}else d("Name not provided for this chart, so it hasn't been registered");return i},e.Element=function(t){a(this,t),this.initialize.apply(this,arguments),this.save()},a(e.Element.prototype,{initialize:function(){},restore:function(t){return t?n(t,function(t){this[t]=this._saved[t]},this):a(this,this._saved),this},save:function(){return this._saved=o(this),delete this._saved._saved,this},update:function(t){return n(t,function(t,i){this._saved[i]=this[i],this[i]=t},this),this},transition:function(t,i){return n(t,function(t,e){this[e]=(t-this._saved[e])*i+this._saved[e]},this),this},tooltipPosition:function(){return{x:this.x,y:this.y}},hasValue:function(){return f(this.value)}}),e.Element.extend=r,e.Point=e.Element.extend({display:!0,inRange:function(t,i){var e=this.hitDetectionRadius+this.radius;return Math.pow(t-this.x,2)+Math.pow(i-this.y,2)<Math.pow(e,2)},draw:function(){if(this.display){var t=this.ctx;t.beginPath(),t.arc(this.x,this.y,this.radius,0,2*Math.PI),t.closePath(),t.strokeStyle=this.strokeColor,t.lineWidth=this.strokeWidth,t.fillStyle=this.fillColor,t.fill(),t.stroke()}}}),e.Arc=e.Element.extend({inRange:function(t,i){var e=s.getAngleFromPoint(this,{x:t,y:i}),n=e.angle>=this.startAngle&&e.angle<=this.endAngle,o=e.distance>=this.innerRadius&&e.distance<=this.outerRadius;return n&&o},tooltipPosition:function(){var t=this.startAngle+(this.endAngle-this.startAngle)/2,i=(this.outerRadius-this.innerRadius)/2+this.innerRadius;return{x:this.x+Math.cos(t)*i,y:this.y+Math.sin(t)*i}},draw:function(t){var i=this.ctx;i.beginPath(),i.arc(this.x,this.y,this.outerRadius,this.startAngle,this.endAngle),i.arc(this.x,this.y,this.innerRadius,this.endAngle,this.startAngle,!0),i.closePath(),i.strokeStyle=this.strokeColor,i.lineWidth=this.strokeWidth,i.fillStyle=this.fillColor,i.fill(),i.lineJoin="bevel",this.showStroke&&i.stroke()}}),e.Rectangle=e.Element.extend({draw:function(){var t=this.ctx,i=this.width/2,e=this.x-i,s=this.x+i,n=this.base-(this.base-this.y),o=this.strokeWidth/2;this.showStroke&&(e+=o,s-=o,n+=o),t.beginPath(),t.fillStyle=this.fillColor,t.strokeStyle=this.strokeColor,t.lineWidth=this.strokeWidth,t.moveTo(e,this.base),t.lineTo(e,n),t.lineTo(s,n),t.lineTo(s,this.base),t.fill(),this.showStroke&&t.stroke()},height:function(){return this.base-this.y},inRange:function(t,i){return t>=this.x-this.width/2&&t<=this.x+this.width/2&&i>=this.y&&i<=this.base}}),e.Tooltip=e.Element.extend({draw:function(){var t=this.chart.ctx;t.font=W(this.fontSize,this.fontStyle,this.fontFamily),this.xAlign="center",this.yAlign="above";var i=this.caretPadding=2,e=t.measureText(this.text).width+2*this.xPadding,s=this.fontSize+2*this.yPadding,n=s+this.caretHeight+i;this.x+e/2>this.chart.width?this.xAlign="left":this.x-e/2<0&&(this.xAlign="right"),this.y-n<0&&(this.yAlign="below");var o=this.x-e/2,a=this.y-n;if(t.fillStyle=this.fillColor,this.custom)this.custom(this);else{switch(this.yAlign){case"above":t.beginPath(),t.moveTo(this.x,this.y-i),t.lineTo(this.x+this.caretHeight,this.y-(i+this.caretHeight)),t.lineTo(this.x-this.caretHeight,this.y-(i+this.caretHeight)),t.closePath(),t.fill();break;case"below":a=this.y+i+this.caretHeight,t.beginPath(),t.moveTo(this.x,this.y+i),t.lineTo(this.x+this.caretHeight,this.y+i+this.caretHeight),t.lineTo(this.x-this.caretHeight,this.y+i+this.caretHeight),t.closePath(),t.fill()}switch(this.xAlign){case"left":o=this.x-e+(this.cornerRadius+this.caretHeight);break;case"right":o=this.x-(this.cornerRadius+this.caretHeight)}B(t,o,a,e,s,this.cornerRadius),t.fill(),t.fillStyle=this.textColor,t.textAlign="center",t.textBaseline="middle",t.fillText(this.text,o+e/2,a+s/2)}}}),e.MultiTooltip=e.Element.extend({initialize:function(){this.font=W(this.fontSize,this.fontStyle,this.fontFamily),this.titleFont=W(this.titleFontSize,this.titleFontStyle,this.titleFontFamily),this.height=this.labels.length*this.fontSize+(this.labels.length-1)*(this.fontSize/2)+2*this.yPadding+1.5*this.titleFontSize,this.ctx.font=this.titleFont;var t=this.ctx.measureText(this.title).width,i=z(this.ctx,this.font,this.labels)+this.fontSize+3,e=g([i,t]);this.width=e+2*this.xPadding;var s=this.height/2;this.y-s<0?this.y=s:this.y+s>this.chart.height&&(this.y=this.chart.height-s),this.x>this.chart.width/2?this.x-=this.xOffset+this.width:this.x+=this.xOffset},getLineHeight:function(t){var i=this.y-this.height/2+this.yPadding,e=t-1;return 0===t?i+this.titleFontSize/2:i+(1.5*this.fontSize*e+this.fontSize/2)+1.5*this.titleFontSize},draw:function(){if(this.custom)this.custom(this);else{B(this.ctx,this.x,this.y-this.height/2,this.width,this.height,this.cornerRadius);var t=this.ctx;t.fillStyle=this.fillColor,t.fill(),t.closePath(),t.textAlign="left",t.textBaseline="middle",t.fillStyle=this.titleTextColor,t.font=this.titleFont,t.fillText(this.title,this.x+this.xPadding,this.getLineHeight(0)),t.font=this.font,s.each(this.labels,function(i,e){t.fillStyle=this.textColor,t.fillText(i,this.x+this.xPadding+this.fontSize+3,this.getLineHeight(e+1)),t.fillStyle=this.legendColorBackground,t.fillRect(this.x+this.xPadding,this.getLineHeight(e+1)-this.fontSize/2,this.fontSize,this.fontSize),t.fillStyle=this.legendColors[e].fill,t.fillRect(this.x+this.xPadding,this.getLineHeight(e+1)-this.fontSize/2,this.fontSize,this.fontSize)},this)}}}),e.Scale=e.Element.extend({initialize:function(){this.fit()},buildYLabels:function(){this.yLabels=[];for(var t=v(this.stepValue),i=0;i<=this.steps;i++)this.yLabels.push(C(this.templateString,{value:(this.min+i*this.stepValue).toFixed(t)}));this.yLabelWidth=this.display&&this.showLabels?z(this.ctx,this.font,this.yLabels):0},addXLabel:function(t){this.xLabels.push(t),this.valuesCount++,this.fit()},removeXLabel:function(){this.xLabels.shift(),this.valuesCount--,this.fit()},fit:function(){this.startPoint=this.display?this.fontSize:0,this.endPoint=this.display?this.height-1.5*this.fontSize-5:this.height,this.startPoint+=this.padding,this.endPoint-=this.padding;var t,i=this.endPoint-this.startPoint;for(this.calculateYRange(i),this.buildYLabels(),this.calculateXLabelRotation();i>this.endPoint-this.startPoint;)i=this.endPoint-this.startPoint,t=this.yLabelWidth,this.calculateYRange(i),this.buildYLabels(),t<this.yLabelWidth&&this.calculateXLabelRotation()},calculateXLabelRotation:function(){this.ctx.font=this.font;var t,i,e=this.ctx.measureText(this.xLabels[0]).width,s=this.ctx.measureText(this.xLabels[this.xLabels.length-1]).width;if(this.xScalePaddingRight=s/2+3,this.xScalePaddingLeft=e/2>this.yLabelWidth+10?e/2:this.yLabelWidth+10,this.xLabelRotation=0,this.display){var n,o=z(this.ctx,this.font,this.xLabels);this.xLabelWidth=o;for(var a=Math.floor(this.calculateX(1)-this.calculateX(0))-6;this.xLabelWidth>a&&0===this.xLabelRotation||this.xLabelWidth>a&&this.xLabelRotation<=90&&this.xLabelRotation>0;)n=Math.cos(S(this.xLabelRotation)),t=n*e,i=n*s,t+this.fontSize/2>this.yLabelWidth+8&&(this.xScalePaddingLeft=t+this.fontSize/2),this.xScalePaddingRight=this.fontSize/2,this.xLabelRotation++,this.xLabelWidth=n*o;this.xLabelRotation>0&&(this.endPoint-=Math.sin(S(this.xLabelRotation))*o+3)}else this.xLabelWidth=0,this.xScalePaddingRight=this.padding,this.xScalePaddingLeft=this.padding},calculateYRange:c,drawingArea:function(){return this.startPoint-this.endPoint},calculateY:function(t){var i=this.drawingArea()/(this.min-this.max);return this.endPoint-i*(t-this.min)},calculateX:function(t){var i=(this.xLabelRotation>0,this.width-(this.xScalePaddingLeft+this.xScalePaddingRight)),e=i/Math.max(this.valuesCount-(this.offsetGridLines?0:1),1),s=e*t+this.xScalePaddingLeft;return this.offsetGridLines&&(s+=e/2),Math.round(s)},update:function(t){s.extend(this,t),this.fit()},draw:function(){var t=this.ctx,i=(this.endPoint-this.startPoint)/this.steps,e=Math.round(this.xScalePaddingLeft);this.display&&(t.fillStyle=this.textColor,t.font=this.font,n(this.yLabels,function(n,o){var a=this.endPoint-i*o,h=Math.round(a),l=this.showHorizontalLines;t.textAlign="right",t.textBaseline="middle",this.showLabels&&t.fillText(n,e-10,a),0!==o||l||(l=!0),l&&t.beginPath(),o>0?(t.lineWidth=this.gridLineWidth,t.strokeStyle=this.gridLineColor):(t.lineWidth=this.lineWidth,t.strokeStyle=this.lineColor),h+=s.aliasPixel(t.lineWidth),l&&(t.moveTo(e,h),t.lineTo(this.width,h),t.stroke(),t.closePath()),t.lineWidth=this.lineWidth,t.strokeStyle=this.lineColor,t.beginPath(),t.moveTo(e-5,h),t.lineTo(e,h),t.stroke(),t.closePath()},this),n(this.xLabels,function(i,e){var s=this.calculateX(e)+x(this.lineWidth),n=this.calculateX(e-(this.offsetGridLines?.5:0))+x(this.lineWidth),o=this.xLabelRotation>0,a=this.showVerticalLines;0!==e||a||(a=!0),a&&t.beginPath(),e>0?(t.lineWidth=this.gridLineWidth,t.strokeStyle=this.gridLineColor):(t.lineWidth=this.lineWidth,t.strokeStyle=this.lineColor),a&&(t.moveTo(n,this.endPoint),t.lineTo(n,this.startPoint-3),t.stroke(),t.closePath()),t.lineWidth=this.lineWidth,t.strokeStyle=this.lineColor,t.beginPath(),t.moveTo(n,this.endPoint),t.lineTo(n,this.endPoint+5),t.stroke(),t.closePath(),t.save(),t.translate(s,o?this.endPoint+12:this.endPoint+8),t.rotate(-1*S(this.xLabelRotation)),t.font=this.font,t.textAlign=o?"right":"center",t.textBaseline=o?"middle":"top",t.fillText(i,0,0),t.restore()},this))}}),e.RadialScale=e.Element.extend({initialize:function(){this.size=m([this.height,this.width]),this.drawingArea=this.display?this.size/2-(this.fontSize/2+this.backdropPaddingY):this.size/2},calculateCenterOffset:function(t){var i=this.drawingArea/(this.max-this.min);return(t-this.min)*i},update:function(){this.lineArc?this.drawingArea=this.display?this.size/2-(this.fontSize/2+this.backdropPaddingY):this.size/2:this.setScaleSize(),this.buildYLabels()},buildYLabels:function(){this.yLabels=[];for(var t=v(this.stepValue),i=0;i<=this.steps;i++)this.yLabels.push(C(this.templateString,{value:(this.min+i*this.stepValue).toFixed(t)}))},getCircumference:function(){return 2*Math.PI/this.valuesCount},setScaleSize:function(){var t,i,e,s,n,o,a,h,l,r,c,u,d=m([this.height/2-this.pointLabelFontSize-5,this.width/2]),p=this.width,g=0;for(this.ctx.font=W(this.pointLabelFontSize,this.pointLabelFontStyle,this.pointLabelFontFamily),i=0;i<this.valuesCount;i++)t=this.getPointPosition(i,d),e=this.ctx.measureText(C(this.templateString,{value:this.labels[i]})).width+5,0===i||i===this.valuesCount/2?(s=e/2,t.x+s>p&&(p=t.x+s,n=i),t.x-s<g&&(g=t.x-s,a=i)):i<this.valuesCount/2?t.x+e>p&&(p=t.x+e,n=i):i>this.valuesCount/2&&t.x-e<g&&(g=t.x-e,a=i);l=g,r=Math.ceil(p-this.width),o=this.getIndexAngle(n),h=this.getIndexAngle(a),c=r/Math.sin(o+Math.PI/2),u=l/Math.sin(h+Math.PI/2),c=f(c)?c:0,u=f(u)?u:0,this.drawingArea=d-(u+c)/2,this.setCenterPoint(u,c)},setCenterPoint:function(t,i){var e=this.width-i-this.drawingArea,s=t+this.drawingArea;this.xCenter=(s+e)/2,this.yCenter=this.height/2},getIndexAngle:function(t){var i=2*Math.PI/this.valuesCount;return t*i-Math.PI/2},getPointPosition:function(t,i){var e=this.getIndexAngle(t);return{x:Math.cos(e)*i+this.xCenter,y:Math.sin(e)*i+this.yCenter}},draw:function(){if(this.display){var t=this.ctx;if(n(this.yLabels,function(i,e){if(e>0){var s,n=e*(this.drawingArea/this.steps),o=this.yCenter-n;if(this.lineWidth>0)if(t.strokeStyle=this.lineColor,t.lineWidth=this.lineWidth,this.lineArc)t.beginPath(),t.arc(this.xCenter,this.yCenter,n,0,2*Math.PI),t.closePath(),t.stroke();else{t.beginPath();for(var a=0;a<this.valuesCount;a++)s=this.getPointPosition(a,this.calculateCenterOffset(this.min+e*this.stepValue)),0===a?t.moveTo(s.x,s.y):t.lineTo(s.x,s.y);t.closePath(),t.stroke()}if(this.showLabels){if(t.font=W(this.fontSize,this.fontStyle,this.fontFamily),this.showLabelBackdrop){var h=t.measureText(i).width;t.fillStyle=this.backdropColor,t.fillRect(this.xCenter-h/2-this.backdropPaddingX,o-this.fontSize/2-this.backdropPaddingY,h+2*this.backdropPaddingX,this.fontSize+2*this.backdropPaddingY)}t.textAlign="center",t.textBaseline="middle",t.fillStyle=this.fontColor,t.fillText(i,this.xCenter,o)}}},this),!this.lineArc){t.lineWidth=this.angleLineWidth,t.strokeStyle=this.angleLineColor;for(var i=this.valuesCount-1;i>=0;i--){if(this.angleLineWidth>0){var e=this.getPointPosition(i,this.calculateCenterOffset(this.max));t.beginPath(),t.moveTo(this.xCenter,this.yCenter),t.lineTo(e.x,e.y),t.stroke(),t.closePath()}var s=this.getPointPosition(i,this.calculateCenterOffset(this.max)+5);t.font=W(this.pointLabelFontSize,this.pointLabelFontStyle,this.pointLabelFontFamily),t.fillStyle=this.pointLabelFontColor;var o=this.labels.length,a=this.labels.length/2,h=a/2,l=h>i||i>o-h,r=i===h||i===o-h;t.textAlign=0===i?"center":i===a?"center":a>i?"left":"right",t.textBaseline=r?"middle":l?"bottom":"top",t.fillText(this.labels[i],s.x,s.y)}}}}}),s.addEvent(window,"resize",function(){var t;return function(){clearTimeout(t),t=setTimeout(function(){n(e.instances,function(t){t.options.responsive&&t.resize(t.render,!0)})},50)}}()),p?define(function(){return e}):"object"==typeof module&&module.exports&&(module.exports=e),t.Chart=e,e.noConflict=function(){return t.Chart=i,e}}).call(this),function(){"use strict";var t=this,i=t.Chart,e=i.helpers,s={scaleBeginAtZero:!0,scaleShowGridLines:!0,scaleGridLineColor:"rgba(0,0,0,.05)",scaleGridLineWidth:1,scaleShowHorizontalLines:!0,scaleShowVerticalLines:!0,barShowStroke:!0,barStrokeWidth:2,barValueSpacing:5,barDatasetSpacing:1,legendTemplate:'<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'};i.Type.extend({name:"Bar",defaults:s,initialize:function(t){var s=this.options;this.ScaleClass=i.Scale.extend({offsetGridLines:!0,calculateBarX:function(t,i,e){var n=this.calculateBaseWidth(),o=this.calculateX(e)-n/2,a=this.calculateBarWidth(t);return o+a*i+i*s.barDatasetSpacing+a/2},calculateBaseWidth:function(){return this.calculateX(1)-this.calculateX(0)-2*s.barValueSpacing},calculateBarWidth:function(t){var i=this.calculateBaseWidth()-(t-1)*s.barDatasetSpacing;return i/t}}),this.datasets=[],this.options.showTooltips&&e.bindEvents(this,this.options.tooltipEvents,function(t){var i="mouseout"!==t.type?this.getBarsAtEvent(t):[];this.eachBars(function(t){t.restore(["fillColor","strokeColor"])}),e.each(i,function(t){t.fillColor=t.highlightFill,t.strokeColor=t.highlightStroke}),this.showTooltip(i)}),this.BarClass=i.Rectangle.extend({strokeWidth:this.options.barStrokeWidth,showStroke:this.options.barShowStroke,ctx:this.chart.ctx}),e.each(t.datasets,function(i){var s={label:i.label||null,fillColor:i.fillColor,strokeColor:i.strokeColor,bars:[]};this.datasets.push(s),e.each(i.data,function(e,n){s.bars.push(new this.BarClass({value:e,label:t.labels[n],datasetLabel:i.label,strokeColor:i.strokeColor,fillColor:i.fillColor,highlightFill:i.highlightFill||i.fillColor,highlightStroke:i.highlightStroke||i.strokeColor}))},this)},this),this.buildScale(t.labels),this.BarClass.prototype.base=this.scale.endPoint,this.eachBars(function(t,i,s){e.extend(t,{width:this.scale.calculateBarWidth(this.datasets.length),x:this.scale.calculateBarX(this.datasets.length,s,i),y:this.scale.endPoint}),t.save()},this),this.render()},update:function(){this.scale.update(),e.each(this.activeElements,function(t){t.restore(["fillColor","strokeColor"])}),this.eachBars(function(t){t.save()}),this.render()},eachBars:function(t){e.each(this.datasets,function(i,s){e.each(i.bars,t,this,s)},this)},getBarsAtEvent:function(t){for(var i,s=[],n=e.getRelativePosition(t),o=function(t){s.push(t.bars[i])},a=0;a<this.datasets.length;a++)for(i=0;i<this.datasets[a].bars.length;i++)if(this.datasets[a].bars[i].inRange(n.x,n.y))return e.each(this.datasets,o),s;return s},buildScale:function(t){var i=this,s=function(){var t=[];return i.eachBars(function(i){t.push(i.value)}),t},n={templateString:this.options.scaleLabel,height:this.chart.height,width:this.chart.width,ctx:this.chart.ctx,textColor:this.options.scaleFontColor,fontSize:this.options.scaleFontSize,fontStyle:this.options.scaleFontStyle,fontFamily:this.options.scaleFontFamily,valuesCount:t.length,beginAtZero:this.options.scaleBeginAtZero,integersOnly:this.options.scaleIntegersOnly,calculateYRange:function(t){var i=e.calculateScaleRange(s(),t,this.fontSize,this.beginAtZero,this.integersOnly);e.extend(this,i)},xLabels:t,font:e.fontString(this.options.scaleFontSize,this.options.scaleFontStyle,this.options.scaleFontFamily),lineWidth:this.options.scaleLineWidth,lineColor:this.options.scaleLineColor,showHorizontalLines:this.options.scaleShowHorizontalLines,showVerticalLines:this.options.scaleShowVerticalLines,gridLineWidth:this.options.scaleShowGridLines?this.options.scaleGridLineWidth:0,gridLineColor:this.options.scaleShowGridLines?this.options.scaleGridLineColor:"rgba(0,0,0,0)",padding:this.options.showScale?0:this.options.barShowStroke?this.options.barStrokeWidth:0,showLabels:this.options.scaleShowLabels,display:this.options.showScale};this.options.scaleOverride&&e.extend(n,{calculateYRange:e.noop,steps:this.options.scaleSteps,stepValue:this.options.scaleStepWidth,min:this.options.scaleStartValue,max:this.options.scaleStartValue+this.options.scaleSteps*this.options.scaleStepWidth}),this.scale=new this.ScaleClass(n)},addData:function(t,i){e.each(t,function(t,e){this.datasets[e].bars.push(new this.BarClass({value:t,label:i,x:this.scale.calculateBarX(this.datasets.length,e,this.scale.valuesCount+1),y:this.scale.endPoint,width:this.scale.calculateBarWidth(this.datasets.length),base:this.scale.endPoint,strokeColor:this.datasets[e].strokeColor,fillColor:this.datasets[e].fillColor}))
+},this),this.scale.addXLabel(i),this.update()},removeData:function(){this.scale.removeXLabel(),e.each(this.datasets,function(t){t.bars.shift()},this),this.update()},reflow:function(){e.extend(this.BarClass.prototype,{y:this.scale.endPoint,base:this.scale.endPoint});var t=e.extend({height:this.chart.height,width:this.chart.width});this.scale.update(t)},draw:function(t){var i=t||1;this.clear();this.chart.ctx;this.scale.draw(i),e.each(this.datasets,function(t,s){e.each(t.bars,function(t,e){t.hasValue()&&(t.base=this.scale.endPoint,t.transition({x:this.scale.calculateBarX(this.datasets.length,s,e),y:this.scale.calculateY(t.value),width:this.scale.calculateBarWidth(this.datasets.length)},i).draw())},this)},this)}})}.call(this),function(){"use strict";var t=this,i=t.Chart,e=i.helpers,s={segmentShowStroke:!0,segmentStrokeColor:"#fff",segmentStrokeWidth:2,percentageInnerCutout:50,animationSteps:100,animationEasing:"easeOutBounce",animateRotate:!0,animateScale:!1,legendTemplate:'<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'};i.Type.extend({name:"Doughnut",defaults:s,initialize:function(t){this.segments=[],this.outerRadius=(e.min([this.chart.width,this.chart.height])-this.options.segmentStrokeWidth/2)/2,this.SegmentArc=i.Arc.extend({ctx:this.chart.ctx,x:this.chart.width/2,y:this.chart.height/2}),this.options.showTooltips&&e.bindEvents(this,this.options.tooltipEvents,function(t){var i="mouseout"!==t.type?this.getSegmentsAtEvent(t):[];e.each(this.segments,function(t){t.restore(["fillColor"])}),e.each(i,function(t){t.fillColor=t.highlightColor}),this.showTooltip(i)}),this.calculateTotal(t),e.each(t,function(t,i){this.addData(t,i,!0)},this),this.render()},getSegmentsAtEvent:function(t){var i=[],s=e.getRelativePosition(t);return e.each(this.segments,function(t){t.inRange(s.x,s.y)&&i.push(t)},this),i},addData:function(t,i,e){var s=i||this.segments.length;this.segments.splice(s,0,new this.SegmentArc({value:t.value,outerRadius:this.options.animateScale?0:this.outerRadius,innerRadius:this.options.animateScale?0:this.outerRadius/100*this.options.percentageInnerCutout,fillColor:t.color,highlightColor:t.highlight||t.color,showStroke:this.options.segmentShowStroke,strokeWidth:this.options.segmentStrokeWidth,strokeColor:this.options.segmentStrokeColor,startAngle:1.5*Math.PI,circumference:this.options.animateRotate?0:this.calculateCircumference(t.value),label:t.label})),e||(this.reflow(),this.update())},calculateCircumference:function(t){return 2*Math.PI*(Math.abs(t)/this.total)},calculateTotal:function(t){this.total=0,e.each(t,function(t){this.total+=Math.abs(t.value)},this)},update:function(){this.calculateTotal(this.segments),e.each(this.activeElements,function(t){t.restore(["fillColor"])}),e.each(this.segments,function(t){t.save()}),this.render()},removeData:function(t){var i=e.isNumber(t)?t:this.segments.length-1;this.segments.splice(i,1),this.reflow(),this.update()},reflow:function(){e.extend(this.SegmentArc.prototype,{x:this.chart.width/2,y:this.chart.height/2}),this.outerRadius=(e.min([this.chart.width,this.chart.height])-this.options.segmentStrokeWidth/2)/2,e.each(this.segments,function(t){t.update({outerRadius:this.outerRadius,innerRadius:this.outerRadius/100*this.options.percentageInnerCutout})},this)},draw:function(t){var i=t?t:1;this.clear(),e.each(this.segments,function(t,e){t.transition({circumference:this.calculateCircumference(t.value),outerRadius:this.outerRadius,innerRadius:this.outerRadius/100*this.options.percentageInnerCutout},i),t.endAngle=t.startAngle+t.circumference,t.draw(),0===e&&(t.startAngle=1.5*Math.PI),e<this.segments.length-1&&(this.segments[e+1].startAngle=t.endAngle)},this)}}),i.types.Doughnut.extend({name:"Pie",defaults:e.merge(s,{percentageInnerCutout:0})})}.call(this),function(){"use strict";var t=this,i=t.Chart,e=i.helpers,s={scaleShowGridLines:!0,scaleGridLineColor:"rgba(0,0,0,.05)",scaleGridLineWidth:1,scaleShowHorizontalLines:!0,scaleShowVerticalLines:!0,bezierCurve:!0,bezierCurveTension:.4,pointDot:!0,pointDotRadius:4,pointDotStrokeWidth:1,pointHitDetectionRadius:20,datasetStroke:!0,datasetStrokeWidth:2,datasetFill:!0,legendTemplate:'<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'};i.Type.extend({name:"Line",defaults:s,initialize:function(t){this.PointClass=i.Point.extend({strokeWidth:this.options.pointDotStrokeWidth,radius:this.options.pointDotRadius,display:this.options.pointDot,hitDetectionRadius:this.options.pointHitDetectionRadius,ctx:this.chart.ctx,inRange:function(t){return Math.pow(t-this.x,2)<Math.pow(this.radius+this.hitDetectionRadius,2)}}),this.datasets=[],this.options.showTooltips&&e.bindEvents(this,this.options.tooltipEvents,function(t){var i="mouseout"!==t.type?this.getPointsAtEvent(t):[];this.eachPoints(function(t){t.restore(["fillColor","strokeColor"])}),e.each(i,function(t){t.fillColor=t.highlightFill,t.strokeColor=t.highlightStroke}),this.showTooltip(i)}),e.each(t.datasets,function(i){var s={label:i.label||null,fillColor:i.fillColor,strokeColor:i.strokeColor,pointColor:i.pointColor,pointStrokeColor:i.pointStrokeColor,points:[]};this.datasets.push(s),e.each(i.data,function(e,n){s.points.push(new this.PointClass({value:e,label:t.labels[n],datasetLabel:i.label,strokeColor:i.pointStrokeColor,fillColor:i.pointColor,highlightFill:i.pointHighlightFill||i.pointColor,highlightStroke:i.pointHighlightStroke||i.pointStrokeColor}))},this),this.buildScale(t.labels),this.eachPoints(function(t,i){e.extend(t,{x:this.scale.calculateX(i),y:this.scale.endPoint}),t.save()},this)},this),this.render()},update:function(){this.scale.update(),e.each(this.activeElements,function(t){t.restore(["fillColor","strokeColor"])}),this.eachPoints(function(t){t.save()}),this.render()},eachPoints:function(t){e.each(this.datasets,function(i){e.each(i.points,t,this)},this)},getPointsAtEvent:function(t){var i=[],s=e.getRelativePosition(t);return e.each(this.datasets,function(t){e.each(t.points,function(t){t.inRange(s.x,s.y)&&i.push(t)})},this),i},buildScale:function(t){var s=this,n=function(){var t=[];return s.eachPoints(function(i){t.push(i.value)}),t},o={templateString:this.options.scaleLabel,height:this.chart.height,width:this.chart.width,ctx:this.chart.ctx,textColor:this.options.scaleFontColor,fontSize:this.options.scaleFontSize,fontStyle:this.options.scaleFontStyle,fontFamily:this.options.scaleFontFamily,valuesCount:t.length,beginAtZero:this.options.scaleBeginAtZero,integersOnly:this.options.scaleIntegersOnly,calculateYRange:function(t){var i=e.calculateScaleRange(n(),t,this.fontSize,this.beginAtZero,this.integersOnly);e.extend(this,i)},xLabels:t,font:e.fontString(this.options.scaleFontSize,this.options.scaleFontStyle,this.options.scaleFontFamily),lineWidth:this.options.scaleLineWidth,lineColor:this.options.scaleLineColor,showHorizontalLines:this.options.scaleShowHorizontalLines,showVerticalLines:this.options.scaleShowVerticalLines,gridLineWidth:this.options.scaleShowGridLines?this.options.scaleGridLineWidth:0,gridLineColor:this.options.scaleShowGridLines?this.options.scaleGridLineColor:"rgba(0,0,0,0)",padding:this.options.showScale?0:this.options.pointDotRadius+this.options.pointDotStrokeWidth,showLabels:this.options.scaleShowLabels,display:this.options.showScale};this.options.scaleOverride&&e.extend(o,{calculateYRange:e.noop,steps:this.options.scaleSteps,stepValue:this.options.scaleStepWidth,min:this.options.scaleStartValue,max:this.options.scaleStartValue+this.options.scaleSteps*this.options.scaleStepWidth}),this.scale=new i.Scale(o)},addData:function(t,i){e.each(t,function(t,e){this.datasets[e].points.push(new this.PointClass({value:t,label:i,x:this.scale.calculateX(this.scale.valuesCount+1),y:this.scale.endPoint,strokeColor:this.datasets[e].pointStrokeColor,fillColor:this.datasets[e].pointColor}))},this),this.scale.addXLabel(i),this.update()},removeData:function(){this.scale.removeXLabel(),e.each(this.datasets,function(t){t.points.shift()},this),this.update()},reflow:function(){var t=e.extend({height:this.chart.height,width:this.chart.width});this.scale.update(t)},draw:function(t){var i=t||1;this.clear();var s=this.chart.ctx,n=function(t){return null!==t.value},o=function(t,i,s){return e.findNextWhere(i,n,s)||t},a=function(t,i,s){return e.findPreviousWhere(i,n,s)||t};this.scale.draw(i),e.each(this.datasets,function(t){var h=e.where(t.points,n);e.each(t.points,function(t,e){t.hasValue()&&t.transition({y:this.scale.calculateY(t.value),x:this.scale.calculateX(e)},i)},this),this.options.bezierCurve&&e.each(h,function(t,i){var s=i>0&&i<h.length-1?this.options.bezierCurveTension:0;t.controlPoints=e.splineCurve(a(t,h,i),t,o(t,h,i),s),t.controlPoints.outer.y>this.scale.endPoint?t.controlPoints.outer.y=this.scale.endPoint:t.controlPoints.outer.y<this.scale.startPoint&&(t.controlPoints.outer.y=this.scale.startPoint),t.controlPoints.inner.y>this.scale.endPoint?t.controlPoints.inner.y=this.scale.endPoint:t.controlPoints.inner.y<this.scale.startPoint&&(t.controlPoints.inner.y=this.scale.startPoint)},this),s.lineWidth=this.options.datasetStrokeWidth,s.strokeStyle=t.strokeColor,s.beginPath(),e.each(h,function(t,i){if(0===i)s.moveTo(t.x,t.y);else if(this.options.bezierCurve){var e=a(t,h,i);s.bezierCurveTo(e.controlPoints.outer.x,e.controlPoints.outer.y,t.controlPoints.inner.x,t.controlPoints.inner.y,t.x,t.y)}else s.lineTo(t.x,t.y)},this),s.stroke(),this.options.datasetFill&&h.length>0&&(s.lineTo(h[h.length-1].x,this.scale.endPoint),s.lineTo(h[0].x,this.scale.endPoint),s.fillStyle=t.fillColor,s.closePath(),s.fill()),e.each(h,function(t){t.draw()})},this)}})}.call(this),function(){"use strict";var t=this,i=t.Chart,e=i.helpers,s={scaleShowLabelBackdrop:!0,scaleBackdropColor:"rgba(255,255,255,0.75)",scaleBeginAtZero:!0,scaleBackdropPaddingY:2,scaleBackdropPaddingX:2,scaleShowLine:!0,segmentShowStroke:!0,segmentStrokeColor:"#fff",segmentStrokeWidth:2,animationSteps:100,animationEasing:"easeOutBounce",animateRotate:!0,animateScale:!1,legendTemplate:'<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'};i.Type.extend({name:"PolarArea",defaults:s,initialize:function(t){this.segments=[],this.SegmentArc=i.Arc.extend({showStroke:this.options.segmentShowStroke,strokeWidth:this.options.segmentStrokeWidth,strokeColor:this.options.segmentStrokeColor,ctx:this.chart.ctx,innerRadius:0,x:this.chart.width/2,y:this.chart.height/2}),this.scale=new i.RadialScale({display:this.options.showScale,fontStyle:this.options.scaleFontStyle,fontSize:this.options.scaleFontSize,fontFamily:this.options.scaleFontFamily,fontColor:this.options.scaleFontColor,showLabels:this.options.scaleShowLabels,showLabelBackdrop:this.options.scaleShowLabelBackdrop,backdropColor:this.options.scaleBackdropColor,backdropPaddingY:this.options.scaleBackdropPaddingY,backdropPaddingX:this.options.scaleBackdropPaddingX,lineWidth:this.options.scaleShowLine?this.options.scaleLineWidth:0,lineColor:this.options.scaleLineColor,lineArc:!0,width:this.chart.width,height:this.chart.height,xCenter:this.chart.width/2,yCenter:this.chart.height/2,ctx:this.chart.ctx,templateString:this.options.scaleLabel,valuesCount:t.length}),this.updateScaleRange(t),this.scale.update(),e.each(t,function(t,i){this.addData(t,i,!0)},this),this.options.showTooltips&&e.bindEvents(this,this.options.tooltipEvents,function(t){var i="mouseout"!==t.type?this.getSegmentsAtEvent(t):[];e.each(this.segments,function(t){t.restore(["fillColor"])}),e.each(i,function(t){t.fillColor=t.highlightColor}),this.showTooltip(i)}),this.render()},getSegmentsAtEvent:function(t){var i=[],s=e.getRelativePosition(t);return e.each(this.segments,function(t){t.inRange(s.x,s.y)&&i.push(t)},this),i},addData:function(t,i,e){var s=i||this.segments.length;this.segments.splice(s,0,new this.SegmentArc({fillColor:t.color,highlightColor:t.highlight||t.color,label:t.label,value:t.value,outerRadius:this.options.animateScale?0:this.scale.calculateCenterOffset(t.value),circumference:this.options.animateRotate?0:this.scale.getCircumference(),startAngle:1.5*Math.PI})),e||(this.reflow(),this.update())},removeData:function(t){var i=e.isNumber(t)?t:this.segments.length-1;this.segments.splice(i,1),this.reflow(),this.update()},calculateTotal:function(t){this.total=0,e.each(t,function(t){this.total+=t.value},this),this.scale.valuesCount=this.segments.length},updateScaleRange:function(t){var i=[];e.each(t,function(t){i.push(t.value)});var s=this.options.scaleOverride?{steps:this.options.scaleSteps,stepValue:this.options.scaleStepWidth,min:this.options.scaleStartValue,max:this.options.scaleStartValue+this.options.scaleSteps*this.options.scaleStepWidth}:e.calculateScaleRange(i,e.min([this.chart.width,this.chart.height])/2,this.options.scaleFontSize,this.options.scaleBeginAtZero,this.options.scaleIntegersOnly);e.extend(this.scale,s,{size:e.min([this.chart.width,this.chart.height]),xCenter:this.chart.width/2,yCenter:this.chart.height/2})},update:function(){this.calculateTotal(this.segments),e.each(this.segments,function(t){t.save()}),this.reflow(),this.render()},reflow:function(){e.extend(this.SegmentArc.prototype,{x:this.chart.width/2,y:this.chart.height/2}),this.updateScaleRange(this.segments),this.scale.update(),e.extend(this.scale,{xCenter:this.chart.width/2,yCenter:this.chart.height/2}),e.each(this.segments,function(t){t.update({outerRadius:this.scale.calculateCenterOffset(t.value)})},this)},draw:function(t){var i=t||1;this.clear(),e.each(this.segments,function(t,e){t.transition({circumference:this.scale.getCircumference(),outerRadius:this.scale.calculateCenterOffset(t.value)},i),t.endAngle=t.startAngle+t.circumference,0===e&&(t.startAngle=1.5*Math.PI),e<this.segments.length-1&&(this.segments[e+1].startAngle=t.endAngle),t.draw()},this),this.scale.draw()}})}.call(this),function(){"use strict";var t=this,i=t.Chart,e=i.helpers;i.Type.extend({name:"Radar",defaults:{scaleShowLine:!0,angleShowLineOut:!0,scaleShowLabels:!1,scaleBeginAtZero:!0,angleLineColor:"rgba(0,0,0,.1)",angleLineWidth:1,pointLabelFontFamily:"'Arial'",pointLabelFontStyle:"normal",pointLabelFontSize:10,pointLabelFontColor:"#666",pointDot:!0,pointDotRadius:3,pointDotStrokeWidth:1,pointHitDetectionRadius:20,datasetStroke:!0,datasetStrokeWidth:2,datasetFill:!0,legendTemplate:'<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'},initialize:function(t){this.PointClass=i.Point.extend({strokeWidth:this.options.pointDotStrokeWidth,radius:this.options.pointDotRadius,display:this.options.pointDot,hitDetectionRadius:this.options.pointHitDetectionRadius,ctx:this.chart.ctx}),this.datasets=[],this.buildScale(t),this.options.showTooltips&&e.bindEvents(this,this.options.tooltipEvents,function(t){var i="mouseout"!==t.type?this.getPointsAtEvent(t):[];this.eachPoints(function(t){t.restore(["fillColor","strokeColor"])}),e.each(i,function(t){t.fillColor=t.highlightFill,t.strokeColor=t.highlightStroke}),this.showTooltip(i)}),e.each(t.datasets,function(i){var s={label:i.label||null,fillColor:i.fillColor,strokeColor:i.strokeColor,pointColor:i.pointColor,pointStrokeColor:i.pointStrokeColor,points:[]};this.datasets.push(s),e.each(i.data,function(e,n){var o;this.scale.animation||(o=this.scale.getPointPosition(n,this.scale.calculateCenterOffset(e))),s.points.push(new this.PointClass({value:e,label:t.labels[n],datasetLabel:i.label,x:this.options.animation?this.scale.xCenter:o.x,y:this.options.animation?this.scale.yCenter:o.y,strokeColor:i.pointStrokeColor,fillColor:i.pointColor,highlightFill:i.pointHighlightFill||i.pointColor,highlightStroke:i.pointHighlightStroke||i.pointStrokeColor}))},this)},this),this.render()},eachPoints:function(t){e.each(this.datasets,function(i){e.each(i.points,t,this)},this)},getPointsAtEvent:function(t){var i=e.getRelativePosition(t),s=e.getAngleFromPoint({x:this.scale.xCenter,y:this.scale.yCenter},i),n=2*Math.PI/this.scale.valuesCount,o=Math.round((s.angle-1.5*Math.PI)/n),a=[];return(o>=this.scale.valuesCount||0>o)&&(o=0),s.distance<=this.scale.drawingArea&&e.each(this.datasets,function(t){a.push(t.points[o])}),a},buildScale:function(t){this.scale=new i.RadialScale({display:this.options.showScale,fontStyle:this.options.scaleFontStyle,fontSize:this.options.scaleFontSize,fontFamily:this.options.scaleFontFamily,fontColor:this.options.scaleFontColor,showLabels:this.options.scaleShowLabels,showLabelBackdrop:this.options.scaleShowLabelBackdrop,backdropColor:this.options.scaleBackdropColor,backdropPaddingY:this.options.scaleBackdropPaddingY,backdropPaddingX:this.options.scaleBackdropPaddingX,lineWidth:this.options.scaleShowLine?this.options.scaleLineWidth:0,lineColor:this.options.scaleLineColor,angleLineColor:this.options.angleLineColor,angleLineWidth:this.options.angleShowLineOut?this.options.angleLineWidth:0,pointLabelFontColor:this.options.pointLabelFontColor,pointLabelFontSize:this.options.pointLabelFontSize,pointLabelFontFamily:this.options.pointLabelFontFamily,pointLabelFontStyle:this.options.pointLabelFontStyle,height:this.chart.height,width:this.chart.width,xCenter:this.chart.width/2,yCenter:this.chart.height/2,ctx:this.chart.ctx,templateString:this.options.scaleLabel,labels:t.labels,valuesCount:t.datasets[0].data.length}),this.scale.setScaleSize(),this.updateScaleRange(t.datasets),this.scale.buildYLabels()},updateScaleRange:function(t){var i=function(){var i=[];return e.each(t,function(t){t.data?i=i.concat(t.data):e.each(t.points,function(t){i.push(t.value)})}),i}(),s=this.options.scaleOverride?{steps:this.options.scaleSteps,stepValue:this.options.scaleStepWidth,min:this.options.scaleStartValue,max:this.options.scaleStartValue+this.options.scaleSteps*this.options.scaleStepWidth}:e.calculateScaleRange(i,e.min([this.chart.width,this.chart.height])/2,this.options.scaleFontSize,this.options.scaleBeginAtZero,this.options.scaleIntegersOnly);e.extend(this.scale,s)},addData:function(t,i){this.scale.valuesCount++,e.each(t,function(t,e){var s=this.scale.getPointPosition(this.scale.valuesCount,this.scale.calculateCenterOffset(t));this.datasets[e].points.push(new this.PointClass({value:t,label:i,x:s.x,y:s.y,strokeColor:this.datasets[e].pointStrokeColor,fillColor:this.datasets[e].pointColor}))},this),this.scale.labels.push(i),this.reflow(),this.update()},removeData:function(){this.scale.valuesCount--,this.scale.labels.shift(),e.each(this.datasets,function(t){t.points.shift()},this),this.reflow(),this.update()},update:function(){this.eachPoints(function(t){t.save()}),this.reflow(),this.render()},reflow:function(){e.extend(this.scale,{width:this.chart.width,height:this.chart.height,size:e.min([this.chart.width,this.chart.height]),xCenter:this.chart.width/2,yCenter:this.chart.height/2}),this.updateScaleRange(this.datasets),this.scale.setScaleSize(),this.scale.buildYLabels()},draw:function(t){var i=t||1,s=this.chart.ctx;this.clear(),this.scale.draw(),e.each(this.datasets,function(t){e.each(t.points,function(t,e){t.hasValue()&&t.transition(this.scale.getPointPosition(e,this.scale.calculateCenterOffset(t.value)),i)},this),s.lineWidth=this.options.datasetStrokeWidth,s.strokeStyle=t.strokeColor,s.beginPath(),e.each(t.points,function(t,i){0===i?s.moveTo(t.x,t.y):s.lineTo(t.x,t.y)},this),s.closePath(),s.stroke(),s.fillStyle=t.fillColor,s.fill(),e.each(t.points,function(t){t.hasValue()&&t.draw()})},this)}})}.call(this);
 /*
- CanvasJS HTML5 & JavaScript Charts - v1.3.0 GA - http://canvasjs.com/ 
+ CanvasJS HTML5 & JavaScript Charts - v1.3.0 GA - http://canvasjs.com/
  Copyright 2013 fenopix
 */
 
@@ -14086,132 +12631,87 @@ c.dataSeriesIndex||(b.mouseover&&b.mouseover.call(b,{x:k.x,y:k.y,dataPoint:d,dat
 c,b,d,e,g,f,k){if(b){var m=1;b.fillStyle=g?g:"#000000";b.strokeStyle=f?f:"#000000";b.lineWidth=k?k:0;"circle"===d?(b.moveTo(a,c),b.beginPath(),b.arc(a,c,e/2,0,2*Math.PI,!1),g&&b.fill(),k&&(f?b.stroke():(m=b.globalAlpha,b.globalAlpha=0.15,b.strokeStyle="black",b.stroke(),b.globalAlpha=m))):"square"===d?(b.beginPath(),b.rect(a-e/2,c-e/2,e,e),g&&b.fill(),k&&(f?b.stroke():(m=b.globalAlpha,b.globalAlpha=0.15,b.strokeStyle="black",b.stroke(),b.globalAlpha=m))):"triangle"===d?(b.beginPath(),b.moveTo(a-e/
 2,c+e/2),b.lineTo(a+e/2,c+e/2),b.lineTo(a,c-e/2),b.closePath(),g&&b.fill(),k&&(f?b.stroke():(m=b.globalAlpha,b.globalAlpha=0.15,b.strokeStyle="black",b.stroke(),b.globalAlpha=m)),b.beginPath()):"cross"===d&&(b.strokeStyle=g,b.lineWidth=e/4,b.beginPath(),b.moveTo(a-e/2,c-e/2),b.lineTo(a+e/2,c+e/2),b.stroke(),b.moveTo(a+e/2,c-e/2),b.lineTo(a-e/2,c+e/2),b.stroke())}},drawMarkers:function(a){for(var c=0;c<a.length;c++){var b=a[c];H.drawMarker(b.x,b.y,b.ctx,b.type,b.size,b.color,b.borderColor,b.borderThickness)}}},
 sa={Chart:function(a,c){var b=new x(a,c,this);this.render=function(){b.render()};this.options=b._options},addColorSet:function(a,c){U[a]=c},addCultureInfo:function(a,c){ea[a]=c}};sa.Chart.version="1.3.0 GA";window.CanvasJS=sa})();
-/*
-  excanvas is used to support IE678 which do not implement HTML5 Canvas Element. You can safely remove the following excanvas code if you don't need to support older browsers.
-
-  Copyright 2006 Google Inc. https://code.google.com/p/explorercanvas/
-  Licensed under the Apache License, Version 2.0
-*/
-document.createElement("canvas").getContext||function(){function V(){return this.context_||(this.context_=new C(this))}function W(a,b,c){var g=M.call(arguments,2);return function(){return a.apply(b,g.concat(M.call(arguments)))}}function N(a){return String(a).replace(/&/g,"&amp;").replace(/"/g,"&quot;")}function O(a){a.namespaces.g_vml_||a.namespaces.add("g_vml_","urn:schemas-microsoft-com:vml","#default#VML");a.namespaces.g_o_||a.namespaces.add("g_o_","urn:schemas-microsoft-com:office:office","#default#VML");
-a.styleSheets.ex_canvas_||(a=a.createStyleSheet(),a.owningElement.id="ex_canvas_",a.cssText="canvas{display:inline-block;overflow:hidden;text-align:left;width:300px;height:150px}")}function X(a){var b=a.srcElement;switch(a.propertyName){case "width":b.getContext().clearRect();b.style.width=b.attributes.width.nodeValue+"px";b.firstChild.style.width=b.clientWidth+"px";break;case "height":b.getContext().clearRect(),b.style.height=b.attributes.height.nodeValue+"px",b.firstChild.style.height=b.clientHeight+
-"px"}}function Y(a){a=a.srcElement;a.firstChild&&(a.firstChild.style.width=a.clientWidth+"px",a.firstChild.style.height=a.clientHeight+"px")}function D(){return[[1,0,0],[0,1,0],[0,0,1]]}function t(a,b){for(var c=D(),g=0;3>g;g++)for(var e=0;3>e;e++){for(var f=0,d=0;3>d;d++)f+=a[g][d]*b[d][e];c[g][e]=f}return c}function P(a,b){b.fillStyle=a.fillStyle;b.lineCap=a.lineCap;b.lineJoin=a.lineJoin;b.lineWidth=a.lineWidth;b.miterLimit=a.miterLimit;b.shadowBlur=a.shadowBlur;b.shadowColor=a.shadowColor;b.shadowOffsetX=
-a.shadowOffsetX;b.shadowOffsetY=a.shadowOffsetY;b.strokeStyle=a.strokeStyle;b.globalAlpha=a.globalAlpha;b.font=a.font;b.textAlign=a.textAlign;b.textBaseline=a.textBaseline;b.arcScaleX_=a.arcScaleX_;b.arcScaleY_=a.arcScaleY_;b.lineScale_=a.lineScale_}function Q(a){var b=a.indexOf("(",3),c=a.indexOf(")",b+1),b=a.substring(b+1,c).split(",");if(4!=b.length||"a"!=a.charAt(3))b[3]=1;return b}function E(a,b,c){return Math.min(c,Math.max(b,a))}function F(a,b,c){0>c&&c++;1<c&&c--;return 1>6*c?a+6*(b-a)*c:
-1>2*c?b:2>3*c?a+6*(b-a)*(2/3-c):a}function G(a){if(a in H)return H[a];var b,c=1;a=String(a);if("#"==a.charAt(0))b=a;else if(/^rgb/.test(a)){c=Q(a);b="#";for(var g,e=0;3>e;e++)g=-1!=c[e].indexOf("%")?Math.floor(255*(parseFloat(c[e])/100)):+c[e],b+=v[E(g,0,255)];c=+c[3]}else if(/^hsl/.test(a)){e=c=Q(a);b=parseFloat(e[0])/360%360;0>b&&b++;g=E(parseFloat(e[1])/100,0,1);e=E(parseFloat(e[2])/100,0,1);if(0==g)g=e=b=e;else{var f=0.5>e?e*(1+g):e+g-e*g,d=2*e-f;g=F(d,f,b+1/3);e=F(d,f,b);b=F(d,f,b-1/3)}b="#"+
-v[Math.floor(255*g)]+v[Math.floor(255*e)]+v[Math.floor(255*b)];c=c[3]}else b=Z[a]||a;return H[a]={color:b,alpha:c}}function C(a){this.m_=D();this.mStack_=[];this.aStack_=[];this.currentPath_=[];this.fillStyle=this.strokeStyle="#000";this.lineWidth=1;this.lineJoin="miter";this.lineCap="butt";this.miterLimit=1*q;this.globalAlpha=1;this.font="10px sans-serif";this.textAlign="left";this.textBaseline="alphabetic";this.canvas=a;var b="width:"+a.clientWidth+"px;height:"+a.clientHeight+"px;overflow:hidden;position:absolute",
-c=a.ownerDocument.createElement("div");c.style.cssText=b;a.appendChild(c);b=c.cloneNode(!1);b.style.backgroundColor="red";b.style.filter="alpha(opacity=0)";a.appendChild(b);this.element_=c;this.lineScale_=this.arcScaleY_=this.arcScaleX_=1}function R(a,b,c,g){a.currentPath_.push({type:"bezierCurveTo",cp1x:b.x,cp1y:b.y,cp2x:c.x,cp2y:c.y,x:g.x,y:g.y});a.currentX_=g.x;a.currentY_=g.y}function S(a,b){var c=G(a.strokeStyle),g=c.color,c=c.alpha*a.globalAlpha,e=a.lineScale_*a.lineWidth;1>e&&(c*=e);b.push("<g_vml_:stroke",
-' opacity="',c,'"',' joinstyle="',a.lineJoin,'"',' miterlimit="',a.miterLimit,'"',' endcap="',$[a.lineCap]||"square",'"',' weight="',e,'px"',' color="',g,'" />')}function T(a,b,c,g){var e=a.fillStyle,f=a.arcScaleX_,d=a.arcScaleY_,k=g.x-c.x,n=g.y-c.y;if(e instanceof w){var h=0,l=g=0,u=0,m=1;if("gradient"==e.type_){h=e.x1_/f;c=e.y1_/d;var p=s(a,e.x0_/f,e.y0_/d),h=s(a,h,c),h=180*Math.atan2(h.x-p.x,h.y-p.y)/Math.PI;0>h&&(h+=360);1E-6>h&&(h=0)}else p=s(a,e.x0_,e.y0_),g=(p.x-c.x)/k,l=(p.y-c.y)/n,k/=f*q,
-n/=d*q,m=x.max(k,n),u=2*e.r0_/m,m=2*e.r1_/m-u;f=e.colors_;f.sort(function(a,b){return a.offset-b.offset});d=f.length;p=f[0].color;c=f[d-1].color;k=f[0].alpha*a.globalAlpha;a=f[d-1].alpha*a.globalAlpha;for(var n=[],r=0;r<d;r++){var t=f[r];n.push(t.offset*m+u+" "+t.color)}b.push('<g_vml_:fill type="',e.type_,'"',' method="none" focus="100%"',' color="',p,'"',' color2="',c,'"',' colors="',n.join(","),'"',' opacity="',a,'"',' g_o_:opacity2="',k,'"',' angle="',h,'"',' focusposition="',g,",",l,'" />')}else e instanceof
-I?k&&n&&b.push("<g_vml_:fill",' position="',-c.x/k*f*f,",",-c.y/n*d*d,'"',' type="tile"',' src="',e.src_,'" />'):(e=G(a.fillStyle),b.push('<g_vml_:fill color="',e.color,'" opacity="',e.alpha*a.globalAlpha,'" />'))}function s(a,b,c){a=a.m_;return{x:q*(b*a[0][0]+c*a[1][0]+a[2][0])-r,y:q*(b*a[0][1]+c*a[1][1]+a[2][1])-r}}function z(a,b,c){isFinite(b[0][0])&&(isFinite(b[0][1])&&isFinite(b[1][0])&&isFinite(b[1][1])&&isFinite(b[2][0])&&isFinite(b[2][1]))&&(a.m_=b,c&&(a.lineScale_=aa(ba(b[0][0]*b[1][1]-b[0][1]*
-b[1][0]))))}function w(a){this.type_=a;this.r1_=this.y1_=this.x1_=this.r0_=this.y0_=this.x0_=0;this.colors_=[]}function I(a,b){if(!a||1!=a.nodeType||"IMG"!=a.tagName)throw new A("TYPE_MISMATCH_ERR");if("complete"!=a.readyState)throw new A("INVALID_STATE_ERR");switch(b){case "repeat":case null:case "":this.repetition_="repeat";break;case "repeat-x":case "repeat-y":case "no-repeat":this.repetition_=b;break;default:throw new A("SYNTAX_ERR");}this.src_=a.src;this.width_=a.width;this.height_=a.height}
-function A(a){this.code=this[a];this.message=a+": DOM Exception "+this.code}var x=Math,k=x.round,J=x.sin,K=x.cos,ba=x.abs,aa=x.sqrt,q=10,r=q/2;navigator.userAgent.match(/MSIE ([\d.]+)?/);var M=Array.prototype.slice;O(document);var U={init:function(a){a=a||document;a.createElement("canvas");a.attachEvent("onreadystatechange",W(this.init_,this,a))},init_:function(a){a=a.getElementsByTagName("canvas");for(var b=0;b<a.length;b++)this.initElement(a[b])},initElement:function(a){if(!a.getContext){a.getContext=
-V;O(a.ownerDocument);a.innerHTML="";a.attachEvent("onpropertychange",X);a.attachEvent("onresize",Y);var b=a.attributes;b.width&&b.width.specified?a.style.width=b.width.nodeValue+"px":a.width=a.clientWidth;b.height&&b.height.specified?a.style.height=b.height.nodeValue+"px":a.height=a.clientHeight}return a}};U.init();for(var v=[],d=0;16>d;d++)for(var B=0;16>B;B++)v[16*d+B]=d.toString(16)+B.toString(16);var Z={aliceblue:"#F0F8FF",antiquewhite:"#FAEBD7",aquamarine:"#7FFFD4",azure:"#F0FFFF",beige:"#F5F5DC",
-bisque:"#FFE4C4",black:"#000000",blanchedalmond:"#FFEBCD",blueviolet:"#8A2BE2",brown:"#A52A2A",burlywood:"#DEB887",cadetblue:"#5F9EA0",chartreuse:"#7FFF00",chocolate:"#D2691E",coral:"#FF7F50",cornflowerblue:"#6495ED",cornsilk:"#FFF8DC",crimson:"#DC143C",cyan:"#00FFFF",darkblue:"#00008B",darkcyan:"#008B8B",darkgoldenrod:"#B8860B",darkgray:"#A9A9A9",darkgreen:"#006400",darkgrey:"#A9A9A9",darkkhaki:"#BDB76B",darkmagenta:"#8B008B",darkolivegreen:"#556B2F",darkorange:"#FF8C00",darkorchid:"#9932CC",darkred:"#8B0000",
-darksalmon:"#E9967A",darkseagreen:"#8FBC8F",darkslateblue:"#483D8B",darkslategray:"#2F4F4F",darkslategrey:"#2F4F4F",darkturquoise:"#00CED1",darkviolet:"#9400D3",deeppink:"#FF1493",deepskyblue:"#00BFFF",dimgray:"#696969",dimgrey:"#696969",dodgerblue:"#1E90FF",firebrick:"#B22222",floralwhite:"#FFFAF0",forestgreen:"#228B22",gainsboro:"#DCDCDC",ghostwhite:"#F8F8FF",gold:"#FFD700",goldenrod:"#DAA520",grey:"#808080",greenyellow:"#ADFF2F",honeydew:"#F0FFF0",hotpink:"#FF69B4",indianred:"#CD5C5C",indigo:"#4B0082",
-ivory:"#FFFFF0",khaki:"#F0E68C",lavender:"#E6E6FA",lavenderblush:"#FFF0F5",lawngreen:"#7CFC00",lemonchiffon:"#FFFACD",lightblue:"#ADD8E6",lightcoral:"#F08080",lightcyan:"#E0FFFF",lightgoldenrodyellow:"#FAFAD2",lightgreen:"#90EE90",lightgrey:"#D3D3D3",lightpink:"#FFB6C1",lightsalmon:"#FFA07A",lightseagreen:"#20B2AA",lightskyblue:"#87CEFA",lightslategray:"#778899",lightslategrey:"#778899",lightsteelblue:"#B0C4DE",lightyellow:"#FFFFE0",limegreen:"#32CD32",linen:"#FAF0E6",magenta:"#FF00FF",mediumaquamarine:"#66CDAA",
-mediumblue:"#0000CD",mediumorchid:"#BA55D3",mediumpurple:"#9370DB",mediumseagreen:"#3CB371",mediumslateblue:"#7B68EE",mediumspringgreen:"#00FA9A",mediumturquoise:"#48D1CC",mediumvioletred:"#C71585",midnightblue:"#191970",mintcream:"#F5FFFA",mistyrose:"#FFE4E1",moccasin:"#FFE4B5",navajowhite:"#FFDEAD",oldlace:"#FDF5E6",olivedrab:"#6B8E23",orange:"#FFA500",orangered:"#FF4500",orchid:"#DA70D6",palegoldenrod:"#EEE8AA",palegreen:"#98FB98",paleturquoise:"#AFEEEE",palevioletred:"#DB7093",papayawhip:"#FFEFD5",
-peachpuff:"#FFDAB9",peru:"#CD853F",pink:"#FFC0CB",plum:"#DDA0DD",powderblue:"#B0E0E6",rosybrown:"#BC8F8F",royalblue:"#4169E1",saddlebrown:"#8B4513",salmon:"#FA8072",sandybrown:"#F4A460",seagreen:"#2E8B57",seashell:"#FFF5EE",sienna:"#A0522D",skyblue:"#87CEEB",slateblue:"#6A5ACD",slategray:"#708090",slategrey:"#708090",snow:"#FFFAFA",springgreen:"#00FF7F",steelblue:"#4682B4",tan:"#D2B48C",thistle:"#D8BFD8",tomato:"#FF6347",turquoise:"#40E0D0",violet:"#EE82EE",wheat:"#F5DEB3",whitesmoke:"#F5F5F5",yellowgreen:"#9ACD32"},
-H={},L={},$={butt:"flat",round:"round"},d=C.prototype;d.clearRect=function(){this.textMeasureEl_&&(this.textMeasureEl_.removeNode(!0),this.textMeasureEl_=null);this.element_.innerHTML=""};d.beginPath=function(){this.currentPath_=[]};d.moveTo=function(a,b){var c=s(this,a,b);this.currentPath_.push({type:"moveTo",x:c.x,y:c.y});this.currentX_=c.x;this.currentY_=c.y};d.lineTo=function(a,b){var c=s(this,a,b);this.currentPath_.push({type:"lineTo",x:c.x,y:c.y});this.currentX_=c.x;this.currentY_=c.y};d.bezierCurveTo=
-function(a,b,c,g,e,f){e=s(this,e,f);a=s(this,a,b);c=s(this,c,g);R(this,a,c,e)};d.quadraticCurveTo=function(a,b,c,g){a=s(this,a,b);c=s(this,c,g);g={x:this.currentX_+2/3*(a.x-this.currentX_),y:this.currentY_+2/3*(a.y-this.currentY_)};R(this,g,{x:g.x+(c.x-this.currentX_)/3,y:g.y+(c.y-this.currentY_)/3},c)};d.arc=function(a,b,c,g,e,f){c*=q;var d=f?"at":"wa",k=a+K(g)*c-r,n=b+J(g)*c-r;g=a+K(e)*c-r;e=b+J(e)*c-r;k!=g||f||(k+=0.125);a=s(this,a,b);k=s(this,k,n);g=s(this,g,e);this.currentPath_.push({type:d,
-x:a.x,y:a.y,radius:c,xStart:k.x,yStart:k.y,xEnd:g.x,yEnd:g.y})};d.rect=function(a,b,c,g){this.moveTo(a,b);this.lineTo(a+c,b);this.lineTo(a+c,b+g);this.lineTo(a,b+g);this.closePath()};d.strokeRect=function(a,b,c,g){var e=this.currentPath_;this.beginPath();this.moveTo(a,b);this.lineTo(a+c,b);this.lineTo(a+c,b+g);this.lineTo(a,b+g);this.closePath();this.stroke();this.currentPath_=e};d.fillRect=function(a,b,c,g){var e=this.currentPath_;this.beginPath();this.moveTo(a,b);this.lineTo(a+c,b);this.lineTo(a+
-c,b+g);this.lineTo(a,b+g);this.closePath();this.fill();this.currentPath_=e};d.createLinearGradient=function(a,b,c,g){var e=new w("gradient");e.x0_=a;e.y0_=b;e.x1_=c;e.y1_=g;return e};d.createRadialGradient=function(a,b,c,g,e,f){var d=new w("gradientradial");d.x0_=a;d.y0_=b;d.r0_=c;d.x1_=g;d.y1_=e;d.r1_=f;return d};d.drawImage=function(a,b){var c,g,e,d,r,y,n,h;e=a.runtimeStyle.width;d=a.runtimeStyle.height;a.runtimeStyle.width="auto";a.runtimeStyle.height="auto";var l=a.width,u=a.height;a.runtimeStyle.width=
-e;a.runtimeStyle.height=d;if(3==arguments.length)c=arguments[1],g=arguments[2],r=y=0,n=e=l,h=d=u;else if(5==arguments.length)c=arguments[1],g=arguments[2],e=arguments[3],d=arguments[4],r=y=0,n=l,h=u;else if(9==arguments.length)r=arguments[1],y=arguments[2],n=arguments[3],h=arguments[4],c=arguments[5],g=arguments[6],e=arguments[7],d=arguments[8];else throw Error("Invalid number of arguments");var m=s(this,c,g),p=[];p.push(" <g_vml_:group",' coordsize="',10*q,",",10*q,'"',' coordorigin="0,0"',' style="width:',
-10,"px;height:",10,"px;position:absolute;");if(1!=this.m_[0][0]||this.m_[0][1]||1!=this.m_[1][1]||this.m_[1][0]){var t=[];t.push("M11=",this.m_[0][0],",","M12=",this.m_[1][0],",","M21=",this.m_[0][1],",","M22=",this.m_[1][1],",","Dx=",k(m.x/q),",","Dy=",k(m.y/q),"");var v=s(this,c+e,g),w=s(this,c,g+d);c=s(this,c+e,g+d);m.x=x.max(m.x,v.x,w.x,c.x);m.y=x.max(m.y,v.y,w.y,c.y);p.push("padding:0 ",k(m.x/q),"px ",k(m.y/q),"px 0;filter:progid:DXImageTransform.Microsoft.Matrix(",t.join(""),", sizingmethod='clip');")}else p.push("top:",
-k(m.y/q),"px;left:",k(m.x/q),"px;");p.push(' ">','<g_vml_:image src="',a.src,'"',' style="width:',q*e,"px;"," height:",q*d,'px"',' cropleft="',r/l,'"',' croptop="',y/u,'"',' cropright="',(l-r-n)/l,'"',' cropbottom="',(u-y-h)/u,'"'," />","</g_vml_:group>");this.element_.insertAdjacentHTML("BeforeEnd",p.join(""))};d.stroke=function(a){var b=[];b.push("<g_vml_:shape",' filled="',!!a,'"',' style="position:absolute;width:',10,"px;height:",10,'px;"',' coordorigin="0,0"',' coordsize="',10*q,",",10*q,'"',
-' stroked="',!a,'"',' path="');for(var c={x:null,y:null},d={x:null,y:null},e=0;e<this.currentPath_.length;e++){var f=this.currentPath_[e];switch(f.type){case "moveTo":b.push(" m ",k(f.x),",",k(f.y));break;case "lineTo":b.push(" l ",k(f.x),",",k(f.y));break;case "close":b.push(" x ");f=null;break;case "bezierCurveTo":b.push(" c ",k(f.cp1x),",",k(f.cp1y),",",k(f.cp2x),",",k(f.cp2y),",",k(f.x),",",k(f.y));break;case "at":case "wa":b.push(" ",f.type," ",k(f.x-this.arcScaleX_*f.radius),",",k(f.y-this.arcScaleY_*
-f.radius)," ",k(f.x+this.arcScaleX_*f.radius),",",k(f.y+this.arcScaleY_*f.radius)," ",k(f.xStart),",",k(f.yStart)," ",k(f.xEnd),",",k(f.yEnd))}if(f){if(null==c.x||f.x<c.x)c.x=f.x;if(null==d.x||f.x>d.x)d.x=f.x;if(null==c.y||f.y<c.y)c.y=f.y;if(null==d.y||f.y>d.y)d.y=f.y}}b.push(' ">');a?T(this,b,c,d):S(this,b);b.push("</g_vml_:shape>");this.element_.insertAdjacentHTML("beforeEnd",b.join(""))};d.fill=function(){this.stroke(!0)};d.closePath=function(){this.currentPath_.push({type:"close"})};d.save=function(){var a=
-{};P(this,a);this.aStack_.push(a);this.mStack_.push(this.m_);this.m_=t(D(),this.m_)};d.restore=function(){this.aStack_.length&&(P(this.aStack_.pop(),this),this.m_=this.mStack_.pop())};d.translate=function(a,b){z(this,t([[1,0,0],[0,1,0],[a,b,1]],this.m_),!1)};d.rotate=function(a){var b=K(a);a=J(a);z(this,t([[b,a,0],[-a,b,0],[0,0,1]],this.m_),!1)};d.scale=function(a,b){this.arcScaleX_*=a;this.arcScaleY_*=b;z(this,t([[a,0,0],[0,b,0],[0,0,1]],this.m_),!0)};d.transform=function(a,b,c,d,e,f){z(this,t([[a,
-b,0],[c,d,0],[e,f,1]],this.m_),!0)};d.setTransform=function(a,b,c,d,e,f){z(this,[[a,b,0],[c,d,0],[e,f,1]],!0)};d.drawText_=function(a,b,c,d,e){var f=this.m_;d=0;var r=1E3,t=0,n=[],h;h=this.font;if(L[h])h=L[h];else{var l=document.createElement("div").style;try{l.font=h}catch(u){}h=L[h]={style:l.fontStyle||"normal",variant:l.fontVariant||"normal",weight:l.fontWeight||"normal",size:l.fontSize||10,family:l.fontFamily||"sans-serif"}}var l=h,m=this.element_;h={};for(var p in l)h[p]=l[p];p=parseFloat(m.currentStyle.fontSize);
-m=parseFloat(l.size);"number"==typeof l.size?h.size=l.size:-1!=l.size.indexOf("px")?h.size=m:-1!=l.size.indexOf("em")?h.size=p*m:-1!=l.size.indexOf("%")?h.size=p/100*m:-1!=l.size.indexOf("pt")?h.size=m/0.75:h.size=p;h.size*=0.981;p=h.style+" "+h.variant+" "+h.weight+" "+h.size+"px "+h.family;m=this.element_.currentStyle;l=this.textAlign.toLowerCase();switch(l){case "left":case "center":case "right":break;case "end":l="ltr"==m.direction?"right":"left";break;case "start":l="rtl"==m.direction?"right":
-"left";break;default:l="left"}switch(this.textBaseline){case "hanging":case "top":t=h.size/1.75;break;case "middle":break;default:case null:case "alphabetic":case "ideographic":case "bottom":t=-h.size/2.25}switch(l){case "right":d=1E3;r=0.05;break;case "center":d=r=500}b=s(this,b+0,c+t);n.push('<g_vml_:line from="',-d,' 0" to="',r,' 0.05" ',' coordsize="100 100" coordorigin="0 0"',' filled="',!e,'" stroked="',!!e,'" style="position:absolute;width:1px;height:1px;">');e?S(this,n):T(this,n,{x:-d,y:0},
-{x:r,y:h.size});e=f[0][0].toFixed(3)+","+f[1][0].toFixed(3)+","+f[0][1].toFixed(3)+","+f[1][1].toFixed(3)+",0,0";b=k(b.x/q)+","+k(b.y/q);n.push('<g_vml_:skew on="t" matrix="',e,'" ',' offset="',b,'" origin="',d,' 0" />','<g_vml_:path textpathok="true" />','<g_vml_:textpath on="true" string="',N(a),'" style="v-text-align:',l,";font:",N(p),'" /></g_vml_:line>');this.element_.insertAdjacentHTML("beforeEnd",n.join(""))};d.fillText=function(a,b,c,d){this.drawText_(a,b,c,d,!1)};d.strokeText=function(a,
-b,c,d){this.drawText_(a,b,c,d,!0)};d.measureText=function(a){this.textMeasureEl_||(this.element_.insertAdjacentHTML("beforeEnd",'<span style="position:absolute;top:-20000px;left:0;padding:0;margin:0;border:none;white-space:pre;"></span>'),this.textMeasureEl_=this.element_.lastChild);var b=this.element_.ownerDocument;this.textMeasureEl_.innerHTML="";this.textMeasureEl_.style.font=this.font;this.textMeasureEl_.appendChild(b.createTextNode(a));return{width:this.textMeasureEl_.offsetWidth}};d.clip=function(){};
-d.arcTo=function(){};d.createPattern=function(a,b){return new I(a,b)};w.prototype.addColorStop=function(a,b){b=G(b);this.colors_.push({offset:a,color:b.color,alpha:b.alpha})};d=A.prototype=Error();d.INDEX_SIZE_ERR=1;d.DOMSTRING_SIZE_ERR=2;d.HIERARCHY_REQUEST_ERR=3;d.WRONG_DOCUMENT_ERR=4;d.INVALID_CHARACTER_ERR=5;d.NO_DATA_ALLOWED_ERR=6;d.NO_MODIFICATION_ALLOWED_ERR=7;d.NOT_FOUND_ERR=8;d.NOT_SUPPORTED_ERR=9;d.INUSE_ATTRIBUTE_ERR=10;d.INVALID_STATE_ERR=11;d.SYNTAX_ERR=12;d.INVALID_MODIFICATION_ERR=
-13;d.NAMESPACE_ERR=14;d.INVALID_ACCESS_ERR=15;d.VALIDATION_ERR=16;d.TYPE_MISMATCH_ERR=17;G_vmlCanvasManager=U;CanvasRenderingContext2D=C;CanvasGradient=w;CanvasPattern=I;DOMException=A}();
 !function(a,b){"use strict";"undefined"!=typeof module&&module.exports?module.exports=b(require("jquery")):"function"==typeof define&&define.amd?define(["jquery"],function(a){return b(a)}):b(a.jQuery)}(this,function(a){"use strict";var b=function(b,c){this.$element=a(b),this.options=a.extend({},a.fn.typeahead.defaults,c),this.matcher=this.options.matcher||this.matcher,this.sorter=this.options.sorter||this.sorter,this.select=this.options.select||this.select,this.autoSelect="boolean"==typeof this.options.autoSelect?this.options.autoSelect:!0,this.highlighter=this.options.highlighter||this.highlighter,this.render=this.options.render||this.render,this.updater=this.options.updater||this.updater,this.displayText=this.options.displayText||this.displayText,this.source=this.options.source,this.delay=this.options.delay,this.$menu=a(this.options.menu),this.$appendTo=this.options.appendTo?a(this.options.appendTo):null,this.shown=!1,this.listen(),this.showHintOnFocus="boolean"==typeof this.options.showHintOnFocus?this.options.showHintOnFocus:!1,this.afterSelect=this.options.afterSelect,this.addItem=!1};b.prototype={constructor:b,select:function(){var a=this.$menu.find(".active").data("value");if(this.$element.data("active",a),this.autoSelect||a){var b=this.updater(a);this.$element.val(this.displayText(b)||b).change(),this.afterSelect(b)}return this.hide()},updater:function(a){return a},setSource:function(a){this.source=a},show:function(){var b,c=a.extend({},this.$element.position(),{height:this.$element[0].offsetHeight});return b="function"==typeof this.options.scrollHeight?this.options.scrollHeight.call():this.options.scrollHeight,(this.$appendTo?this.$menu.appendTo(this.$appendTo):this.$menu.insertAfter(this.$element)).css({top:c.top+c.height+b,left:c.left}).show(),this.shown=!0,this},hide:function(){return this.$menu.hide(),this.shown=!1,this},lookup:function(b){if(this.query="undefined"!=typeof b&&null!==b?b:this.$element.val()||"",this.query.length<this.options.minLength)return this.shown?this.hide():this;var c=a.proxy(function(){a.isFunction(this.source)?this.source(this.query,a.proxy(this.process,this)):this.source&&this.process(this.source)},this);clearTimeout(this.lookupWorker),this.lookupWorker=setTimeout(c,this.delay)},process:function(b){var c=this;return b=a.grep(b,function(a){return c.matcher(a)}),b=this.sorter(b),b.length||this.options.addItem?(b.length>0?this.$element.data("active",b[0]):this.$element.data("active",null),this.options.addItem&&b.push(this.options.addItem),"all"==this.options.items?this.render(b).show():this.render(b.slice(0,this.options.items)).show()):this.shown?this.hide():this},matcher:function(a){var b=this.displayText(a);return~b.toLowerCase().indexOf(this.query.toLowerCase())},sorter:function(a){for(var b,c=[],d=[],e=[];b=a.shift();){var f=this.displayText(b);f.toLowerCase().indexOf(this.query.toLowerCase())?~f.indexOf(this.query)?d.push(b):e.push(b):c.push(b)}return c.concat(d,e)},highlighter:function(b){var c,d,e,f,g,h=a("<div></div>"),i=this.query,j=b.toLowerCase().indexOf(i.toLowerCase());if(c=i.length,0===c)return h.text(b).html();for(;j>-1;)d=b.substr(0,j),e=b.substr(j,c),f=b.substr(j+c),g=a("<strong></strong>").text(e),h.append(document.createTextNode(d)).append(g),b=f,j=b.toLowerCase().indexOf(i.toLowerCase());return h.append(document.createTextNode(b)).html()},render:function(b){var c=this,d=this,e=!1;return b=a(b).map(function(b,f){var g=d.displayText(f);return b=a(c.options.item).data("value",f),b.find("a").html(c.highlighter(g)),g==d.$element.val()&&(b.addClass("active"),d.$element.data("active",f),e=!0),b[0]}),this.autoSelect&&!e&&(b.first().addClass("active"),this.$element.data("active",b.first().data("value"))),this.$menu.html(b),this},displayText:function(a){return a.name||a},next:function(b){var c=this.$menu.find(".active").removeClass("active"),d=c.next();d.length||(d=a(this.$menu.find("li")[0])),d.addClass("active")},prev:function(a){var b=this.$menu.find(".active").removeClass("active"),c=b.prev();c.length||(c=this.$menu.find("li").last()),c.addClass("active")},listen:function(){this.$element.on("focus",a.proxy(this.focus,this)).on("blur",a.proxy(this.blur,this)).on("keypress",a.proxy(this.keypress,this)).on("keyup",a.proxy(this.keyup,this)),this.eventSupported("keydown")&&this.$element.on("keydown",a.proxy(this.keydown,this)),this.$menu.on("click",a.proxy(this.click,this)).on("mouseenter","li",a.proxy(this.mouseenter,this)).on("mouseleave","li",a.proxy(this.mouseleave,this))},destroy:function(){this.$element.data("typeahead",null),this.$element.data("active",null),this.$element.off("focus").off("blur").off("keypress").off("keyup"),this.eventSupported("keydown")&&this.$element.off("keydown"),this.$menu.remove()},eventSupported:function(a){var b=a in this.$element;return b||(this.$element.setAttribute(a,"return;"),b="function"==typeof this.$element[a]),b},move:function(a){if(this.shown){switch(a.keyCode){case 9:case 13:case 27:a.preventDefault();break;case 38:if(a.shiftKey)return;a.preventDefault(),this.prev();break;case 40:if(a.shiftKey)return;a.preventDefault(),this.next()}a.stopPropagation()}},keydown:function(b){this.suppressKeyPressRepeat=~a.inArray(b.keyCode,[40,38,9,13,27]),this.shown||40!=b.keyCode?this.move(b):this.lookup()},keypress:function(a){this.suppressKeyPressRepeat||this.move(a)},keyup:function(a){switch(a.keyCode){case 40:case 38:case 16:case 17:case 18:break;case 9:case 13:if(!this.shown)return;this.select();break;case 27:if(!this.shown)return;this.hide();break;default:this.lookup()}a.stopPropagation(),a.preventDefault()},focus:function(a){this.focused||(this.focused=!0,this.options.showHintOnFocus&&this.lookup(""))},blur:function(a){this.focused=!1,!this.mousedover&&this.shown&&this.hide()},click:function(a){a.stopPropagation(),a.preventDefault(),this.select(),this.$element.focus()},mouseenter:function(b){this.mousedover=!0,this.$menu.find(".active").removeClass("active"),a(b.currentTarget).addClass("active")},mouseleave:function(a){this.mousedover=!1,!this.focused&&this.shown&&this.hide()}};var c=a.fn.typeahead;a.fn.typeahead=function(c){var d=arguments;return"string"==typeof c&&"getActive"==c?this.data("active"):this.each(function(){var e=a(this),f=e.data("typeahead"),g="object"==typeof c&&c;f||e.data("typeahead",f=new b(this,g)),"string"==typeof c&&(d.length>1?f[c].apply(f,Array.prototype.slice.call(d,1)):f[c]())})},a.fn.typeahead.defaults={source:[],items:8,menu:'<ul class="typeahead dropdown-menu" role="listbox"></ul>',item:'<li><a href="#" role="option"></a></li>',minLength:1,scrollHeight:0,autoSelect:!0,afterSelect:a.noop,addItem:!1,delay:0},a.fn.typeahead.Constructor=b,a.fn.typeahead.noConflict=function(){return a.fn.typeahead=c,this},a(document).on("focus.typeahead.data-api",'[data-provide="typeahead"]',function(b){var c=a(this);c.data("typeahead")||c.typeahead(c.data())})});
-$(init_chart);
+(function() {
+  var CalorieChart,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-function init_chart(){
-  if($("#chart_test").val() == undefined){ return; }
-
-  var option = {
-    axisY : { title: "热量 (KCal)" },
-    data : all_data(),
-    toolTip: { content: function(e){
-     return e.entries[0].dataSeries.name + " <strong>"+e.entries[0].dataPoint.y + "KCal"  ;
-      }
+  $(function() {
+    if ($('#chart_test').length) {
+      return new CalorieChart('chart_test').render();
     }
-  }
-  new CanvasJS.Chart("chart_test", option).render();
-}
+  });
 
-function all_data(){
-  var types = [
-    {name: "碳水热量", value: 1, color: "#46a546"},
-    {name: "蛋白质热量", value: 2, color: "#9d261d"},
-    {name: "脂肪热量", value: 3, color: "#ffc40d"}
-  ];
+  CalorieChart = (function() {
+    function CalorieChart(target_id) {
+      this.data_points = bind(this.data_points, this);
+      this.transform_data = bind(this.transform_data, this);
+      this.render = bind(this.render, this);
+      this.option = {
+        toolTip: {
+          content: function(e) {
+            return e.entries[0].dataSeries.name + " <strong>" + e.entries[0].dataPoint.y + "KCal";
+          }
+        }
+      };
+      this.target_id = target_id;
+    }
 
-  return types.map(function(t){
-    return {
-      type: "stackedColumn",
-      showInLegend: "true",
-      legendText: t.name,
-      name: t.name,
-      color: t.color,
-      dataPoints: data_points(t.value)
+    CalorieChart.prototype.render = function() {
+      return $.get('calorie.json', (function(_this) {
+        return function(data) {
+          _this.data = data;
+          _this.option.data = _this.transform_data();
+          return new CanvasJS.Chart(_this.target_id, _this.option).render();
+        };
+      })(this));
     };
-  }); 
-}
 
-function data_points(index){
-  var data = get_data(index);
-  var labs = labels();
-  var points = labs.map(function(lab){
-    return { y: "", label: lab } 
-  });
-  points.forEach(function(p, i){
-    p.y = data[i];
-  });
-  return points;
-}
+    CalorieChart.prototype.transform_data = function() {
+      return [
+        {
+          name: "碳水热量",
+          type: 'carb',
+          color: "#5cb85c"
+        }, {
+          name: "蛋白质热量",
+          type: 'prot',
+          color: "#d9534f"
+        }, {
+          name: "脂肪热量",
+          type: 'fat',
+          color: "#f0ad4e"
+        }
+      ].map((function(_this) {
+        return function(t) {
+          return {
+            type: "stackedColumn",
+            showInLegend: "true",
+            legendText: t.name,
+            name: t.name,
+            color: t.color,
+            dataPoints: _this.data_points(t.type)
+          };
+        };
+      })(this));
+    };
 
-function get_data(i){
-  return $("#chart_data").val().split("_")[1].split("@")[i].split(",").map(
-      function(x){ return parseInt(x) });
-}
+    CalorieChart.prototype.data_points = function(type) {
+      return this.data['labels'].map((function(_this) {
+        return function(lab, i) {
+          return {
+            label: lab,
+            y: _this.data[type][i]
+          };
+        };
+      })(this));
+    };
 
-function labels(){
-  return $('#chart_data').val().split("_")[0].split(",");
-}
-;
-$(function(){
-  only_one_popover();
-});
+    return CalorieChart;
 
-var $flash_message = function( type, msg ){
-    $("#flash_area").append(
-        '<div class="hide alert alert-'+type+'">'
-        +'<strong>'+msg+'<strong></div>');
-    var $flash = $("#flash_area").find("div:last");
-    $flash.slideDown();
-    setTimeout(function() {
-        $flash.slideUp({
-            complete: function(){
-                $flash.remove();
-            }
-        });
-    },5000);
-};
+  })();
 
-function only_one_popover(){
-  $('body').delegate(".popovers", "click", function(){
-    var count = $(".popover").size();
-    var $thiz = $(this);
-    if (count > 1){
-       $(".popover").first().remove();
-    }
-  });
-}
+}).call(this);
 
 function clear($form) {
   $form.children("input").each(function(i,e){
@@ -14233,78 +12733,137 @@ function last_word_of(string){
   return string.split("_").pop();
 }
 ;
+(function() {
+  $(function() {
+    return $('body').on('click', '#forget_password', function() {
+      var $form, original_action;
+      $form = $('#sign_in_form');
+      original_action = $form.attr('action');
+      $form.attr('action', '/passwords').submit();
+      return $form.attr('action', original_action);
+    });
+  });
+
+}).call(this);
+(function() {
+  var MicropostCollapse,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  $(function() {
+    var init_collapse;
+    init_collapse = function($micropost) {
+      var collapse, micropost_id;
+      micropost_id = $micropost.attr('id');
+      collapse = new MicropostCollapse(micropost_id);
+      collapse.render($micropost.find('.panel-footer'));
+      $micropost.find('.btn-share').bind('collapse', function() {
+        return collapse.act('share');
+      });
+      return $micropost.find('.btn-comment').bind('collapse', function() {
+        return collapse.act('comment');
+      });
+    };
+    return $(document).on('click', '.micropost .btn-share, .micropost .btn-comment', function() {
+      var $micropost;
+      $micropost = $(this).closest('.micropost');
+      if ($micropost.find('.micropost-collapse').length === 0) {
+        init_collapse($micropost);
+      }
+      return $(this).trigger('collapse');
+    });
+  });
+
+  MicropostCollapse = (function() {
+    function MicropostCollapse(micropost_id) {
+      this._content_for = bind(this._content_for, this);
+      this._hide = bind(this._hide, this);
+      this._replace = bind(this._replace, this);
+      this._show = bind(this._show, this);
+      this.act = bind(this.act, this);
+      this.render = bind(this.render, this);
+      this._action = '';
+      this._micropost_id = micropost_id;
+      this._dom = $("<div class='micropost-collapse'></div>").hide();
+    }
+
+    MicropostCollapse.prototype.render = function($target) {
+      return $target.append(this._dom);
+    };
+
+    MicropostCollapse.prototype.act = function(action) {
+      if (this._action === '') {
+        this._content_for(action, (function(_this) {
+          return function(content) {
+            return _this._show(content);
+          };
+        })(this));
+      } else if (this._action !== action) {
+        this._content_for(action, (function(_this) {
+          return function(content) {
+            return _this._replace(content);
+          };
+        })(this));
+      } else if (this._action === action) {
+        this._hide();
+      }
+      if (action === this._action) {
+        return this._action = '';
+      } else {
+        return this._action = action;
+      }
+    };
+
+    MicropostCollapse.prototype._show = function(content) {
+      this._dom.append(content);
+      return this._dom.slideDown();
+    };
+
+    MicropostCollapse.prototype._replace = function(content) {
+      this._dom.empty();
+      return this._dom.append(content);
+    };
+
+    MicropostCollapse.prototype._hide = function() {
+      return this._dom.slideUp((function(_this) {
+        return function() {
+          return _this._dom.empty();
+        };
+      })(this));
+    };
+
+    MicropostCollapse.prototype._content_for = function(action, render) {
+      return $.get("/collapses/" + action + "/" + this._micropost_id, (function(_this) {
+        return function(content) {
+          return render(content);
+        };
+      })(this));
+    };
+
+    return MicropostCollapse;
+
+  })();
+
+}).call(this);
 $(init_post_form);
 
 function init_post_form(){
-  $("body").delegate('.letter_count', 'keypress', change_surplus);
-  $("body").delegate('.letter_count', 'keyup',    change_surplus);
-  $("body").delegate('.letter_count', 'keydown',  submit_form);
-}
-
-function _surplus($input){
-  //surplus = max_length - content_length
-  var text = $.trim($input.val());
-  if (text.length == 0){
-    return "";
-  }else{
-    return 100 - text.length;
-  }
-}
-
-function clear_form($textarea){
-  $textarea.val("");
-  $textarea.keypress();
-  if ($textarea.attr("id") == "new_post_textarea"){
-      $("#food_form").html("");
-      $("#choosed").html("");
-  }
-  var $collapse = $textarea.parent().parent();
-  var $surplus = $collapse.next();
-  if (!$surplus.hasClass("hidden")
-      && $textarea.attr("id").split("_")[0] == "share")
-  {
-    $collapse.collapse('hide');
-    $surplus.addClass('hidden');
-  }
+  $("body").on('keydown',  '#new_post_textarea', submit_form);
 }
 
 var submit_form = function(e) {
-  var $attached_btn = $($(this).attr("attached-btn"));
-
   //When ctrl+enter pressed, submit the form.
-  if(e.ctrlKey && e.which == "13" && _surplus($(this)) >= 0) {
-    $attached_btn.click();
-  }
-}
-
-var change_surplus = function() {
-  var $input = $(this);
-  var $text = $("#surplus_count" + $input.prev().val())
-  var surplus = _surplus($input);
-
-  // change number text.
-  $text.text(surplus);
-
-  // change color and submit-btn.
-  var red = $text.hasClass("surplus-negative");
-  $btn = $($input.attr("attached-btn"))
-  if(red && surplus >= 0){
-    $text.removeClass("surplus-negative");
-    enable($btn);
-  }
-  if(!red && surplus < 0){
-    $text.addClass("surplus-negative");
-    disable($btn);
+  if(e.ctrlKey && e.which == "13") {
+    $("#new_post_form").submit();
   }
 }
 ;
 $(function(){
   init_modal('.food-tag', 'food');
-  init_modal('.btn-share', 'share');
+  // init_modal('.btn-share', 'share');
 });
 
 init_modal = function(trigger, name){
-  $("body").delegate(trigger, 'click', function(){
+  $("body").on('click', trigger, function(){
     var id = $(this).data('id');
     $.get('/modals/'+name+'/'+id, function(data){
       $('#'+name+'_modal').remove();
@@ -14314,50 +12873,10 @@ init_modal = function(trigger, name){
   });
 };
 $(function(){
-  init_watch_post();
-
   $('body').on('click', '.btn-foods', function(){
     $('.add-food-panel').slideToggle(init_add_food_modal);
   });
 });
-
-function reset_watch_post($btn){
-  _set_watch_post($btn);
-}
-
-function init_watch_post(){
-  $("body").delegate('.btn-watch-post', 'click', function(){
-    var $btn = $(this);
-    var init = $btn.hasClass('initialed');
-    if (!init){
-      _init_watch_post($btn);
-    }
-    _init_watch_post_popover();
-    if(!init){
-      $btn.addClass('initialed');
-      $btn.click();
-    }
-  });
-}
-
-function _init_watch_post($btn){
-  $btn.popover({
-    html: true,
-    container: "body",
-    placement: "left",
-    content: function(){
-      return $btn.prev().html();
-    }
-  });
-}
-
-function _init_watch_post_popover(){
-  var $form = $(".popover").find("form");
-  $form.find(".name").
-    keypress(toggle_watch_post_btn).
-    keyup(toggle_watch_post_btn).
-    keypress();
-}
 
 var init_add_food_modal = function(){
   $(".watch-list-typeahead").typeahead({
@@ -14378,7 +12897,6 @@ var init_add_food_modal = function(){
   $("#create_food_btn").click(add_food);
 
   var $form = $("#new_food_form");
-  $form.children(".nutri").numeralinput();
   $form.children(".name").
     keypress(toggle_create_food_btn).
     keyup(toggle_create_food_btn).
@@ -14392,7 +12910,7 @@ var get_watch_list = function(query, process){
     });
 };
 
-function make_food(food_info /* like "id_name" */){
+var make_food = function(food_info /* like "id_name" */){
   var info_array = food_info.split("_");
   return {
     id: info_array[0],
@@ -14400,15 +12918,11 @@ function make_food(food_info /* like "id_name" */){
   };
 }
 
-var toggle_watch_post_btn = function(){
-  attach_toggle($(this).prev(), $(this));
-}
-
 var toggle_create_food_btn = function(){
   attach_toggle($("#create_food_btn"), $(this));
 }
 
-function attach_toggle($btn, $input){
+var attach_toggle = function($btn, $input){
   var str = $input.val() || "";
   if ($.trim(str) == ""){
     disable($btn);
@@ -14436,11 +12950,11 @@ var delete_food = function() {
     $(e).remove();
   });
   $label.fadeOut({complete: function(){
-      this.remove();
+    this.remove();
   }});
 }
 
-function add_label(food){
+var add_label = function(food){
   var name = "";
   if (food && food.name){
     name = food.name;
@@ -14453,7 +12967,7 @@ function add_label(food){
   $("#choosed").fadeIn().append($label.hide().fadeIn());
 }
 
-function add_hidden_input(food){
+var add_hidden_input = function(food){
   var $food_form = $("#food_form");
   if(food && food.id){
     var $input = $("#food_id_input_sample").children().first().clone();
@@ -14469,16 +12983,43 @@ function add_hidden_input(food){
   }
 }
 
-function append_input($form, $input, value){
+var append_input = function($form, $input, value){
   $input.attr("value", value);
   $input.addClass("group_" + count_food());
   $form.append($input);
 }
 
-function count_food() {
+var count_food = function(){
   return $("#choosed").find(".click-del").length;
 }
 ;
+(function() {
+  $(function() {
+    $('body').on('click', 'div.search .dropdown-menu>li>a', function() {
+      var $select, text, type;
+      $select = $(this);
+      text = $select.html();
+      type = $select.data('type');
+      $('div.search .dropdown-toggle>span:first').html(text);
+      return $('div.search form').attr('action', "/search/" + type);
+    });
+    return $('body').on('click', 'div.search .btn-search', function() {
+      return $('div.search form').submit();
+    });
+  });
+
+}).call(this);
+(function() {
+  $(function() {
+    $(document).on('click', '#upload_avatar', function() {
+      return $('#user_avatar').click();
+    });
+    return $(document).on('change', '#user_avatar', function() {
+      return $('#user_avatar_form').submit();
+    });
+  });
+
+}).call(this);
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -14491,7 +13032,6 @@ function count_food() {
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-
 
 
 
