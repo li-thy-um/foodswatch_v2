@@ -17,6 +17,17 @@ class Micropost < ActiveRecord::Base
 
   in_transaction :save_with_foods
 
+  def type
+    case
+    when original_id?
+      :share
+    when comment_id?
+      :comment
+    else
+      :create
+    end
+  end
+
   def shares
     where('shared_id = :id OR original_id = :id', id: id)
   end

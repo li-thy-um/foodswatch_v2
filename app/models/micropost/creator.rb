@@ -11,17 +11,17 @@ module Micropost::Creator
 
   private
 
-    def setup_content(has_foods)
-      content = '' if content.nil?
-      content.strip!
-      if content == ''
-        content = if !original_id.nil?
-          '分享'
-        elsif !comment_id.nil?
-          nil
-        else
-          has_foods ? '我吃了:' : nil
-        end
-      end
+  def setup_content(has_foods)
+    content = self.content || ''
+    content.strip!
+    return unless content == ''
+    self.content = case self.type
+    when :share
+      '分享'
+    when :comment
+      nil
+    when :create
+      has_foods ? '我吃了:' : nil
     end
+  end
 end
