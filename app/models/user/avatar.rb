@@ -16,10 +16,11 @@ module User::Avatar
   }[Rails.env.to_sym]
 
   # 头像文件大小最大值
-  MAX_AVATAR_SIZE = 20 * 1000 * 1000 # 字节
+  MAX_AVATAR_SIZE = 2_000_000 # 字节
 
   # 上传头像
   def upload_avatar(avatar_file)
+
     validate_file_size avatar_file
 
     file_name = next_file_name
