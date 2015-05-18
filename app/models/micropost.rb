@@ -9,7 +9,7 @@ class Micropost < ActiveRecord::Base
   has_many :foods, through: :post_food_relationships
   has_many :comments, foreign_key: :comment_id, class_name: :Micropost, dependent: :destroy
 
-  before_validation { content.strip! }
+  before_validation { content and content.strip! }
 
   validates_presence_of :user_id, message: "用户不能为空。"
   validates_presence_of :content, message: "微博内容不能为空。"
