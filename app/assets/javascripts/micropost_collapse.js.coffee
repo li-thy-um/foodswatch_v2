@@ -1,22 +1,19 @@
 $ () ->
 
-  # add MicropostCollapse to each micropost
-  $('.micropost .panel-footer').each () ->
-    $micropost = $(this).closest('.micropost')
+  # Add micropost-collapse to $micropost and bind event 'collapse'
+  init_collapse = ($micropost) ->
     micropost_id = $micropost.attr('id')
     collapse = new MicropostCollapse( micropost_id )
-    collapse.render $(this)
-    $micropost.find('.btn-share').data('collapse', collapse)
-    $micropost.find('.btn-comment').data('collapse', collapse)
+    collapse.render $micropost.find('.panel-footer')
+    $micropost.find('.btn-share').bind 'collapse', () ->
+      collapse.act('share')
+    $micropost.find('.btn-comment').bind 'collapse', () ->
+      collapse.act('comment')
 
-  # bind event 'click'
-  $(document).on 'click', '.micropost .btn-share', () ->
-    collapse = $(this).data('collapse')
-    collapse && collapse.act('share')
-
-  $(document).on 'click', '.micropost .btn-comment', () ->
-    collapse = $(this).data('collapse')
-    collapse && collapse.act('comment')
+  $(document).on 'click', '.micropost .btn-share, .micropost .btn-comment', () ->
+    $micropost = $(this).closest('.micropost')
+    init_collapse($micropost) if $micropost.find('.micropost-collapse').length == 0
+    $(this).trigger('collapse')
 
 class MicropostCollapse
   constructor: ( micropost_id ) ->
@@ -54,6 +51,7 @@ class MicropostCollapse
     @_dom.slideUp () =>
       @_dom.empty() # then remove content
 
+  # return the content for collapse in html.
   _content_for: (action, render) =>
     $.get "/collapses/#{action}/#{@_micropost_id}", (content) =>
       render(content)
