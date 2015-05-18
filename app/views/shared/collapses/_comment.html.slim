@@ -7,7 +7,7 @@ div id='comment_collapse_#{micropost.id}' class='comment-collapse' style="margin
       input type='hidden' name='micropost[comment_id]' value='#{micropost.id}'
       input type='hidden' name='create_type' value='comment'
 
-      = f.text_area :content, placeholder: '说点啥吧...', id: "comment_textarea_#{micropost.id}", class: 'form-control'
+      = f.text_area :content, placeholder: '说点啥吧...', id:"comment_textarea_#{micropost.id}", class: 'form-control comment-text-area'
       = f.submit '评论', class: "btn btn-primary btn-submit"
 
   - comments = micropost.comments.first(9)
