@@ -4,6 +4,8 @@ class Food < ActiveRecord::Base
   has_many :watches, dependent: :destroy
   has_many :watchers, through: :watches, source: :user
 
+  validates_length_of :name, maximum: 15, message: "食物名长度不能超过15字符。"
+
   before_save :set_calorie
 
   def watch_of(user)
