@@ -1,6 +1,6 @@
 - provide(:title, '消息')
 
 - if @notices.any?
-  ol class='notices'
+  div.notices
     = render @notices
   = will_paginate @notices
