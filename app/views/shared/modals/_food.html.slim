@@ -7,10 +7,14 @@ div class="modal fade" id="food_modal"
         h4 class="modal-title" =@food.name
 
       div class="modal-body"
-        span = "热量: #{@food.calorie}  (kCal)"
-        span = "碳水: #{@food.carb} (g)"
-        span ="蛋白质: #{@food.prot} (g)"
-        span = "脂肪: #{@food.fat} (g)"
+        div
+          span = "热量: #{@food.calorie}  (kCal)"
+        div
+          span = "碳水: #{@food.carb} (g)"
+        div
+          span ="蛋白质: #{@food.prot} (g)"
+        div
+          span = "脂肪: #{@food.fat} (g)"
 
       div class="modal-footer"
         = render 'buttons/watch_food', food: @food
