@@ -17,16 +17,16 @@ module Micropost::Creator
     case self.type
     when :share
       target_user_original = self.original_post.user
-      unless action_user.id == target_user_original.id
+      if action_user.id != target_user_original.id
         target_user_original.notices.create! target_post_id: self.original_id, action_post_id: self.id
       end
       target_user_shared = self.shared_post.user
-      unless action_user.id == target_user_shared.id
+      if action_user.id != target_user_shared.id && self.shared_id != self.original_id
         target_user_shared.notices.create! target_post_id: self.shared_id, action_post_id: self.id
       end
     when :comment
       target_user = self.comment_post.user
-      unless action_user.id == target_user.id
+      if action_user.id != target_user.id
         target_user.notices.create! target_post_id: self.comment_id, action_post_id: self.id
       end
     end
