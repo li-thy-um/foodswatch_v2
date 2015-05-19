@@ -7,13 +7,13 @@ header
 
       ul class='nav navbar-nav navbar-right'
 
+        = render 'shared/notice_link', user: current_user
+
         - if signed_in?
           li class='dropdown' = render 'shared/user_drop_down'
 
         - elsif current_page?(root_path)
-
           li = link_to '登陆', signin_path
 
         - elsif current_page?(signin_path)
-
           li = link_to '首页', root_path

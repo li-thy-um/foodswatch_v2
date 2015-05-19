@@ -42,13 +42,4 @@ module SessionsHelper
       redirect_to root_url
     end
   end
-
-  def redirect_back_or(default)
-    redirect_to(session[:return_to] || default)
-    session.delete(:return_to)
-  end
-
-  def store_location
-    session[:return_to] = request.fullpath if request.get?
-  end
 end

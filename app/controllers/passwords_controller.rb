@@ -3,7 +3,7 @@ class PasswordsController < ApplicationController
   before_action :validate_token, only: [:show]
   before_action :validate_email, only: [:create]
 
-  # 给邮箱地址发邮件
+  # 给邮箱地址发邮件找回密码
   def create
     @user.update_change_password_token
     UserMailer.change_password_email(@user).deliver_later

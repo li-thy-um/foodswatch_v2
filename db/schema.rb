@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514150639) do
+ActiveRecord::Schema.define(version: 20150520132140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,19 @@ ActiveRecord::Schema.define(version: 20150514150639) do
   add_index "microposts", ["comment_id"], name: "index_microposts_on_comment_id", using: :btree
   add_index "microposts", ["original_id"], name: "index_microposts_on_original_id", using: :btree
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at", using: :btree
+
+  create_table "notices", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "target_post_id"
+    t.integer  "action_post_id"
+    t.boolean  "read",           default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "notices", ["read"], name: "index_notices_on_read", using: :btree
+  add_index "notices", ["user_id", "read"], name: "index_notices_on_user_id_and_read", using: :btree
+  add_index "notices", ["user_id"], name: "index_notices_on_user_id", using: :btree
 
   create_table "post_food_relationships", force: :cascade do |t|
     t.integer  "post_id"

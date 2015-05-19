@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :likes
+  has_many :likes, dependent: :destroy
+  has_many :notices, dependent: :destroy
   has_many :watches, dependent: :destroy
   has_many :watched_foods, through: :watches, source: :food
   has_many :microposts, dependent: :destroy

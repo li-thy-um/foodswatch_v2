@@ -27,6 +27,6 @@ div class='panel panel-default micropost' id="#{post_div_id(micropost.id, page)}
           div class='timestamp'
             span = timestamp_for(micropost)
 
-  - if page != 'share'
+  - if page != 'share' && page != 'notice'
 
       = render 'shared/post_action', micropost: micropost, page: page

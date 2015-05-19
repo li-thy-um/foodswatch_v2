@@ -20,6 +20,9 @@ SampleApp::Application.routes.draw do
     get "/search/#{action}", to: "search##{action}", as: "search_#{action}"
   end
 
+  get '/notices/count', to: 'notices#count'
+  resources :notices, only: [:index, :update]
+
   resources :users do
     member do
       get :following, :followers, :foods, :calorie

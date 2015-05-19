@@ -8,7 +8,7 @@ div id='share_collapse_#{micropost.id}' class='share-collapse' style="margin-top
       input type='hidden' name='micropost[shared_id]' value='#{micropost.id}'
       input type='hidden' name='create_type' value='share'
 
-      = f.text_area :content, placeholder: '说点啥吧...', id: "share_textarea_#{micropost.id}", class: 'form-control share-text-area'
+      = f.text_area :content, value: ("//@#{micropost.user.name}：#{micropost.content}" if micropost.original_id?), placeholder: '说点啥吧...', id: "share_textarea_#{micropost.id}", class: 'form-control share-text-area'
       = f.submit '分享', class: "btn btn-success btn-submit"
 
   - shares = micropost.shares.first(9)

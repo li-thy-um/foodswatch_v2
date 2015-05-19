@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         flash[:warning] = "用户邮箱还没有确认，请及时确认注册邮箱。没有受到确认邮件？"
         flash[:link] = { content: "重新发送确认邮件", href: send_confirm_email_user_path(@user) }
       end
-      redirect_back_or root_path
+      redirect_to root_path
     else
       flash[:danger] = '登录失败！请检查用户名/密码。'
       redirect_to signin_path
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    redirect_to root_path
+    redirect_to signin_path
   end
 
   private

@@ -53,6 +53,14 @@ class Micropost < ActiveRecord::Base
     Micropost.where("shared_id = :id OR original_id = :id", id: id)
   end
 
+  def comment_post
+    Micropost.find_by_id(comment_id)
+  end
+
+  def shared_post
+    Micropost.find_by_id(shared_id)
+  end
+
   def original_post
     Micropost.find_by_id(original_id)
   end
