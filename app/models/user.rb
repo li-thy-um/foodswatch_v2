@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   def destroy
-    remove_avatar_file
+    remove_avatar_file!
     super
   end
 
