@@ -186,10 +186,18 @@ p {
 }
 
 /* header */
+@media (min-width: 768px) {
+  header {
+    .navbar-nav {
+      margin-top: 0px !important;
+    }
+  }
+}
+
 
 header {
-  .container-fluid {
-    width: 95%;
+  .container {
+    width: 90%;
   }
 
   .navbar {
@@ -199,6 +207,20 @@ header {
 
   .navbar-default {
     background-color: #FFFFFF;
+  }
+
+  .navbar-right {
+    float: right;
+    margin-top: 4.5px;
+    margin-right: -15px;
+  }
+
+  .navbar-nav {
+    // margin-top: 4.5px;
+
+    li {
+      float: left;
+    }
   }
 
   .gravatar {
