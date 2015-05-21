@@ -4,7 +4,7 @@ div class="modal fade" id="food_modal"
       div class="modal-header"
         button type="button" class="close" data-dismiss="modal" aria-label="Close"
           span aria-hidden="true"&times;
-        h4 class="modal-title" =@food.name
+        h4 class="modal-title" =strip_tags(@food.name)
 
       div class="modal-body"
         div

@@ -1,4 +1,4 @@
 <div class="<%= id %>" style="margin-top:4px">
   <%= render('buttons/watch_food', food: food) %>
 </div>
-<h4><%= food.name %></h4>
+<h4><%= strip_tags(food.name) %></h4>

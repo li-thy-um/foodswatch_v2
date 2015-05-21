@@ -2,7 +2,7 @@ ol.col-md-6 id="food_#{food.id}"
   .panel.panel-defalut
     .panel-heading
       h4
-        = food.name
+        = strip_tags(food.name)
     .panel-body
       = render 'foods/food_detail', food: food
 
