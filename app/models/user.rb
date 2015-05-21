@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
-  has_many :followed_users, through: :relationships, source: :followed
-  has_many :followers, through: :reverse_relationships
+  has_many :followed_users, -> { order('relationships.created_at desc') }, through: :relationships, source: :followed
+  has_many :followers,  -> { order('relationships.created_at desc') }, through: :reverse_relationships
 
   before_validation { name and name.strip! }
   before_validation { email and email.strip! }
