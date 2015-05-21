@@ -215,10 +215,8 @@ header {
     margin-right: -15px;
   }
 
-  .navbar-nav {
-    li {
-      float: left;
-    }
+  .navbar-nav > li {
+    float: left;
   }
 
   .gravatar {
