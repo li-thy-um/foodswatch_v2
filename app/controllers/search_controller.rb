@@ -6,7 +6,7 @@ class SearchController < ApplicationController
   end
 
   def user
-    @users =  User.where("name like :query", query: query).paginate(page: params[:page])
+    @users =  User.where("name like :query", query: query).order("created_at DESC").paginate(page: params[:page])
     @search_type = :user
   end
 
