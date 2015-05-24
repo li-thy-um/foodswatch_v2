@@ -1,4 +1,3 @@
-
 function clear($form) {
   $form.children("input").each(function(i,e){
     $(e).val("");
@@ -18,3 +17,5 @@ function enable($btn){
 function last_word_of(string){
   return string.split("_").pop();
 }
+
+Turbolinks.enableProgressBar();

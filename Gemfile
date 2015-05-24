@@ -28,6 +28,9 @@ gem 'rest-client'
 
 group :development do
   gem 'rspec-rails', '2.13.1'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 group :development, :test do

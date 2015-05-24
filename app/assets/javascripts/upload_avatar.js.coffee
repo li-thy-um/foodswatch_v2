@@ -1,4 +1,4 @@
-$ ->
+$ () ->
   $(document).on 'click', '#upload_avatar', () ->
     $('#user_avatar').click()
 

@@ -1,5 +1,5 @@
 $(function(){
-  $('body').on('click', '.btn-foods', function(){
+  $(document).on('click', '.btn-foods', function(){
     $('.add-food-panel').slideToggle(init_add_food_modal);
   });
 });

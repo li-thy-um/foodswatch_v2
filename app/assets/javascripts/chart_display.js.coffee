@@ -1,4 +1,4 @@
-$ () ->
+$(document).on 'ready page:load', () ->
   if $('#chart_test').length
     new CalorieChart('chart_test').render()
 

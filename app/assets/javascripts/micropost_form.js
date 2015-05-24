@@ -1,7 +1,8 @@
 $(init_post_form);
 
 function init_post_form(){
-  $(document).on('keydown', '#new_post_textarea, .comment-text-area, .share-text-area', submit_form);
+  var selector = '#new_post_textarea, .comment-text-area, .share-text-area'
+  $(document).on('keydown', selector, submit_form);
 }
 
 var submit_form = function(e) {

@@ -4,7 +4,7 @@ $(function(){
 });
 
 init_modal = function(trigger, name){
-  $("body").on('click', trigger, function(){
+  $(document).on('click', trigger, function(){
     var id = $(this).data('id');
     $.get('/modals/'+name+'/'+id, function(data){
       $('#'+name+'_modal').remove();
