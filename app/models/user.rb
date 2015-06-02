@@ -30,15 +30,12 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  def normal_microposts
-    microposts.where(comment_id: nil)
-  end
-
   def destroy
     remove_avatar_file! if avatar
     super
   end
 
+  # authentiacte_token for API
   def auth_token
     remember_token
   end
@@ -61,20 +58,8 @@ class User < ActiveRecord::Base
     likes.find_by(micropost_id: micropost.id)
   end
 
-  def like!(micropost)
-    likes.create!(micropost_id: micropost.id)
-  end
-
-  def commenting?(post)
-    post.comments.find_by_user_id(self.id)
-  end
-
-  def sharing?(post)
-    post.shares.find_by_user_id(self.id)
-  end
-
   def watching?(food)
-    watches.find_by(food_id: food.id)
+    !watch_for(food).nil?
   end
 
   def watch!(food)
@@ -82,30 +67,21 @@ class User < ActiveRecord::Base
   end
 
   def unwatch!(food)
-    watches.find_by(food_id: food.id).destroy if watching? food
-  end
-
-  def watch_list_string()
-    watched_foods.map do |food|
-      if food.name && food.name != ""
-        [food.id, food.name].join("_")
-      else
-        nil
-      end
-    end.compact.join(",")
+    watch = watch_for(food)
+    watch && watch.destroy
   end
 
   def following?(other_user)
-    return false if other_user == nil
-    relationships.find_by(followed_id: other_user.id)
+    !relationship_with(other_user).nil?
   end
 
   def follow!(other_user)
-    relationships.create!(followed_id: other_user.id)
+    relationships.create!(followed_id: other_user.id) unless following? other_user
   end
 
   def unfollow!(other_user)
-    relationships.find_by(followed_id: other_user.id).destroy
+    relationship = relationship_with(other_user)
+    relationship and relationship.destroy
   end
 
   def confirm_email
@@ -114,12 +90,7 @@ class User < ActiveRecord::Base
   end
 
   def feed
-    followed_posts = Micropost.from_users_followed_by(self)
-    arr_post_id = followed_posts.map(&:id)
-    arr_filtered_id = followed_posts.select do |po|
-      po.comment_id.nil?
-    end.map(&:id)
-    Micropost.where(id: arr_filtered_id)
+    Micropost.from_users_followed_by(self).normal
   end
 
   def microposts_today
@@ -134,4 +105,14 @@ class User < ActiveRecord::Base
   def create_remember_token
     self.remember_token = User.encrypt(User.new_remember_token)
   end
+
+  private
+
+    def watch_for(food)
+      watches.find_by(food_id: food.id)
+    end
+
+    def relationship_with(other_user)
+      relationships.find_by(followed_id: other_user.id)
+    end
 end

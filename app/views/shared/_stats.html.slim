@@ -2,7 +2,7 @@ div class='stats'
 
   a href='#{user_path(user)}'
     span 微博
-    span id='post_count' = user.normal_microposts.count
+    span id='post_count' = user.microposts.normal.count
 
   a href='#{following_user_path(user)}'
     span 关注

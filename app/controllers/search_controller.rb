@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
 
   def micropost
-    @microposts = Micropost.where(comment_id: nil).where("content like :query", query: query).paginate(page: params[:page])
+    @microposts = Micropost.normal.where("content like :query", query: query).paginate(page: params[:page])
     @search_type = :micropost
   end
 

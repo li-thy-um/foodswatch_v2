@@ -4,6 +4,7 @@ class Micropost < ActiveRecord::Base
 
   belongs_to :user
   default_scope -> { order('created_at DESC') }
+  scope :normal, -> { where(comment_id: nil) }
   has_many :likes, dependent: :destroy
   has_many :post_food_relationships, foreign_key: :post_id, dependent: :destroy
   has_many :foods, through: :post_food_relationships
@@ -29,7 +30,7 @@ class Micropost < ActiveRecord::Base
   end
 
   def shares
-    where('shared_id = :id OR original_id = :id', id: id)
+    Micropost.where('shared_id = :id OR original_id = :id', id: id)
   end
 
   def total_calorie
@@ -49,10 +50,6 @@ class Micropost < ActiveRecord::Base
     @post_food = Food.find_by_id(post_food_id)
   end
 
-  def shares
-    Micropost.where("shared_id = :id OR original_id = :id", id: id)
-  end
-
   def comment_post
     Micropost.find_by_id(comment_id)
   end
@@ -66,8 +63,7 @@ class Micropost < ActiveRecord::Base
   end
 
   def self.from_users_followed_by(user)
-    arr_users = Relationship.where("follower_id = ?", user).map(&:followed_id) + [user.id]
-    rel_users = User.where(id: arr_users)
-    where(id: rel_users.flat_map(&:microposts).map(&:id))
+    user_ids = user.followed_users.map(&:id) + [user.id]
+    where(user_id: user_ids)
   end
 end
