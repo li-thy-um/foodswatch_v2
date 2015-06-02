@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   def show
     @title =  @user.name
-    @microposts = @user.microposts.where('comment_id is NULL').paginate(page: params[:page])
+    @microposts = @user.normal_microposts.paginate(page: params[:page])
   end
 
   def new

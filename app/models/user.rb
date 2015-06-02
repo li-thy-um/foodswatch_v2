@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  def normal_microposts
+    microposts.where(comment_id: nil)
+  end
+
   def destroy
     remove_avatar_file! if avatar
     super
