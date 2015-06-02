@@ -1,6 +1,13 @@
-echo "1.PUSH TO HEROKU"
+echo "Precompile Assets"
+rake assets:precompile
+git add .
+git commit -m "precompile"
+
+echo "Push to Github"
+git push github master
+
+echo "Push to Heroku"
 git push heroku master
-echo "2.DB MIGRATION"
+
+echo "Database Migration"
 heroku run rake db:migrate
-echo "3.ASSETS PRECOMPILE"
-heroku run rake assets:precompile
