@@ -10,4 +10,4 @@ echo "Push to Heroku"
 git push heroku master
 
 echo "Database Migration"
-heroku run rake db:migrate
+heroku run rake db:migrate --app foodswatch

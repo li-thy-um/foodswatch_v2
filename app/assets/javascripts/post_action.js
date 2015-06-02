@@ -1,6 +1,6 @@
 $(function(){
   $(document).on('click', '.btn-foods', function(){
-    $('.add-food-panel').slideToggle(init_add_food_modal);
+    $('.add-food-panel').fadeToggle(init_add_food_modal);
   });
 });
 
@@ -27,7 +27,7 @@ var init_add_food_modal = function(){
     keypress(toggle_create_food_btn).
     keyup(toggle_create_food_btn).
     keypress();
-}
+};
 
 var get_watch_list = function(query, process){
   $.get( '/foods/query', { current_user: true, query: query },
@@ -42,11 +42,11 @@ var make_food = function(food_info /* like "id_name" */){
     id: info_array[0],
     name: info_array[1]
   };
-}
+};
 
 var toggle_create_food_btn = function(){
   attach_toggle($("#create_food_btn"), $(this));
-}
+};
 
 var attach_toggle = function($btn, $input){
   var str = $input.val() || "";
@@ -55,7 +55,7 @@ var attach_toggle = function($btn, $input){
   }else{
     enable($btn);
   }
-}
+};
 
 var add_food = function(food){
   if (count_food() > 9){
@@ -67,7 +67,7 @@ var add_food = function(food){
   if (!food.id){
     clear($("#new_food_form"));
   }
-}
+};
 
 var delete_food = function() {
   var $label = $(this);
@@ -78,7 +78,7 @@ var delete_food = function() {
   $label.fadeOut({complete: function(){
     this.remove();
   }});
-}
+};
 
 var add_label = function(food){
   var name = "";
@@ -91,7 +91,7 @@ var add_label = function(food){
   $label.attr("group-id", count_food()).click(delete_food);
   $label.attr("style", "margin-right:2px;")
   $("#choosed").fadeIn().append($label.hide().fadeIn());
-}
+};
 
 var add_hidden_input = function(food){
   var $food_form = $("#food_form");
@@ -107,14 +107,14 @@ var add_hidden_input = function(food){
       append_input($food_form, $input, value);
     });
   }
-}
+};
 
 var append_input = function($form, $input, value){
   $input.attr("value", value);
   $input.addClass("group_" + count_food());
   $form.append($input);
-}
+};
 
 var count_food = function(){
   return $("#choosed").find(".click-del").length;
-}
+};

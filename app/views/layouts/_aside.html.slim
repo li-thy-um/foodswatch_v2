@@ -6,7 +6,7 @@ aside.panel.panel-default style='display:block; margin-top:10px;'
 aside.panel.panel-default style='display:block; margin-top:10px;'
 
   div.panel-body
-    = link_to gravatar_for_nav(user), user
+    = link_to gravatar_for_nav(user, {size: 65}), user
     = user_link user
     = render 'shared/stats', user: user
 
@@ -16,10 +16,10 @@ aside.panel.panel-default style='display:block; margin-top:10px;'
 
   - if page == 'home' && signed_in? && current_user?(user)
 
-    div.panel-body id='micropost_form'
+    div.panel-footer id='micropost_form'
         = render 'shared/micropost_form'
 
-    div.panel-body id='choosed' hidden='true'
+    div.panel-footer id='choosed' hidden='true'
 
 - if page == 'home' && signed_in? && current_user?(user)
   = render 'shared/foods_panel'
