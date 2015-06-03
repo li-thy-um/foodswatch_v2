@@ -1,11 +1,8 @@
 $ () ->
   refresh_notice = () ->
-    $.get '/notices/count.js'
+    $.get '/notices/count.js' if $('#notice').length > 0
 
-  setInterval refresh_notice, 2 * 1000
-
-  # add input of read notice ids ( notices of this page) into a hidden form.
-  # subbmit the form
+  setInterval refresh_notice, 5 * 1000
 
   $('.notices .notice .action a').each () ->
     $(this).click()

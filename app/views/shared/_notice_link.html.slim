@@ -1,7 +1,7 @@
 - if signed_in?
   li#notice
-      a href="#{notices_url}"
-        i.fa.fa-bell-o
-        - if (msg_count = user.notices.unread.count) > 0
-          | &nbsp;&nbsp;
-          span.badge = msg_count
+    a href="#{notices_url}"
+      i.fa.fa-bell-o
+      - if (msg_count = user.notices.unread.count) > 0
+        | &nbsp;&nbsp;
+        span.badge = msg_count

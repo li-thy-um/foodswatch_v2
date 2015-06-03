@@ -1,6 +1,6 @@
 class NoticesController < ApplicationController
   before_action :signed_in_user
-
+  
   def count
   end
 
