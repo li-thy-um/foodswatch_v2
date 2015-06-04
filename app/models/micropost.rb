@@ -9,6 +9,8 @@ class Micropost < ActiveRecord::Base
   has_many :post_food_relationships, foreign_key: :post_id, dependent: :destroy
   has_many :foods, through: :post_food_relationships
   has_many :comments, foreign_key: :comment_id, class_name: :Micropost, dependent: :destroy
+  has_many :action_notices, foreign_key: :action_post_id, class_name: :Notice, dependent: :destroy
+  has_many :target_notices, foreign_key: :target_post_id, class_name: :Notice, dependent: :destroy
 
   before_validation { content and content.strip! }
 

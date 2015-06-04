@@ -21,7 +21,7 @@ SampleApp::Application.routes.draw do
   end
 
   get '/notices/count', to: 'notices#count'
-  resources :notices, only: [:index, :update]
+  resources :notices, only: [:index]
 
   resources :users do
     member do

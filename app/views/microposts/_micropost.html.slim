@@ -10,7 +10,8 @@ div class='panel panel-default micropost' id="#{post_div_id(micropost.id, page)}
           span.media-heading.media-body
             = user_link(micropost.user)
           br
-          span class="content" = wrap(micropost.content)
+          span class="content"
+            = wrap(micropost.content)
 
           - if micropost.foods.any?
             div class="panel-body"

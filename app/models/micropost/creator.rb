@@ -13,22 +13,39 @@ module Micropost::Creator
   private
 
   def create_notice
-    action_user = self.user
+    notice_hash = {
+      action_user_id: self.user_id,
+      action_post_id: self.id
+    }
+
+    # if it's share or comment, notice the original poster.
     case self.type
     when :share
       target_user_original = self.original_post.user
-      if action_user.id != target_user_original.id
-        target_user_original.notices.create! target_post_id: self.original_id, action_post_id: self.id
+      if self.user_id != target_user_original.id
+        target_user_original.notices.create! notice_hash.merge({target_post_id: self.original_id})
       end
       target_user_shared = self.shared_post.user
-      if action_user.id != target_user_shared.id && self.shared_id != self.original_id
-        target_user_shared.notices.create! target_post_id: self.shared_id, action_post_id: self.id
+      if self.user_id != target_user_shared.id && self.shared_id != self.original_id
+        target_user_shared.notices.create! notice_hash.merge({target_post_id: self.shared_id})
       end
     when :comment
       target_user = self.comment_post.user
-      if action_user.id != target_user.id
-        target_user.notices.create! target_post_id: self.comment_id, action_post_id: self.id
+      if self.user_id != target_user.id
+        target_user.notices.create! notice_hash.merge({target_post_id: self.comment_id})
       end
+    end
+
+    # if it contains @username and the username doesn't refer to the poster, notice the relative user.
+    usernames = self.content.scan(/(?<=@)\p{Word}+/)
+    # if a post contains the same username more than one time, only notice once for that user.
+    usernames.uniq.each do |name|
+      user = User.find_by(name: name)
+      user && user.id != self.user_id and
+      user.notices.create! notice_hash.merge({
+        target_post_id: self.id,
+        notice_type: :at
+      })
     end
   end
 

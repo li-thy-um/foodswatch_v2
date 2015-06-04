@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   VLID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates_presence_of :name, message: "用户名不能为空。"
   validates_length_of :name, maximum: 20, message: "用户名长度不能超过20字符。"
+  validates_format_of :name, with: /\A\p{Word}*\z/, message: "用户名不能包含标点符号。"
   validates_uniqueness_of :name, case_sensitive: true, message: "用户名已经被注册了。"
   validates_presence_of :email, message: "电子邮件不能为空。"
   validates_format_of :email, with: VLID_EMAIL_REGEX, message: "电子邮件地址格式不正确。"
@@ -27,8 +28,38 @@ class User < ActiveRecord::Base
   include User::Avatar
   include User::Calorie
   extend User::Token
+  extend Decorator
+
+  in_transaction :like!, :cancel_like!
 
   has_secure_password
+
+  def like!(micropost_id)
+    like = self.likes.create! micropost_id: micropost_id
+    # Noitce the poster if the poster is not self.
+    unless (micropost = Micropost.find_by_id micropost_id).nil? || micropost.user.id == self.id
+      micropost.user.notices.create!({
+        action_user_id: self.id,
+        target_post_id: micropost_id,
+        action_post_id: micropost_id,
+        notice_type: :like
+      })
+    end
+    like
+  end
+
+  def cancel_like!(like_id)
+    like = Like.find(like_id).destroy!
+    post = like.micropost
+    Notice.find_by({
+      notice_type: :like,
+      user_id: post.user,
+      target_post_id: post.id,
+      action_post_id: post.id,
+      action_user_id: self.id
+    }).destroy!
+    like
+  end
 
   def destroy
     remove_avatar_file! if avatar

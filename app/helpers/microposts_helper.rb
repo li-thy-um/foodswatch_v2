@@ -1,7 +1,12 @@
 module MicropostsHelper
 
   def wrap(content)
-    sanitize(strip_tags(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
+    content = sanitize(strip_tags(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
+    content.scan(/@\p{Word}+/).uniq.each do |user_link|
+      user = User.find_by(name: user_link[1..-1])
+      content = content.gsub(user_link, user_link(user))
+    end
+    content.html_safe
   end
 
   def post_div_id(id, page)

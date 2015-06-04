@@ -1,23 +1,25 @@
 .notice
 
-  - action = case type = notice.action_post.type
-  - when :comment
-    - "评论"
-  - when :share
-    - "分享"
-
   .panel
     .panel-heading
-      = user_link notice.action_post.user
-      = " #{action}了你的微博："
+      = user_link( notice.action_user || notice.action_post.user )
+      - case notice.notice_type
+      - when "like"
+        = " 赞了你的微博："
+      - when "at"
+        = " 在微博中提到了你："
+      - else
+        - action = case notice.action_post.type
+        - when :comment
+          - "评论"
+        - when :share
+          - "分享"
+        = " #{action}了你的微博："
 
-    - if type == :comment
+    - if notice.notice_type == nil && notice.action_post.type == :comment
 
       .panel-body
         = render notice.target_post, page: "notice"
 
     .panel-body
       = render notice.action_post, page: "notice"
-
-  .hide.action
-    = link_to notice, remote: true, method: :put do

@@ -4,6 +4,8 @@ class Notice < ActiveRecord::Base
   belongs_to :user
   belongs_to :target_post, class_name: :Micropost
   belongs_to :action_post, class_name: :Micropost
+  belongs_to :action_user, class_name: :User
+  validates_presence_of :action_user_id
   validates_presence_of :user_id
   validates_presence_of :target_post_id
   validates_presence_of :action_post_id
