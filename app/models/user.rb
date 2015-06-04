@@ -37,7 +37,8 @@ class User < ActiveRecord::Base
   def like!(micropost_id)
     like = self.likes.create! micropost_id: micropost_id
     # Noitce the poster if the poster is not self.
-    unless (micropost = Micropost.find_by_id micropost_id).nil? || micropost.user.id == self.id
+    micropost = Micropost.find_by_id micropost_id
+    unless micropost.nil? || micropost.user_id == self.id
       micropost.user.notices.create!({
         action_user_id: self.id,
         target_post_id: micropost_id,
@@ -51,13 +52,14 @@ class User < ActiveRecord::Base
   def cancel_like!(like_id)
     like = Like.find(like_id).destroy!
     post = like.micropost
-    Notice.find_by({
+    notice = Notice.find_by({
       notice_type: :like,
       user_id: post.user,
       target_post_id: post.id,
       action_post_id: post.id,
       action_user_id: self.id
-    }).destroy!
+    })
+    notice && notice.destroy!
     like
   end
 

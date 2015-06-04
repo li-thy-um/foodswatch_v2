@@ -11,7 +11,7 @@ class LikesController < ApplicationController
 
   def destroy
     @like = current_user.cancel_like! params[:id]
-  rescue
+  rescue => e
     logger.error e.message
     logger.error e.backtrace.join("\n")
     render action: :error
