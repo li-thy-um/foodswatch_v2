@@ -6,9 +6,9 @@ $ () ->
     collapse = new MicropostCollapse( micropost_id )
     collapse.render $micropost.find('.panel-footer')
     $micropost.find('.btn-share').bind 'collapse', () ->
-      collapse.act('share')
+      collapse.act('share', $(this))
     $micropost.find('.btn-comment').bind 'collapse', () ->
-      collapse.act('comment')
+      collapse.act('comment', $(this))
 
   $(document).on 'click', '.micropost .btn-share, .micropost .btn-comment', () ->
     $micropost = $(this).closest('.micropost')
@@ -24,13 +24,17 @@ class MicropostCollapse
   render: ($target) =>
     $target.append(@_dom)
 
-  act: (action) =>
+  act: (action, $btn) =>
     if @_action == ''
+      $btn.addClass('disabled')
       @_content_for action, (content) =>
         @_show(content)
+        $btn.removeClass('disabled')
     else if @_action != action
+      $btn.addClass('disabled')
       @_content_for action, (content) =>
         @_replace(content) # replace content with content of action
+        $btn.removeClass('disabled')
     else if @_action == action
       @_hide()
 
