@@ -2,9 +2,10 @@ class Micropost < ActiveRecord::Base
   include Micropost::Creator
   extend Decorator
 
-  belongs_to :user
-  default_scope -> { order('created_at DESC') }
   scope :normal, -> { where(comment_id: nil) }
+  default_scope -> { order('created_at DESC') }
+  belongs_to :user
+  belongs_to :comment_post, foreign_key: :comment_id, class_name: :Micropost, counter_cache: true
   has_many :likes, dependent: :destroy
   has_many :post_food_relationships, foreign_key: :post_id, dependent: :destroy
   has_many :foods, through: :post_food_relationships
