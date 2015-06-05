@@ -2,6 +2,13 @@ class Api::V1::UsersController < Api::V1::ApplicationApiController
 
   before_action :prepare_user, only: [:feeds, :microposts]
 
+  def search
+    microposts = Micropost.normal.where("content like :query", query: query).paginate(page: params[:page]).map do |micropost|
+      json_of micropost
+    end
+    render_json microposts
+  end
+
   def feeds
     microposts = @user.feed.paginate(page: params[:page]).map do |micropost|
       json_of micropost
@@ -17,6 +24,10 @@ class Api::V1::UsersController < Api::V1::ApplicationApiController
   end
 
   private
+
+    def query
+      "%#{params[:query]}%"
+    end
 
     def json_of(micropost)
       {

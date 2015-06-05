@@ -1,2 +1,3 @@
-- @feed_items = @microposts
-= render 'shared/feed'
+.microposts data-action="search" data-query="#{@query}" data-user="#{@user.id}" data-page="#{@page}"
+  = render 'shared/loading'
+= will_paginate @microposts

@@ -6,6 +6,7 @@ SampleApp::Application.routes.draw do
         member do
           get :microposts
           get :feeds
+          get :search
         end
       end
     end

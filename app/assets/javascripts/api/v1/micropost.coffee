@@ -5,7 +5,7 @@ class User
     @id = id
 
   get: (option) =>
-    $.get "/api/v1/users/#{@id}/#{option.action}?page=#{option.page}", (res) =>
+    $.get "/api/v1/users/#{@id}/#{option.action}?page=#{option.page}&query=#{option.query}", (res) =>
       option.success(res)
 
 class Micropost
@@ -139,6 +139,9 @@ $(document).on "ready page:load", () ->
     if ($dom = $("[data-action='feeds']")).length > 0
       render_microposts($dom, "feeds")
 
+    if ($dom = $("[data-action='search']")).length > 0
+      render_microposts($dom, "search")
+
     if ($dom = $("[data-action='microposts']")).length > 0
       render_microposts($dom)
 
@@ -146,6 +149,7 @@ render_microposts = ($dom, action) ->
   page = $dom.data('page') || 1
   new User($dom.data('user')).get
     action: action || "microposts"
+    query: if action == "search" then $dom.data("query") else ""
     page: page
     success: (res) ->
       $dom.empty()
