@@ -28,13 +28,23 @@ class MicropostCollapse
     if @_action == ''
       $btn.addClass('disabled')
       @_content_for action, (content) =>
-        @_show(content)
         $btn.removeClass('disabled')
+        if content == false
+          @_error()
+          @_action = ''
+        else
+          @_show(content)
+
     else if @_action != action
       $btn.addClass('disabled')
       @_content_for action, (content) =>
-        @_replace(content) # replace content with content of action
         $btn.removeClass('disabled')
+        if content == false
+          @_error()
+          @_hide()
+        else
+          @_replace(content) # replace content with content of action
+
     else if @_action == action
       @_hide()
 
@@ -42,6 +52,9 @@ class MicropostCollapse
       @_action = ''
     else
       @_action = action
+
+  _error: () =>
+    alert('出错啦，很有可能是这个微博刚刚被删除了，刷新一下看看吧！')
 
   _show: (content) =>
     @_dom.append(content)
@@ -58,4 +71,4 @@ class MicropostCollapse
   # return the content for collapse in html.
   _content_for: (action, render) =>
     $.get "/collapses/#{action}/#{@_micropost_id}", (content) =>
-      render(content)
+        render(content)

@@ -3,15 +3,20 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
-    @micropost.save_with_foods foods_params
-    if parent_id = params[:micropost][:comment_id] || params[:micropost][:shared_id]
-      @post = Micropost.find_by_id(parent_id)
+    # To make sure the shared_post or comment_post is not deleted.
+    if @parent_id = params[:micropost][:comment_id] || params[:micropost][:shared_id]
+      begin
+        @post = Micropost.find(@parent_id)
+      rescue ActiveRecord::RecordNotFound => e
+        flash[:danger] = "出错啦，很有可能是这个微博刚刚被删除了，刷新一下看看吧！"
+      end
     end
+    @micropost.save_with_foods foods_params
     render action: params[:create_type]
   rescue => e
     logger.error e.message
     logger.error e.backtrace.join("\n")
-    flash[:danger] = "发布失败，请重试。#{error_message_for @micropost}"
+    flash[:danger] ||= "发布失败，请重试。#{error_message_for @micropost}"
     render action: :create_fail
   end
 

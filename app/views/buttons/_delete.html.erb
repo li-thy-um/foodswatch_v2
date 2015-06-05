@@ -1,9 +1,9 @@
-<% style ||= "" %>
+<% style ||= '' %>
 <%= link_to post,
     remote: true,
     method: :delete,
-    class: "btn btn-action btn-danger btn-delete",
+    class: 'btn btn-action btn-danger btn-delete',
     style: style,
-    data: { confirm: "确定删除?"} do %>
+    data: { confirm: '确定删除?'} do %>
   删除
 <% end %>

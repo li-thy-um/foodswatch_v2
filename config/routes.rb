@@ -2,6 +2,12 @@ SampleApp::Application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :microposts, only: [:create, :destroy]
+      resources :users, only: [] do
+        member do
+          get :microposts
+          get :feeds
+        end
+      end
     end
   end
 

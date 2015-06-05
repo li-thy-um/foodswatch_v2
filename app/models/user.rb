@@ -35,9 +35,9 @@ class User < ActiveRecord::Base
   has_secure_password
 
   def like!(micropost_id)
+    micropost = Micropost.find micropost_id
     like = self.likes.create! micropost_id: micropost_id
     # Noitce the poster if the poster is not self.
-    micropost = Micropost.find_by_id micropost_id
     unless micropost.nil? || micropost.user_id == self.id
       micropost.user.notices.create!({
         action_user_id: self.id,

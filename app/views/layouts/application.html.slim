@@ -8,7 +8,7 @@ html lang="zh"
     = csrf_meta_tags
     = render 'layouts/shim'
 
-  body class='#{yield(:background) || ''}'
+  body class='#{yield(:background) || ''}' data-user="#{current_user && current_user.id}"
 
     = render 'layouts/header'
 

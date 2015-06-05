@@ -1,4 +1,3 @@
-  div class='container-fluid microposts'
-    - if !@feed_items.empty?
-      = render @feed_items, page: 'feed'
-      = will_paginate @feed_items
+.microposts data-action="feeds" data-user="#{@user.id}" data-page="#{@page}"
+  = render 'shared/loading'
+= will_paginate @feed_items

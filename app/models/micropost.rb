@@ -5,7 +5,7 @@ class Micropost < ActiveRecord::Base
   scope :normal, -> { where(comment_id: nil) }
   default_scope -> { order('created_at DESC') }
   belongs_to :user
-  belongs_to :comment_post, foreign_key: :comment_id, class_name: :Micropost, counter_cache: true
+  belongs_to :comment_post, foreign_key: :comment_id, class_name: :Micropost
   has_many :likes, dependent: :destroy
   has_many :post_food_relationships, foreign_key: :post_id, dependent: :destroy
   has_many :foods, through: :post_food_relationships
@@ -20,6 +20,12 @@ class Micropost < ActiveRecord::Base
   validates_length_of :content, maximum: 140, message: "微博长度不能超过140字符。"
 
   in_transaction :save_with_foods
+
+  def as_json
+    super.merge(
+      user: self.user.as_json
+    )
+  end
 
   def type
     case
