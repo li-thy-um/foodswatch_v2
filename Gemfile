@@ -25,6 +25,8 @@ gem 'slim'
 # qiniu for avatar storage.
 gem 'qiniu'
 
+gem 'react-rails', '~> 1.0'
+
 gem 'rest-client'
 
 group :development do
