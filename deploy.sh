@@ -1,6 +1,6 @@
 echo "Precompile Assets"
-rake assets:precompile
-git add .
+rake assets:precompile RAILS_ENV=production
+git add --all
 git commit -m "precompile"
 
 echo "Push to Github"

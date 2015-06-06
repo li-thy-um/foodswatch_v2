@@ -22,6 +22,7 @@ gem 'font-awesome-sass', '~> 4.3.0'
 
 gem 'slim'
 
+# qiniu for avatar storage.
 gem 'qiniu'
 
 gem 'rest-client'
@@ -53,6 +54,7 @@ end
 
 group :production do
   gem 'rails_12factor', '0.0.2'
+  gem 'rack-cache'
 end
 
 # Use CoffeeScript for .js.coffee assets and views

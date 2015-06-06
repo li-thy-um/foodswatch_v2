@@ -1,0 +1,1511 @@
+2015-06-05T11:37:13.927831+00:00 heroku[router]: at=info method=GET path="/assets/loading.gif" host=foodswatch.herokuapp.com request_id=f59b6113-e64c-45c0-b2c6-e65b82eeb75c fwd="116.238.180.252" dyno=web.1 connect=0ms service=7ms status=304 bytes=276
+2015-06-05T11:37:17.838778+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=0b3bad4b-834a-48ff-acb4-2802fc3aba38 fwd="116.238.180.252" dyno=web.1 connect=3ms service=21ms status=500 bytes=1588
+2015-06-05T11:37:17.821346+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:37:17 +0000
+2015-06-05T11:37:17.831121+00:00 app[web.1]: Completed 500 Internal Server Error in 7ms
+2015-06-05T11:37:17.824135+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:17.836903+00:00 app[web.1]: 
+2015-06-05T11:37:17.836908+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1bcab4700>):
+2015-06-05T11:37:17.836910+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:37:17.836939+00:00 app[web.1]: 
+2015-06-05T11:37:17.836940+00:00 app[web.1]: 
+2015-06-05T11:37:18.107800+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=5b6b65a1-844b-427e-86ee-c422441bdb1d fwd="116.238.180.252" dyno=web.1 connect=1ms service=20ms status=500 bytes=1588
+2015-06-05T11:37:18.090585+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:37:18 +0000
+2015-06-05T11:37:18.099280+00:00 app[web.1]: Completed 500 Internal Server Error in 7ms
+2015-06-05T11:37:18.105361+00:00 app[web.1]: 
+2015-06-05T11:37:18.105353+00:00 app[web.1]: 
+2015-06-05T11:37:18.105357+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1bb954f28>):
+2015-06-05T11:37:18.105359+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:37:18.092451+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:18.105360+00:00 app[web.1]: 
+2015-06-05T11:37:18.375979+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=b62b363a-83ff-4bac-8b89-acdc2a3b1bd6 fwd="116.238.180.252" dyno=web.1 connect=0ms service=16ms status=500 bytes=1588
+2015-06-05T11:37:18.362412+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:37:18 +0000
+2015-06-05T11:37:18.370046+00:00 app[web.1]: Completed 500 Internal Server Error in 6ms
+2015-06-05T11:37:18.364113+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:18.374673+00:00 app[web.1]: 
+2015-06-05T11:37:18.374677+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a4b24568>):
+2015-06-05T11:37:18.374679+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:37:18.374681+00:00 app[web.1]: 
+2015-06-05T11:37:18.374682+00:00 app[web.1]: 
+2015-06-05T11:37:18.612908+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:37:18 +0000
+2015-06-05T11:37:18.624600+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=c9b50de2-e8b3-4dc3-b968-2c31826d2446 fwd="116.238.180.252" dyno=web.1 connect=3ms service=13ms status=304 bytes=838
+2015-06-05T11:37:18.655627+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=5d7e4469-7e46-4e82-9de8-236226a46cc1 fwd="116.238.180.252" dyno=web.1 connect=3ms service=22ms status=500 bytes=1588
+2015-06-05T11:37:18.615137+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:18.623749+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:37:18 +0000
+2015-06-05T11:37:18.631174+00:00 app[web.1]: Completed 500 Internal Server Error in 6ms
+2015-06-05T11:37:18.639976+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:18.650948+00:00 app[web.1]: 
+2015-06-05T11:37:18.650952+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a4710bc0>):
+2015-06-05T11:37:18.650954+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:37:18.650955+00:00 app[web.1]: 
+2015-06-05T11:37:18.650956+00:00 app[web.1]: 
+2015-06-05T11:37:18.622408+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.2ms)
+2015-06-05T11:37:18.622502+00:00 app[web.1]:   Rendered notices/count.js.erb (2.5ms)
+2015-06-05T11:37:18.622690+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 1.7ms)
+2015-06-05T11:37:18.635853+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a4bfd520>):
+2015-06-05T11:37:18.625100+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:18.635850+00:00 app[web.1]: 
+2015-06-05T11:37:18.635856+00:00 app[web.1]: 
+2015-06-05T11:37:18.635855+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:37:18.635857+00:00 app[web.1]: 
+2015-06-05T11:37:18.638680+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:37:18 +0000
+2015-06-05T11:37:18.646305+00:00 app[web.1]: Completed 500 Internal Server Error in 6ms
+2015-06-05T11:37:18.642474+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=c3d2e210-a9c8-43bb-80de-d6271c49f27b fwd="116.238.180.252" dyno=web.1 connect=0ms service=28ms status=500 bytes=1588
+2015-06-05T11:37:18.935070+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=a6f949b9-8938-4830-a9b9-c1232b7162cd fwd="116.238.180.252" dyno=web.1 connect=0ms service=35ms status=500 bytes=1588
+2015-06-05T11:37:18.884591+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:37:18 +0000
+2015-06-05T11:37:18.899015+00:00 app[web.1]: Completed 500 Internal Server Error in 12ms
+2015-06-05T11:37:18.922398+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:18.933844+00:00 app[web.1]: 
+2015-06-05T11:37:18.933848+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a4d4f7e8>):
+2015-06-05T11:37:18.933849+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:37:18.933851+00:00 app[web.1]: 
+2015-06-05T11:37:18.933852+00:00 app[web.1]: 
+2015-06-05T11:37:18.886447+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:18.919393+00:00 app[web.1]: 
+2015-06-05T11:37:18.919401+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:37:18.919399+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a45ec1e0>):
+2015-06-05T11:37:18.919404+00:00 app[web.1]: 
+2015-06-05T11:37:18.919403+00:00 app[web.1]: 
+2015-06-05T11:37:18.920654+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:37:18 +0000
+2015-06-05T11:37:18.929208+00:00 app[web.1]: Completed 500 Internal Server Error in 7ms
+2015-06-05T11:37:18.920911+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=ed298b40-ee64-4154-9f8a-9a4acd2bd906 fwd="116.238.180.252" dyno=web.1 connect=1ms service=41ms status=500 bytes=1588
+2015-06-05T11:37:23.251660+00:00 app[web.1]: Completed 500 Internal Server Error in 8ms
+2015-06-05T11:37:23.241222+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:37:23 +0000
+2015-06-05T11:37:23.243615+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:23.259223+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a4e0eb20>):
+2015-06-05T11:37:23.259218+00:00 app[web.1]: 
+2015-06-05T11:37:23.259227+00:00 app[web.1]: 
+2015-06-05T11:37:23.259225+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:37:23.259228+00:00 app[web.1]: 
+2015-06-05T11:37:23.261819+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=7ca0d2b8-a198-42ab-a0e3-7f4f90ec64f7 fwd="116.238.180.252" dyno=web.1 connect=3ms service=29ms status=500 bytes=1588
+2015-06-05T11:37:24.139055+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=3b5f2490-428f-49af-9caf-42860e3dfbf4 fwd="116.238.180.252" dyno=web.1 connect=0ms service=51ms status=500 bytes=1588
+2015-06-05T11:37:24.099572+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:37:24 +0000
+2015-06-05T11:37:24.132203+00:00 app[web.1]: Completed 500 Internal Server Error in 25ms
+2015-06-05T11:37:24.137337+00:00 app[web.1]: 
+2015-06-05T11:37:24.106853+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:24.137341+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a4eb2108>):
+2015-06-05T11:37:24.137343+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:37:24.137344+00:00 app[web.1]: 
+2015-06-05T11:37:24.137346+00:00 app[web.1]: 
+2015-06-05T11:37:29.249695+00:00 heroku[router]: at=info method=GET path="/assets/application-9a8cb2bd9fe658bd718766e13182ff05.css" host=foodswatch.herokuapp.com request_id=30314173-7d11-45cb-8829-867a62389aae fwd="74.207.252.33" dyno=web.1 connect=0ms service=3ms status=304 bytes=249
+2015-06-05T11:37:33.439156+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=bcacbcce-2ffc-4af8-9998-23572fbf0d43 fwd="74.207.252.33" dyno=web.1 connect=0ms service=11ms status=304 bytes=838
+2015-06-05T11:37:33.430621+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:37:33 +0000
+2015-06-05T11:37:33.437309+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-05T11:37:33.437395+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-05T11:37:33.437625+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 1.7ms)
+2015-06-05T11:37:33.432446+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:34.019510+00:00 heroku[router]: at=info method=GET path="/users/101" host=foodswatch.herokuapp.com request_id=cddae811-74f0-43e1-9267-dd48037c7df6 fwd="74.207.252.33" dyno=web.1 connect=0ms service=51ms status=200 bytes=5184
+2015-06-05T11:37:33.973234+00:00 app[web.1]: Started GET "/users/101" for 74.207.252.33 at 2015-06-05 11:37:33 +0000
+2015-06-05T11:37:34.008887+00:00 app[web.1]:   Rendered shared/_stats.html.slim (11.1ms)
+2015-06-05T11:37:34.010165+00:00 app[web.1]:   Rendered shared/_loading.html.slim (0.2ms)
+2015-06-05T11:37:34.013034+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.0ms)
+2015-06-05T11:37:34.016523+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.7ms)
+2015-06-05T11:37:34.016986+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.1ms)
+2015-06-05T11:37:34.016623+00:00 app[web.1]:   Rendered layouts/_header.html.slim (3.3ms)
+2015-06-05T11:37:34.017779+00:00 app[web.1]: Completed 200 OK in 38ms (Views: 25.9ms | ActiveRecord: 8.5ms)
+2015-06-05T11:37:33.979209+00:00 app[web.1]: Processing by UsersController#show as HTML
+2015-06-05T11:37:33.979304+00:00 app[web.1]:   Parameters: {"id"=>"101"}
+2015-06-05T11:37:33.996622+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.4ms)
+2015-06-05T11:37:34.009171+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (13.1ms)
+2015-06-05T11:37:34.012181+00:00 app[web.1]:   Rendered users/show.html.slim within layouts/application (20.2ms)
+2015-06-05T11:37:34.015675+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.1ms)
+2015-06-05T11:37:34.017377+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.1ms)
+2015-06-05T11:37:34.466341+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=bbcba57e-c15b-4785-97a0-b3e5b27111bd fwd="74.207.252.33" dyno=web.1 connect=2ms service=12ms status=304 bytes=838
+2015-06-05T11:37:34.457365+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:37:34 +0000
+2015-06-05T11:37:34.464235+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.2ms)
+2015-06-05T11:37:34.464329+00:00 app[web.1]:   Rendered notices/count.js.erb (2.5ms)
+2015-06-05T11:37:34.464536+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.6ms)
+2015-06-05T11:37:34.695491+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:34.693829+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:37:34 +0000
+2015-06-05T11:37:34.700050+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.2ms)
+2015-06-05T11:37:34.700334+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.6ms)
+2015-06-05T11:37:34.459390+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:34.700139+00:00 app[web.1]:   Rendered notices/count.js.erb (2.4ms)
+2015-06-05T11:37:34.703769+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=9d1f7b9b-d4fa-4f32-8432-3ef38f04bbc0 fwd="74.207.252.33" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-05T11:37:34.776605+00:00 heroku[router]: at=info method=GET path="/assets/loading.gif" host=foodswatch.herokuapp.com request_id=9a83f75e-4d4b-47b2-86c7-abe64f621b21 fwd="74.207.252.33" dyno=web.1 connect=1ms service=4ms status=304 bytes=276
+2015-06-05T11:37:34.774711+00:00 app[web.1]: Started GET "/assets/loading.gif" for 74.207.252.33 at 2015-06-05 11:37:34 +0000
+2015-06-05T11:37:34.811466+00:00 app[web.1]: Processing by Api::V1::UsersController#microposts as */*
+2015-06-05T11:37:34.811490+00:00 app[web.1]:   Parameters: {"page"=>"1", "query"=>"", "id"=>"101"}
+2015-06-05T11:37:34.809776+00:00 app[web.1]: Started GET "/api/v1/users/101/microposts?page=1&query=" for 74.207.252.33 at 2015-06-05 11:37:34 +0000
+2015-06-05T11:37:35.191017+00:00 heroku[router]: at=info method=GET path="/api/v1/users/101/microposts?page=1&query=" host=foodswatch.herokuapp.com request_id=193864e6-6c73-42c7-9cdc-1029890e052e fwd="74.207.252.33" dyno=web.1 connect=0ms service=383ms status=200 bytes=17410
+2015-06-05T11:37:35.186951+00:00 app[web.1]: Completed 200 OK in 375ms (Views: 6.4ms | ActiveRecord: 167.5ms)
+2015-06-05T11:37:38.633252+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=2c1fba2f-a0cd-4d0d-b975-d0e19ac70ea6 fwd="74.207.252.33" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-05T11:37:38.623146+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:37:38 +0000
+2015-06-05T11:37:38.631036+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-05T11:37:38.631725+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.8ms | ActiveRecord: 2.3ms)
+2015-06-05T11:37:38.625242+00
+:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:38.631505+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-05T11:37:43.560324+00:00 heroku[router]: at=info method=GET path="/users/101/following" host=foodswatch.herokuapp.com request_id=e45d3eaa-c69f-4302-a92a-17670710a1fb fwd="74.207.252.33" dyno=web.1 connect=0ms service=52ms status=200 bytes=15940
+2015-06-05T11:37:43.637083+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=55a8542b-c59f-42c2-848b-5420f5c410d8 fwd="74.207.252.33" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-05T11:37:43.510772+00:00 app[web.1]: Started GET "/users/101/following" for 74.207.252.33 at 2015-06-05 11:37:43 +0000
+2015-06-05T11:37:43.535960+00:00 app[web.1]:   Rendered shared/_stats.html.slim (9.8ms)
+2015-06-05T11:37:43.536007+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (11.0ms)
+2015-06-05T11:37:43.553673+00:00 app[web.1]:   Rendered users/show_follow.html.slim within layouts/application (34.2ms)
+2015-06-05T11:37:43.553560+00:00 app[web.1]:   Rendered users/_user.html.erb (6.0ms)
+2015-06-05T11:37:43.554410+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.0ms)
+2015-06-05T11:37:43.557764+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.5ms)
+2015-06-05T11:37:43.557841+00:00 app[web.1]:   Rendered layouts/_header.html.slim (3.3ms)
+2015-06-05T11:37:43.558058+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.0ms)
+2015-06-05T11:37:43.558517+00:00 app[web.1]: Completed 200 OK in 45ms (Views: 32.9ms | ActiveRecord: 8.8ms)
+2015-06-05T11:37:43.629934+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:43.513155+00:00 app[web.1]:   Parameters: {"id"=>"101"}
+2015-06-05T11:37:43.513148+00:00 app[web.1]: Processing by UsersController#following as HTML
+2015-06-05T11:37:43.525572+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.4ms)
+2015-06-05T11:37:43.627987+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:37:43 +0000
+2015-06-05T11:37:43.557100+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-05T11:37:43.558235+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-05T11:37:43.634796+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-05T11:37:43.634886+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-05T11:37:43.635116+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.7ms)
+2015-06-05T11:37:48.638898+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=c6522246-504b-4122-87e3-1ab3b27a6e9f fwd="74.207.252.33" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-05T11:37:48.629038+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:37:48 +0000
+2015-06-05T11:37:48.636351+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.6ms)
+2015-06-05T11:37:48.636477+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-05T11:37:48.637059+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 1.7ms)
+2015-06-05T11:37:48.631289+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:53.647324+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=112ef2fd-c738-4d3e-abd3-c7a72bb132d9 fwd="74.207.252.33" dyno=web.1 connect=1ms service=20ms status=304 bytes=838
+2015-06-05T11:37:53.632426+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:37:53 +0000
+2015-06-05T11:37:53.645292+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (6.2ms)
+2015-06-05T11:37:53.645386+00:00 app[web.1]:   Rendered notices/count.js.erb (6.5ms)
+2015-06-05T11:37:53.646519+00:00 app[web.1]: Completed 200 OK in 11ms (Views: 4.1ms | ActiveRecord: 5.6ms)
+2015-06-05T11:37:53.634347+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:37:56.856970+00:00 app[web.1]: Started GET "/users/101" for 74.207.252.33 at 2015-06-05 11:37:56 +0000
+2015-06-05T11:37:56.901144+00:00 app[web.1]:   Rendered shared/_loading.html.slim (0.1ms)
+2015-06-05T11:37:56.904136+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.1ms)
+2015-06-05T11:37:56.898846+00:00 app[web.1]:   Rendered shared/_stats.html.slim (24.7ms)
+2015-06-05T11:37:56.911224+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.7ms)
+2015-06-05T11:37:56.911325+00:00 app[web.1]:   Rendered layouts/_header.html.slim (7.0ms)
+2015-06-05T11:37:56.911680+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.1ms)
+2015-06-05T11:37:56.912425+00:00 app[web.1]: Completed 200 OK in 53ms (Views: 24.8ms | ActiveRecord: 25.0ms)
+2015-06-05T11:37:56.859354+00:00 app[web.1]: Processing by UsersController#show as HTML
+2015-06-05T11:37:56.859433+00:00 app[web.1]:   Parameters: {"id"=>"101"}
+2015-06-05T11:37:56.870924+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.4ms)
+2015-06-05T11:37:56.899124+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (28.7ms)
+2015-06-05T11:37:56.903442+00:00 app[web.1]:   Rendered users/show.html.slim within layouts/application (38.7ms)
+2015-06-05T11:37:56.910280+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (5.6ms)
+2015-06-05T11:37:56.911977+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-05T11:37:56.923873+00:00 heroku[router]: at=info method=GET path="/users/101" host=foodswatch.herokuapp.com request_id=34b471d7-f8fb-4712-8cdc-e4687425057c fwd="74.207.252.33" dyno=web.1 connect=1ms service=70ms status=200 bytes=5184
+2015-06-05T11:37:58.649127+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=cb334d9b-1d66-42a4-a18d-9052f985d7fc fwd="74.207.252.33" dyno=web.1 connect=2ms service=17ms status=304 bytes=838
+2015-06-05T11:37:58.639058+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:37:58 +0000
+2015-06-05T11:37:58.646633+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-05T11:37:58.646544+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.6ms)
+2015-06-05T11:37:58.646876+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 1.7ms)
+2015-06-05T11:37:58.641173+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:38:00.598229+00:00 app[web.1]: Started GET "/api/v1/users/101/microposts?page=1&query=" for 74.207.252.33 at 2015-06-05 11:38:00 +0000
+2015-06-05T11:38:00.600423+00:00 app[web.1]: Processing by Api::V1::UsersController#microposts as */*
+2015-06-05T11:38:00.600446+00:00 app[web.1]:   Parameters: {"page"=>"1", "query"=>"", "id"=>"101"}
+2015-06-05T11:38:01.182028+00:00 heroku[router]: at=info method=GET path="/api/v1/users/101/microposts?page=1&query=" host=foodswatch.herokuapp.com request_id=8bb72e88-7d30-478a-a5ae-280699b6b51d fwd="74.207.252.33" dyno=web.1 connect=0ms service=595ms status=304 bytes=838
+2015-06-05T11:38:01.175605+00:00 app[web.1]: Completed 200 OK in 575ms (Views: 6.3ms | ActiveRecord: 273.0ms)
+2015-06-05T11:38:05.733671+00:00 heroku[router]: at=info method=GET path="/collapses/comment/622" host=foodswatch.herokuapp.com request_id=43291c18-bfbe-47d6-9cd8-0c69c29fcdd3 fwd="74.207.252.33" dyno=web.1 connect=1ms service=40ms status=200 bytes=1598
+2015-06-05T11:38:05.696819+00:00 app[web.1]: Started GET "/collapses/comment/622" for 74.207.252.33 at 2015-06-05 11:38:05 +0000
+2015-06-05T11:38:05.731586+00:00 app[web.1]: Completed 200 OK in 31ms (Views: 25.9ms | ActiveRecord: 2.9ms)
+2015-06-05T11:38:05.700280+00:00 app[web.1]: Processing by CollapsesController#comment as */*
+2015-06-05T11:38:05.700287+00:00 app[web.1]:   Parameters: {"id"=>"622"}
+2015-06-05T11:38:05.731292+00:00 app[web.1]:   Rendered collapses/_comment.html.slim (20.7ms)
+2015-06-05T11:38:06.449148+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=0e3e46a8-dc8c-4c67-b8dc-46eebe3edc44 fwd="74.207.252.33" dyno=web.1 connect=0ms service=36ms status=304 bytes=838
+2015-06-05T11:38:06.418821+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:38:06 +0000
+2015-06-05T11:38:06.446222+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.9ms)
+2015-06-05T11:38:06.447109+00:00 app[web.1]: Completed 200 OK in 24ms (Views: 7.9ms | ActiveRecord: 14.0ms)
+2015-06-05T11:38:06.423334+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:38:06.446581+00:00 app[web.1]:   Rendered notices/count.js.erb (3.6ms)
+2015-06-05T11:38:08.658771+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=08122f5f-6ced-45df-85b5-00f7c69b4ea6 fwd="74.207.252.33" dyno=web.1 connect=0ms service=11ms status=304 bytes=838
+2015-06-05T11:38:08.650158+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:38:08 +0000
+2015-06-05T11:38:08.657059+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-05T11:38:08.657144+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-05T11:38:08.657565+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 1.7ms)
+2015-06-05T11:38:08.652133+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:38:13.657792+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=21d76428-6094-40e8-823c-5fb529eacc44 fwd="74.207.252.33" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-05T11:38:13.647844+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:38:13 +0000
+2015-06-05T11:38:13.654914+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-05T11:38:13.654828+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-05T11:38:13.655103+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.7ms)
+2015-06-05T11:38:13.649624+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:38:18.658439+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=f8475f4d-b550-4b5e-a81f-94934712b16b fwd="74.207.252.33" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-05T11:38:18.648792+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:38:18 +0000
+2015-06-05T11:38:18.655631+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-05T11:38:18.655716+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-05T11:38:18.655914+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 1.6ms)
+2015-06-05T11:38:18.650551+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:38:23.662284+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=47e01b8d-1287-4ef5-bd64-988d8e0ab391 fwd="74.207.252.33" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-05T11:38:23.652833+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:38:23 +0000
+2015-06-05T11:38:23.659928+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-05T11:38:23.659990+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-05T11:38:23.660191+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 1.7ms)
+2015-06-05T11:38:23.654843+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:38:28.666561+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=480c075f-e1b9-4055-b584-c068d2767ffe fwd="74.207.252.33" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-05T11:38:28.656607+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:38:28 +0000
+2015-06-05T11:38:28.664541+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.2ms)
+2015-06-05T11:38:28.665042+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 3.2ms | ActiveRecord: 1.8ms)
+2015-06-05T11:38:28.658798+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:38:28.664805+00:00 app[web.1]:   Rendered notices/count.js.erb (3.7ms)
+2015-06-05T11:38:33.672424+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=c1b25e01-cf0c-4425-af16-6dfd12868d96 fwd="74.207.252.33" dyno=web.1 connect=0ms service=15ms status=304 bytes=838
+2015-06-05T11:38:33.665224+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:38:33.663273+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:38:33 +0000
+2015-06-05T11:38:33.670152+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-05T11:38:33.670062+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-05T11:38:33.670371+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.8ms)
+2015-06-05T11:38:38.673651+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=1e845d25-2446-4522-b0a3-1f5e9660875e fwd="74.207.252.33" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-05T11:38:38.663946+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:38:38 +0000
+2015-06-05T11:38:38.670558+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.1ms)
+2015-06-05T11:38:38.670647+00:00 app[web.1]:   Rendered notices/count.js.erb (2.4ms)
+2015-06-05T11:38:38.670869+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.6ms)
+2015-06-05T11:38:38.665806+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:38:43.678617+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=550233d6-a82f-43e2-8e58-4855a5e2adfa fwd="74.207.252.33" dyno=web.1 connect=1ms service=13ms status=304 bytes=838
+2015-06-05T11:38:43.666931+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:38:43 +0000
+2015-06-05T11:38:43.674138+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.6ms)
+2015-06-05T11:38:43.674205+00:00 app[web.1]:   Rendered notices/count.js.erb (3.0ms)
+2015-06-05T11:38:43.674561+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 1.6ms)
+2015-06-05T11:38:43.668917+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:38:48.678197+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=05286713-672b-4488-be16-2faac9cfe063 fwd="74.207.252.33" dyno=web.1 connect=0ms service=11ms status=304 bytes=838
+2015-06-05T11:38:48.669874+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:38:48 +0000
+2015-06-05T11:38:48.676469+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.6ms)
+2015-06-05T11:38:48.676207+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-05T11:38:48.676271+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-05T11:38:48.671563+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:38:53.681956+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=a9c0f021-2cf7-44bb-bc96-6a0ec63dc70c fwd="74.207.252.33" dyno=web.1 connect=0ms service=11ms status=304 bytes=838
+2015-06-05T11:38:53.680258+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-05T11:38:53.673419+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:38:53 +0000
+2015-06-05T11:38:53.680343+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-05T11:38:53.680537+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 1.7ms)
+2015-06-05T11:38:53.675122+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:38:58.735334+00:00 heroku[router]: at=info method=POST path="/microposts" host=foodswatch.herokuapp.com request_id=e11cfc5e-98d3-4176-b4f4-eeda930f684f fwd="74.207.252.33" dyno=web.1 connect=5ms service=88ms status=200 bytes=2185
+2015-06-05T11:38:58.743185+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=0396f99c-a3fd-4261-aa5a-4f83305bfe3c fwd="74.207.252.33" dyno=web.1 connect=1ms service=63ms status=304 bytes=838
+2015-06-05T11:38:58.650406+00:00 app[web.1]: Started POST "/microposts" for 74.207.252.33 at 2015-06-05 11:38:58 +0000
+2015-06-05T11:38:58.730926+00:00 app[web.1]:   Rendered buttons/_like.html.slim (8.1ms)
+2015-06-05T11:38:58.730970+00:00 app[web.1]:   Rendered shared/_post_action.html.slim (20.3ms)
+2015-06-05T11:38:58.731033+00:00 app[web.1]:   Rendered microposts/_micropost.html.slim (46.8ms)
+2015-06-05T11:38:58.731264+00:00 app[web.1]:   Rendered microposts/comment.js.slim (54.0ms)
+2015-06-05T11:38:58.733158+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:38:58 +0000
+2015-06-05T11:38:58.740102+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-05T11:38:58.653676+00:00 app[web.1]: Processing by MicropostsController#create as JS
+2015-06-05T11:38:58.653707+00:00 app[web.1]:   Parameters: {"utf8"=>"✓", "micropost"=>{"comment_id"=>"622", "content"=>"那个服务器啊，因为掉线，push的时候assets没有push完成"}, "create_type"=>"comment", "commit"=>"评论"}
+2015-06-05T11:38:58.719586+00:00 app[web.1]:   Rendered buttons/_delete.html.erb (0.8ms)
+2015-06-05T11:38:58.731577+00:00 app[web.1]: Completed 200 OK in 78ms (Views: 49.8ms | ActiveRecord: 19.7ms)
+2015-06-05T11:38:58.735182+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:38:58.740277+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-05T11:38:58.740455+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 1.6ms)
+2015-06-05T11:39:03.701886+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=e952a219-b8e4-4f4b-95f1-45fe9b6936ad fwd="74.207.252.33" dyno=web.1 connect=1ms service=24ms status=304 bytes=935
+2015-06-05T11:39:03.685220+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:39:03 +0000
+2015-06-05T11:39:03.698589+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.5ms)
+2015-06-05T11:39:03.699149+00:00 app[web.1]: Completed 200 OK in 10ms (Views: 2.4ms | ActiveRecord: 6.2ms)
+2015-06-05T11:39:03.689110+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:39:03.698811+00:00 app[web.1]:   Rendered notices/count.js.erb (3.8ms)
+2015-06-05T11:39:08.692526+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=a940590b-6f84-4bf7-b988-e942950b274f fwd="74.207.252.33" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-05T11:39:08.684473+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:39:08 +0000
+2015-06-05T11:39:08.691087+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.2ms)
+2015-06-05T11:39:08.691177+00:00 app[web.1]:   Rendered notices/count.js.erb (2.5ms)
+2015-06-05T11:39:08.691383+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.7ms)
+2015-06-05T11:39:08.686365+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:39:13.712226+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=a2ac5f36-8948-4a59-8ad4-17dd452b510b fwd="74.207.252.33" dyno=web.1 connect=0ms service=25ms status=304 bytes=838
+2015-06-05T11:39:13.693184+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:39:13 +0000
+2015-06-05T11:39:13.710474+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (9.3ms)
+2015-06-05T11:39:13.710524+00:00 app[web.1]:   Rendered notices/count.js.erb (9.7ms)
+2015-06-05T11:39:13.710791+00:00 app[web.1]: Completed 200 OK in 15ms (Views: 6.6ms | ActiveRecord: 7.5ms)
+2015-06-05T11:39:13.695343+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:39:18.699123+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=d9d5980a-2307-4585-a795-178d8c88f2bd fwd="74.207.252.33" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-05T11:39:18.689562+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:39:18 +0000
+2015-06-05T11:39:18.696601+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-05T11:39:18.696682+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-05T11:39:18.696892+00:00 app[web.1]: Completed 200 OK i
+n 5ms (Views: 2.3ms | ActiveRecord: 1.6ms)
+2015-06-05T11:39:18.691796+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:39:23.706411+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=ec0f8763-b0cc-43b7-9fa6-63678dd958a6 fwd="74.207.252.33" dyno=web.1 connect=0ms service=11ms status=304 bytes=838
+2015-06-05T11:39:23.698222+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:39:23 +0000
+2015-06-05T11:39:23.704485+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.1ms)
+2015-06-05T11:39:23.704766+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.5ms)
+2015-06-05T11:39:23.704574+00:00 app[web.1]:   Rendered notices/count.js.erb (2.4ms)
+2015-06-05T11:39:23.699978+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:39:27.756907+00:00 heroku[router]: at=info method=GET path="/collapses/comment/622" host=foodswatch.herokuapp.com request_id=15af2232-ad67-4ba3-8477-557eadeabb33 fwd="74.207.252.33" dyno=web.1 connect=0ms service=52ms status=200 bytes=2649
+2015-06-05T11:39:27.708457+00:00 app[web.1]: Started GET "/collapses/comment/622" for 74.207.252.33 at 2015-06-05 11:39:27 +0000
+2015-06-05T11:39:27.753472+00:00 app[web.1]:   Rendered buttons/_like.html.slim (7.4ms)
+2015-06-05T11:39:27.753520+00:00 app[web.1]:   Rendered shared/_post_action.html.slim (17.3ms)
+2015-06-05T11:39:27.753614+00:00 app[web.1]:   Rendered microposts/_micropost.html.slim (32.2ms)
+2015-06-05T11:39:27.755135+00:00 app[web.1]:   Rendered collapses/_comment.html.slim (40.6ms)
+2015-06-05T11:39:27.710393+00:00 app[web.1]: Processing by CollapsesController#comment as */*
+2015-06-05T11:39:27.710399+00:00 app[web.1]:   Parameters: {"id"=>"622"}
+2015-06-05T11:39:27.743762+00:00 app[web.1]:   Rendered buttons/_delete.html.erb (0.7ms)
+2015-06-05T11:39:27.755386+00:00 app[web.1]: Completed 200 OK in 45ms (Views: 35.7ms | ActiveRecord: 7.0ms)
+2015-06-05T11:39:28.731504+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=da3baaf2-ac39-4c82-b69c-a2604215e14e fwd="74.207.252.33" dyno=web.1 connect=9ms service=23ms status=304 bytes=838
+2015-06-05T11:39:28.711910+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:39:28 +0000
+2015-06-05T11:39:28.718646+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-05T11:39:28.718735+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-05T11:39:28.718947+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 1.5ms)
+2015-06-05T11:39:28.713836+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:39:33.424844+00:00 heroku[router]: at=info method=GET path="/users/101" host=foodswatch.herokuapp.com request_id=223cb7ad-c4ea-44cc-80f3-8fda280da462 fwd="74.207.252.33" dyno=web.1 connect=0ms service=41ms status=200 bytes=5184
+2015-06-05T11:39:33.387758+00:00 app[web.1]: Started GET "/users/101" for 74.207.252.33 at 2015-06-05 11:39:33 +0000
+2015-06-05T11:39:33.413820+00:00 app[web.1]:   Rendered shared/_stats.html.slim (10.0ms)
+2015-06-05T11:39:33.414943+00:00 app[web.1]:   Rendered shared/_loading.html.slim (0.2ms)
+2015-06-05T11:39:33.417647+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.0ms)
+2015-06-05T11:39:33.422569+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (1.0ms)
+2015-06-05T11:39:33.422620+00:00 app[web.1]:   Rendered layouts/_header.html.slim (4.8ms)
+2015-06-05T11:39:33.422903+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.1ms)
+2015-06-05T11:39:33.423402+00:00 app[web.1]: Completed 200 OK in 33ms (Views: 22.4ms | ActiveRecord: 8.0ms)
+2015-06-05T11:39:33.389766+00:00 app[web.1]: Processing by UsersController#show as HTML
+2015-06-05T11:39:33.389785+00:00 app[web.1]:   Parameters: {"id"=>"101"}
+2015-06-05T11:39:33.403230+00:00 app[web.1]:   Rendered shared/_search.html.slim (1.2ms)
+2015-06-05T11:39:33.413989+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (12.1ms)
+2015-06-05T11:39:33.416987+00:00 app[web.1]:   Rendered users/show.html.slim within layouts/application (21.7ms)
+2015-06-05T11:39:33.421396+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.2ms)
+2015-06-05T11:39:33.423092+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-05T11:39:33.705271+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=45e2143c-0b03-4903-928f-9a3381386fb2 fwd="74.207.252.33" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-05T11:39:33.694954+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:39:33 +0000
+2015-06-05T11:39:33.701724+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.2ms)
+2015-06-05T11:39:33.702199+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 1.6ms)
+2015-06-05T11:39:33.696859+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:39:33.701915+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-05T11:39:33.981033+00:00 heroku[router]: at=info method=GET path="/assets/application-9a8cb2bd9fe658bd718766e13182ff05.css" host=foodswatch.herokuapp.com request_id=8c03a694-2730-42fb-b1a1-65364afba737 fwd="74.207.252.33" dyno=web.1 connect=1ms service=4ms status=304 bytes=249
+2015-06-05T11:39:33.983858+00:00 heroku[router]: at=info method=GET path="/assets/application-13fbb31a933315a8c45bf55f20c579c5.js" host=foodswatch.herokuapp.com request_id=b1eb4745-d0f2-4831-9f4f-aa9a35df8a53 fwd="74.207.252.33" dyno=web.1 connect=0ms service=6ms status=304 bytes=263
+2015-06-05T11:39:34.771915+00:00 heroku[router]: at=info method=GET path="/assets/logo-0572ade5277ee5767e2344587fd34dd8.png" host=foodswatch.herokuapp.com request_id=d526e824-00d4-48a2-b240-846b7163d5af fwd="74.207.252.33" dyno=web.1 connect=0ms service=4ms status=304 bytes=178
+2015-06-05T11:39:35.008105+00:00 heroku[router]: at=info method=GET path="/assets/loading.gif" host=foodswatch.herokuapp.com request_id=a60ce570-2899-4651-8787-12aebad7cad6 fwd="74.207.252.33" dyno=web.1 connect=0ms service=13ms status=304 bytes=276
+2015-06-05T11:39:35.111696+00:00 heroku[router]: at=info method=GET path="/assets/font-awesome/fontawesome-webfont.woff2" host=foodswatch.herokuapp.com request_id=fbb5421f-be8a-4cbb-9fab-ccdb26c2d70a fwd="74.207.252.33" dyno=web.1 connect=0ms service=17ms status=304 bytes=276
+2015-06-05T11:39:35.001049+00:00 app[web.1]: Started GET "/assets/loading.gif" for 74.207.252.33 at 2015-06-05 11:39:35 +0000
+2015-06-05T11:39:35.186247+00:00 app[web.1]:   Parameters: {"page"=>"1", "query"=>"", "id"=>"101"}
+2015-06-05T11:39:35.147252+00:00 app[web.1]: Started GET "/api/v1/users/101/microposts?page=1&query=" for 74.207.252.33 at 2015-06-05 11:39:35 +0000
+2015-06-05T11:39:35.100937+00:00 app[web.1]: Started GET "/assets/font-awesome/fontawesome-webfont.woff2" for 74.207.252.33 at 2015-06-05 11:39:35 +0000
+2015-06-05T11:39:35.176126+00:00 app[web.1]: Processing by Api::V1::UsersController#microposts as */*
+2015-06-05T11:39:35.906913+00:00 heroku[router]: at=info method=GET path="/api/v1/users/101/microposts?page=1&query=" host=foodswatch.herokuapp.com request_id=a7b6bc54-f782-4a9e-a1c9-e40056d14d4a fwd="74.207.252.33" dyno=web.1 connect=0ms service=805ms status=200 bytes=17410
+2015-06-05T11:39:35.903878+00:00 app[web.1]: Completed 200 OK in 684ms (Views: 7.3ms | ActiveRecord: 353.9ms)
+2015-06-05T11:39:40.115961+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=0952ae69-1ba1-400c-836b-aa2760edd702 fwd="74.207.252.33" dyno=web.1 connect=0ms service=23ms status=304 bytes=838
+2015-06-05T11:39:40.101827+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:39:40 +0000
+2015-06-05T11:39:40.115092+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.8ms)
+2015-06-05T11:39:40.115147+00:00 app[web.1]:   Rendered notices/count.js.erb (4.1ms)
+2015-06-05T11:39:40.115385+00:00 app[web.1]: Completed 200 OK in 10ms (Views: 2.4ms | ActiveRecord: 6.8ms)
+2015-06-05T11:39:40.104963+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:39:45.102426+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=7bb04ce0-54f7-4637-8666-c46c76079d5a fwd="74.207.252.33" dyno=web.1 connect=1ms service=11ms status=304 bytes=838
+2015-06-05T11:39:45.094326+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:39:45 +0000
+2015-06-05T11:39:45.100881+00:00 app[web.1]:   Rendered notices/count.js.erb (2.4ms)
+2015-06-05T11:39:45.100792+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.1ms)
+2015-06-05T11:39:45.101096+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.6ms)
+2015-06-05T11:39:45.096154+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:39:50.108267+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=bfced267-63a3-4b0e-8cee-25b2a72994eb fwd="74.207.252.33" dyno=web.1 connect=0ms service=16ms status=304 bytes=838
+2015-06-05T11:39:50.093047+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:39:50 +0000
+2015-06-05T11:39:50.104979+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (7.0ms)
+2015-06-05T11:39:50.105071+00:00 app[web.1]:   Rendered notices/count.js.erb (7.3ms)
+2015-06-05T11:39:50.105324+00:00 app[web.1]: Completed 200 OK in 10ms (Views: 2.2ms | ActiveRecord: 7.2ms)
+2015-06-05T11:39:50.094824+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:39:58.692346+00:00 heroku[router]: at=info method=GET path="/users/101" host=foodswatch.herokuapp.com request_id=b2fa3f75-f2c3-420b-99da-163501fe4015 fwd="116.238.180.252" dyno=web.1 connect=1ms service=30ms status=200 bytes=5184
+2015-06-05T11:39:58.665408+00:00 app[web.1]: Started GET "/users/101" for 116.238.180.252 at 2015-06-05 11:39:58 +0000
+2015-06-05T11:39:58.682278+00:00 app[web.1]:   Rendered shared/_stats.html.slim (8.1ms)
+2015-06-05T11:39:58.690176+00:00 app[web.1]:   Rendered layouts/_header.html.slim (3.1ms)
+2015-06-05T11:39:58.683971+00:00 app[web.1]:   Rendered shared/_loading.html.slim (0.2ms)
+2015-06-05T11:39:58.690414+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.1ms)
+2015-06-05T11:39:58.686893+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.0ms)
+2015-06-05T11:39:58.690121+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.6ms)
+2015-06-05T11:39:58.690895+00:00 app[web.1]: Completed 200 OK in 23ms (Views: 14.1ms | ActiveRecord: 5.9ms)
+2015-06-05T11:39:58.668038+00:00 app[web.1]:   Parameters: {"id"=>"101"}
+2015-06-05T11:39:58.667929+00:00 app[web.1]: Processing by UsersController#show as HTML
+2015-06-05T11:39:58.673517+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.3ms)
+2015-06-05T11:39:58.682597+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (9.4ms)
+2015-06-05T11:39:58.686297+00:00 app[web.1]:   Rendered users/show.html.slim within layouts/application (13.4ms)
+2015-06-05T11:39:58.689357+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.0ms)
+2015-06-05T11:39:58.690651+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.1ms)
+2015-06-05T11:40:10.982275+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=6c7bf476-ddb5-4a41-8e96-8e77b5e39ccf fwd="116.238.180.252" dyno=web.1 connect=1ms service=19ms status=304 bytes=838
+2015-06-05T11:40:10.964545+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:40:10 +0000
+2015-06-05T11:40:10.977943+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-05T11:40:10.978348+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 9.1ms | ActiveRecord: 1.7ms)
+2015-06-05T11:40:10.966388+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:40:10.978091+00:00 app[web.1]:   Rendered notices/count.js.erb (9.4ms)
+2015-06-05T11:40:13.258260+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=aad26894-becd-4093-8eaa-59fd41410cf4 fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-05T11:40:13.248511+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:40:13 +0000
+2015-06-05T11:40:13.255614+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.8ms)
+2015-06-05T11:40:13.255697+00:00 app[web.1]:   Rendered notices/count.js.erb (3.0ms)
+2015-06-05T11:40:13.255905+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 1.6ms)
+2015-06-05T11:40:13.250431+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:40:13.537677+00:00 heroku[router]: at=info method=GET path="/" host=foodswatch.herokuapp.com request_id=4671fd53-6b38-4876-b552-937fb96733fa fwd="116.238.180.252" dyno=web.1 connect=0ms service=36ms status=200 bytes=7424
+2015-06-05T11:40:13.515171+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.3ms)
+2015-06-05T11:40:13.504062+00:00 app[web.1]: Started GET "/" for 116.238.180.252 at 2015-06-05 11:40:13 +0000
+2015-06-05T11:40:13.524599+00:00 app[web.1]:   Rendered shared/_micropost_form.html.slim (0.6ms)
+2015-06-05T11:40:13.529323+00:00 app[web.1]:   Rendered shared/_feed.html.slim (4.2ms)
+2015-06-05T11:40:13.529370+00:00 app[web.1]:   Rendered static_pages/_signed_in_home_page.html.slim (14.8ms)
+2015-06-05T11:40:13.529443+00:00 app[web.1]:   Rendered static_pages/home.html.erb within layouts/application (15.1ms)
+2015-06-05T11:40:13.530154+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.1ms)
+2015-06-05T11:40:13.533935+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.8ms)
+2015-06-05T11:40:13.533993+00:00 app[web.1]:   Rendered layouts/_header.html.slim (3.7ms)
+2015-06-05T11:40:13.534447+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.2ms)
+2015-06-05T11:40:13.506087+00:00 app[web.1]: Processing by StaticPagesController#home as HTML
+2015-06-05T11:40:13.534890+00:00 app[web.1]: Completed 200 OK in 29ms (Views: 15.4ms | ActiveRecord: 7.4ms)
+2015-06-05T11:40:13.523855+00:00 app[web.1]:   Rendered shared/_stats.html.slim (8.0ms)
+2015-06-05T11:40:13.524866+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (10.1ms)
+2015-06-05T11:40:13.524774+00:00 app[web.1]:   Rendered shared/_foods_panel.html.slim (0.0ms)
+2015-06-05T11:40:13.525338+00:00 app[web.1]:   Rendered shared/_loading.html.slim (0.1ms)
+2015-06-05T11:40:13.532989+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-05T11:40:13.534648+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-05T11:40:14.588053+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=42463f50-145e-492f-b688-0d7679c409ab fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-05T11:40:14.577277+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:40:14 +0000
+2015-06-05T11:40:14.584158+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-05T11:40:14.584248+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-05T11:40:14.584490+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 1.5ms)
+2015-06-05T11:40:14.579168+00:00 app[web.1]: Processing by NoticesContro
+ller#count as JS
+2015-06-05T11:40:16.691606+00:00 heroku[router]: at=info method=GET path="/" host=foodswatch.herokuapp.com request_id=439d2c29-777c-43ed-a739-d971ad86af58 fwd="116.238.180.252" dyno=web.1 connect=0ms service=101ms status=200 bytes=7424
+2015-06-05T11:40:16.597726+00:00 app[web.1]: Started GET "/" for 116.238.180.252 at 2015-06-05 11:40:16 +0000
+2015-06-05T11:40:16.632489+00:00 app[web.1]:   Rendered shared/_search.html.slim (1.1ms)
+2015-06-05T11:40:16.665898+00:00 app[web.1]:   Rendered shared/_micropost_form.html.slim (0.7ms)
+2015-06-05T11:40:16.666620+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (35.3ms)
+2015-06-05T11:40:16.678343+00:00 app[web.1]:   Rendered shared/_feed.html.slim (11.1ms)
+2015-06-05T11:40:16.678478+00:00 app[web.1]:   Rendered static_pages/_signed_in_home_page.html.slim (47.3ms)
+2015-06-05T11:40:16.678761+00:00 app[web.1]:   Rendered static_pages/home.html.erb within layouts/application (47.8ms)
+2015-06-05T11:40:16.685158+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.0ms)
+2015-06-05T11:40:16.686379+00:00 app[web.1]:   Rendered layouts/_header.html.slim (6.7ms)
+2015-06-05T11:40:16.687223+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.1ms)
+2015-06-05T11:40:16.604039+00:00 app[web.1]: Processing by StaticPagesController#home as HTML
+2015-06-05T11:40:16.664932+00:00 app[web.1]:   Rendered shared/_stats.html.slim (30.6ms)
+2015-06-05T11:40:16.666448+00:00 app[web.1]:   Rendered shared/_foods_panel.html.slim (0.0ms)
+2015-06-05T11:40:16.669816+00:00 app[web.1]:   Rendered shared/_loading.html.slim (1.1ms)
+2015-06-05T11:40:16.679485+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.1ms)
+2015-06-05T11:40:16.686173+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.7ms)
+2015-06-05T11:40:16.686799+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.1ms)
+2015-06-05T11:40:16.687653+00:00 app[web.1]: Completed 200 OK in 83ms (Views: 59.5ms | ActiveRecord: 15.8ms)
+2015-06-05T11:40:18.138149+00:00 heroku[router]: at=info method=GET path="/" host=foodswatch.herokuapp.com request_id=57bc2a29-7db8-4218-a4cf-0a37583b0d44 fwd="116.238.180.252" dyno=web.1 connect=0ms service=62ms status=200 bytes=7424
+2015-06-05T11:40:18.085588+00:00 app[web.1]: Started GET "/" for 116.238.180.252 at 2015-06-05 11:40:18 +0000
+2015-06-05T11:40:18.103976+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.3ms)
+2015-06-05T11:40:18.118793+00:00 app[web.1]:   Rendered shared/_micropost_form.html.slim (0.6ms)
+2015-06-05T11:40:18.123765+00:00 app[web.1]:   Rendered shared/_feed.html.slim (4.3ms)
+2015-06-05T11:40:18.134813+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (6.8ms)
+2015-06-05T11:40:18.137258+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-05T11:40:18.087669+00:00 app[web.1]: Processing by StaticPagesController#home as HTML
+2015-06-05T11:40:18.117797+00:00 app[web.1]:   Rendered shared/_stats.html.slim (13.1ms)
+2015-06-05T11:40:18.119144+00:00 app[web.1]:   Rendered shared/_foods_panel.html.slim (0.1ms)
+2015-06-05T11:40:18.119244+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (15.8ms)
+2015-06-05T11:40:18.119755+00:00 app[web.1]:   Rendered shared/_loading.html.slim (0.1ms)
+2015-06-05T11:40:18.126474+00:00 app[web.1]:   Rendered static_pages/home.html.erb within layouts/application (23.3ms)
+2015-06-05T11:40:18.126343+00:00 app[web.1]:   Rendered static_pages/_signed_in_home_page.html.slim (23.0ms)
+2015-06-05T11:40:18.127314+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.0ms)
+2015-06-05T11:40:18.135954+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.8ms)
+2015-06-05T11:40:18.136057+00:00 app[web.1]:   Rendered layouts/_header.html.slim (8.4ms)
+2015-06-05T11:40:18.136461+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.1ms)
+2015-06-05T11:40:18.137624+00:00 app[web.1]: Completed 200 OK in 47ms (Views: 19.0ms | ActiveRecord: 22.7ms)
+2015-06-05T11:40:18.952578+00:00 heroku[router]: at=info method=GET path="/users/101" host=foodswatch.herokuapp.com request_id=446a3ac2-1522-4a80-89f4-4f404570af04 fwd="116.238.180.252" dyno=web.1 connect=1ms service=53ms status=200 bytes=5184
+2015-06-05T11:40:18.904796+00:00 app[web.1]: Started GET "/users/101" for 116.238.180.252 at 2015-06-05 11:40:18 +0000
+2015-06-05T11:40:18.908350+00:00 app[web.1]:   Parameters: {"id"=>"101"}
+2015-06-05T11:40:18.932031+00:00 app[web.1]:   Rendered shared/_stats.html.slim (15.0ms)
+2015-06-05T11:40:18.935158+00:00 app[web.1]:   Rendered shared/_loading.html.slim (0.2ms)
+2015-06-05T11:40:18.940707+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.1ms)
+2015-06-05T11:40:18.946579+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (1.6ms)
+2015-06-05T11:40:18.947928+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.1ms)
+2015-06-05T11:40:18.949699+00:00 app[web.1]: Completed 200 OK in 41ms (Views: 29.5ms | ActiveRecord: 8.2ms)
+2015-06-05T11:40:18.907660+00:00 app[web.1]: Processing by UsersController#show as HTML
+2015-06-05T11:40:18.915590+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.6ms)
+2015-06-05T11:40:18.932478+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (17.6ms)
+2015-06-05T11:40:18.939170+00:00 app[web.1]:   Rendered users/show.html.slim within layouts/application (25.2ms)
+2015-06-05T11:40:18.944701+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.2ms)
+2015-06-05T11:40:18.947519+00:00 app[web.1]:   Rendered layouts/_header.html.slim (6.2ms)
+2015-06-05T11:40:18.948416+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-05T11:40:20.056465+00:00 heroku[router]: at=info method=GET path="/assets/application-13fbb31a933315a8c45bf55f20c579c5.js" host=foodswatch.herokuapp.com request_id=82e72c93-1d4a-4d6e-8260-088a92578027 fwd="116.238.180.252" dyno=web.1 connect=0ms service=5ms status=304 bytes=263
+2015-06-05T11:40:20.074677+00:00 heroku[router]: at=info method=GET path="/assets/application-9a8cb2bd9fe658bd718766e13182ff05.css" host=foodswatch.herokuapp.com request_id=5aeafcbf-bc9d-470c-8597-3397240786f0 fwd="116.238.180.252" dyno=web.1 connect=2ms service=12ms status=304 bytes=249
+2015-06-05T11:40:20.283450+00:00 heroku[router]: at=info method=GET path="/assets/logo-0572ade5277ee5767e2344587fd34dd8.png" host=foodswatch.herokuapp.com request_id=6db8c899-2869-4f21-a2a1-5b901e6f4951 fwd="116.238.180.252" dyno=web.1 connect=1ms service=5ms status=304 bytes=178
+2015-06-05T11:40:20.521573+00:00 heroku[router]: at=info method=GET path="/assets/loading.gif" host=foodswatch.herokuapp.com request_id=55aed16c-2d07-42b3-a38d-3b9fec37ab80 fwd="116.238.180.252" dyno=web.1 connect=0ms service=13ms status=304 bytes=276
+2015-06-05T11:40:20.513610+00:00 app[web.1]: Started GET "/assets/loading.gif" for 116.238.180.252 at 2015-06-05 11:40:20 +0000
+2015-06-05T11:40:22.342843+00:00 heroku[router]: at=info method=GET path="/assets/font-awesome/fontawesome-webfont.woff2" host=foodswatch.herokuapp.com request_id=0271961b-f760-429a-9a13-41482f1c226a fwd="116.238.180.252" dyno=web.1 connect=1ms service=20ms status=304 bytes=276
+2015-06-05T11:40:22.326748+00:00 app[web.1]: Started GET "/assets/font-awesome/fontawesome-webfont.woff2" for 116.238.180.252 at 2015-06-05 11:40:22 +0000
+2015-06-05T11:40:22.343505+00:00 app[web.1]: Processing by Api::V1::UsersController#microposts as */*
+2015-06-05T11:40:22.343610+00:00 app[web.1]:   Parameters: {"page"=>"1", "query"=>"", "id"=>"101"}
+2015-06-05T11:40:22.341367+00:00 app[web.1]: Started GET "/api/v1/users/101/microposts?page=1&query=" for 116.238.180.252 at 2015-06-05 11:40:22 +0000
+2015-06-05T11:40:23.612843+00:00 heroku[router]: at=info method=GET path="/api/v1/users/101/microposts?page=1&query=" host=foodswatch.herokuapp.com request_id=42e4dc34-c086-4c18-8c2e-bbb903c6e50a fwd="116.238.180.252" dyno=web.1 connect=2ms service=1288ms status=304 bytes=838
+2015-06-05T11:40:23.610313+00:00 app[web.1]: Completed 200 OK in 1267ms (Views: 9.3ms | ActiveRecord: 697.5ms)
+2015-06-05T11:40:25.567613+00:00 heroku[router]: at=info method=GET path="/" host=foodswatch.herokuapp.com request_id=8bda5a7a-5d42-413c-90f9-1e8acb197e87 fwd="116.238.180.252" dyno=web.1 connect=1ms service=113ms status=200 bytes=7424
+2015-06-05T11:40:25.460929+00:00 app[web.1]: Started GET "/" for 116.238.180.252 at 2015-06-05 11:40:25 +0000
+2015-06-05T11:40:25.501960+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.6ms)
+2015-06-05T11:40:25.538146+00:00 app[web.1]:   Rendered shared/_micropost_form.html.slim (2.8ms)
+2015-06-05T11:40:25.547963+00:00 app[web.1]:   Rendered static_pages/_signed_in_home_page.html.slim (47.0ms)
+2015-06-05T11:40:25.548045+00:00 app[web.1]:   Rendered static_pages/home.html.erb within layouts/application (47.3ms)
+2015-06-05T11:40:25.549021+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.0ms)
+2015-06-05T11:40:25.555842+00:00 app[web.1]:   Rendered layouts/_header.html.slim (6.9ms)
+2015-06-05T11:40:25.556115+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.0ms)
+2015-06-05T11:40:25.538731+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (37.5ms)
+2015-06-05T11:40:25.547905+00:00 app[web.1]:   Rendered shared/_feed.html.slim (8.9ms)
+2015-06-05T11:40:25.555717+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.9ms)
+2015-06-05T11:40:25.556561+00:00 app[web.1]: Completed 200 OK in 77ms (Views: 33.5ms | ActiveRecord: 30.0ms)
+2015-06-05T11:40:25.472144+00:00 app[web.1]: Processing by StaticPagesController#home as HTML
+2015-06-05T11:40:25.530845+00:00 app[web.1]:   Rendered shared/_stats.html.slim (23.3ms)
+2015-06-05T11:40:25.539272+00:00 app[web.1]:   Rendered shared/_loading.html.slim (0.2ms)
+2015-06-05T11:40:25.538520+00:00 app[web.1]:   Rendered shared/_foods_panel.html.slim (0.1ms)
+2015-06-05T11:40:25.554511+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (5.3ms)
+2015-06-05T11:40:25.556293+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-05T11:40:27.353956+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=45a1873c-0046-483a-a3f6-850126a719b4 fwd="116.238.180.252" dyno=web.1 connect=0ms service=34ms status=200 bytes=1038
+2015-06-05T11:40:27.328585+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:40:27 +0000
+2015-06-05T11:40:27.347689+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (7.6ms)
+2015-06-05T11:40:27.349835+00:00 app[web.1]: Completed 200 OK in 15ms (Views: 10.2ms | ActiveRecord: 2.3ms)
+2015-06-05T11:40:27.334751+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:40:27.349411+00:00 app[web.1]:   Rendered notices/count.js.erb (9.4ms)
+2015-06-05T11:40:32.345215+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=f97da5af-6689-4ad4-91e1-122f40ee726c fwd="116.238.180.252" dyno=web.1 connect=1ms service=24ms status=304 bytes=838
+2015-06-05T11:40:32.324868+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:40:32 +0000
+2015-06-05T11:40:32.342474+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (7.1ms)
+2015-06-05T11:40:32.342605+00:00 app[web.1]:   Rendered notices/count.js.erb (7.5ms)
+2015-06-05T11:40:32.343035+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 2.6ms | ActiveRecord: 8.1ms)
+2015-06-05T11:40:32.330766+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:40:34.920476+00:00 app[web.1]: Started GET "/api/v1/users/101/feeds?page=1&query=" for 116.238.180.252 at 2015-06-05 11:40:34 +0000
+2015-06-05T11:40:34.923260+00:00 app[web.1]:   Parameters: {"page"=>"1", "query"=>"", "id"=>"101"}
+2015-06-05T11:40:34.923238+00:00 app[web.1]: Processing by Api::V1::UsersController#feeds as */*
+2015-06-05T11:40:35.607579+00:00 heroku[router]: at=info method=GET path="/api/v1/users/101/feeds?page=1&query=" host=foodswatch.herokuapp.com request_id=d7b3c7eb-6eba-4722-922f-bfe216c65a07 fwd="116.238.180.252" dyno=web.1 connect=1ms service=693ms status=200 bytes=17348
+2015-06-05T11:40:35.601642+00:00 app[web.1]: Completed 200 OK in 678ms (Views: 9.1ms | ActiveRecord: 285.2ms)
+2015-06-05T11:40:37.350857+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=cdfa796f-2025-4e50-8df2-87c5ccf03b53 fwd="116.238.180.252" dyno=web.1 connect=8ms service=20ms status=304 bytes=838
+2015-06-05T11:40:37.333642+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:40:37 +0000
+2015-06-05T11:40:37.348255+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (6.7ms)
+2015-06-05T11:40:37.348990+00:00 app[web.1]: Completed 200 OK in 11ms (Views: 6.4ms | ActiveRecord: 3.4ms)
+2015-06-05T11:40:37.337461+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:40:37.348576+00:00 app[web.1]:   Rendered notices/count.js.erb (7.3ms)
+2015-06-05T11:40:42.375853+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=d5662c80-cccb-4857-8979-65f890fb2341 fwd="116.238.180.252" dyno=web.1 connect=1ms service=50ms status=304 bytes=838
+2015-06-05T11:40:42.333451+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:40:42 +0000
+2015-06-05T11:40:42.372291+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (16.7ms)
+2015-06-05T11:40:42.372436+00:00 app[web.1]:   Rendered notices/count.js.erb (17.1ms)
+2015-06-05T11:40:42.372743+00:00 app[web.1]: Completed 200 OK in 26ms (Views: 2.9ms | ActiveRecord: 21.1ms)
+2015-06-05T11:40:42.347136+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:40:47.333030+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=bfb29ea4-bf5d-483a-ade1-248ec7b10fa5 fwd="116.238.180.252" dyno=web.1 connect=1ms service=11ms status=304 bytes=838
+2015-06-05T11:40:47.324681+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:40:47 +0000
+2015-06-05T11:40:47.331373+00:00 app[web.1]:   Rendered notices/count.js.erb (2.4ms)
+2015-06-05T11:40:47.331280+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.1ms)
+2015-06-05T11:40:47.331587+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.6ms)
+2015-06-05T11:40:47.326583+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:40:52.329008+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=52908fe7-8420-479d-81a9-4b6f8d2b57a1 fwd="116.238.180.252" dyno=web.1 connect=0ms service=14ms status=304 bytes=838
+2015-06-05T11:40:52.320144+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:40:52 +0000
+2015-06-05T11:40:52.327507+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.7ms)
+2015-06-05T11:40:52.327562+00:00 app[web.1]:   Rendered notices/count.js.erb (3.0ms)
+2015-06-05T11:40:52.327783+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.3ms | ActiveRecord: 2.1ms)
+2015-06-05T11:40:52.321884+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:40:57.409204+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=c66c3c73-4da7-4e9e-8fbd-8f3a2f795c0d fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-05T11:40:57.403009+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:40:57.407889+00:00 app[web.1]:   Rendered notices/count
+.js.erb (2.6ms)
+2015-06-05T11:40:57.408069+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.6ms)
+2015-06-05T11:40:57.401293+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:40:57 +0000
+2015-06-05T11:40:57.407722+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-05T11:41:02.330959+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=0c8a409b-b795-46f3-b7f8-c9b5c9543cbd fwd="116.238.180.252" dyno=web.1 connect=0ms service=16ms status=304 bytes=838
+2015-06-05T11:41:02.322893+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:41:02 +0000
+2015-06-05T11:41:02.329637+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.2ms)
+2015-06-05T11:41:02.329718+00:00 app[web.1]:   Rendered notices/count.js.erb (2.5ms)
+2015-06-05T11:41:02.330012+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.6ms)
+2015-06-05T11:41:02.324848+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:41:07.361017+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=8646b8cc-32ef-40f6-a8c4-1ca1c690d75c fwd="116.238.180.252" dyno=web.1 connect=1ms service=43ms status=304 bytes=838
+2015-06-05T11:41:07.325130+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:41:07 +0000
+2015-06-05T11:41:07.359142+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (5.8ms)
+2015-06-05T11:41:07.359234+00:00 app[web.1]:   Rendered notices/count.js.erb (6.3ms)
+2015-06-05T11:41:07.359448+00:00 app[web.1]: Completed 200 OK in 11ms (Views: 5.2ms | ActiveRecord: 4.5ms)
+2015-06-05T11:41:07.348177+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:41:12.342864+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=91055a94-604b-4526-b2ca-0f43129d9803 fwd="116.238.180.252" dyno=web.1 connect=8ms service=17ms status=304 bytes=838
+2015-06-05T11:41:12.328842+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:41:12 +0000
+2015-06-05T11:41:12.340584+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (4.3ms)
+2015-06-05T11:41:12.340668+00:00 app[web.1]:   Rendered notices/count.js.erb (4.6ms)
+2015-06-05T11:41:12.340895+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 4.5ms | ActiveRecord: 1.6ms)
+2015-06-05T11:41:12.333298+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:41:18.402818+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=01594544-fd06-4c23-8ad6-c8f72dd32795 fwd="116.238.180.252" dyno=web.1 connect=0ms service=14ms status=304 bytes=838
+2015-06-05T11:41:18.392308+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-05 11:41:18 +0000
+2015-06-05T11:41:18.400219+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.6ms)
+2015-06-05T11:41:18.400320+00:00 app[web.1]:   Rendered notices/count.js.erb (3.5ms)
+2015-06-05T11:41:18.400554+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 3.1ms | ActiveRecord: 1.9ms)
+2015-06-05T11:41:18.394331+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:41:27.662056+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=f4774979-9bcf-4bc9-8921-4c02f5c3a8ce fwd="74.207.252.33" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-05T11:41:27.650865+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:41:27 +0000
+2015-06-05T11:41:27.657868+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 1.6ms)
+2015-06-05T11:41:27.657585+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-05T11:41:27.888769+00:00 app[web.1]: Processing by StaticPagesController#home as HTML
+2015-06-05T11:41:27.657674+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-05T11:41:27.897865+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.3ms)
+2015-06-05T11:41:27.652723+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:41:27.886701+00:00 app[web.1]: Started GET "/" for 74.207.252.33 at 2015-06-05 11:41:27 +0000
+2015-06-05T11:41:27.917888+00:00 heroku[router]: at=info method=GET path="/" host=foodswatch.herokuapp.com request_id=f070b22d-d80b-4926-bfd5-715cbaaf0f09 fwd="74.207.252.33" dyno=web.1 connect=0ms service=34ms status=200 bytes=7424
+2015-06-05T11:41:27.906209+00:00 app[web.1]:   Rendered shared/_stats.html.slim (7.8ms)
+2015-06-05T11:41:27.907088+00:00 app[web.1]:   Rendered shared/_foods_panel.html.slim (0.0ms)
+2015-06-05T11:41:27.907148+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (9.8ms)
+2015-06-05T11:41:27.907544+00:00 app[web.1]:   Rendered shared/_loading.html.slim (0.1ms)
+2015-06-05T11:41:27.906919+00:00 app[web.1]:   Rendered shared/_micropost_form.html.slim (0.6ms)
+2015-06-05T11:41:27.913879+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (1.9ms)
+2015-06-05T11:41:27.910856+00:00 app[web.1]:   Rendered shared/_feed.html.slim (3.6ms)
+2015-06-05T11:41:27.910898+00:00 app[web.1]:   Rendered static_pages/_signed_in_home_page.html.slim (13.7ms)
+2015-06-05T11:41:27.915171+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-05T11:41:27.911014+00:00 app[web.1]:   Rendered static_pages/home.html.erb within layouts/application (13.9ms)
+2015-06-05T11:41:27.911547+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.0ms)
+2015-06-05T11:41:27.914655+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.6ms)
+2015-06-05T11:41:27.914715+00:00 app[web.1]:   Rendered layouts/_header.html.slim (3.0ms)
+2015-06-05T11:41:27.914986+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.0ms)
+2015-06-05T11:41:27.915524+00:00 app[web.1]: Completed 200 OK in 27ms (Views: 13.3ms | ActiveRecord: 7.3ms)
+2015-06-05T11:41:29.678347+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=7960c0ea-b64f-4697-8cec-115c18aad120 fwd="74.207.252.33" dyno=web.1 connect=1ms service=11ms status=304 bytes=838
+2015-06-05T11:41:29.669670+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:41:29 +0000
+2015-06-05T11:41:29.676431+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.2ms)
+2015-06-05T11:41:29.671593+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:41:29.676517+00:00 app[web.1]:   Rendered notices/count.js.erb (2.5ms)
+2015-06-05T11:41:29.676733+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 1.6ms)
+2015-06-05T11:41:31.959815+00:00 app[web.1]: Started GET "/api/v1/users/101/feeds?page=1&query=" for 74.207.252.33 at 2015-06-05 11:41:31 +0000
+2015-06-05T11:41:31.961680+00:00 app[web.1]: Processing by Api::V1::UsersController#feeds as */*
+2015-06-05T11:41:31.961754+00:00 app[web.1]:   Parameters: {"page"=>"1", "query"=>"", "id"=>"101"}
+2015-06-05T11:41:32.492932+00:00 heroku[router]: at=info method=GET path="/api/v1/users/101/feeds?page=1&query=" host=foodswatch.herokuapp.com request_id=2d608fe5-0e60-48a0-b123-b5491812f479 fwd="74.207.252.33" dyno=web.1 connect=1ms service=535ms status=304 bytes=838
+2015-06-05T11:41:32.489980+00:00 app[web.1]: Completed 200 OK in 528ms (Views: 15.5ms | ActiveRecord: 241.0ms)
+2015-06-05T11:41:35.286729+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=e4d9f0c7-cb44-4aaa-9fbb-252f35bc318a fwd="74.207.252.33" dyno=web.1 connect=3ms service=17ms status=304 bytes=838
+2015-06-05T11:41:35.279082+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-05T11:41:35.271967+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:41:35 +0000
+2015-06-05T11:41:35.279185+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-05T11:41:35.279396+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 1.7ms)
+2015-06-05T11:41:35.273926+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:41:37.559795+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=aa61c5d9-c8ad-4258-809f-01e2cd5c672c fwd="74.207.252.33" dyno=web.1 connect=0ms service=11ms status=304 bytes=838
+2015-06-05T11:41:37.551275+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:41:37 +0000
+2015-06-05T11:41:37.557564+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.2ms)
+2015-06-05T11:41:37.557658+00:00 app[web.1]:   Rendered notices/count.js.erb (2.4ms)
+2015-06-05T11:41:37.557847+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.6ms)
+2015-06-05T11:41:37.553019+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:41:41.154363+00:00 heroku[router]: at=info method=GET path="/users/101" host=foodswatch.herokuapp.com request_id=a14b407d-1f4b-4342-a281-a6d0622ce54b fwd="74.207.252.33" dyno=web.1 connect=2ms service=59ms status=200 bytes=5184
+2015-06-05T11:41:41.102888+00:00 app[web.1]: Processing by UsersController#show as HTML
+2015-06-05T11:41:41.100781+00:00 app[web.1]: Started GET "/users/101" for 74.207.252.33 at 2015-06-05 11:41:41 +0000
+2015-06-05T11:41:41.102977+00:00 app[web.1]:   Parameters: {"id"=>"101"}
+2015-06-05T11:41:41.109753+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.6ms)
+2015-06-05T11:41:41.149857+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.7ms)
+2015-06-05T11:41:41.122344+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (13.3ms)
+2015-06-05T11:41:41.144833+00:00 app[web.1]:   Rendered users/show.html.slim within layouts/application (24.4ms)
+2015-06-05T11:41:41.151687+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-05T11:41:41.122088+00:00 app[web.1]:   Rendered shared/_stats.html.slim (10.3ms)
+2015-06-05T11:41:41.123479+00:00 app[web.1]:   Rendered shared/_loading.html.slim (0.2ms)
+2015-06-05T11:41:41.146480+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.1ms)
+2015-06-05T11:41:41.151094+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.8ms)
+2015-06-05T11:41:41.151151+00:00 app[web.1]:   Rendered layouts/_header.html.slim (4.3ms)
+2015-06-05T11:41:41.151492+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.0ms)
+2015-06-05T11:41:41.152041+00:00 app[web.1]: Completed 200 OK in 49ms (Views: 38.4ms | ActiveRecord: 7.3ms)
+2015-06-05T11:41:42.843407+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=3325f974-ab9f-4275-ac97-494523ff3503 fwd="74.207.252.33" dyno=web.1 connect=1ms service=18ms status=304 bytes=838
+2015-06-05T11:41:42.828840+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:41:42 +0000
+2015-06-05T11:41:42.840935+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-05T11:41:42.841042+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-05T11:41:42.841269+00:00 app[web.1]: Completed 200 OK in 10ms (Views: 3.8ms | ActiveRecord: 3.8ms)
+2015-06-05T11:41:43.036486+00:00 app[web.1]: Processing by Api::V1::UsersController#microposts as */*
+2015-06-05T11:41:42.831239+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:41:43.033348+00:00 app[web.1]: Started GET "/api/v1/users/101/microposts?page=1&query=" for 74.207.252.33 at 2015-06-05 11:41:43 +0000
+2015-06-05T11:41:43.036793+00:00 app[web.1]:   Parameters: {"page"=>"1", "query"=>"", "id"=>"101"}
+2015-06-05T11:41:43.764841+00:00 heroku[router]: at=info method=GET path="/api/v1/users/101/microposts?page=1&query=" host=foodswatch.herokuapp.com request_id=0363a084-7806-4dea-a36f-d5ec5cb59d05 fwd="74.207.252.33" dyno=web.1 connect=1ms service=734ms status=304 bytes=838
+2015-06-05T11:41:43.763057+00:00 app[web.1]: Completed 200 OK in 726ms (Views: 5.7ms | ActiveRecord: 396.4ms)
+2015-06-05T11:41:47.348917+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:41:47 +0000
+2015-06-05T11:41:47.387328+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (6.5ms)
+2015-06-05T11:41:47.387412+00:00 app[web.1]:   Rendered notices/count.js.erb (7.6ms)
+2015-06-05T11:41:47.387686+00:00 app[web.1]: Completed 200 OK in 34ms (Views: 10.4ms | ActiveRecord: 9.6ms)
+2015-06-05T11:41:47.353453+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:41:47.389511+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=9114ded1-97c8-43cf-9df9-f8e510b6b526 fwd="74.207.252.33" dyno=web.1 connect=1ms service=58ms status=304 bytes=838
+2015-06-05T11:41:49.868251+00:00 heroku[router]: at=info method=GET path="/users/101/following" host=foodswatch.herokuapp.com request_id=0615f1a3-ccb3-4d90-b48d-14a945f439c6 fwd="74.207.252.33" dyno=web.1 connect=0ms service=40ms status=200 bytes=15940
+2015-06-05T11:41:49.846563+00:00 app[web.1]:   Rendered shared/_stats.html.slim (8.6ms)
+2015-06-05T11:41:49.829645+00:00 app[web.1]: Started GET "/users/101/following" for 74.207.252.33 at 2015-06-05 11:41:49 +0000
+2015-06-05T11:41:49.858097+00:00 app[web.1]:   Rendered users/_user.html.erb (4.3ms)
+2015-06-05T11:41:49.858857+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.0ms)
+2015-06-05T11:41:49.846597+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (9.7ms)
+2015-06-05T11:41:49.858207+00:00 app[web.1]:   Rendered users/show_follow.html.slim within layouts/application (21.5ms)
+2015-06-05T11:41:49.861969+00:00 app[web.1]:   Rendered layouts/_header.html.slim (3.0ms)
+2015-06-05T11:41:49.861912+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.5ms)
+2015-06-05T11:41:49.862672+00:00 app[web.1]: Completed 200 OK in 31ms (Views: 20.7ms | ActiveRecord: 7.2ms)
+2015-06-05T11:41:49.862187+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.0ms)
+2015-06-05T11:41:49.831756+00:00 app[web.1]: Processing by UsersController#following as HTML
+2015-06-05T11:41:49.831762+00:00 app[web.1]:   Parameters: {"id"=>"101"}
+2015-06-05T11:41:49.837362+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.4ms)
+2015-06-05T11:41:49.861270+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.0ms)
+2015-06-05T11:41:49.862408+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-05T11:41:52.316763+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=2abfabb9-9028-470b-bd0a-2216934ebe94 fwd="74.207.252.33" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-05T11:41:52.308122+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:41:52 +0000
+2015-06-05T11:41:52.314732+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.2ms)
+2015-06-05T11:41:52.315132+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 1.7ms)
+2015-06-05T11:41:52.309933+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:41:52.314901+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-05T11:41:53.231515+00:00 heroku[router]: at=info method=GET path="/users/129" host=foodswatch.herokuapp.com request_id=45447390-b84c-4743-bec5-b06025c141ee fwd="74.207.252.33" dyno=web.1 connect=0ms service=46ms status=200 bytes=5214
+2015-06-05T11:41:53.187776+00:00 app[web.1]: Started 
+GET "/users/129" for 74.207.252.33 at 2015-06-05 11:41:53 +0000
+2015-06-05T11:41:53.204931+00:00 app[web.1]:   Rendered shared/_stats.html.slim (8.1ms)
+2015-06-05T11:41:53.222931+00:00 app[web.1]:   Rendered shared/_loading.html.slim (0.1ms)
+2015-06-05T11:41:53.224369+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.0ms)
+2015-06-05T11:41:53.228908+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.9ms)
+2015-06-05T11:41:53.229790+00:00 app[web.1]: Completed 200 OK in 40ms (Views: 26.5ms | ActiveRecord: 9.7ms)
+2015-06-05T11:41:53.228963+00:00 app[web.1]:   Rendered layouts/_header.html.slim (4.4ms)
+2015-06-05T11:41:53.229315+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.0ms)
+2015-06-05T11:41:53.189766+00:00 app[web.1]: Processing by UsersController#show as HTML
+2015-06-05T11:41:53.196208+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.3ms)
+2015-06-05T11:41:53.189772+00:00 app[web.1]:   Parameters: {"id"=>"129"}
+2015-06-05T11:41:53.221253+00:00 app[web.1]:   Rendered users/_unfollow.html.erb (5.7ms)
+2015-06-05T11:41:53.221286+00:00 app[web.1]:   Rendered users/_follow_form.html.erb (15.4ms)
+2015-06-05T11:41:53.221598+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (25.6ms)
+2015-06-05T11:41:53.223408+00:00 app[web.1]:   Rendered users/show.html.slim within layouts/application (28.0ms)
+2015-06-05T11:41:53.227854+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.1ms)
+2015-06-05T11:41:53.229512+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-05T11:41:56.103584+00:00 heroku[router]: at=info method=GET path="/assets/loading.gif" host=foodswatch.herokuapp.com request_id=16da0f1d-625f-428f-b583-ab11863cf08a fwd="74.207.252.33" dyno=web.1 connect=0ms service=8ms status=304 bytes=276
+2015-06-05T11:41:56.099151+00:00 app[web.1]: Started GET "/assets/loading.gif" for 74.207.252.33 at 2015-06-05 11:41:56 +0000
+2015-06-05T11:41:56.137779+00:00 app[web.1]: Processing by Api::V1::UsersController#microposts as */*
+2015-06-05T11:41:56.181963+00:00 app[web.1]: Completed 200 OK in 42ms (Views: 0.6ms | ActiveRecord: 16.9ms)
+2015-06-05T11:41:56.135692+00:00 app[web.1]: Started GET "/api/v1/users/129/microposts?page=1&query=" for 74.207.252.33 at 2015-06-05 11:41:56 +0000
+2015-06-05T11:41:56.139402+00:00 app[web.1]:   Parameters: {"page"=>"1", "query"=>"", "id"=>"129"}
+2015-06-05T11:41:56.185639+00:00 heroku[router]: at=info method=GET path="/api/v1/users/129/microposts?page=1&query=" host=foodswatch.herokuapp.com request_id=e78ba5e8-8486-4d4a-af77-cc8ff8a661d5 fwd="74.207.252.33" dyno=web.1 connect=0ms service=52ms status=200 bytes=1836
+2015-06-05T11:41:57.319558+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=b2f6e04b-8da9-411e-ab4e-881c2a98f1b6 fwd="74.207.252.33" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-05T11:41:57.309246+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:41:57 +0000
+2015-06-05T11:41:57.316506+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-05T11:41:57.316602+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-05T11:41:57.316829+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 2.0ms)
+2015-06-05T11:41:57.311132+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:42:02.378226+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=789b3cab-cc28-4d58-a62d-b9932a0cc786 fwd="74.207.252.33" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-05T11:42:02.368777+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:42:02 +0000
+2015-06-05T11:42:02.375223+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-05T11:42:02.375309+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-05T11:42:02.375501+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.6ms)
+2015-06-05T11:42:02.370515+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:42:07.395744+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=196f976a-6d50-41d7-9dda-491d3bf0985f fwd="74.207.252.33" dyno=web.1 connect=0ms service=35ms status=304 bytes=838
+2015-06-05T11:42:07.393799+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.6ms)
+2015-06-05T11:42:07.380666+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:42:07 +0000
+2015-06-05T11:42:07.393932+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-05T11:42:07.394197+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 2.2ms)
+2015-06-05T11:42:07.388209+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:42:11.905474+00:00 heroku[router]: at=info method=GET path="/assets/application-9a8cb2bd9fe658bd718766e13182ff05.css" host=foodswatch.herokuapp.com request_id=7dd75edc-e879-4b60-8430-8911d4a0d93a fwd="74.207.252.33" dyno=web.1 connect=0ms service=5ms status=304 bytes=249
+2015-06-05T11:42:12.375792+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=29c4f8eb-7704-47b0-9a0f-6cb2b7ac38ba fwd="74.207.252.33" dyno=web.1 connect=0ms service=16ms status=304 bytes=838
+2015-06-05T11:42:12.363239+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:42:12 +0000
+2015-06-05T11:42:12.373807+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-05T11:42:12.374234+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.1ms | ActiveRecord: 1.7ms)
+2015-06-05T11:42:12.368963+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:42:12.374022+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-05T11:42:17.372015+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=38565675-2b7c-4036-bd78-f3b2cee9a005 fwd="74.207.252.33" dyno=web.1 connect=0ms service=15ms status=304 bytes=838
+2015-06-05T11:42:17.360005+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:42:17 +0000
+2015-06-05T11:42:17.369957+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-05T11:42:17.370097+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-05T11:42:17.370295+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.3ms | ActiveRecord: 2.7ms)
+2015-06-05T11:42:17.363954+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:42:21.664781+00:00 heroku[router]: at=info method=GET path="/search/user?utf8=%E2%9C%93&search%5Bquery%5D=" host=foodswatch.herokuapp.com request_id=815436d3-944d-44a4-8317-0f071992975a fwd="74.207.252.33" dyno=web.1 connect=1ms service=89ms status=200 bytes=12432
+2015-06-05T11:42:21.578930+00:00 app[web.1]: Started GET "/search/user?utf8=%E2%9C%93&search%5Bquery%5D=" for 74.207.252.33 at 2015-06-05 11:42:21 +0000
+2015-06-05T11:42:21.619970+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (6.8ms)
+2015-06-05T11:42:21.621985+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.4ms)
+2015-06-05T11:42:21.659662+00:00 app[web.1]: Completed 200 OK in 77ms (Views: 43.4ms | ActiveRecord: 31.6ms)
+2015-06-05T11:42:21.582619+00:00 app[web.1]: Processing by SearchController#user as HTML
+2015-06-05T11:42:21.582674+00:00 app[web.1]:   Parameters: {"utf8"=>"✓", "search"=>{"query"=>""}}
+2015-06-05T11:42:21.611776+00:00 app[web.1]:   Rendered users/_user.html.erb (11.2ms)
+2015-06-05T11:42:21.611929+00:00 app[web.1]:   Rendered search/user.html.slim within layouts/application (26.0ms)
+2015-06-05T11:42:21.612628+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.0ms)
+2015-06-05T11:42:21.620944+00:00 app[web.1]:   Rendered layouts/_header.html.slim (8.2ms)
+2015-06-05T11:42:21.620887+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.7ms)
+2015-06-05T11:42:21.621171+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.0ms)
+2015-06-05T11:42:21.658986+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (37.5ms)
+2015-06-05T11:42:21.658929+00:00 app[web.1]:   Rendered shared/_stats.html.slim (36.4ms)
+2015-06-05T11:42:21.659265+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.1ms)
+2015-06-05T11:42:22.445929+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=180b0bc8-9cec-45a3-afe0-7e0669f42b4d fwd="74.207.252.33" dyno=web.1 connect=0ms service=87ms status=304 bytes=838
+2015-06-05T11:42:22.442614+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (27.1ms)
+2015-06-05T11:42:22.442716+00:00 app[web.1]:   Rendered notices/count.js.erb (27.6ms)
+2015-06-05T11:42:22.443200+00:00 app[web.1]: Completed 200 OK in 47ms (Views: 22.1ms | ActiveRecord: 23.3ms)
+2015-06-05T11:42:22.365715+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:42:22 +0000
+2015-06-05T11:42:22.394816+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:42:23.209660+00:00 heroku[router]: at=info method=GET path="/assets/application-13fbb31a933315a8c45bf55f20c579c5.js" host=foodswatch.herokuapp.com request_id=cf03c10b-ea5b-4a74-b2da-b62bb104a16d fwd="74.207.252.33" dyno=web.1 connect=1ms service=10ms status=304 bytes=263
+2015-06-05T11:42:23.742223+00:00 heroku[router]: at=info method=GET path="/assets/logo-0572ade5277ee5767e2344587fd34dd8.png" host=foodswatch.herokuapp.com request_id=ff0aaa10-d36b-47bc-b3d8-1245ef79f8ff fwd="74.207.252.33" dyno=web.1 connect=1ms service=8ms status=304 bytes=178
+2015-06-05T11:42:24.276909+00:00 heroku[router]: at=info method=GET path="/assets/font-awesome/fontawesome-webfont.woff2" host=foodswatch.herokuapp.com request_id=04f17b18-f99b-468e-b3a7-b86435cb0779 fwd="74.207.252.33" dyno=web.1 connect=0ms service=10ms status=304 bytes=276
+2015-06-05T11:42:24.269341+00:00 app[web.1]: Started GET "/assets/font-awesome/fontawesome-webfont.woff2" for 74.207.252.33 at 2015-06-05 11:42:24 +0000
+2015-06-05T11:42:24.468860+00:00 heroku[router]: at=info method=GET path="/assets/admin-01522213f72ea753263d253e705229fd.jpg" host=foodswatch.herokuapp.com request_id=2e2ec417-ad09-4fad-b9c9-cce9a73997fe fwd="74.207.252.33" dyno=web.1 connect=0ms service=19ms status=200 bytes=6049
+2015-06-05T11:42:27.952446+00:00 app[web.1]:   Parameters: {"id"=>"124"}
+2015-06-05T11:42:27.938049+00:00 app[web.1]: Started GET "/users/124" for 74.207.252.33 at 2015-06-05 11:42:27 +0000
+2015-06-05T11:42:28.080922+00:00 app[web.1]:   Rendered users/_follow_form.html.erb (34.8ms)
+2015-06-05T11:42:28.089853+00:00 app[web.1]:   Rendered shared/_loading.html.slim (0.2ms)
+2015-06-05T11:42:28.045432+00:00 app[web.1]:   Rendered shared/_stats.html.slim (56.8ms)
+2015-06-05T11:42:28.100062+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.1ms)
+2015-06-05T11:42:28.115460+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.7ms)
+2015-06-05T11:42:28.115537+00:00 app[web.1]:   Rendered layouts/_header.html.slim (15.3ms)
+2015-06-05T11:42:28.115847+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.0ms)
+2015-06-05T11:42:28.116278+00:00 app[web.1]: Completed 200 OK in 163ms (Views: 91.9ms | ActiveRecord: 64.3ms)
+2015-06-05T11:42:27.943525+00:00 app[web.1]: Processing by UsersController#show as HTML
+2015-06-05T11:42:27.981186+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.6ms)
+2015-06-05T11:42:28.086330+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (114.1ms)
+2015-06-05T11:42:28.071632+00:00 app[web.1]:   Rendered users/_unfollow.html.erb (12.5ms)
+2015-06-05T11:42:28.099233+00:00 app[web.1]:   Rendered users/show.html.slim within layouts/application (127.2ms)
+2015-06-05T11:42:28.114548+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.8ms)
+2015-06-05T11:42:28.116033+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-05T11:42:28.118360+00:00 heroku[router]: at=info method=GET path="/users/124" host=foodswatch.herokuapp.com request_id=e8881fb3-e21e-4b4c-b492-7f56bba5f7b8 fwd="74.207.252.33" dyno=web.1 connect=1ms service=188ms status=200 bytes=5211
+2015-06-05T11:42:28.791440+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:42:28 +0000
+2015-06-05T11:42:28.855258+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (10.0ms)
+2015-06-05T11:42:28.856031+00:00 app[web.1]: Completed 200 OK in 46ms (Views: 3.4ms | ActiveRecord: 16.8ms)
+2015-06-05T11:42:28.809651+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:42:28.855526+00:00 app[web.1]:   Rendered notices/count.js.erb (10.6ms)
+2015-06-05T11:42:28.858651+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=48b0176d-2ee4-4767-8cbb-e58ec1df8a76 fwd="74.207.252.33" dyno=web.1 connect=3ms service=73ms status=304 bytes=838
+2015-06-05T11:42:30.291643+00:00 app[web.1]: Started GET "/api/v1/users/124/microposts?page=1&query=" for 74.207.252.33 at 2015-06-05 11:42:30 +0000
+2015-06-05T11:42:30.300220+00:00 app[web.1]:   Parameters: {"page"=>"1", "query"=>"", "id"=>"124"}
+2015-06-05T11:42:30.295397+00:00 app[web.1]: Processing by Api::V1::UsersController#microposts as */*
+2015-06-05T11:42:30.552704+00:00 heroku[router]: at=info method=GET path="/api/v1/users/124/microposts?page=1&query=" host=foodswatch.herokuapp.com request_id=6623368d-39e7-419b-8f06-b1fe5a0f73c4 fwd="74.207.252.33" dyno=web.1 connect=0ms service=272ms status=200 bytes=3219
+2015-06-05T11:42:30.560552+00:00 heroku[router]: at=info method=GET path="/assets/loading.gif" host=foodswatch.herokuapp.com request_id=8895faad-7632-4ace-bd46-f30ea6b7f9cb fwd="74.207.252.33" dyno=web.1 connect=0ms service=246ms status=304 bytes=276
+2015-06-05T11:42:30.549838+00:00 app[web.1]: Completed 200 OK in 249ms (Views: 1.2ms | ActiveRecord: 180.5ms)
+2015-06-05T11:42:30.556756+00:00 app[web.1]: Started GET "/assets/loading.gif" for 74.207.252.33 at 2015-06-05 11:42:30 +0000
+2015-06-05T11:42:33.799062+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=b22fec46-0606-49cf-81c9-c9fa5d4319c6 fwd="74.207.252.33" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-05T11:42:33.788961+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:42:33 +0000
+2015-06-05T11:42:33.795690+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-05T11:42:33.795748+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-05T11:42:33.795971+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 1.6ms)
+2015-06-05T11:42:33.790762+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:42:37.788439+00:00 heroku[router]: at=info method=GET path="/" host=foodswatch.herokuapp.com request_id=66d05588-5332-4be9-b55a-2d272658c5c6 fwd="74.207.252.33" dyno=web.1 connect=0ms service=37ms status=200 bytes=7424
+2015-06-05T11:42:37.753720+00:00 app[web.1]: Started GET "/" for 74.207.252.33 at 2015-06-05 11:42:37 +0000
+2015-06-05T11:42:37.765295+00:00 app[web.1]:   Rendered shared/_search.html.slim (0.5ms)
+2015-06-05T11:42:37.775383+00:00 app[web.1]:   Rendered shared/_foods_panel.html.slim (0.0ms)
+2015-06-05T11:42:37.775450+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (10.9ms)
+2015-06-05T11:42:37.775205+00:00 app[web.1]:   Rendered shared/_micropost_form.html.slim (0.9ms)
+2015-06-05T11:42:37.775938+00:00 app[web.
+1]:   Rendered shared/_loading.html.slim (0.2ms)
+2015-06-05T11:42:37.783294+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-05T11:42:37.784644+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-05T11:42:37.755738+00:00 app[web.1]: Processing by StaticPagesController#home as HTML
+2015-06-05T11:42:37.774088+00:00 app[web.1]:   Rendered shared/_stats.html.slim (8.0ms)
+2015-06-05T11:42:37.779572+00:00 app[web.1]:   Rendered shared/_feed.html.slim (3.9ms)
+2015-06-05T11:42:37.779661+00:00 app[web.1]:   Rendered static_pages/home.html.erb within layouts/application (15.4ms)
+2015-06-05T11:42:37.780408+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.0ms)
+2015-06-05T11:42:37.779579+00:00 app[web.1]:   Rendered static_pages/_signed_in_home_page.html.slim (15.2ms)
+2015-06-05T11:42:37.784150+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (0.6ms)
+2015-06-05T11:42:37.784189+00:00 app[web.1]:   Rendered layouts/_header.html.slim (3.6ms)
+2015-06-05T11:42:37.784408+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.0ms)
+2015-06-05T11:42:37.784937+00:00 app[web.1]: Completed 200 OK in 29ms (Views: 16.0ms | ActiveRecord: 7.0ms)
+2015-06-05T11:42:38.807839+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=e2c55fe5-ace2-4f13-ae30-c83d3278aa95 fwd="74.207.252.33" dyno=web.1 connect=3ms service=20ms status=304 bytes=838
+2015-06-05T11:42:38.792966+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:42:38 +0000
+2015-06-05T11:42:38.804103+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (4.9ms)
+2015-06-05T11:42:38.804149+00:00 app[web.1]:   Rendered notices/count.js.erb (5.3ms)
+2015-06-05T11:42:38.804499+00:00 app[web.1]: Completed 200 OK in 9ms (Views: 5.1ms | ActiveRecord: 2.4ms)
+2015-06-05T11:42:38.795111+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:42:39.650687+00:00 app[web.1]:   Parameters: {"page"=>"1", "query"=>"", "id"=>"101"}
+2015-06-05T11:42:39.645498+00:00 app[web.1]: Started GET "/api/v1/users/101/feeds?page=1&query=" for 74.207.252.33 at 2015-06-05 11:42:39 +0000
+2015-06-05T11:42:39.650052+00:00 app[web.1]: Processing by Api::V1::UsersController#feeds as */*
+2015-06-05T11:42:40.482255+00:00 heroku[router]: at=info method=GET path="/api/v1/users/101/feeds?page=1&query=" host=foodswatch.herokuapp.com request_id=d271412c-329d-4897-bb59-40929a43b8e8 fwd="74.207.252.33" dyno=web.1 connect=1ms service=842ms status=304 bytes=838
+2015-06-05T11:42:40.480020+00:00 app[web.1]: Completed 200 OK in 829ms (Views: 16.4ms | ActiveRecord: 371.2ms)
+2015-06-05T11:42:43.801827+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=f04480d5-f410-42ac-92c9-eaaf9b246715 fwd="74.207.252.33" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-05T11:42:43.792549+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:42:43 +0000
+2015-06-05T11:42:43.799476+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-05T11:42:43.799558+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-05T11:42:43.799797+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 1.6ms)
+2015-06-05T11:42:43.794177+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:42:48.582391+00:00 heroku[router]: at=info method=DELETE path="/likes/33" host=foodswatch.herokuapp.com request_id=2d5acf50-e2c8-4913-aca2-44a663200784 fwd="74.207.252.33" dyno=web.1 connect=0ms service=37ms status=200 bytes=1193
+2015-06-05T11:42:48.546546+00:00 app[web.1]: Started DELETE "/likes/33" for 74.207.252.33 at 2015-06-05 11:42:48 +0000
+2015-06-05T11:42:48.786898+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:42:48 +0000
+2015-06-05T11:42:48.793626+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-05T11:42:48.793717+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-05T11:42:48.793926+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 1.6ms)
+2015-06-05T11:42:48.549947+00:00 app[web.1]: Processing by LikesController#destroy as JS
+2015-06-05T11:42:48.549958+00:00 app[web.1]:   Parameters: {"id"=>"33"}
+2015-06-05T11:42:48.578769+00:00 app[web.1]:   Rendered buttons/_like.html.slim (4.1ms)
+2015-06-05T11:42:48.578881+00:00 app[web.1]:   Rendered likes/destroy.js.erb (5.1ms)
+2015-06-05T11:42:48.579169+00:00 app[web.1]: Completed 200 OK in 29ms (Views: 10.3ms | ActiveRecord: 9.9ms)
+2015-06-05T11:42:48.788816+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:42:48.795480+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=ea42484e-00ab-44e5-abb7-1f804f55d31e fwd="74.207.252.33" dyno=web.1 connect=0ms service=11ms status=304 bytes=838
+2015-06-05T11:42:54.361653+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:42:54 +0000
+2015-06-05T11:42:54.367912+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.2ms)
+2015-06-05T11:42:54.363374+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:42:54.368077+00:00 app[web.1]:   Rendered notices/count.js.erb (2.5ms)
+2015-06-05T11:42:54.368229+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.6ms)
+2015-06-05T11:42:54.370690+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=c6a9aefb-c67a-44c8-8eb4-3c5a4c3bc8ee fwd="74.207.252.33" dyno=web.1 connect=1ms service=11ms status=304 bytes=935
+2015-06-05T11:42:59.372782+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=c3cc11c1-822e-4573-bd59-6f830d547114 fwd="74.207.252.33" dyno=web.1 connect=0ms service=17ms status=304 bytes=838
+2015-06-05T11:42:59.357632+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:42:59 +0000
+2015-06-05T11:42:59.369899+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (7.8ms)
+2015-06-05T11:42:59.369990+00:00 app[web.1]:   Rendered notices/count.js.erb (8.1ms)
+2015-06-05T11:42:59.370309+00:00 app[web.1]: Completed 200 OK in 11ms (Views: 7.6ms | ActiveRecord: 1.8ms)
+2015-06-05T11:42:59.359576+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:43:03.164016+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=61eea729-66bf-4cce-89a2-499078e12347 fwd="74.207.252.33" dyno=web.1 connect=1ms service=109ms status=500 bytes=1588
+2015-06-05T11:43:03.097700+00:00 app[web.1]: Completed 500 Internal Server Error in 27ms
+2015-06-05T11:43:03.067998+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:43:03 +0000
+2015-06-05T11:43:03.124406+00:00 app[web.1]: 
+2015-06-05T11:43:03.124414+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:43:03.124417+00:00 app[web.1]: 
+2015-06-05T11:43:03.070836+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:43:03.124412+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a4eba920>):
+2015-06-05T11:43:03.124415+00:00 app[web.1]: 
+2015-06-05T11:43:03.468539+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=c5e873ba-d22e-429d-8e15-7ccc553fb8d5 fwd="74.207.252.33" dyno=web.1 connect=1ms service=70ms status=500 bytes=1588
+2015-06-05T11:43:03.434247+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=2b41d14b-d5c6-4ca0-a4dd-cafed9869434 fwd="74.207.252.33" dyno=web.1 connect=0ms service=38ms status=500 bytes=1588
+2015-06-05T11:43:03.401395+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:43:03 +0000
+2015-06-05T11:43:03.421903+00:00 app[web.1]: Completed 500 Internal Server Error in 12ms
+2015-06-05T11:43:03.442600+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:43:03.461518+00:00 app[web.1]: 
+2015-06-05T11:43:03.461525+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a51748a0>):
+2015-06-05T11:43:03.461527+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:43:03.461528+00:00 app[web.1]: 
+2015-06-05T11:43:03.461530+00:00 app[web.1]: 
+2015-06-05T11:43:03.404359+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:43:03.431024+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a4bec428>):
+2015-06-05T11:43:03.431026+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:43:03.431018+00:00 app[web.1]: 
+2015-06-05T11:43:03.431029+00:00 app[web.1]: 
+2015-06-05T11:43:03.431028+00:00 app[web.1]: 
+2015-06-05T11:43:03.438624+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:43:03 +0000
+2015-06-05T11:43:03.454476+00:00 app[web.1]: Completed 500 Internal Server Error in 12ms
+2015-06-05T11:43:03.680182+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=ab246899-729f-483d-a6f7-90da9d0eda7a fwd="74.207.252.33" dyno=web.1 connect=0ms service=22ms status=500 bytes=1588
+2015-06-05T11:43:03.695963+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=00f76746-8d5d-45f9-9753-71c68f9a4a55 fwd="74.207.252.33" dyno=web.1 connect=1ms service=37ms status=500 bytes=1588
+2015-06-05T11:43:03.661097+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:43:03 +0000
+2015-06-05T11:43:03.672093+00:00 app[web.1]: Completed 500 Internal Server Error in 8ms
+2015-06-05T11:43:03.681038+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:43:03.693592+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a4df5f58>):
+2015-06-05T11:43:03.693594+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:43:03.693588+00:00 app[web.1]: 
+2015-06-05T11:43:03.693597+00:00 app[web.1]: 
+2015-06-05T11:43:03.693595+00:00 app[web.1]: 
+2015-06-05T11:43:03.678421+00:00 app[web.1]: 
+2015-06-05T11:43:03.664286+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:43:03.678425+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a4b2c448>):
+2015-06-05T11:43:03.678427+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:43:03.678428+00:00 app[web.1]: 
+2015-06-05T11:43:03.678429+00:00 app[web.1]: 
+2015-06-05T11:43:03.679404+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:43:03 +0000
+2015-06-05T11:43:03.687996+00:00 app[web.1]: Completed 500 Internal Server Error in 7ms
+2015-06-05T11:43:04.197337+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=a62f0d53-bc15-4b8c-ac5f-5a1e0a840662 fwd="74.207.252.33" dyno=web.1 connect=0ms service=18ms status=500 bytes=1588
+2015-06-05T11:43:04.369578+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=3561192f-0949-4a1c-ab6e-c6746b49bdfb fwd="74.207.252.33" dyno=web.1 connect=2ms service=11ms status=304 bytes=838
+2015-06-05T11:43:04.183390+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:43:04.195873+00:00 app[web.1]: 
+2015-06-05T11:43:04.195876+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a504fc40>):
+2015-06-05T11:43:04.195878+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:43:04.195879+00:00 app[web.1]: 
+2015-06-05T11:43:04.195881+00:00 app[web.1]: 
+2015-06-05T11:43:04.360755+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:43:04 +0000
+2015-06-05T11:43:04.367157+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.2ms)
+2015-06-05T11:43:04.367242+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-05T11:43:04.367434+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.6ms)
+2015-06-05T11:43:04.181675+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:43:04 +0000
+2015-06-05T11:43:04.362478+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:43:04.190442+00:00 app[web.1]: Completed 500 Internal Server Error in 7ms
+2015-06-05T11:43:04.728776+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:43:04 +0000
+2015-06-05T11:43:04.976118+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:43:04.739963+00:00 app[web.1]: Completed 500 Internal Server Error in 9ms
+2015-06-05T11:43:04.730558+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:43:04.747675+00:00 app[web.1]: 
+2015-06-05T11:43:04.747680+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a4cc6f38>):
+2015-06-05T11:43:04.747682+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:43:04.747683+00:00 app[web.1]: 
+2015-06-05T11:43:04.747684+00:00 app[web.1]: 
+2015-06-05T11:43:04.974406+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:43:04 +0000
+2015-06-05T11:43:04.748987+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=b64e0d39-822d-4e99-9f95-672866481e4f fwd="74.207.252.33" dyno=web.1 connect=0ms service=26ms status=500 bytes=1588
+2015-06-05T11:43:04.985643+00:00 app[web.1]: Completed 500 Internal Server Error in 9ms
+2015-06-05T11:43:05.144360+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-05T11:43:05.158952+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1bb9a2930>):
+2015-06-05T11:43:05.158957+00:00 app[web.1]: 
+2015-06-05T11:43:05.158948+00:00 app[web.1]: 
+2015-06-05T11:43:05.158956+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:43:05.158959+00:00 app[web.1]: 
+2015-06-05T11:43:05.016377+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=04c8d8ef-94f3-4aa2-8949-0e3e6fee95a8 fwd="74.207.252.33" dyno=web.1 connect=1ms service=46ms status=500 bytes=1588
+2015-06-05T11:43:05.015246+00:00 app[web.1]: 
+2015-06-05T11:43:05.015254+00:00 app[web.1]: NameError (undefined local variable or method `store_location' for #<NoticesController:0x007fc1a0076d90>):
+2015-06-05T11:43:05.015257+00:00 app[web.1]:   app/helpers/sessions_helper.rb:34:in `signed_in_user'
+2015-06-05T11:43:05.015260+00:00 app[web.1]: 
+2015-06-05T11:43:05.152497+00:00 app[web.1]: Completed 500 Internal Server Error in 8ms
+2015-06-05T11:43:05.015258+00:00 app[web.1]: 
+2015-06-05T11:43:05.142355+00:00 app[web.1]: Started GET "/notices/count.js" for 74.207.252.33 at 2015-06-05 11:43:05 +0000
+2015-06-05T11:43:05.164407+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.
+herokuapp.com request_id=3226efc3-a90f-46d3-b9fa-322d7565f64d fwd="74.207.252.33" dyno=web.1 connect=0ms service=24ms status=500 bytes=1588
+2015-06-05T12:45:37.533247+00:00 heroku[web.1]: Idling
+2015-06-05T12:45:37.533920+00:00 heroku[web.1]: State changed from up to down
+2015-06-05T12:45:40.518625+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2015-06-05T12:45:41.254432+00:00 app[web.1]: [2015-06-05 12:45:41] FATAL SignalException: SIGTERM
+2015-06-05T12:45:41.254437+00:00 app[web.1]: 	/app/vendor/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:174:in `select'
+2015-06-05T12:45:41.254441+00:00 app[web.1]: 	/app/vendor/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:32:in `start'
+2015-06-05T12:45:41.254440+00:00 app[web.1]: 	/app/vendor/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:174:in `block in start'
+2015-06-05T12:45:41.254443+00:00 app[web.1]: 	/app/vendor/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:162:in `start'
+2015-06-05T12:45:41.254444+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.2.0/gems/rack-1.6.0/lib/rack/handler/webrick.rb:35:in `run'
+2015-06-05T12:45:41.254446+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.2.0/gems/rack-1.6.0/lib/rack/server.rb:286:in `start'
+2015-06-05T12:45:41.254448+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.0/lib/rails/commands/server.rb:80:in `start'
+2015-06-05T12:45:41.254450+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.0/lib/rails/commands/commands_tasks.rb:80:in `block in server'
+2015-06-05T12:45:41.254453+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.0/lib/rails/commands/commands_tasks.rb:75:in `server'
+2015-06-05T12:45:41.254451+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.0/lib/rails/commands/commands_tasks.rb:75:in `tap'
+2015-06-05T12:45:41.254454+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.0/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+2015-06-05T12:45:41.254456+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.0/lib/rails/commands.rb:17:in `<top (required)>'
+2015-06-05T12:45:41.254458+00:00 app[web.1]: 	bin/rails:4:in `require'
+2015-06-05T12:45:41.254459+00:00 app[web.1]: 	bin/rails:4:in `<main>'
+2015-06-05T12:45:41.254461+00:00 app[web.1]: [2015-06-05 12:45:41] INFO  going to shutdown ...
+2015-06-05T12:45:41.254462+00:00 app[web.1]: [2015-06-05 12:45:41] INFO  WEBrick::HTTPServer#start done.
+2015-06-05T12:45:41.254464+00:00 app[web.1]: Exiting
+2015-06-05T12:45:42.582244+00:00 heroku[web.1]: Process exited with status 143
+2015-06-06T02:04:31.245636+00:00 heroku[web.1]: Unidling
+2015-06-06T02:04:31.245931+00:00 heroku[web.1]: State changed from down to starting
+2015-06-06T02:04:37.163325+00:00 heroku[web.1]: Starting process with command `bin/rails server -p 11973 -e $RAILS_ENV`
+2015-06-06T02:04:42.988722+00:00 heroku[web.1]: State changed from starting to up
+2015-06-06T02:04:42.909980+00:00 app[web.1]: [2015-06-06 02:04:42] INFO  WEBrick 1.3.1
+2015-06-06T02:04:42.910182+00:00 app[web.1]: [2015-06-06 02:04:42] INFO  ruby 2.2.0 (2014-12-25) [x86_64-linux]
+2015-06-06T02:04:42.910839+00:00 app[web.1]: [2015-06-06 02:04:42] INFO  WEBrick::HTTPServer#start: pid=3 port=11973
+2015-06-06T02:04:45.334455+00:00 app[web.1]: => Booting WEBrick
+2015-06-06T02:04:45.334461+00:00 app[web.1]: => Rails 4.2.0 application starting in production on http://0.0.0.0:11973
+2015-06-06T02:04:45.334463+00:00 app[web.1]: => Run `rails server -h` for more startup options
+2015-06-06T02:04:45.540103+00:00 app[web.1]:   Rendered layouts/_header.html.slim (12.6ms)
+2015-06-06T02:04:45.334465+00:00 app[web.1]: => Ctrl-C to shutdown server
+2015-06-06T02:04:45.334466+00:00 app[web.1]: Started GET "/" for 116.238.180.252 at 2015-06-06 02:04:45 +0000
+2015-06-06T02:04:45.411100+00:00 app[web.1]: Processing by StaticPagesController#home as HTML
+2015-06-06T02:04:45.516702+00:00 app[web.1]:   Rendered static_pages/_default_home_page.html.slim (44.0ms)
+2015-06-06T02:04:45.516805+00:00 app[web.1]:   Rendered static_pages/home.html.erb within layouts/application (45.8ms)
+2015-06-06T02:04:45.526428+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.4ms)
+2015-06-06T02:04:45.556671+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (2.7ms)
+2015-06-06T02:04:45.553991+00:00 heroku[router]: at=info method=GET path="/" host=foodswatch.herokuapp.com request_id=dff3f1f6-a2aa-4c83-8718-66a6597bfce0 fwd="116.238.180.252" dyno=web.1 connect=0ms service=239ms status=200 bytes=3040
+2015-06-06T02:04:45.513931+00:00 app[web.1]:   Rendered users/_fields.html.slim (3.9ms)
+2015-06-06T02:04:45.539652+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (4.5ms)
+2015-06-06T02:04:45.553287+00:00 app[web.1]:   Rendered shared/_message.html.slim (12.5ms)
+2015-06-06T02:04:45.557151+00:00 app[web.1]: Completed 200 OK in 146ms (Views: 86.9ms | ActiveRecord: 24.2ms)
+2015-06-06T02:04:45.992278+00:00 heroku[router]: at=info method=GET path="/assets/application-9a8cb2bd9fe658bd718766e13182ff05.css" host=foodswatch.herokuapp.com request_id=bff0421b-54d5-4c1c-88fd-45a8bdbb0856 fwd="116.238.180.252" dyno=web.1 connect=1ms service=58ms status=200 bytes=37792
+2015-06-06T02:04:46.827662+00:00 heroku[router]: at=info method=GET path="/assets/application-13fbb31a933315a8c45bf55f20c579c5.js" host=foodswatch.herokuapp.com request_id=9726fe92-7853-4ad9-bc94-9eec0f42a5c1 fwd="116.238.180.252" dyno=web.1 connect=0ms service=208ms status=200 bytes=154186
+2015-06-06T02:04:52.640982+00:00 heroku[router]: at=info method=GET path="/assets/logo-0572ade5277ee5767e2344587fd34dd8.png" host=foodswatch.herokuapp.com request_id=bb57052d-43d3-4478-8e96-7e669ae1bf38 fwd="116.238.180.252" dyno=web.1 connect=1ms service=11ms status=200 bytes=3764
+2015-06-06T02:05:43.063926+00:00 app[web.1]: Started GET "/assets/logo.png" for 116.238.180.252 at 2015-06-06 02:05:43 +0000
+2015-06-06T02:05:43.072865+00:00 heroku[router]: at=info method=GET path="/assets/logo.png" host=foodswatch.herokuapp.com request_id=3ce1b12e-e68c-4934-b1c8-70849ccb904e fwd="116.238.180.252" dyno=web.1 connect=0ms service=21ms status=200 bytes=3919
+2015-06-06T02:05:55.372104+00:00 app[web.1]: Started GET "/signin" for 116.238.180.252 at 2015-06-06 02:05:55 +0000
+2015-06-06T02:05:55.436226+00:00 app[web.1]:   Rendered sessions/new.html.slim within layouts/application (37.5ms)
+2015-06-06T02:05:55.470871+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (8.4ms)
+2015-06-06T02:05:55.484859+00:00 app[web.1]:   Rendered shared/_message.html.slim (12.5ms)
+2015-06-06T02:05:55.495934+00:00 app[web.1]: Completed 200 OK in 111ms (Views: 105.6ms | ActiveRecord: 4.3ms)
+2015-06-06T02:05:55.384386+00:00 app[web.1]: Processing by SessionsController#new as HTML
+2015-06-06T02:05:55.442283+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.5ms)
+2015-06-06T02:05:55.471447+00:00 app[web.1]:   Rendered layouts/_header.html.slim (28.0ms)
+2015-06-06T02:05:55.495517+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (7.2ms)
+2015-06-06T02:05:55.488924+00:00 heroku[router]: at=info method=GET path="/signin" host=foodswatch.herokuapp.com request_id=9b9f4ed1-2ce1-4b2c-a0eb-a6719ab4e583 fwd="116.238.180.252" dyno=web.1 connect=0ms service=135ms status=200 bytes=3052
+2015-06-06T02:06:00.258668+00:00 app[web.1]: Processing by SessionsController#create as HTML
+2015-06-06T02:06:00.258678+00:00 app[web.1]:   Parameters: {"utf8"=>"✓", "authenticity_token"=>"+v4kkz/3OVTS6VCHH0xhivwPAlPxyquFqUz0zfrspGjI6KkP16wsGMyG1fdc0HIxW8LLAQybQvNJg2Jm+XmfHQ==", "session"=>{"email"=>"lithium4010@163.com", "password"=>"[FILTERED]"}, "commit"=>"登录"}
+2015-06-06T02:06:00.246708+00:00 app[web.1]: Started POST "/sessions" for 116.238.180.252 at 2015-06-06 02:06:00 +0000
+2015-06-06T02:06:00.516583+00:00 heroku[router]: at=info method=POST path="/sessions" host=foodswatch.herokuapp.com request_id=16392f03-b1c7-423a-9697-73a9e7f1ae11 fwd="116.238.180.252" dyno=web.1 connect=0ms service=290ms status=302 bytes=1121
+2015-06-06T02:06:00.519430+00:00 app[web.1]: Completed 302 Found in 261ms (ActiveRecord: 10.7ms)
+2015-06-06T02:06:00.519049+00:00 app[web.1]: Redirected to https://foodswatch.herokuapp.com/
+2015-06-06T02:06:00.771570+00:00 app[web.1]: Started GET "/" for 116.238.180.252 at 2015-06-06 02:06:00 +0000
+2015-06-06T02:06:00.923934+00:00 app[web.1]:   Rendered shared/_search.html.slim (11.3ms)
+2015-06-06T02:06:00.984857+00:00 app[web.1]:   Rendered shared/_micropost_form.html.slim (9.3ms)
+2015-06-06T02:06:00.774385+00:00 app[web.1]: Processing by StaticPagesController#home as HTML
+2015-06-06T02:06:00.974717+00:00 app[web.1]:   Rendered shared/_stats.html.slim (49.1ms)
+2015-06-06T02:06:01.015100+00:00 app[web.1]:   Rendered shared/_foods_panel.html.slim (25.3ms)
+2015-06-06T02:06:01.023843+00:00 app[web.1]:   Rendered shared/_loading.html.slim (3.4ms)
+2015-06-06T02:06:01.015109+00:00 app[web.1]:   Rendered layouts/_aside.html.slim (110.0ms)
+2015-06-06T02:06:01.285424+00:00 heroku[router]: at=info method=GET path="/" host=foodswatch.herokuapp.com request_id=68622620-2d6b-4c02-aa90-0d91e5eb55c9 fwd="116.238.180.252" dyno=web.1 connect=3ms service=527ms status=200 bytes=7521
+2015-06-06T02:06:01.255544+00:00 app[web.1]:   Rendered shared/_feed.html.slim (239.6ms)
+2015-06-06T02:06:01.255603+00:00 app[web.1]:   Rendered static_pages/_signed_in_home_page.html.slim (357.3ms)
+2015-06-06T02:06:01.257211+00:00 app[web.1]:   Rendered layouts/_shim.html.erb (0.1ms)
+2015-06-06T02:06:01.255655+00:00 app[web.1]:   Rendered static_pages/home.html.erb within layouts/application (358.2ms)
+2015-06-06T02:06:01.289333+00:00 app[web.1]:   Rendered layouts/_header.html.slim (32.0ms)
+2015-06-06T02:06:01.289301+00:00 app[web.1]:   Rendered shared/_user_drop_down.html.slim (17.9ms)
+2015-06-06T02:06:01.289713+00:00 app[web.1]:   Rendered shared/_message.html.slim (0.1ms)
+2015-06-06T02:06:01.289917+00:00 app[web.1]:   Rendered layouts/_footer.html.slim (0.0ms)
+2015-06-06T02:06:01.290226+00:00 app[web.1]: Completed 200 OK in 516ms (Views: 372.3ms | ActiveRecord: 37.3ms)
+2015-06-06T02:06:01.269659+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (11.8ms)
+2015-06-06T02:06:01.876334+00:00 heroku[router]: at=info method=GET path="/assets/loading.gif" host=foodswatch.herokuapp.com request_id=68677abf-35d4-428f-946a-bb5442e438e6 fwd="116.238.180.252" dyno=web.1 connect=1ms service=94ms status=200 bytes=17672
+2015-06-06T02:06:01.798480+00:00 app[web.1]: Started GET "/assets/loading.gif" for 116.238.180.252 at 2015-06-06 02:06:01 +0000
+2015-06-06T02:06:03.590400+00:00 app[web.1]: Started GET "/assets/font-awesome/fontawesome-webfont.woff" for 116.238.180.252 at 2015-06-06 02:06:03 +0000
+2015-06-06T02:06:03.871135+00:00 heroku[router]: at=info method=GET path="/assets/font-awesome/fontawesome-webfont.woff" host=foodswatch.herokuapp.com request_id=e808d07a-8ce4-4bb3-82b3-9adc6565a2a7 fwd="116.238.180.252" dyno=web.1 connect=2ms service=300ms status=200 bytes=71937
+2015-06-06T02:06:06.012535+00:00 app[web.1]: Started GET "/api/v1/users/101/feeds?page=1&query=" for 116.238.180.252 at 2015-06-06 02:06:06 +0000
+2015-06-06T02:06:06.016545+00:00 app[web.1]:   Parameters: {"page"=>"1", "query"=>"", "id"=>"101"}
+2015-06-06T02:06:06.016246+00:00 app[web.1]: Processing by Api::V1::UsersController#feeds as */*
+2015-06-06T02:06:06.780351+00:00 heroku[router]: at=info method=GET path="/api/v1/users/101/feeds?page=1&query=" host=foodswatch.herokuapp.com request_id=fc259d79-5002-4835-8c28-efa3107b9869 fwd="116.238.180.252" dyno=web.1 connect=0ms service=779ms status=200 bytes=17232
+2015-06-06T02:06:06.909254+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=67eb1d5d-6f9a-4a47-9998-f36825a0c5f6 fwd="116.238.180.252" dyno=web.1 connect=0ms service=35ms status=200 bytes=1038
+2015-06-06T02:06:06.772305+00:00 app[web.1]: Completed 200 OK in 755ms (Views: 7.3ms | ActiveRecord: 388.4ms)
+2015-06-06T02:06:06.893323+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:06:06.889056+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:06:06 +0000
+2015-06-06T02:06:06.913589+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (11.5ms)
+2015-06-06T02:06:06.913672+00:00 app[web.1]:   Rendered notices/count.js.erb (13.5ms)
+2015-06-06T02:06:06.914044+00:00 app[web.1]: Completed 200 OK in 20ms (Views: 14.5ms | ActiveRecord: 4.6ms)
+2015-06-06T02:06:11.957715+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (16.2ms)
+2015-06-06T02:06:11.916359+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:06:11 +0000
+2015-06-06T02:06:11.957811+00:00 app[web.1]:   Rendered notices/count.js.erb (16.6ms)
+2015-06-06T02:06:11.958121+00:00 app[web.1]: Completed 200 OK in 35ms (Views: 10.0ms | ActiveRecord: 15.3ms)
+2015-06-06T02:06:11.923073+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:06:11.953536+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=3c08c3b5-8f5b-420c-adb4-363b97f3d7ba fwd="116.238.180.252" dyno=web.1 connect=1ms service=70ms status=304 bytes=838
+2015-06-06T02:06:16.929301+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=016fbd17-1999-4a16-bd3a-36fff2b56d56 fwd="116.238.180.252" dyno=web.1 connect=1ms service=42ms status=304 bytes=838
+2015-06-06T02:06:16.933033+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (11.1ms)
+2015-06-06T02:06:16.933126+00:00 app[web.1]:   Rendered notices/count.js.erb (12.1ms)
+2015-06-06T02:06:16.908227+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:06:16 +0000
+2015-06-06T02:06:16.933448+00:00 app[web.1]: Completed 200 OK in 19ms (Views: 3.7ms | ActiveRecord: 13.3ms)
+2015-06-06T02:06:16.914578+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:06:21.892334+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:06:21 +0000
+2015-06-06T02:06:21.972160+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (67.2ms)
+2015-06-06T02:06:21.972237+00:00 app[web.1]:   Rendered notices/count.js.erb (67.6ms)
+2015-06-06T02:06:21.972544+00:00 app[web.1]: Completed 200 OK in 78ms (Views: 43.5ms | ActiveRecord: 32.7ms)
+2015-06-06T02:06:21.894686+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:06:21.983685+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=30cf00af-1b01-4780-8cad-48058ed5cb48 fwd="116.238.180.252" dyno=web.1 connect=0ms service=103ms status=304 bytes=838
+2015-06-06T02:06:26.910436+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=02218e5e-4e90-4c0b-a796-b551cc0d4503 fwd="116.238.180.252" dyno=web.1 connect=0ms service=33ms status=304 bytes=838
+2015-06-06T02:06:26.888661+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:06:26 +0000
+2015-06-06T02:06:26.910263+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (15.6ms)
+2015-06-06T02:06:26.914424+00:00 app[web.1]: Completed 200 OK in 23ms (Views: 18.1ms | ActiveRecord: 3.6ms)
+2015-06-06T02:06:26.891291+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:06:26.914016+00:00 app[web.1]:   Rendered notices/count.js.erb (19.5ms)
+2015-06-06T02:06:31.927059+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=1493d34b-c267-4d46-bea3-75f9fca06f
+db fwd="116.238.180.252" dyno=web.1 connect=0ms service=49ms status=304 bytes=838
+2015-06-06T02:06:31.894239+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:06:31 +0000
+2015-06-06T02:06:31.933824+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (22.0ms)
+2015-06-06T02:06:31.933913+00:00 app[web.1]:   Rendered notices/count.js.erb (22.3ms)
+2015-06-06T02:06:31.934207+00:00 app[web.1]: Completed 200 OK in 32ms (Views: 11.5ms | ActiveRecord: 12.5ms)
+2015-06-06T02:06:31.902237+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:06:36.889095+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=0e5a3f75-9c0c-4071-a8ba-6974c3ea3f8c fwd="116.238.180.252" dyno=web.1 connect=1ms service=12ms status=304 bytes=838
+2015-06-06T02:06:36.887764+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:06:36 +0000
+2015-06-06T02:06:36.895286+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-06T02:06:36.895645+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.4ms | ActiveRecord: 1.9ms)
+2015-06-06T02:06:36.895447+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-06T02:06:36.889910+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:06:41.907618+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=ef9fa740-a86f-461f-8e72-7101444dd56d fwd="116.238.180.252" dyno=web.1 connect=2ms service=12ms status=304 bytes=838
+2015-06-06T02:06:41.907151+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:06:41 +0000
+2015-06-06T02:06:41.914002+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-06T02:06:41.909157+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:06:41.914154+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-06T02:06:41.914328+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.8ms)
+2015-06-06T02:06:46.890116+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=b7ffb9a9-da7c-4d4c-b451-3431fdcc4fde fwd="116.238.180.252" dyno=web.1 connect=1ms service=12ms status=304 bytes=838
+2015-06-06T02:06:46.890004+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:06:46 +0000
+2015-06-06T02:06:46.896946+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-06T02:06:46.897028+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-06T02:06:46.897227+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.8ms)
+2015-06-06T02:06:46.892031+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:06:51.891942+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=0c2463c0-8566-4fc3-862c-5873e57e4eb7 fwd="116.238.180.252" dyno=web.1 connect=0ms service=11ms status=304 bytes=838
+2015-06-06T02:06:51.891959+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:06:51 +0000
+2015-06-06T02:06:51.898957+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-06T02:06:51.899040+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-06T02:06:51.899233+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.8ms)
+2015-06-06T02:06:51.893980+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:06:56.913205+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:06:56 +0000
+2015-06-06T02:06:56.921471+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-06T02:06:56.921476+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 2.0ms)
+2015-06-06T02:06:56.921474+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-06T02:06:56.915695+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:06:56.914273+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=34a642a5-0fe4-4574-a6df-396bfcf3a67f fwd="116.238.180.252" dyno=web.1 connect=1ms service=14ms status=304 bytes=838
+2015-06-06T02:07:01.894887+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=9b7388ac-596c-4b72-8bb2-a7ed3db435d5 fwd="116.238.180.252" dyno=web.1 connect=3ms service=12ms status=304 bytes=838
+2015-06-06T02:07:01.894221+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:07:01 +0000
+2015-06-06T02:07:01.901216+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-06T02:07:01.901300+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-06T02:07:01.901545+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.9ms)
+2015-06-06T02:07:01.896184+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:07:06.906651+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=5d016f8b-3650-4f08-8880-b6345b74634a fwd="116.238.180.252" dyno=web.1 connect=0ms service=14ms status=304 bytes=838
+2015-06-06T02:07:06.912521+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (4.0ms)
+2015-06-06T02:07:06.903663+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:07:06 +0000
+2015-06-06T02:07:06.905726+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:07:06.912763+00:00 app[web.1]:   Rendered notices/count.js.erb (4.4ms)
+2015-06-06T02:07:06.912949+00:00 app[web.1]: Completed 200 OK in 7ms (Views: 3.9ms | ActiveRecord: 1.9ms)
+2015-06-06T02:07:11.905587+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=a66f3422-1848-4e36-9609-14f784321b8e fwd="116.238.180.252" dyno=web.1 connect=1ms service=12ms status=304 bytes=838
+2015-06-06T02:07:11.904777+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:07:11 +0000
+2015-06-06T02:07:11.912120+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-06T02:07:11.912260+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-06T02:07:11.912524+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.3ms | ActiveRecord: 2.0ms)
+2015-06-06T02:07:11.906905+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:07:16.897265+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=584808ec-0881-4d24-83e7-7bec2c805cb7 fwd="116.238.180.252" dyno=web.1 connect=0ms service=21ms status=304 bytes=838
+2015-06-06T02:07:16.896855+00:00 app[web.1]:   Rendered notices/count.js.erb (4.9ms)
+2015-06-06T02:07:16.887169+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:07:16 +0000
+2015-06-06T02:07:16.896056+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.9ms)
+2015-06-06T02:07:16.897801+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 4.7ms | ActiveRecord: 1.9ms)
+2015-06-06T02:07:16.889220+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:07:21.888505+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=6407160a-a732-43f4-b02d-f31f3ef638c1 fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-06T02:07:21.894935+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.8ms)
+2015-06-06T02:07:21.887713+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:07:21 +0000
+2015-06-06T02:07:21.895023+00:00 app[web.1]:   Rendered notices/count.js.erb (3.1ms)
+2015-06-06T02:07:21.895298+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.1ms | ActiveRecord: 2.3ms)
+2015-06-06T02:07:21.889606+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:07:26.888245+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=e6e070e5-aa69-4b35-93ea-99525a2bf475 fwd="116.238.180.252" dyno=web.1 connect=0ms service=11ms status=304 bytes=838
+2015-06-06T02:07:26.888392+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:07:26 +0000
+2015-06-06T02:07:26.895399+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-06T02:07:26.895483+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-06T02:07:26.895677+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.9ms)
+2015-06-06T02:07:26.890350+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:07:31.913281+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=7c6c0540-e15d-416b-9505-fd6995ab1832 fwd="116.238.180.252" dyno=web.1 connect=1ms service=34ms status=304 bytes=838
+2015-06-06T02:07:31.895506+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:07:31 +0000
+2015-06-06T02:07:31.913974+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (11.3ms)
+2015-06-06T02:07:31.919643+00:00 app[web.1]: Completed 200 OK in 21ms (Views: 7.7ms | ActiveRecord: 12.3ms)
+2015-06-06T02:07:31.898309+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:07:31.919125+00:00 app[web.1]:   Rendered notices/count.js.erb (16.7ms)
+2015-06-06T02:07:36.910731+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=8833dc50-0066-4186-8acd-b51aedfb35f8 fwd="116.238.180.252" dyno=web.1 connect=1ms service=15ms status=304 bytes=838
+2015-06-06T02:07:36.907955+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:07:36 +0000
+2015-06-06T02:07:36.917181+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-06T02:07:36.917874+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 2.1ms)
+2015-06-06T02:07:36.911818+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:07:36.917393+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-06T02:07:41.887056+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=588b1a3a-ce41-4227-b4f7-818626faa7d7 fwd="116.238.180.252" dyno=web.1 connect=0ms service=11ms status=304 bytes=838
+2015-06-06T02:07:41.894111+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-06T02:07:41.887344+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:07:41 +0000
+2015-06-06T02:07:41.894197+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-06T02:07:41.894397+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.8ms)
+2015-06-06T02:07:41.889266+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:07:46.889092+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=164ab146-697c-4f11-b7b3-c947cf526f41 fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-06T02:07:46.888696+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:07:46 +0000
+2015-06-06T02:07:46.895825+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-06T02:07:46.896031+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 1.8ms)
+2015-06-06T02:07:46.895746+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-06T02:07:46.890707+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:07:51.888398+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=eb5c78f7-e1ee-4673-a254-3866b0b33292 fwd="116.238.180.252" dyno=web.1 connect=0ms service=11ms status=304 bytes=838
+2015-06-06T02:07:51.888330+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:07:51 +0000
+2015-06-06T02:07:51.895431+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-06T02:07:51.895516+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-06T02:07:51.895733+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 1.9ms)
+2015-06-06T02:07:51.890326+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:07:56.886710+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=8b998b42-2aeb-47b6-85f9-5e839d9acafb fwd="116.238.180.252" dyno=web.1 connect=0ms service=11ms status=304 bytes=838
+2015-06-06T02:07:56.886424+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:07:56 +0000
+2015-06-06T02:07:56.893187+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-06T02:07:56.893553+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 1.8ms)
+2015-06-06T02:07:56.888209+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:07:56.893301+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-06T02:08:01.887745+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=72ec094f-2ba2-4464-9515-13413d133c08 fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-06T02:08:01.886683+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:08:01 +0000
+2015-06-06T02:08:01.894152+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.6ms)
+2015-06-06T02:08:01.894253+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-06T02:08:01.894422+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 2.2ms)
+2015-06-06T02:08:01.888730+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:08:06.888017+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:08:06 +0000
+2015-06-06T02:08:06.896746+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.8ms)
+2015-06-06T02:08:06.896829+00:00 app[web.1]:   Rendered notices/count.js.erb (4.1ms)
+2015-06-06T02:08:06.897234+00:00 app[web.1]: Completed 200 OK in 7ms (Views: 2.3ms | ActiveRecord: 3.3ms)
+2015-06-06T02:08:06.890292+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:08:06.890468+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=0dcfbe52-ab1f-46d7-96b3-9a2809526c96 fwd="116.238.180.252" dyno=web.1 connect=0ms service=15ms status=304 bytes=838
+2015-06-06T02:08:11.887254+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=ce73d2b6-4f65-4e36-afdc-3f76829ad3f3 fwd="116.238.180.252" dyno=web.1 connect=0ms service=11ms status=304 bytes=838
+2015-06-06T02:08:11.887029+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:08:11 +0000
+2015-06-06T02:08:11.893731+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-06T02:08:11.893814+00:00 app[web.1]:   Rendered notices/count.js.erb (2.5ms)
+2015-06-06T02:08:11.894074+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.7ms)
+2015-06-06T02:08:11.888856+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:08:16.897901+00:00 hero
+ku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=77fc736a-4165-4435-a088-aac3ebb71f74 fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-06T02:08:16.897770+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:08:16 +0000
+2015-06-06T02:08:16.904733+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-06T02:08:16.905077+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.9ms)
+2015-06-06T02:08:16.904831+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-06T02:08:16.899720+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:08:21.913326+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=17690025-f8eb-48d5-8986-3f09560b3aa1 fwd="116.238.180.252" dyno=web.1 connect=0ms service=35ms status=304 bytes=838
+2015-06-06T02:08:21.894062+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:08:21 +0000
+2015-06-06T02:08:21.912196+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (6.6ms)
+2015-06-06T02:08:21.915978+00:00 app[web.1]: Completed 200 OK in 15ms (Views: 7.0ms | ActiveRecord: 4.8ms)
+2015-06-06T02:08:21.898740+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:08:21.915113+00:00 app[web.1]:   Rendered notices/count.js.erb (9.7ms)
+2015-06-06T02:08:26.888763+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=e8aaf380-092d-40a9-be6b-a93234c8a28c fwd="116.238.180.252" dyno=web.1 connect=0ms service=14ms status=304 bytes=838
+2015-06-06T02:08:26.887100+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:08:26 +0000
+2015-06-06T02:08:26.894908+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-06T02:08:26.895092+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.4ms | ActiveRecord: 1.8ms)
+2015-06-06T02:08:26.894776+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-06T02:08:26.888951+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:08:31.894995+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=b5287ccd-e334-48ca-a43d-57964b0d2de3 fwd="116.238.180.252" dyno=web.1 connect=1ms service=14ms status=304 bytes=838
+2015-06-06T02:08:31.892491+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:08:31 +0000
+2015-06-06T02:08:31.901263+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.3ms)
+2015-06-06T02:08:31.901406+00:00 app[web.1]:   Rendered notices/count.js.erb (3.7ms)
+2015-06-06T02:08:31.901631+00:00 app[web.1]: Completed 200 OK in 7ms (Views: 2.4ms | ActiveRecord: 2.8ms)
+2015-06-06T02:08:31.894866+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:08:36.905775+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=adff83d1-db84-4621-b3ce-680040777437 fwd="116.238.180.252" dyno=web.1 connect=0ms service=22ms status=304 bytes=838
+2015-06-06T02:08:36.898160+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:08:36 +0000
+2015-06-06T02:08:36.912034+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.7ms)
+2015-06-06T02:08:36.912116+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-06T02:08:36.912376+00:00 app[web.1]: Completed 200 OK in 11ms (Views: 2.2ms | ActiveRecord: 7.4ms)
+2015-06-06T02:08:36.901221+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:08:41.898409+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=0d186eff-52f3-45c4-b263-4ceb34ee3e67 fwd="116.238.180.252" dyno=web.1 connect=2ms service=17ms status=304 bytes=838
+2015-06-06T02:08:41.898110+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:08:41.904532+00:00 app[web.1]:   Rendered notices/count.js.erb (4.1ms)
+2015-06-06T02:08:41.904749+00:00 app[web.1]: Completed 200 OK in 7ms (Views: 3.2ms | ActiveRecord: 2.3ms)
+2015-06-06T02:08:41.904377+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.8ms)
+2015-06-06T02:08:41.896154+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:08:41 +0000
+2015-06-06T02:08:46.927017+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=cb96854d-df78-4d61-b584-8fab6e4a210a fwd="116.238.180.252" dyno=web.1 connect=0ms service=17ms status=304 bytes=838
+2015-06-06T02:08:46.924267+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:08:46 +0000
+2015-06-06T02:08:46.934022+00:00 app[web.1]: Completed 200 OK in 7ms (Views: 2.4ms | ActiveRecord: 3.3ms)
+2015-06-06T02:08:46.933469+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.8ms)
+2015-06-06T02:08:46.926455+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:08:46.933666+00:00 app[web.1]:   Rendered notices/count.js.erb (4.2ms)
+2015-06-06T02:08:51.921934+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=8d77b79d-e7af-4352-8890-0c0d8b13c01b fwd="116.238.180.252" dyno=web.1 connect=15ms service=13ms status=304 bytes=838
+2015-06-06T02:08:51.920720+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:08:51 +0000
+2015-06-06T02:08:51.927656+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-06T02:08:51.928032+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 1.9ms)
+2015-06-06T02:08:51.922695+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:08:51.927807+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-06T02:08:56.886616+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:08:56 +0000
+2015-06-06T02:08:56.894310+00:00 app[web.1]:   Rendered notices/count.js.erb (3.1ms)
+2015-06-06T02:08:56.894503+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 1.9ms)
+2015-06-06T02:08:56.894229+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.7ms)
+2015-06-06T02:08:56.888604+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:08:56.887433+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=1fc99ebb-dcdc-4279-9abe-1e6b2b4ef671 fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=200 bytes=1038
+2015-06-06T02:09:01.894939+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=9109ff5b-c3ef-4a3a-b47e-a7a42ee1c588 fwd="116.238.180.252" dyno=web.1 connect=1ms service=13ms status=304 bytes=838
+2015-06-06T02:09:01.901349+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.9ms | ActiveRecord: 2.0ms)
+2015-06-06T02:09:01.892891+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:09:01 +0000
+2015-06-06T02:09:01.900813+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.9ms)
+2015-06-06T02:09:01.895121+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:09:01.901015+00:00 app[web.1]:   Rendered notices/count.js.erb (3.3ms)
+2015-06-06T02:09:06.895923+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=de702c69-a93c-4128-9a27-cc58c947f0a0 fwd="116.238.180.252" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-06T02:09:06.901872+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-06T02:09:06.894592+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:09:06 +0000
+2015-06-06T02:09:06.902436+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.4ms | ActiveRecord: 1.9ms)
+2015-06-06T02:09:06.896654+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:09:06.902091+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-06T02:09:11.891865+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=f30644df-2e3e-4a99-93f4-3bcf3abfa0bd fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=200 bytes=1038
+2015-06-06T02:09:11.891273+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:09:11 +0000
+2015-06-06T02:09:11.898396+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-06T02:09:11.898496+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-06T02:09:11.898726+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 2.0ms)
+2015-06-06T02:09:11.893348+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:09:16.934583+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=a22cf97a-960d-40d4-9c3e-c65bcfe60cc1 fwd="116.238.180.252" dyno=web.1 connect=3ms service=37ms status=304 bytes=838
+2015-06-06T02:09:16.924094+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:09:16 +0000
+2015-06-06T02:09:16.940636+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (7.2ms)
+2015-06-06T02:09:16.940933+00:00 app[web.1]: Completed 200 OK in 12ms (Views: 2.2ms | ActiveRecord: 8.3ms)
+2015-06-06T02:09:16.940720+00:00 app[web.1]:   Rendered notices/count.js.erb (7.5ms)
+2015-06-06T02:09:16.929219+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:09:21.887075+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=d09a6b8f-538e-436c-b8b4-4270f7521b6e fwd="116.238.180.252" dyno=web.1 connect=1ms service=12ms status=200 bytes=1038
+2015-06-06T02:09:21.886819+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:09:21 +0000
+2015-06-06T02:09:21.893988+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.6ms)
+2015-06-06T02:09:21.894075+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-06T02:09:21.894277+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 1.9ms)
+2015-06-06T02:09:21.888804+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:09:26.889838+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=10c10e44-167d-4a1b-82d1-918437f36e07 fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=200 bytes=1038
+2015-06-06T02:09:26.888398+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:09:26 +0000
+2015-06-06T02:09:26.895700+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.7ms)
+2015-06-06T02:09:26.896278+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 2.0ms)
+2015-06-06T02:09:26.895959+00:00 app[web.1]:   Rendered notices/count.js.erb (3.2ms)
+2015-06-06T02:09:26.891019+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:09:31.893256+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=5be09230-722f-4749-bead-b3d9ff94dbdc fwd="116.238.180.252" dyno=web.1 connect=0ms service=16ms status=200 bytes=1038
+2015-06-06T02:09:31.890566+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:09:31 +0000
+2015-06-06T02:09:31.897499+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.3ms)
+2015-06-06T02:09:31.897590+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-06T02:09:31.897891+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.8ms)
+2015-06-06T02:09:31.892638+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:09:36.906073+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=d96e005a-a0c6-4e00-b563-83c44903e931 fwd="116.238.180.252" dyno=web.1 connect=0ms service=19ms status=304 bytes=838
+2015-06-06T02:09:36.898117+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:09:36 +0000
+2015-06-06T02:09:36.905556+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-06T02:09:36.905652+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-06T02:09:36.905858+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 1.8ms)
+2015-06-06T02:09:36.900319+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:09:41.899412+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=efe7672e-0051-408d-9fab-4391ae433bb1 fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-06T02:09:41.899094+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:09:41 +0000
+2015-06-06T02:09:41.906167+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.6ms)
+2015-06-06T02:09:41.906554+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 1.9ms)
+2015-06-06T02:09:41.901121+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:09:41.906362+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-06T02:09:46.894407+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=f6f6dbdb-b8b4-43ef-af19-c39166886724 fwd="116.238.180.252" dyno=web.1 connect=1ms service=12ms status=200 bytes=1038
+2015-06-06T02:09:46.893892+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:09:46 +0000
+2015-06-06T02:09:46.901258+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.7ms)
+2015-06-06T02:09:46.901344+00:00 app[web.1]:   Rendered notices/count.js.erb (3.0ms)
+2015-06-06T02:09:46.901571+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 2.0ms)
+2015-06-06T02:09:46.895801+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:09:51.895249+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=7c39fba1-4aca-41fb-9597-bc47e036b3d4 fwd="116.238.180.252" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-06T02:09:51.902092+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.6ms)
+2015-06-06T02:09:51.894377+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:09:51 +0000
+2015-06-06T02:09:51.902186+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-06T02:09:51.902419+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 2.0ms)
+2015-06-06T02:09:51.896463+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:09:56.899588+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=f2e91858-0dca-4991-8cfc-c85eb1477b68 fwd="116.238.180.252" dyno=web.1 connect=1ms service=12ms status=304 bytes=838
+2015-06-06T02:09:56.898995+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:09:56 +0000
+2015-06-06T02:09:56.906494+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.6ms)
+2015-06-06T02:09:56.906582+00:00 app[web.1]:   Rendered notices/count.js.erb (3.0ms)
+2015-06-06T02:09:56.906767+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.4ms | ActiveRecord: 2.0ms)
+2015-06-06T02:09:56.901172+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:10:01.901134+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=1e7c4186-5610-453c-8d2b-9ae3df2e67a8 fwd="116.238.180.252" dyno=web.1 connect=1ms service=23ms status=200 bytes=1038
+2015-06-06T02:10:01.905103+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.8ms)
+2015-06-06T02:10:01.894912+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:10:01 +0000
+2015-06-06T02:10:01.905224+00:00 app[web.1]:   Rendered notices/count.js.erb (4.3ms)
+2015-06-06T02:10:01.905590+00:00 app[web.1]: Completed 200 OK in 8ms (Views: 3.4ms | ActiveRecord: 2.6ms)
+2015-06-06T02:10:01.897676+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:10:06.911236+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=d1869e20-f7e0-4b29-bf06-6e3153a94216 fwd="116.238.180.252" dyno=web.1 connect=0ms service=14ms status=304 bytes=838
+2015-06-06T02:10:06.909019+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:10:06 +0000
+2015-06-06T02:10:06.916496+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.8ms)
+2015-06-06T02:10:06.916577+00:00 app[web.1]:   Rendered notices/count.js.erb (3.1ms)
+2015-06-06T02:10:06.916774+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 2.0ms)
+2015-06-06T02:10:06.910941+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:10:11.906654+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=fceb61f2-10fe-4b26-8398-6d6a408f84e2 fwd="116.238.180.252" dyno=web.1 connect=4ms service=13ms status=304 bytes=838
+2015-06-06T02:10:11.904838+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:10:11 +0000
+2015-06-06T02:10:11.912887+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.9ms)
+2015-06-06T02:10:11.912973+00:00 app[web.1]:   Rendered notices/count.js.erb (3.3ms)
+2015-06-06T02:10:11.913232+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.8ms | ActiveRecord: 2.0ms)
+2015-06-06T02:10:11.906975+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:10:16.898976+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=1bd5803d-3a90-4c79-95e2-7b684a7e2508 fwd="116.238.180.252" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-06T02:10:16.898635+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:10:16 +0000
+2015-06-06T02:10:16.905907+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.7ms)
+2015-06-06T02:10:16.906315+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.4ms | ActiveRecord: 1.9ms)
+2015-06-06T02:10:16.900700+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:10:16.906116+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-06T02:10:21.894246+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=be953805-2c38-49ad-bd24-22303d13d7a5 fwd="116.238.180.252" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-06T02:10:21.893124+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:10:21 +0000
+2015-06-06T02:10:21.900025+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-06T02:10:21.900106+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-06T02:10:21.900299+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.9ms)
+2015-06-06T02:10:21.894902+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:10:26.890807+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=7e409be3-1caf-40c7-b427-60fc45169abb fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-06T02:10:26.890109+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:10:26 +0000
+2015-06-06T02:10:26.897732+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.4ms | ActiveRecord: 2.0ms)
+2015-06-06T02:10:26.897295+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-06T02:10:26.892080+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:10:26.897536+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-06T02:10:31.894297+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=8aaebcc8-90f4-44fa-be1e-c00ae9772412 fwd="116.238.180.252" dyno=web.1 connect=1ms service=13ms status=304 bytes=838
+2015-06-06T02:10:31.893018+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:10:31 +0000
+2015-06-06T02:10:31.900507+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.6ms)
+2015-06-06T02:10:31.900587+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-06T02:10:31.900778+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.4ms | ActiveRecord: 2.0ms)
+2015-06-06T02:10:31.895020+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:10:36.909449+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=63c32542-4498-474e-9b0e-df67274ab8ce fwd="116.238.180.252" dyno=web.1 connect=1ms service=28ms status=304 bytes=838
+2015-06-06T02:10:36.902841+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:10:36.899377+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:10:36 +0000
+2015-06-06T02:10:36.916264+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.2ms)
+2015-06-06T02:10:36.916269+00:00 app[web.1]:   Rendered notices/count.js.erb (3.5ms)
+2015-06-06T02:10:36.916270+00:00 app[web.1]: Completed 200 OK in 10ms (Views: 3.6ms | ActiveRecord: 2.3ms)
+2015-06-06T02:10:41.999038+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=dceaa337-686f-41d7-bcb7-91ce78b58960 fwd="116.238.180.252" dyno=web.1 connect=1ms service=58ms status=304 bytes=838
+2015-06-06T02:10:41.963615+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:10:41 +0000
+2015-06-06T02:10:41.996642+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (13.7ms)
+2015-06-06T02:10:41.970779+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:10:41.996840+00:00 app[web.1]:   Rendered notices/count.js.erb (14.0ms)
+2015-06-06T02:10:41.997039+00:00 app[web.1]: Completed 200 OK in 26ms (Views: 2.7ms | ActiveRecord: 21.8ms)
+2015-06-06T02:10:46.899585+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=e8684551-8c99-4ce0-9dca-0c315d570d20 fwd="116.238.180.252" dyno=web.1 connect=0ms service=15ms status=304 bytes=838
+2015-06-06T02:10:46.897794+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:10:46 +0000
+2015-06-06T02:10:46.906462+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 3.0ms | ActiveRecord: 2.1ms)
+2015-06-06T02:10:46.905807+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.9ms)
+2015-06-06T02:10:46.899969+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:10:46.906049+00:00 app[web.1]:   Rendered notices/count.js.erb (3.4ms)
+2015-06-06T02:10:51.894694+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=9f766e80-8d35-4543-9881-31176183e788 fwd="116.238.180.252" dyno=web.1 connect=0ms service=16ms status=304 bytes=838
+2015-06-06T02:10:51.901015+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.9ms)
+2015-06-06T02:10:51.893001+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:10:51 +0000
+2015-06-06T02:10:51.901121+00:00 app[web.1]:   Rendered notices/count.js.erb (3.4ms)
+2015-06-06T02:10:51.901445+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 3.0ms | ActiveRecord: 2.2ms)
+2015-06-06T02:10:51.894970+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:10:56.893204+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:10:56 +0000
+2015-06-06T02:10:56.909893+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (6.7ms)
+2015-06-06T02:10:56.911332+00:00 app[web.1]: Completed 200 OK in 13ms (Views: 5.8ms | ActiveRecord: 5.3ms)
+2015-06-06T02:10:56.897759+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:10:56.910366+00:00 app[web.1]:   Rendered notices/count.js.erb (8.5ms)
+2015-06-06T02:10:56.906636+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=1f37f576-bdf2-44fe-ae44-9f3297bea260 fwd="116.238.180.252" dyno=web.1 connect=1ms service=28ms status=304 bytes=838
+2015-06-06T02:11:01.918611+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=b1f283d4-1b72-44ce-9747-47345f9e01f1 fwd="116.238.180.252" dyno=web.1 connect=4ms service=32ms status=304 bytes=838
+2015-06-06T02:11:01.901513+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:11:01 +0000
+2015-06-06T02:11:01.922306+00:00 app[web.1]:   Rendered notices/count.js.erb (8.1ms)
+2015-06-06T02:11:01.922160+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (7.7ms)
+2015-06-06T02:11:01.922704+00:00 app[web.1]: Completed 200 OK in 14ms (Views: 2.9ms | ActiveRecord: 9.8ms)
+2015-06-06T02:11:01.908582+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:11:06.933947+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=7476f0f0-0a80-4a58-93da-698ad8ba2fcc fwd="116.238.180.252" dyno=web.1 connect=0ms service=19ms status=304 bytes=838
+2015-06-06T02:11:06.933089+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:11:06 +0000
+2015-06-06T02:11:06.940489+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-06T02:11:06.940779+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.4ms | ActiveRecord: 1.9ms)
+2015-06-06T02:11:06.940563+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-06T02:11:06.935191+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:11:11.905844+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=64982e57-0809-4d72-ab39-4a34a7923943 fwd="116.238.180.252" dyno=web.1 connect=3ms service=18ms status=304 bytes=838
+2015-06-06T02:11:11.899318+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:11:11 +0000
+2015-06-06T02:11:11.908187+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (3.0ms)
+2015-06-06T02:11:11.908766+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.9ms | ActiveRecord: 2.1ms)
+2015-06-06T02:11:11.902257+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:11:11.908399+00:00 app[web.1]:   Rendered notices/count.js.erb (3.4ms)
+2015-06-06T02:11:16.899244+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=f02dcf28-9e82-4dbf-9188-3e3fc01c6763 fwd="116.238.180.252" dyno=web.1 connect=1ms service=12ms status=304 bytes=838
+2015-06-06T02:11:16.898965+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:11:16 +0000
+2015-06-06T02:11:16.905847+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-06T02:11:16.905974+00:00 app[web.1]:   Rendered notices/count.js.erb (2.7ms)
+2015-06-06T02:11:16.906208+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.9ms)
+2015-06-06T02:11:16.900926+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:11:21.895076+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:11:21 +0000
+2015-06-06T02:11:21.902254+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-06T02:11:21.902540+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.1ms | ActiveRecord: 2.3ms)
+2015-06-06T02:11:21.902338+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-06T02:11:21.896922+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:11:21.899642+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=2b7fc5f9-7112-4a52-91b8-1080688d78dd fwd="116.238.180.252" dyno=web.1 connect=1ms service=16ms status=304 bytes=838
+2015-06-06T02:11:26.890444+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:11:26 +0000
+2015-06-06T02:11:26.897463+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.5ms)
+2015-06-06T02:11:26.897546+00:00 app[web.1]:   Rendered notices/count.js.erb (2.8ms)
+2015-06-06T02:11:26.897768+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 2.0ms)
+2015-06-06T02:11:26.891939+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=fee6d94c-e4a3-4341-b17d-a102f0f37083 fwd="116.238.180.252" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-06T02:11:26.892373+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:11:31.926932+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=11366a34-49c7-4b83-ad76-f6691c309051 fwd="116.238.180.252" dyno=web.1 connect=1ms service=14ms status=304 bytes=838
+2015-06-06T02:11:31.925999+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:11:31 +0000
+2015-06-06T02:11:31.933555+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.7ms)
+2015-06-06T02:11:31.933641+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-06T02:11:31.933837+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.3ms | ActiveRecord: 2.0ms)
+2015-06-06T02:11:31.928072+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:11:36.889008+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=c88488e3-04dd-4517-a0eb-346dec263f49 fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-06T02:11:36.888216+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:11:36 +0000
+2015-06-06T02:11:36.896019+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.6ms)
+2015-06-06T02:11:36.896127+00:00 app[web.1]:   Rendered notices/count.js.erb (2.9ms)
+2015-06-06T02:11:36.896311+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 2.5ms)
+2015-06-06T02:11:36.890488+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:11:41.926099+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=23f9af1f-6f45-4cfe-b95f-0504d1e4f838 fwd="116.238.180.252" dyno=web.1 connect=0ms service=17ms status=304 bytes=838
+2015-06-06T02:11:41.920048+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:11:41 +0000
+2015-06-06T02:11:41.927945+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.6ms)
+2015-06-06T02:11:41.928027+00:00 app[web.1]:   Rendered notices/count.js.
+erb (2.9ms)
+2015-06-06T02:11:41.928232+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 1.8ms)
+2015-06-06T02:11:41.922559+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:11:46.893345+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=d03a9327-941b-40b0-a05f-597b0e8657de fwd="116.238.180.252" dyno=web.1 connect=0ms service=14ms status=304 bytes=838
+2015-06-06T02:11:46.890912+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:11:46 +0000
+2015-06-06T02:11:46.897743+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.4ms)
+2015-06-06T02:11:46.897830+00:00 app[web.1]:   Rendered notices/count.js.erb (2.6ms)
+2015-06-06T02:11:46.898065+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.9ms)
+2015-06-06T02:11:46.892849+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:11:51.894320+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=ba034078-385e-405d-bf61-5e84f61d72c5 fwd="116.238.180.252" dyno=web.1 connect=0ms service=13ms status=304 bytes=838
+2015-06-06T02:11:51.893322+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:11:51 +0000
+2015-06-06T02:11:51.901050+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.7ms)
+2015-06-06T02:11:51.901126+00:00 app[web.1]:   Rendered notices/count.js.erb (3.0ms)
+2015-06-06T02:11:51.901351+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.4ms | ActiveRecord: 2.2ms)
+2015-06-06T02:11:51.895484+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:11:56.892937+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=a1cf34a7-deef-4d14-825f-380a2e053ff9 fwd="116.238.180.252" dyno=web.1 connect=1ms service=15ms status=304 bytes=838
+2015-06-06T02:11:56.888838+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:11:56 +0000
+2015-06-06T02:11:56.898372+00:00 app[web.1]: Completed 200 OK in 7ms (Views: 2.8ms | ActiveRecord: 2.2ms)
+2015-06-06T02:11:56.897698+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.7ms)
+2015-06-06T02:11:56.891324+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:11:56.898001+00:00 app[web.1]:   Rendered notices/count.js.erb (3.2ms)
+2015-06-06T02:12:01.921496+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:12:01 +0000
+2015-06-06T02:12:01.958507+00:00 app[web.1]: Completed 200 OK in 32ms (Views: 3.2ms | ActiveRecord: 27.4ms)
+2015-06-06T02:12:01.958119+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (14.9ms)
+2015-06-06T02:12:01.958202+00:00 app[web.1]:   Rendered notices/count.js.erb (15.4ms)
+2015-06-06T02:12:01.926284+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:12:01.951657+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=1cbc5cca-fe68-44fd-bd02-944af4d777f0 fwd="116.238.180.252" dyno=web.1 connect=0ms service=72ms status=304 bytes=838
+2015-06-06T02:12:06.907934+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=3010946f-6e4b-4e84-a7f1-97df15023613 fwd="116.238.180.252" dyno=web.1 connect=0ms service=12ms status=304 bytes=838
+2015-06-06T02:12:06.907280+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:12:06 +0000
+2015-06-06T02:12:06.914884+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (2.7ms)
+2015-06-06T02:12:06.914963+00:00 app[web.1]:   Rendered notices/count.js.erb (3.0ms)
+2015-06-06T02:12:06.915190+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 2.4ms | ActiveRecord: 2.0ms)
+2015-06-06T02:12:06.909450+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:12:11.949975+00:00 app[web.1]:   Rendered shared/_notice_link.html.slim (28.6ms)
+2015-06-06T02:12:11.892928+00:00 app[web.1]: Started GET "/notices/count.js" for 116.238.180.252 at 2015-06-06 02:12:11 +0000
+2015-06-06T02:12:11.950501+00:00 app[web.1]: Completed 200 OK in 38ms (Views: 10.6ms | ActiveRecord: 23.4ms)
+2015-06-06T02:12:11.902474+00:00 app[web.1]: Processing by NoticesController#count as JS
+2015-06-06T02:12:11.950162+00:00 app[web.1]:   Rendered notices/count.js.erb (29.0ms)
+2015-06-06T02:12:11.946959+00:00 heroku[router]: at=info method=GET path="/notices/count.js" host=foodswatch.herokuapp.com request_id=c8e03f01-9901-49ad-9501-1c2dcf2b8d37 fwd="116.238.180.252" dyno=web.1 connect=0ms service=68ms status=200 bytes=1038
