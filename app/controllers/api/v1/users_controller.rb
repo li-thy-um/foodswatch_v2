@@ -53,7 +53,7 @@ class Api::V1::UsersController < Api::V1::ApplicationApiController
           }
         end,
         timestamp: view_context.timestamp_for(micropost),
-        is_liking: (cuser = current_user) && (like = cuser.liking?(micropost)),
+        is_liking: (cuser = current_user) && !(like = cuser.liking?(micropost)).nil?,
         like_id: cuser && like && like.id
       }
     end
