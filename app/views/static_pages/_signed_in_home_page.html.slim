@@ -1,4 +1,4 @@
 - content_for :aside
   = render 'layouts/aside', user:current_user, page: 'home'
 
-= render 'shared/feed'
+= render 'shared/micropost_list', action: :feeds, user_id: current_user.id, page: @page, microposts: @microposts

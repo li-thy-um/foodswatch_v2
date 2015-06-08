@@ -334,7 +334,6 @@ aside {
 
 .user_avatars {
   overflow: auto;
-  margin-top: 10px;
   .gravatar {
     margin: 1px 1px;
   }
@@ -383,10 +382,6 @@ input {
 }
 
 /* microposts */
-.microposts {
-  padding: 0px;
-  margin: 10px 0 0 0;
-}
 
 .content {
   display: block;

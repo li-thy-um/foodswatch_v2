@@ -36,9 +36,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @title =  @user.name
-    @microposts = @user.microposts.normal.paginate(page: params[:page])
-    @page = params[:page]
+    @title = @user.name
   end
 
   def new

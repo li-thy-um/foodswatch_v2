@@ -3,7 +3,4 @@
 - content_for :aside
   = render 'layouts/aside', user: @user, page: 'show'
 
-- if @microposts.any?
-  ol class='microposts' data-action='microposts' data-user='#{@user.id}' data-page='#{@page}'
-    = render 'shared/loading'
-  = will_paginate @microposts
+= render 'shared/micropost_list', action: :microposts, user_id: @user.id, page: @page, microposts: @microposts

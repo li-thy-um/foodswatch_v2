@@ -1,16 +1,3 @@
-MicropostList = React.createClass
-
-  render: ->
-    microposts = this.props.data
-
-    micropostNodes = this.props.data.map (micropost) ->
-      `<Micropost data={micropost} key={micropost.id} />`
-
-    `<div className="micropostList">
-      {micropostNodes}
-    </div>`
-
-
 MicropostActionPanel = React.createClass
 
   render: ->
@@ -113,6 +100,20 @@ Micropost = React.createClass
   render: ->
     micropost = this.props.data
     page = this.props.page
+    dom_id = if page == 'share'
+               "share_#{micropost.id}"
+             else
+               micropost.id
+
+    if page == 'share' && micropost == 'deleted'
+      return  `<div className='panel panel-default micropost' id={dom_id}>
+                  <div className='panel-body'>
+                    <span className='content'>
+                      原微博已删除
+                    </span>
+                  </div>
+                  <div className='panel-body'></div>
+                </div>`
 
     original_post = `
       <div className="panel-body">
@@ -123,10 +124,9 @@ Micropost = React.createClass
       <MicropostFoodsPanel data={micropost.foods} />` if micropost.foods.length > 0
 
     action_panel = `
-      <MicropostActionPanel data={micropost} />
-    ` if page != "share"
+      <MicropostActionPanel data={micropost} />` if page != "share"
 
-    `<div className='panel panel-default micropost' id={micropost.id}>
+    `<div className='panel panel-default micropost' id={dom_id}>
       <div className='panel-body'>
         <div className='row-fluid'>
           <div className='media'>
@@ -147,31 +147,65 @@ Micropost = React.createClass
       {action_panel}
     </div>`
 
-class User
-  constructor: (id) ->
-    @id = id
+MorePostsButton = React.createClass
 
-  get: (option) =>
-    $.get "/api/v1/users/#{@id}/#{option.action}?page=#{option.page}&query=#{option.query}", (res) =>
-      option.success(res)
+  render: ->
+    `<button className='btn btn-default btn-block' onClick={this.props.handleClick}>
+      <i className="fa fa-angle-double-down"> 显示下一页 </i>
+    </button>`
+
+LoadingPanel = React.createClass
+
+  render: ->
+    `<div className='panel panel-default'>
+      <div className='panel-body center'>
+        <i className="fa fa-spinner fa-pulse fa-3x"></i>
+      </div>
+    </div>`
+
+MicropostList = React.createClass
+
+  render: ->
+    micropostNodes = @state.data.map (micropost) ->
+      `<Micropost data={micropost} key={micropost.id} />`
+
+    appendix = if @state.loading
+      `<LoadingPanel />`
+    else if @state.hasMorePosts
+      `<MorePostsButton handleClick={this.onClickMorePostButton}/>`
+
+    `<div className="micropostList">
+      {micropostNodes}
+      {appendix}
+    </div>`
+
+  onClickMorePostButton: ->
+    page = @state.page + 1
+    @setState {page: page, loading: true}, ->
+      @fetchData()
+
+  fetchData: ->
+    url = "/api/v1/users/#{@state.user}/#{@state.action}?page=#{@state.page}&query=#{@state.query}"
+    $.get url, (res) =>
+      data = @state.data.concat res.data.microposts
+      @setState {data : data, loading: false, hasMorePosts: res.data.hasMorePosts}
+
+  getInitialState: ->
+    data: []
+    user: @props.user
+    query: @props.query
+    action: @props.action
+    page: 1
+    loading: true
+    hasMorePosts: true
+
+  componentDidMount: ->
+    @fetchData()
 
 $(document).on "ready page:load", ->
-  if ($dom = $("[data-action='feeds']")).length > 0
-    render_microposts($dom, "feeds")
-
-  if ($dom = $("[data-action='search']")).length > 0
-    render_microposts($dom, "search")
-
-  if ($dom = $("[data-action='microposts']")).length > 0
-    render_microposts($dom)
-
-
-render_microposts = ($dom, action) ->
-  page = $dom.data('page') || 1
-  new User($dom.data('user')).get
-    action: action || "microposts"
-    query: if action == "search" then $dom.data("query") else ""
-    page: page
-    success: (res) ->
-      $dom.empty()
-      React.render(`<MicropostList data={res.data}/>`, $dom[0])
+  if ($dom = $(".microposts")).length > 0
+    user = $dom.data('user')
+    page = $dom.data('page')
+    query = $dom.data('query')
+    action = $dom.data('action')
+    React.render(`<MicropostList user={user} query={query} action={action} />`, $dom[0])

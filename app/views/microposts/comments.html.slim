@@ -1,7 +1,7 @@
 - content_for :aside
     = render 'layouts/aside', user:@micropost.user, page: 'detail'
 
-div class='container-fluid microposts'
+div class='container-fluid'
   = render @micropost, page: "detail"
 
   div class='panel panel-default'

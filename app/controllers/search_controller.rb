@@ -1,9 +1,7 @@
 class SearchController < ApplicationController
 
   def micropost
-    @microposts = Micropost.normal.where("content like :query", query: query).paginate(page: params[:page])
     @search_type = :micropost
-    @page = params[:page]
     @query = params[:search][:query]
     @user = current_user
   end

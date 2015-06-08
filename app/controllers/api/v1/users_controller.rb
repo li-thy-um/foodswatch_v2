@@ -3,24 +3,18 @@ class Api::V1::UsersController < Api::V1::ApplicationApiController
   before_action :prepare_user, only: [:feeds, :microposts]
 
   def search
-    microposts = Micropost.normal.where("content like :query", query: query).paginate(page: params[:page]).map do |micropost|
-      json_of micropost
-    end
-    render_json microposts
+    @microposts = Micropost.normal.where("content like :query", query: query).paginate(page: params[:page])
+    render_json microposts: json_of_microposts, hasMorePosts: has_more_page?
   end
 
   def feeds
-    microposts = @user.feed.paginate(page: params[:page]).map do |micropost|
-      json_of micropost
-    end
-    render_json microposts
+    @microposts = @user.feed.paginate(page: params[:page])
+    render_json microposts: json_of_microposts, hasMorePosts: has_more_page?
   end
 
   def microposts
-    microposts = @user.microposts.normal.paginate(page: params[:page]).map do |micropost|
-      json_of micropost
-    end
-    render_json microposts
+    @microposts = @user.microposts.normal.paginate(page: params[:page])
+    render_json microposts: json_of_microposts, hasMorePosts: has_more_page?
   end
 
   private
@@ -29,12 +23,24 @@ class Api::V1::UsersController < Api::V1::ApplicationApiController
       "%#{params[:query]}%"
     end
 
+    def has_more_page?
+      view_context.has_more_page?(@microposts, params[:page].to_i)
+    end
+
+    def json_of_microposts
+      @microposts.map { |m| json_of m }
+    end
+
     def json_of(micropost)
       {
         id: micropost.id,
         content: view_context.wrap(micropost.content),
-        original_post: if original_post = micropost.original_post
-          json_of(original_post)
+        original_post: if micropost.original_id
+          if original_post = micropost.original_post
+            json_of(original_post)
+          else
+            :deleted
+          end
         end,
         count: {
           like: micropost.likes.count,

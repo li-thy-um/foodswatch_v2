@@ -1,3 +1,2 @@
-.microposts data-action="search" data-query="#{@query}" data-user="#{@user.id}" data-page="#{@page}"
-  = render 'shared/loading'
-= will_paginate @microposts
+= render 'shared/micropost_list',
+  action: :search, user_id: @user.id, page: @page, microposts: @microposts, query: @query
