@@ -1,7 +1,7 @@
 module ApplicationHelper
 
-  def has_more_page?(records, page)
-    records.count > page * 30
+  def has_more_page?(records)
+    records.current_page.to_i < records.total_pages
   end
 
   # Returns the full title on a per-page basis.
@@ -10,7 +10,7 @@ module ApplicationHelper
     if page_title.empty?
       base_title
     else
-      "#{base_title} - #{page_title}"
+      "#{page_title}-#{base_title}"
     end
   end
 

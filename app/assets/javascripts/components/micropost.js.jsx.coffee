@@ -91,8 +91,10 @@ FoodTag = React.createClass
     food = this.props.data
 
     `<a className="food-tag" data-id={food.id}>
-      <i className="fa fa-cutlery"></i>
-      {food.name}
+      <span className='label label-warning'>
+        <i className="fa fa-cutlery"> {food.name}</i>
+      </span>
+      &nbsp;
     </a>`
 
 Micropost = React.createClass

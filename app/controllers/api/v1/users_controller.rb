@@ -24,7 +24,7 @@ class Api::V1::UsersController < Api::V1::ApplicationApiController
     end
 
     def has_more_page?
-      view_context.has_more_page?(@microposts, params[:page].to_i)
+      view_context.has_more_page?(@microposts)
     end
 
     def json_of_microposts

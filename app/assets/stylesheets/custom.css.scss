@@ -30,6 +30,12 @@ $grayMediumLight: #eaeaea;
 
 .food-tag {
   cursor: pointer;
+
+  .label {
+    &:hover {
+      background-color: #555;
+    }
+  }
 }
 
 .canvasjs-chart-credit {
