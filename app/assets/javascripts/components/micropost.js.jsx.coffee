@@ -46,7 +46,7 @@ CommentButton = React.createClass
   render: ->
     micropost = this.props.data
 
-    ` <a className='btn btn-comment btn-action btn-primary'>
+    `<a className='btn btn-comment btn-action btn-primary'>
       <span>
         评论 {micropost.count.comment}
       </span>
