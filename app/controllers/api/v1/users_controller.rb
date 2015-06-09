@@ -31,37 +31,48 @@ class Api::V1::UsersController < Api::V1::ApplicationApiController
       @microposts.map { |m| json_of m }
     end
 
-    def json_of(micropost)
+    def basic_json_of(micropost)
       {
         id: micropost.id,
         content: view_context.wrap(micropost.content),
-        original_post: if micropost.original_id
-          if original_post = micropost.original_post
-            json_of(original_post)
-          else
-            :deleted
-          end
-        end,
-        count: {
-          like: micropost.likes.count,
-          share: micropost.shares.count,
-          comment: micropost.comments.count
-        },
         user: {
           id: (user = micropost.user).id,
-          link: view_context.user_link(user),
-          avatar: view_context.gravatar_for(user, size: 55)
+          name: user.name,
+          avatar_url: view_context.avatar_url(user)
         },
-        foods: micropost.foods.map do |food|
-          {
-            id: food.id,
-            name: view_context.strip_tags(food.name)
-          }
+        foods: if micropost.has_foods
+          micropost.foods.map do |food|
+            {
+              id: food.id,
+              name: food.name
+            }
+          end
+        else
+          []
         end,
         timestamp: view_context.timestamp_for(micropost),
-        is_liking: (cuser = current_user) && !(like = cuser.liking?(micropost)).nil?,
-        like_id: cuser && like && like.id
       }
+    end
+
+    def json_of(micropost)
+      basic_json_of(micropost).merge(
+        {
+          original_post: if micropost.original_id
+            if original_post = micropost.original_post
+              basic_json_of(original_post)
+            else
+              :deleted
+            end
+          end,
+          count: {
+            like: micropost.likes.size,
+            share: micropost.share_count,
+            comment: micropost.comments.size
+          },
+          is_liking: (cuser = current_user) && !(like = cuser.liking?(micropost)).nil?,
+          like_id: cuser && like && like.id
+        }
+      )
     end
 
     def prepare_user

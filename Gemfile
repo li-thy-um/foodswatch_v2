@@ -36,6 +36,7 @@ group :development do
   gem 'meta_request'
   gem 'pry'
   gem 'pry-byebug'
+  gem 'rack-mini-profiler'
 end
 
 group :development, :test do

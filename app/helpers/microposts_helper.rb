@@ -2,6 +2,7 @@ module MicropostsHelper
 
   def wrap(content)
     content = sanitize(strip_tags(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
+    # 把content里面包含@username的部分换成link
     content.scan(/@\p{Word}+/).uniq.each do |user_link|
       user = User.find_by(name: user_link[1..-1])
       content = content.gsub(user_link, user_link(user)) unless user.nil?

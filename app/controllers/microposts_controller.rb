@@ -50,6 +50,6 @@ class MicropostsController < ApplicationController
     end
 
     def micropost_params
-      params.require(:micropost).permit(:content, :comment_id, :original_id, :shared_id, :post_food_id)
+      params.require(:micropost).permit(:content, :comment_id, :original_id, :shared_id)
     end
 end

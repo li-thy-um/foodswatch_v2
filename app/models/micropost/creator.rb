@@ -1,7 +1,8 @@
 module Micropost::Creator
 
   def save_with_foods(foods_params)
-    setup_content foods_params.any?
+    self.has_foods = foods_params.any?
+    setup_content self.has_foods
     save!
     create_notice
     (foods_params || []).map { |f| Food.find_by_id(f[:id]) or Food.create!(f) }.each do |f|

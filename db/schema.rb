@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604062028) do
+ActiveRecord::Schema.define(version: 20150609103739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,9 +55,12 @@ ActiveRecord::Schema.define(version: 20150604062028) do
     t.integer  "original_id"
     t.integer  "comment_id"
     t.integer  "shared_id"
-    t.integer  "share_count",   default: 0
+    t.integer  "share_count",    default: 0
     t.integer  "post_food_id"
-    t.integer  "comment_count", default: 0
+    t.integer  "comment_count",  default: 0
+    t.integer  "likes_count",    default: 0
+    t.integer  "comments_count", default: 0
+    t.boolean  "has_foods",      default: false
   end
 
   add_index "microposts", ["comment_id"], name: "index_microposts_on_comment_id", using: :btree

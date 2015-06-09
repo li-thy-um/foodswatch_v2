@@ -102,10 +102,7 @@ Micropost = React.createClass
   render: ->
     micropost = this.props.data
     page = this.props.page
-    dom_id = if page == 'share'
-               "share_#{micropost.id}"
-             else
-               micropost.id
+    dom_id = if page == 'share' then "share_#{micropost.id}" else micropost.id
 
     if page == 'share' && micropost == 'deleted'
       return  `<div className='panel panel-default micropost' id={dom_id}>
@@ -132,9 +129,13 @@ Micropost = React.createClass
       <div className='panel-body'>
         <div className='row-fluid'>
           <div className='media'>
-            <div className='media-left' dangerouslySetInnerHTML={{__html: micropost.user.avatar}} />
+            <div className='media-left'>
+              <UserAvatar user={micropost.user} size="55" />
+            </div>
             <div className='media-body'>
-              <span className='media-heading media-body' dangerouslySetInnerHTML={{__html: micropost.user.link}}/>
+              <span className='media-heading media-body'>
+                <UserLink user={micropost.user} />
+              </span>
               <br/>
               <span className='content' dangerouslySetInnerHTML={{__html: micropost.content}} />
               {foods_panel}
@@ -148,6 +149,22 @@ Micropost = React.createClass
       </div>
       {action_panel}
     </div>`
+
+UserAvatar = React.createClass
+
+  render: ->
+    user = @props.user
+    size = @props.size
+    url = "#{user.avatar_url}?s=55"
+    `<img alt={user.name} className="gravatar" height={size} width={size} src={url} />`
+
+UserLink = React.createClass
+
+  render: ->
+    user_id = @props.user.id
+    user_name = @props.user.name
+    url = "/users/#{user_id}"
+    `<a href={url}>@{user_name}</a>`
 
 MorePostsButton = React.createClass
 

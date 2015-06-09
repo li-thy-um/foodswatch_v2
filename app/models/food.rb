@@ -16,10 +16,6 @@ class Food < ActiveRecord::Base
     self[type] ? self[type] * unit_calorie_of[type] : 0
   end
 
-  def watcher_count
-    watchers.size
-  end
-
   def nutri_info
     {
       prot:    self.prot,
