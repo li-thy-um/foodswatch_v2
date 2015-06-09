@@ -18,7 +18,7 @@ gem 'sass-rails', '~>5.0.0' # Use SCSS for stylesheets
 
 gem 'uglifier', '2.1.1' # Use Uglifier as compressor for JavaScript assets
 
-gem 'font-awesome-sass', '~> 4.3.0'
+gem 'font-awesome-rails'
 
 gem 'slim'
 
