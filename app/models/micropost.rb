@@ -5,8 +5,8 @@ class Micropost < ActiveRecord::Base
   scope :normal, -> { where(comment_id: nil) }
   default_scope -> { order('created_at DESC') }
   belongs_to :user
-  belongs_to :comment_post, foreign_key: :comment_id, class_name: :Micropost
-  belongs_to :shared_post, foreign_key: :shared_id, class_name: :Micropost
+  belongs_to :comment_post, foreign_key: :comment_id, class_name: :Micropost, counter_cache: :comments_count
+  belongs_to :shared_post, foreign_key: :shared_id, class_name: :Micropost, counter_cache: :share_count
   belongs_to :original_post, foreign_key: :original_id, class_name: :Micropost
 
   has_many :post_food_relationships, foreign_key: :post_id, dependent: :destroy
