@@ -17,7 +17,6 @@
 //= require components
 //= require jquery_ujs
 //= require bootstrap
-//= require Chart.min
 //= require canvasjs.min
 //= require bootstrap3-typeahead.min
 //= require_tree .
