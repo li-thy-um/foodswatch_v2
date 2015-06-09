@@ -3,7 +3,8 @@ module UsersHelper
   # Returns the Gravatar (http://gravatar.com/) for the given user.
   def gravatar_for(user, options = { size: 60, :class => "" })
     size = options[:size]
-    image_tag(avatar_url(user), alt: user.name, class: "gravatar #{options[:class]}", height: size, width: size)
+    image_tag(avatar_url(user), alt: user.name, class: "gravatar #{options[:class]}",
+      style: "height:#{size}px; width:#{size}px;")
   end
 
   def gravatar_for_nav(user, options = { size: 60 })
