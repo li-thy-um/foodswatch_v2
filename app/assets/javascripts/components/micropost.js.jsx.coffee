@@ -94,7 +94,6 @@ FoodTag = React.createClass
       <span className='label label-warning'>
         <i className="fa fa-cutlery"> {food.name}</i>
       </span>
-      &nbsp;
     </a>`
 
 Micropost = React.createClass
