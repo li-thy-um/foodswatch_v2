@@ -35,7 +35,8 @@ class Api::V1::UsersController < Api::V1::ApplicationApiController
       end
 
       #cache original_posts
-      @original_posts = @microposts.map(&:original_post).compact!
+      @original_posts = @microposts.map(&:original_post)
+      @original_posts.compact!
       @original_posts.uniq!(&:id)
 
       # cache the foods info of the micropost
